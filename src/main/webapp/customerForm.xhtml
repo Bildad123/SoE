@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+    <ui:composition template="Layouts/template.xhtml">
+        <ui:define name="content">
+
+            <h:form id="login">
+                <fieldset>
+                    <legend>Create Customer</legend>
+                    <br/>
+
+
+                    <h:outputLabel for="firstname" value="Firstname" style="display: inline-block; width: 150px"/>
+                    <h:inputText id="firstname" value="#{customerForm.firstName}" required="true"
+                                 style="width: 77%"
+
+                    />
+                    <br/><br/>
+
+                    <h:outputLabel for="lastname" value="Lastname" style="display: inline-block; width: 150px"/>
+                    <h:inputText id="lastname" value="#{customerForm.lastName}" required="true"
+                                 style="width: 77%"
+                    />
+                    <br/><br/>
+
+
+                    <h:outputLabel for="email" value="Email" style="display: inline-block; width: 150px"/>
+                    <h:inputText id="email" value="#{customerForm.email}" required="true"
+                                 style="width: 77%"
+                    />
+                    <br/><br/>
+
+                    <h:outputLabel for="phone" value="Phone" style="display: inline-block; width: 150px"/>
+                    <h:inputText id="phone" value="#{customerForm.phone}" required="true"
+                                 style="width: 77%"
+                    />
+                    <br/><br/>
+
+
+                    <h:outputLabel for="zip" value="Zip Code" style="display: inline-block; width: 150px"/>
+                    <h:inputText id="zip" value="#{customerForm.zip}" required="true"
+                                 style="width: 77%"
+                    />
+                    <br/><br/>
+
+                    <h:outputLabel for="street" value="Street" style="display: inline-block; width: 150px"/>
+                    <h:inputText id="street" value="#{customerForm.street}" required="true"
+                                 style="width: 77%"
+                    />
+                    <br/><br/>
+
+
+                    <h:outputLabel for="country" value="Country" style="display: inline-block; width: 150px"/>
+                    <h:inputText id="country" value="#{customerForm.country}" required="true"
+                                 style="width: 77%"
+                    />
+                    <br/><br/><br/>
+
+                </fieldset>
+                <br/><br/>
+                <h:commandButton id="reset"  value="reset" action="#{customerForm.submitForm()}"
+                                 style="width: 100%" pt:type="reset"/>
+                <br/><br/>
+                <h:commandButton id="submit" type="submit" value="submit" action="#{customerForm.submitForm()}"
+                                 style="width: 100%"
+                />
+                <br/><br/>
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+</html>

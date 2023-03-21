@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <h:outputStylesheet library="css" name="template.css"></h:outputStylesheet>
+</h:head>
+
+<h:body>
+    <div class="page">
+        <div class="header" style="margin-bottom: 15px; height: 30px">
+            <ui:insert name="header">
+                <ui:include src="header.xhtml"></ui:include>
+            </ui:insert>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <ui:insert name="content">
+                    <ui:include src="content.xhtml"></ui:include>
+                </ui:insert>
+            </div>
+        </div>
+
+
+        <div class="footer">
+            <ui:insert name="footer">
+                <ui:include src="footer.xhtml"></ui:include>
+            </ui:insert>
+        </div>
+    </div>
+</h:body>
+
+
+</html>

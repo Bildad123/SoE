@@ -1,0 +1,30 @@
+body {
+    background-color: #EEE;
+    font-family: "Times New Roman"
+}
+
+.container {
+    width: 800px;
+    overflow: scroll;
+    background-color: #ffffff;
+    height: 50%;
+    margin: 10px auto 10px auto;
+
+}
+
+.header {
+    text-align: center;
+}
+
+.content {
+    padding: 10px;
+}
+
+.nav {
+    width: 10px;
+}
+
+
+.footer {
+    text-align: center;
+}

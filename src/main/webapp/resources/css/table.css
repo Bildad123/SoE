@@ -1,0 +1,19 @@
+.customers-table {
+    border-collapse: collapse;
+    border: 1px solid black ;
+    width: 100%;
+}
+
+.customers-table-header {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+
+}
+
+.customers-table-odd-row {
+    background-color: rgb(255, 255, 255);
+}
+
+.customers-table-even-row {
+    background-color: rgb(250, 250, 250);
+}
