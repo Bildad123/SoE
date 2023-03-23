@@ -1,0 +1,43 @@
+Planung 1
+
+1. Arbeitsfähig werden
+-Installieren fehlender Software
+-Verbindungf zum Server
+-Einbetten der Datenbank 
+
+2. Strucktur der Daten
+Kunden
+-KundenID
+-Vorname
+-Nachname
+-Geburtsdatum
+-Adresse
+-Email
+
+Produkte
+-Produktnummer
+-Produktname
+-Preis
+
+Bestellung
+-Bestellnummer
+-KundenID
+-Bestelldatum
+
+Bestellposition
+-Bestellnummer
+-Produktnummer
+-Anzahl
+
+3. Website
+Die Website für die Verwaltung des Vertriebsunterstützungssystems soll 6 Abschnitte haben.
+Für Kunden, Produkte und Bestellungen soll es je eine Seite zum Erstellen und eine zum Einsehen gebe.
+
+4. Funktionen
+Der User soll eine Kunden, Bestellungen und Produkte erstellen können.
+Zusätzlich soll er bisherige Kunden, Bestellungen und Produkte einsehen können.
+
+5. Arbeitsteilung
+Frontend: Laith
+Logik: Ayham, Bildad
+Datenbank: Haoxiang, Doreen
