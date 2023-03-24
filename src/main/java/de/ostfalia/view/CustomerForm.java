@@ -38,6 +38,8 @@ public class CustomerForm implements Serializable {
     @NotNull(message = "Country cannot be empty")
     String country;
 
+    String birthday;
+
 
 
     public CustomerForm() {
@@ -45,20 +47,21 @@ public class CustomerForm implements Serializable {
 
 
 
-    public String submitForm() {
-        Customer c = new Customer(
-                this.firstName,
-                this.lastName,
-                this.email,
-                this.phone,
-                this.zip,
-                this.street,
-                this.country
-        );
-        cs.save(c);
-        //System.out.println("Customer to be saved : " + c);
-        return "allCustomers" + "?faces-redirect=true";
-    }
+//    public String submitForm() {
+//        Customer c = new Customer(
+//                this.firstName,
+//                this.lastName,
+//                this.email,
+//                this.birthday,
+//                this.zip,
+//                this.street,
+//                this.country,
+//
+//        );
+//        cs.save(c);
+//        //System.out.println("Customer to be saved : " + c);
+//        return "allCustomers" + "?faces-redirect=true";
+//    }
 
 
     //Getter and Setters
