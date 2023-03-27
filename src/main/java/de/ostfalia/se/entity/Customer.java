@@ -1,42 +1,61 @@
 package de.ostfalia.se.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table(name = "customers")
 public class Customer {
     @Id
     @GeneratedValue
     private Long id;
 
-    String firstname;
+    private String firstname;
 
-    String lastname;
+    private String lastname;
 
-    String email;
+    private String email;
 
-    String phone;
+    private LocalDate birthdate;
 
-    String zip;
+    private String zip;
 
-    String street;
+    private String street;
 
-    String country;
 
-    public Customer(String firstname, String lastname, String email, String phone, String zip, String street, String country) {
+    @OneToMany(cascade =
+            CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "order_id")
+    private Set<Order> customerOrders = new HashSet<>();
+
+
+    /**
+     * Constructor of class Customer
+     * @param firstname
+     * @param lastname
+     * @param email
+     * @param birthdate
+     * @param zip
+     * @param street
+     */
+    public Customer(String firstname, String lastname, String email, LocalDate birthdate, String zip, String street) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
-        this.phone = phone;
+        this.birthdate = birthdate;
         this.zip = zip;
         this.street = street;
-        this.country = country;
     }
 
     public Customer() {
 
     }
+
+
+    //Getters and Setters
 
     public Long getId() {
         return id;
@@ -54,23 +73,55 @@ public class Customer {
         return email;
     }
 
-    public String getPhone() {
-        return phone;
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 
     public String getZip() {
         return zip;
     }
 
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public Set<Order> getCustomerOrders() {
+        return customerOrders;
+    }
+
+    public void setCustomerOrders(Set<Order> customerOrders) {
+        this.customerOrders = customerOrders;
+    }
+
     public String getStreet() {
         return street;
     }
 
-    public String getCountry() {
-        return country;
+    public String toString(){
+        return this.firstname + "   " + this.lastname;
     }
 
-    public String toString(){
-        return this.firstname + " " + this.lastname;
+    public void setId(Long id) {
+        this.id = id;
     }
 }

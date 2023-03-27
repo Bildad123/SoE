@@ -8,10 +8,38 @@
 
 <ui:composition template="Layouts/template.xhtml">
     <ui:define name="header">
+        <h:outputStylesheet library="css" name="table.css"></h:outputStylesheet>
         <ui:insert name="header"></ui:insert>
     </ui:define>
     <ui:define name="content">
+        <span style="font-size: small">Showing #{allOrders.orders.size()} orders(s) in the database</span><br></br>
+        <h:form>
+            <h:dataTable value="#{allOrders.orders}" var="o"
+                         styleClass="customers-table"
+                         headerClass="customers-table-header"
+                         rowClasses="customers-table-odd-row,customers-table-even-row"
+                         cellspacing="15px"
+                         cellpadding="15px"
+                         style="text-align: left"
+                         rendered="#{allOrders.orders.size() > 0}">
 
+                <h:column>
+                    <f:facet name="header">Fullname</f:facet>
+                    #{o.customer}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Orders</f:facet>
+                    <ol style="font-size: small">
+                        <ui:repeat value="#{o.orderItems}" var="s">
+                            <li>#{s.product} ( #{s.quantity}X )</li>
+                        </ui:repeat>
+                    </ol>
+                    Total Price : #{o.totalPrice}
+                </h:column>
+
+            </h:dataTable>
+        </h:form>
 
     </ui:define>
 </ui:composition>

@@ -1,18 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html 	xmlns="http://www.w3.org/1999/xhtml"
-         xmlns:f="http://xmlns.jcp.org/jsf/core"
-         xmlns:h="http://xmlns.jcp.org/jsf/html"
-         xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
-<ui:composition template="Layouts/template.xhtml">
-   <ui:define name="header">
-      <ui:insert name="header"></ui:insert>
-   </ui:define>
-   <ui:define name="content">
+   <ui:composition template="Layouts/template.xhtml">
+      <ui:define name="content">
 
-   </ui:define>
-</ui:composition>
+         <h:form id="create-product-form">
+            <fieldset>
+               <legend>Create Product</legend>
+               <br/>
 
+
+               <h:outputLabel for="name" value="Name" style="display: inline-block; width: 150px"/>
+               <h:inputText id="name" value="#{productForm.name}" required="true"
+                            style="width: 77%"
+
+               />
+               <br/><br/>
+
+               <h:outputLabel for="price" value="price" style="display: inline-block; width: 128px"/>
+               <span style="margin-right: 10px">&#8364;</span>
+               <input type="number" jsf:id="price" jsf:value="#{productForm.price}" name="Price"  step="0.01"  style="width: 77%"/>
+               <br/><br/>
+
+
+
+            </fieldset>
+            <br/><br/>
+            <h:commandButton id="reset"  value="reset" action="#{productForm.submitForm()}"
+                             style="width: 100%" pt:type="reset"/>
+            <br/><br/>
+            <h:commandButton id="submit" type="submit" value="create product" action="#{productForm.submitForm()}"
+                             style="width: 100%"
+            />
+            <br/><br/>
+
+         </h:form>
+
+      </ui:define>
+   </ui:composition>
 </html>

@@ -11,9 +11,9 @@
 }
 
 .customers-table-odd-row {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(250, 250, 250);
 }
 
 .customers-table-even-row {
-    background-color: rgb(250, 250, 250);
+    background-color: rgb(255, 255, 255);
 }

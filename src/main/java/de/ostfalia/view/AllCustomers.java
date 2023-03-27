@@ -10,23 +10,33 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Bean for the JSF Page 'allCustomers.xhtml'
+ */
 @Named
 @ViewScoped
 public class AllCustomers implements Serializable {
-
-    private List<Customer> customers;
     @Inject
     CustomerService cs;
+
+    private List<Customer> customers;
 
     AllCustomers(){
 
     }
 
+    /**
+     * Gets all customers from the customers table
+     * and stores in the corresponding class attribute
+     */
     @PostConstruct
     public void init(){
         customers = cs.findAll();
     }
 
+
+
+    //Getter
     public List<Customer> getCustomers() {
         return customers;
     }
