@@ -15,6 +15,8 @@ public class Order {
     private Long orderId;
     @Column(name = "order_date")
     private Date orderDate;
+    @Column(name = "total_price")
+    private Double totalPrice;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -37,6 +39,14 @@ public class Order {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public Customer getCustomer() {
