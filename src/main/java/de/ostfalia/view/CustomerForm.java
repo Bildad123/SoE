@@ -38,8 +38,6 @@ public class CustomerForm implements Serializable {
     @NotNull(message = "Country cannot be empty")
     String country;
 
-    String birthday;
-
 
 
     public CustomerForm() {
@@ -52,11 +50,10 @@ public class CustomerForm implements Serializable {
 //                this.firstName,
 //                this.lastName,
 //                this.email,
-//                this.birthday,
+//                this.phone,
 //                this.zip,
 //                this.street,
-//                this.country,
-//
+//                this.country
 //        );
 //        cs.save(c);
 //        //System.out.println("Customer to be saved : " + c);

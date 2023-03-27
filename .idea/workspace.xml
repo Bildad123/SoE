@@ -10,15 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/OrderItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2d63f969-09cb-4121-91e8-5eb18ede76c6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/OrderItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/CustomerForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/CustomerForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,10 +98,8 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -312,11 +306,24 @@
       <workItem from="1679402801455" duration="267000" />
       <workItem from="1679403188823" duration="1381000" />
       <workItem from="1679612047637" duration="107000" />
-      <workItem from="1679665385396" duration="4840000" />
+      <workItem from="1679665385396" duration="6036000" />
+      <workItem from="1679899151419" duration="1368000" />
     </task>
+    <task id="LOCAL-00001" summary="entity nicht fertig">
+      <created>1679671428000</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1679671428000</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="entity nicht fertig" />
+    <option name="LAST_COMMIT_MESSAGE" value="entity nicht fertig" />
   </component>
 </project>

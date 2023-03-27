@@ -3,10 +3,11 @@ package de.ostfalia.se.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,38 +15,13 @@ public class Order {
     private Long orderId;
     @Column(name = "order_date")
     private Date orderDate;
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-//    @ManyToMany
-//    @JoinColumn(name = "product_id")
-//    private Set<OrderItem> orderItemSet;
 
-    public Order(Long orderId, Date orderDate, Customer customer, Set<OrderItem> orderItemSet) {
-        this.orderId = orderId;
-        this.orderDate = orderDate;
-        this.customer = customer;
-//        this.orderItemSet = orderItemSet;
-    }
-
-    public Order() {
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-//    public Set<OrderItem> getOrderItemSet() {
-//        return orderItemSet;
-//    }
-//
-//    public void setOrderItemSet(Set<OrderItem> orderItemSet) {
-//        this.orderItemSet = orderItemSet;
-//    }
+    @ManyToMany(mappedBy = "orders")
+    private Set<OrderItem> orderItems = new HashSet<>();
 
     public Long getOrderId() {
         return orderId;
@@ -63,11 +39,19 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", orderDate=" + orderDate +
-                '}';
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Set<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(Set<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }

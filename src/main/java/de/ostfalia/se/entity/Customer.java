@@ -2,48 +2,28 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
+import javax.xml.namespace.QName;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "customers")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
     private Long customerId;
-    String firstname;
-    String lastname;
-    String email;
-    Date birthday;
-    String zip;
-    String street;
-    String country;
-    @OneToMany
-    @JoinColumn(name = "customer_id")
-    private Set<Order> orders;
+    private String firstname;
+    private String lastname;
+    private String email;
+    private Date birthday;
+    private String zip;
+    private String street;
+    private String country;
 
-    public Customer(Long customerId, String firstname, String lastname, String email, Date birthday, String zip, String street, String country) {
-        this.customerId = customerId;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.birthday = birthday;
-        this.zip = zip;
-        this.street = street;
-        this.country = country;
-    }
-
-    public Customer() {
-
-    }
-
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
+    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "customer")
+    private Set<Order> orders = new HashSet<>();
 
     public Long getCustomerId() {
         return customerId;
@@ -109,17 +89,11 @@ public class Customer {
         this.country = country;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "customerId=" + customerId +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", email='" + email + '\'' +
-                ", birthday=" + birthday +
-                ", zip='" + zip + '\'' +
-                ", street='" + street + '\'' +
-                ", country='" + country + '\'' +
-                '}';
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 }

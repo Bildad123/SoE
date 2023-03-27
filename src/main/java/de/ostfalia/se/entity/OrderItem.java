@@ -2,38 +2,34 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "order_item")
+@Table(name = "order_items")
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long OrderItemId;
+    @Column(name = "order_item_id")
+    private Long orderItemId;
     private Integer quantity;
-//    @ManyToMany
-//    @JoinColumn(name = "order_id")
-//    private Set<Order> orderSet;
+
+    @ManyToMany
+    @JoinTable(name = "order_item_order",
+            joinColumns = {@JoinColumn(name = "order_item_id", referencedColumnName = "order_item_id")},
+            inverseJoinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "order_id")})
+    private Set<Order> orders = new HashSet<>();
+
     @OneToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", unique = true)
     private Product product;
 
-    public OrderItem(Long orderItemId, Integer quantity, Set<Order> orderSet, Product product) {
-        OrderItemId = orderItemId;
-        this.quantity = quantity;
-//        this.orderSet = orderSet;
-        this.product = product;
-    }
-
-    public OrderItem() {
-    }
-
     public Long getOrderItemId() {
-        return OrderItemId;
+        return orderItemId;
     }
 
     public void setOrderItemId(Long orderItemId) {
-        OrderItemId = orderItemId;
+        this.orderItemId = orderItemId;
     }
 
     public Integer getQuantity() {
@@ -44,14 +40,14 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-//    public Set<Order> getOrderSet() {
-//        return orderSet;
-//    }
-//
-//    public void setOrderSet(Set<Order> orderSet) {
-//        this.orderSet = orderSet;
-//    }
-//
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
     public Product getProduct() {
         return product;
     }
@@ -59,13 +55,4 @@ public class OrderItem {
     public void setProduct(Product product) {
         this.product = product;
     }
-//
-//    @Override
-//    public String toString() {
-//        return "OrderItem{" +
-//                "quantity=" + quantity +
-//                ", orderSet=" + orderSet +
-//                ", product=" + product +
-//                '}';
-//    }
 }
