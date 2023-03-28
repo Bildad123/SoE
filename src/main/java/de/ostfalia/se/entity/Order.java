@@ -17,7 +17,8 @@ public class Order {
     @Column(name = "order_date")
     private LocalDate orderDate;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer = new Customer();
 
     @Column(name = "total_price")
@@ -26,7 +27,7 @@ public class Order {
 
     @OneToMany(cascade =
             CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_item_id")
+    @JoinColumn(name = "order_id")
     private Set<OrderItem> orderItems = new HashSet<>();
 
 

@@ -26,9 +26,8 @@ public class Customer {
     private String street;
 
 
-    @OneToMany(cascade =
-            CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER, mappedBy = "customer")
     private Set<Order> customerOrders = new HashSet<>();
 
 
