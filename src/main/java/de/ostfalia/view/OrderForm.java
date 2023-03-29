@@ -1,5 +1,6 @@
 package de.ostfalia.view;
 import de.ostfalia.se.boundary.CustomerService;
+import de.ostfalia.se.boundary.OrderItemService;
 import de.ostfalia.se.boundary.OrderService;
 import de.ostfalia.se.boundary.ProductService;
 import de.ostfalia.se.entity.Customer;
@@ -15,6 +16,7 @@ import jakarta.transaction.Transactional;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Bean for the JSF Page 'orderForm.xhtml'
@@ -32,6 +34,9 @@ public class OrderForm implements Serializable{
     @Inject
     OrderService os;
 
+    @Inject
+    OrderItemService ois;
+
 
     private List<Customer> customers;
     private String selectedCustomer;
@@ -40,6 +45,8 @@ public class OrderForm implements Serializable{
     private String selectedProduct;
 
     private List<OrderItem> orderItems;
+
+
 
 
     /**
@@ -55,7 +62,7 @@ public class OrderForm implements Serializable{
         orderItems = new ArrayList<>();
 
         customers = cs.findAll();
-        customers.add(0, new Customer("","","",null, "",""));
+        customers.add(0, new Customer("","",null, "",""));
 
         products = ps.findAll();
         products.add(0, new Product("", null));
@@ -76,7 +83,7 @@ public class OrderForm implements Serializable{
             if(shouldAdd){  // + Button was selected
                 if(!this.selectedItemIsPresent()){
                     if( this.orderItems.isEmpty() ){
-                        OrderItem item = new OrderItem(1,product);
+                        OrderItem item = new OrderItem(product);
                         this.orderItems.add(item);   //very first order
                     }  else{
                         this.addOrderItem(product);  //next orders
@@ -103,7 +110,7 @@ public class OrderForm implements Serializable{
      * @param product
      */
     public void addOrderItem(Product product){
-        this.orderItems.add(new OrderItem(1,product ));
+        this.orderItems.add(new OrderItem(product ));
     }
 
     /**
@@ -176,13 +183,19 @@ public class OrderForm implements Serializable{
             if(name.length > 1){
                 Customer customer = cs.findByName(name[0], name[1]);
 
-                Order cOrder = new Order(customer);
 
-                cOrder.getOrderItems().addAll(this.orderItems);
-                cOrder.calculateTotalPrice();  //to calculate the totalPrice
+                Order order = new Order(customer);
+                double totalPrice = 0;
+                for(int i = 0; i < this.orderItems.size(); i++){
+                    this.orderItems.get(i).setOrder(order);
+                    totalPrice += this.orderItems.get(i).getQuantity() * this.orderItems.get(i).getListPrice();
+                    this.ois.getEm().persist(this.orderItems.get(i));
+                }
+                order.setTotalPrice(totalPrice);
+
+                os.getEm().persist(order);
 
 
-                cs.getEm().merge(customer).getCustomerOrders().add(os.getEm().merge(cOrder)); //to avoid detached entity
 
                 return "allOrders" + "?faces-redirect=true";
             }

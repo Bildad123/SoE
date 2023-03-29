@@ -9,7 +9,17 @@ public class OrderItem {
     @GeneratedValue
     private Long id;
 
+    @Column(name = "discount")
+    private Double discount;
+
+    @Column(name = "list_price")
+    private Double listPrice;
+
     private Integer quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order = new Order();
 
     @OneToOne
     private Product product;
@@ -20,12 +30,12 @@ public class OrderItem {
 
     /**
      * Constructor of the class OrderItem
-     * @param quantity
      * @param product
      */
-    public OrderItem(Integer quantity, Product product) {
-        this.quantity = quantity;
+    public OrderItem(Product product) {
+        this.quantity = 1;
         this.product = product;
+        this.listPrice = product.getPrice();
     }
 
 
@@ -53,4 +63,30 @@ public class OrderItem {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    public Double getListPrice() {
+        return listPrice;
+    }
+
+    public void setListPrice(Double listPrice) {
+        this.listPrice = listPrice;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+
 }

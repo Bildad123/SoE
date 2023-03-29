@@ -10,9 +10,16 @@ public class Product {
     @GeneratedValue
     private Long id;
 
+    @Column(name = "list_price")
+    private Double price;
+
+    @Column(name = "product_name")
     private String name;
 
-    private Double price;
+    @Column(name = "model_year")
+    Integer modelYear;
+
+
 
 
     /**

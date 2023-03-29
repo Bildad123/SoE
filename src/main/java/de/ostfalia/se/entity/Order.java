@@ -1,5 +1,6 @@
 package de.ostfalia.se.entity;
 
+import jakarta.ejb.Local;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -17,6 +18,16 @@ public class Order {
     @Column(name = "order_date")
     private LocalDate orderDate;
 
+    @Column(name = "order_status")
+    private Integer oderStatus;
+
+    @Column(name = "required_date")
+    private LocalDate requiredDate;
+
+    @Column(name = "shippedDate")
+    private LocalDate shippedDate;
+
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer = new Customer();
@@ -24,11 +35,6 @@ public class Order {
     @Column(name = "total_price")
     private Double totalPrice;
 
-
-    @OneToMany(cascade =
-            CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
-    private Set<OrderItem> orderItems = new HashSet<>();
 
 
     /**
@@ -45,28 +51,7 @@ public class Order {
     }
 
 
-    public void calculateTotalPrice(){
-        Iterator<OrderItem> iterator = this.orderItems.iterator();
-        double totalPrice = 0;
-        if(iterator != null){
-            while (iterator.hasNext()){
-                OrderItem oi = iterator.next();
-                totalPrice += oi.getQuantity()  * oi.getProduct().getPrice();
-            }
-            this.totalPrice = totalPrice;
-        }
-    }
-
-
     //Getters and Setters
-
-    public Set<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(Set<OrderItem> orderItems) {
-        this.orderItems = orderItems;
-    }
 
     public LocalDate getOrderDate() {
         return orderDate;

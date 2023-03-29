@@ -31,8 +31,6 @@ public class CustomerForm implements Serializable {
     @NotNull(message = "Email cannot be empty")
     String email;
 
-    @NotNull(message = "Birthdate cannot be empty")
-    String birthdate;
 
     @NotNull(message = "Zip cannot be empty")
     String zip;
@@ -56,7 +54,6 @@ public class CustomerForm implements Serializable {
                 this.firstName,
                 this.lastName,
                 this.email,
-                toLocalDate(this.birthdate),
                 this.zip,
                 this.street
         );
@@ -70,13 +67,6 @@ public class CustomerForm implements Serializable {
      * @param dateString
      * @return LocalDate
      */
-    public LocalDate toLocalDate(String dateString){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(dateString, formatter);
-        return date;
-
-    }
-
 
     //Getter and Setters
     public String getFirstName() {
@@ -91,9 +81,6 @@ public class CustomerForm implements Serializable {
         return email;
     }
 
-    public String getBirthdate() {
-        return birthdate;
-    }
 
     public String getZip() {
         return zip;
@@ -115,9 +102,7 @@ public class CustomerForm implements Serializable {
         this.email = email;
     }
 
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
-    }
+
 
     public void setZip(String zip) {
         this.zip = zip;
