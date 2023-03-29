@@ -5,6 +5,7 @@ import de.ostfalia.se.entity.Product;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 
@@ -18,8 +19,10 @@ public class ProductForm implements Serializable {
     @Inject
     ProductService ps;
 
+    @NotNull(message = "name cannot be null")
     private String name;
 
+    @NotNull(message = "price cannot be null")
     private double price;
 
 

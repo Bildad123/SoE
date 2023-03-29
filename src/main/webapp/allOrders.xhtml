@@ -14,7 +14,7 @@
     <ui:define name="content">
         <span style="font-size: small">Showing #{allOrders.orders.size()} orders(s) in the database</span><br></br>
         <h:form>
-            <h:dataTable value="#{allOrders.customersWithOrders}" var="c"
+            <h:dataTable value="#{allOrders.map}" var="entry"
                          styleClass="customers-table"
                          headerClass="customers-table-header"
                          rowClasses="customers-table-odd-row,customers-table-even-row"
@@ -25,25 +25,17 @@
 
                 <h:column>
                     <f:facet name="header">Fullname</f:facet>
-                    #{c}
+                    #{entry.key.customer}
+
                 </h:column>
 
                 <h:column>
                     <f:facet name="header" >Orders</f:facet>
-
-                        <ui:repeat value="#{allOrders.ooii}" var="ooii" >
-                            <ol style="font-size: small">
-                                <ui:repeat value="#{ooii}" var="oi" >
-                                    <ui:fragment rendered="#{oi.order.customer.id == c.id}">
-                                        <li>#{oi.product} ( #{oi.quantity} X )</li>
-                                    </ui:fragment>
-                                </ui:repeat>
-                            </ol>
-                            Total Price : #{0} &#8364;
-                            <p></p>
-                            <br/>
-                            <br/>
+                    <ol style="font-size: small">
+                        <ui:repeat value="#{entry.value}" var="v">
+                            <li>#{v.product} ( #{v.quantity}X )</li>
                         </ui:repeat>
+                    </ol>
                 </h:column>
 
             </h:dataTable>

@@ -89,4 +89,9 @@ public class OrderItem {
     }
 
 
+    public String toString(){
+        return  "( " + this.getQuantity() + "  X " + this.getProduct().getName() + " )";
+    }
+
+
 }
