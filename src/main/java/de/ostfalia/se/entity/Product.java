@@ -23,10 +23,10 @@ public class Product {
     private String name;
 
     @Column(name = "brand_id")
-    private Brands brand;
+    private Brand brand;
 
     @Column(name = "category_id")
-    private Categories categories;
+    private Category category;
 
     //private Double price; Wird nicht mehr benötigt
 
@@ -39,17 +39,17 @@ public class Product {
                 ", modelYear=" + modelYear +
                 ", name='" + name + '\'' +
                 ", brand=" + brand +
-                ", category=" + categories +
+                ", category=" + category +
                 '}';
     }
 
-    public Product(Long id, BigDecimal listPrice, Integer modelYear, String name, Brands brand, Categories categories) {
+    public Product(Long id, BigDecimal listPrice, Integer modelYear, String name, Brand brand, Category category) {
         this.id = id;
         this.listPrice = listPrice;
         this.modelYear = modelYear;
         this.name = name;
         this.brand = brand;
-        this.categories = categories;
+        this.category = category;
     }
 
     public Product() {
@@ -90,20 +90,20 @@ public class Product {
         this.name = name;
     }
 
-    public Brands
+    public Brand
     getBrand() {
         return brand;
     }
 
-    public void setBrand(Brands brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 
-    public Categories getCategory() {
-        return categories;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategory(Categories categories) {
-        this.categories = categories;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "categories")
-public class Categories {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
@@ -13,12 +13,12 @@ public class Categories {
     @Column(name = "category_name")
     private String categoryName;
 
-    public Categories(Long id, String categoryName) {
+    public Category(Long id, String categoryName) {
         this.id = id;
         this.categoryName = categoryName;
     }
 
-    public Categories() {
+    public Category() {
     }
 
     @Override

@@ -3,9 +3,6 @@ package de.ostfalia.se.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -31,10 +28,10 @@ public class Order {
     private Customer customer;
 
     @Column(name = "staff_id")
-    private Staffs staff;
+    private Staff staff;
 
     @Column(name = "store_id")
-    private Stores store;
+    private Store store;
 
     //Wird nicht mehr benötigt
     //@Column(name = "total_price") Wird nicht mehr benötigt
@@ -47,7 +44,7 @@ public class Order {
    // private Set<OrderItem> orderItems = new HashSet<>();
 
 
-    public Order(Long id, LocalDate orderDate, Integer orderStatus, LocalDate requiredDate, LocalDate shippedDate, Customer customer, Staffs staff, Stores store) {
+    public Order(Long id, LocalDate orderDate, Integer orderStatus, LocalDate requiredDate, LocalDate shippedDate, Customer customer, Staff staff, Store store) {
         this.id = id;
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
@@ -146,19 +143,19 @@ public class Order {
         this.customer = customer;
     }
 
-    public Staffs getStaff() {
+    public Staff getStaff() {
         return staff;
     }
 
-    public void setStaff(Staffs staff) {
+    public void setStaff(Staff staff) {
         this.staff = staff;
     }
 
-    public Stores getStore() {
+    public Store getStore() {
         return store;
     }
 
-    public void setStore(Stores store) {
+    public void setStore(Store store) {
         this.store = store;
     }
 }
