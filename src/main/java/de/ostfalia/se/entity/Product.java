@@ -3,7 +3,6 @@ package de.ostfalia.se.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.Locale;
 
 @Entity
 @Table(name = "products")
@@ -24,10 +23,10 @@ public class Product {
     private String name;
 
     @Column(name = "brand_id")
-    private Brand brand;
+    private Brands brand;
 
     @Column(name = "category_id")
-    private Category category;
+    private Categories categories;
 
     //private Double price; Wird nicht mehr benötigt
 
@@ -40,17 +39,17 @@ public class Product {
                 ", modelYear=" + modelYear +
                 ", name='" + name + '\'' +
                 ", brand=" + brand +
-                ", category=" + category +
+                ", category=" + categories +
                 '}';
     }
 
-    public Product(Long id, BigDecimal listPrice, Integer modelYear, String name, Brand brand, Category category) {
+    public Product(Long id, BigDecimal listPrice, Integer modelYear, String name, Brands brand, Categories categories) {
         this.id = id;
         this.listPrice = listPrice;
         this.modelYear = modelYear;
         this.name = name;
         this.brand = brand;
-        this.category = category;
+        this.categories = categories;
     }
 
     public Product() {
@@ -91,19 +90,20 @@ public class Product {
         this.name = name;
     }
 
-    public Brand getBrand() {
+    public Brands
+    getBrand() {
         return brand;
     }
 
-    public void setBrand(Brand brand) {
+    public void setBrand(Brands brand) {
         this.brand = brand;
     }
 
-    public Category getCategory() {
-        return category;
+    public Categories getCategory() {
+        return categories;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategory(Categories categories) {
+        this.categories = categories;
     }
 }
