@@ -8,10 +8,34 @@
 
 <ui:composition template="Layouts/template.xhtml">
     <ui:define name="header">
+        <h:outputStylesheet library="css" name="table.css"></h:outputStylesheet>
         <ui:insert name="header"></ui:insert>
     </ui:define>
     <ui:define name="content">
+        <span style="font-size: small">Showing #{allProducts.products.size()} products(s) in the database</span><br></br>
+        <h:form>
+            <h:dataTable value="#{allProducts.products}" var="p"
+                         styleClass="customers-table"
+                         headerClass="customers-table-header"
+                         rowClasses="customers-table-odd-row,customers-table-even-row"
+                         cellspacing="15px"
+                         cellpadding="15px"
+                         style="text-align: left"
+                         rendered="#{allProducts.products.size() > 0}">
 
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    #{p.name}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Price</f:facet>
+                    #{p.price}
+                    <span style="margin-left: 10px">&#8364;</span>
+
+                </h:column>
+            </h:dataTable>
+        </h:form>
 
     </ui:define>
 </ui:composition>

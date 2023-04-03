@@ -1,0 +1,20 @@
+Reflexion
+
+Was lief gut?
+- Kommunikation und -wege
+- regelmäßige Treffen
+- Hilfestellungen
+- gemeinsame Planung
+
+-diskutiert:
+	"Früh angefangen":Wir haben nicht früh angefanegen, aber Zeit gut gemanagt 
+
+Was ist nicht gut gelaufen:
+- keine Liefertermin, bzw. Zwischenlieferung ->Lösung Liefertermin
+- Missverständnis bei der Aufgabenverteilung ->Lösung Kanbanboard
+- zu spät anfangen
+
+
+Verbessern:
+- Kanbanboard nutzen
+- Zwischenliefertermine und Liefertermine

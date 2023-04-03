@@ -2,34 +2,40 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Entity
 @Table(name = "order_items")
 public class OrderItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_item_id")
-    private Long orderItemId;
+    @GeneratedValue
+    private Long id;
+
     private Integer quantity;
 
-    @ManyToMany
-    @JoinTable(name = "order_item_order",
-            joinColumns = {@JoinColumn(name = "order_item_id", referencedColumnName = "order_item_id")},
-            inverseJoinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "order_id")})
-    private Set<Order> orders = new HashSet<>();
-
     @OneToOne
-    @JoinColumn(name = "product_id", unique = true)
     private Product product;
 
-    public Long getOrderItemId() {
-        return orderItemId;
+    public OrderItem() {
+
     }
 
-    public void setOrderItemId(Long orderItemId) {
-        this.orderItemId = orderItemId;
+    /**
+     * Constructor of the class OrderItem
+     * @param quantity
+     * @param product
+     */
+    public OrderItem(Integer quantity, Product product) {
+        this.quantity = quantity;
+        this.product = product;
+    }
+
+
+    //Getters and Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Integer getQuantity() {
@@ -38,14 +44,6 @@ public class OrderItem {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
     }
 
     public Product getProduct() {

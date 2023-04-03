@@ -24,14 +24,8 @@
                              rendered="#{allCustomers.customers.size() > 0}">
 
                     <h:column>
-                        <f:facet name="header">Firstname</f:facet>
-                        #{c.firstname}
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">Lastname</f:facet>
-                        #{c.lastname}
-
+                        <f:facet name="header">Fullname</f:facet>
+                        #{c.firstname} #{c.lastname}
                     </h:column>
 
                     <h:column>
@@ -41,27 +35,15 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Phone</f:facet>
-                        #{c.phone}
+                        <f:facet name="header">Birthdate</f:facet>
+                        #{c.birthdate}
 
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Zip</f:facet>
-                        #{c.zip}
+                        <f:facet name="header">Address</f:facet>
+                        #{c.zip}, #{c.street}
 
                     </h:column>
-                    <h:column>
-                        <f:facet name="header">Street</f:facet>
-                        #{c.street}
-
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Country</f:facet>
-                        #{c.country}
-
-                    </h:column>
-
-
                 </h:dataTable>
             </h:form>
 

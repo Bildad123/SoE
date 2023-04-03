@@ -1,0 +1,41 @@
+Planung 2
+
+1. Arbeitsfähig werden
+- Namensänderungen
+- Hibernate Einstellungen
+- Maven anpassen
+- SQL-Datei einpflegen
+
+2. Datenbankstruktur
+- Beziehungen verstehen und umsetzen (OneToMany,...)
+- Neue Struktur implementieren
+
+3. Logik
+- Anpassung der bisherigen Logik auf das neue Datenmodell
+- Erweiterung der Fehlenen Listen
+- Verknüpfungen der Tabellen
+
+4. Darstellung
+- Darstellungsmodell
+- Anpassen der bisherigen Darstellung
+- Erweiterung der Bestellungen um die Bestellpositionen
+- Erweiterung um die Niederlassungen und Lagerbestände
+- Verknüpfen der Tabellen
+
+5. Funktion
+
+In dieser zweiten Entwicklungsiteration genügt die Listendarstellung von Kunden, Produkten
+und Bestellungen mit Bestellpositionen. Spater wird hierfür, sowie fur weitere Modellelemente, jeweils
+eine CRUD-Funktionalitat realisiert. (Zitat Aufgabenstellung)
+
+6. Arbeitsteilung
+Frontend: Laith
+Logik: Ayham, Bildad
+Datenbank: Haoxiang, Doreen
+
+7. Termine
+04.04. Fertigstellung Datenbankstruktur
+13.04. Fertigstellung Logik
+	+ Treffen zur Planund der Darstellung
+17.04. Treffen zur Fertigstellung
+19.04 Abgabe
