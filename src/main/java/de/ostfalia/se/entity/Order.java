@@ -31,10 +31,10 @@ public class Order {
     private Customer customer;
 
     @Column(name = "staff_id")
-    private Staff staff;
+    private Staffs staff;
 
     @Column(name = "store_id")
-    private Store store;
+    private Stores store;
 
     //Wird nicht mehr benötigt
     //@Column(name = "total_price") Wird nicht mehr benötigt
@@ -47,7 +47,7 @@ public class Order {
    // private Set<OrderItem> orderItems = new HashSet<>();
 
 
-    public Order(Long id, LocalDate orderDate, Integer orderStatus, LocalDate requiredDate, LocalDate shippedDate, Customer customer, Staff staff, Store store) {
+    public Order(Long id, LocalDate orderDate, Integer orderStatus, LocalDate requiredDate, LocalDate shippedDate, Customer customer, Staffs staff, Stores store) {
         this.id = id;
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
@@ -146,19 +146,19 @@ public class Order {
         this.customer = customer;
     }
 
-    public Staff getStaff() {
+    public Staffs getStaff() {
         return staff;
     }
 
-    public void setStaff(Staff staff) {
+    public void setStaff(Staffs staff) {
         this.staff = staff;
     }
 
-    public Store getStore() {
+    public Stores getStore() {
         return store;
     }
 
-    public void setStore(Store store) {
+    public void setStore(Stores store) {
         this.store = store;
     }
 }
