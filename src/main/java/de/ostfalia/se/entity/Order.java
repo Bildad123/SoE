@@ -11,61 +11,99 @@ import java.util.Set;
 @Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "order_id")
     private Long id;
 
     @Column(name = "order_date")
     private LocalDate orderDate;
 
+    @Column(name = "order_status")
+    private Integer orderStatus;
+
+    @Column(name = "required_date")
+    private LocalDate requiredDate;
+
+    @Column(name = "shipped_date")
+    private LocalDate shippedDate;
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private Customer customer = new Customer();
+    private Customer customer;
 
-    @Column(name = "total_price")
-    private Double totalPrice;
+    @Column(name = "staff_id")
+    private Staff staff;
+
+    @Column(name = "store_id")
+    private Store store;
+
+    //Wird nicht mehr benötigt
+    //@Column(name = "total_price") Wird nicht mehr benötigt
+    //private Double totalPrice;
+
+    //Wird nicht mehr benötigt
+   // @OneToMany(cascade =
+   // CascadeType.ALL, fetch = FetchType.EAGER)
+   //@JoinColumn(name = "order_id")
+   // private Set<OrderItem> orderItems = new HashSet<>();
 
 
-    @OneToMany(cascade =
-            CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
-    private Set<OrderItem> orderItems = new HashSet<>();
-
+    public Order(Long id, LocalDate orderDate, Integer orderStatus, LocalDate requiredDate, LocalDate shippedDate, Customer customer, Staff staff, Store store) {
+        this.id = id;
+        this.orderDate = orderDate;
+        this.orderStatus = orderStatus;
+        this.requiredDate = requiredDate;
+        this.shippedDate = shippedDate;
+        this.customer = customer;
+        this.staff = staff;
+        this.store = store;
+    }
 
     /**
      * Constructor of the class Order
      * @param customer
      */
-    public Order(Customer customer){
-        this.customer = customer;
-        this.orderDate = LocalDate.now();
-    }
+
 
     public Order() {
 
     }
 
 
-    public void calculateTotalPrice(){
-        Iterator<OrderItem> iterator = this.orderItems.iterator();
-        double totalPrice = 0;
-        if(iterator != null){
-            while (iterator.hasNext()){
-                OrderItem oi = iterator.next();
-                totalPrice += oi.getQuantity()  * oi.getProduct().getPrice();
-            }
-            this.totalPrice = totalPrice;
-        }
+/*        public void calculateTotalPrice(){
+            Iterator<OrderItem> iterator = this.orderItems.iterator();
+            double totalPrice = 0;
+            if(iterator != null){
+                while (iterator.hasNext()){
+                    OrderItem oi = iterator.next();
+                    totalPrice += oi.getQuantity()  * oi.getProduct().getPrice();
+                }
+                this.totalPrice = totalPrice;
+            }*/
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderDate=" + orderDate +
+                ", orderStatus=" + orderStatus +
+                ", requiredDate=" + requiredDate +
+                ", shippedDate=" + shippedDate +
+                ", customer=" + customer +
+                ", staff=" + staff +
+                ", store=" + store +
+                '}';
+    }
 
     //Getters and Setters
 
-    public Set<OrderItem> getOrderItems() {
-        return orderItems;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setOrderItems(Set<OrderItem> orderItems) {
-        this.orderItems = orderItems;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public LocalDate getOrderDate() {
@@ -76,12 +114,28 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Integer getOrderStatus() {
+        return orderStatus;
     }
 
-    public Long getId() {
-        return id;
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public LocalDate getRequiredDate() {
+        return requiredDate;
+    }
+
+    public void setRequiredDate(LocalDate requiredDate) {
+        this.requiredDate = requiredDate;
+    }
+
+    public LocalDate getShippedDate() {
+        return shippedDate;
+    }
+
+    public void setShippedDate(LocalDate shippedDate) {
+        this.shippedDate = shippedDate;
     }
 
     public Customer getCustomer() {
@@ -92,11 +146,19 @@ public class Order {
         this.customer = customer;
     }
 
-    public Double getTotalPrice() {
-        return totalPrice;
+    public Staff getStaff() {
+        return staff;
     }
 
-    public void setTotalPrice(Double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 }
