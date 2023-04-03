@@ -3,9 +3,6 @@ package de.ostfalia.se.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -30,24 +27,23 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @Column(name = "staff_id")
-    private Staffs staff;
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
+    private Staff staff;
 
-    @Column(name = "store_id")
-    private Stores store;
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 
     //Wird nicht mehr benötigt
     //@Column(name = "total_price") Wird nicht mehr benötigt
     //private Double totalPrice;
 
-    //Wird nicht mehr benötigt
-   // @OneToMany(cascade =
-   // CascadeType.ALL, fetch = FetchType.EAGER)
-   //@JoinColumn(name = "order_id")
-   // private Set<OrderItem> orderItems = new HashSet<>();
+    @OneToOne(mappedBy = "order")
+    private OrderItem orderItem;
 
 
-    public Order(Long id, LocalDate orderDate, Integer orderStatus, LocalDate requiredDate, LocalDate shippedDate, Customer customer, Staffs staff, Stores store) {
+    public Order(Long id, LocalDate orderDate, Integer orderStatus, LocalDate requiredDate, LocalDate shippedDate, Customer customer, Staff staff, Store store) {
         this.id = id;
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
@@ -60,7 +56,6 @@ public class Order {
 
     /**
      * Constructor of the class Order
-     * @param customer
      */
 
 
@@ -78,8 +73,8 @@ public class Order {
                     totalPrice += oi.getQuantity()  * oi.getProduct().getPrice();
                 }
                 this.totalPrice = totalPrice;
-            }*/
-    }
+            }
+    }*/
 
     @Override
     public String toString() {
@@ -146,19 +141,27 @@ public class Order {
         this.customer = customer;
     }
 
-    public Staffs getStaff() {
+    public Staff getStaff() {
         return staff;
     }
 
-    public void setStaff(Staffs staff) {
+    public void setStaff(Staff staff) {
         this.staff = staff;
     }
 
-    public Stores getStore() {
+    public Store getStore() {
         return store;
     }
 
-    public void setStore(Stores store) {
+    public void setStore(Store store) {
         this.store = store;
+    }
+
+    public OrderItem getOrderItem() {
+        return orderItem;
+    }
+
+    public void setOrderItem(OrderItem orderItem) {
+        this.orderItem = orderItem;
     }
 }

@@ -2,9 +2,12 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "brands")
-public class Brands {
+public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "brand_id")
@@ -13,12 +16,15 @@ public class Brands {
     @Column(name ="brand_name")
     private String brandName;
 
-    public Brands(Long id, String brandName) {
+    @OneToMany(mappedBy = "brand")
+    private Set<Product> products = new HashSet<>();
+
+    public Brand(Long id, String brandName) {
         this.id = id;
         this.brandName = brandName;
     }
 
-    public Brands() {
+    public Brand() {
     }
 
     @Override
@@ -44,5 +50,13 @@ public class Brands {
 
     public void setBrandName(String brandName) {
         this.brandName = brandName;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 }

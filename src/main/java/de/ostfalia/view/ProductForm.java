@@ -40,9 +40,9 @@ public class ProductForm implements Serializable {
         this.price = price;
     }
 
-    public String submitForm() {
-        Product p = new Product(this.name, this.price);
-        ps.save(p);
-        return "allProducts" + "?faces-redirect=true";
-    }
+//    public String submitForm() {
+//        Product p = new Product(this.name, this.price);
+//        ps.save(p);
+//        return "allProducts" + "?faces-redirect=true";
+//    }
 }

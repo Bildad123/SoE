@@ -51,18 +51,18 @@ public class CustomerForm implements Serializable {
      *
      * @return 'allCustomers.xhtml?faces-redirect=true'
      */
-    public String submitForm() {
-        Customer c = new Customer(
-                this.firstName,
-                this.lastName,
-                this.email,
-                toLocalDate(this.birthdate),
-                this.zip,
-                this.street
-        );
-        cs.save(c);
-        return "allCustomers" + "?faces-redirect=true";
-    }
+//    public String submitForm() {
+//        Customer c = new Customer(
+//                this.firstName,
+//                this.lastName,
+//                this.email,
+//                toLocalDate(this.birthdate),
+//                this.zip,
+//                this.street
+//        );
+//        cs.save(c);
+//        return "allCustomers" + "?faces-redirect=true";
+//    }
 
 
     /**

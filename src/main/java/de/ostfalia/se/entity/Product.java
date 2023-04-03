@@ -3,6 +3,8 @@ package de.ostfalia.se.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
@@ -22,11 +24,19 @@ public class Product {
     @Column(name = "product_name")
     private String name;
 
-    @Column(name = "brand_id")
-    private Brands brand;
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
 
-    @Column(name = "category_id")
-    private Categories categories;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @OneToMany(mappedBy = "product")
+    private Set<OrderItem> orderItem = new HashSet<>();
+
+    @OneToOne(mappedBy = "product")
+    private Stock stock;
 
     //private Double price; Wird nicht mehr benötigt
 
@@ -39,17 +49,17 @@ public class Product {
                 ", modelYear=" + modelYear +
                 ", name='" + name + '\'' +
                 ", brand=" + brand +
-                ", category=" + categories +
+                ", category=" + category +
                 '}';
     }
 
-    public Product(Long id, BigDecimal listPrice, Integer modelYear, String name, Brands brand, Categories categories) {
+    public Product(Long id, BigDecimal listPrice, Integer modelYear, String name, Brand brand, Category category) {
         this.id = id;
         this.listPrice = listPrice;
         this.modelYear = modelYear;
         this.name = name;
         this.brand = brand;
-        this.categories = categories;
+        this.category = category;
     }
 
     public Product() {
@@ -90,20 +100,36 @@ public class Product {
         this.name = name;
     }
 
-    public Brands
+    public Brand
     getBrand() {
         return brand;
     }
 
-    public void setBrand(Brands brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 
-    public Categories getCategory() {
-        return categories;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategory(Categories categories) {
-        this.categories = categories;
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Set<OrderItem> getOrderItem() {
+        return orderItem;
+    }
+
+    public void setOrderItem(Set<OrderItem> orderItem) {
+        this.orderItem = orderItem;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 }

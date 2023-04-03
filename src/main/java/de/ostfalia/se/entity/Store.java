@@ -2,9 +2,12 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "stores")
-public class Stores {
+public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "store_id")
@@ -26,7 +29,16 @@ public class Stores {
 
     private String state;
 
-    public Stores(Long id, String storeName, String email, String phone, String street, String zipCode, String city, String state) {
+    @OneToMany(mappedBy = "store")
+    private Set<Order> orders = new HashSet<>();
+
+    @OneToMany(mappedBy = "store")
+    private Set<Staff> staffs = new HashSet<>();
+
+    @OneToOne(mappedBy = "store")
+    private Stock stock;
+
+    public Store(Long id, String storeName, String email, String phone, String street, String zipCode, String city, String state) {
         this.id = id;
         this.storeName = storeName;
         this.email = email;
@@ -37,7 +49,7 @@ public class Stores {
         this.state = state;
     }
 
-    public Stores() {
+    public Store() {
     }
 
     @Override
@@ -118,5 +130,29 @@ public class Stores {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Set<Staff> getStaffs() {
+        return staffs;
+    }
+
+    public void setStaffs(Set<Staff> staffs) {
+        this.staffs = staffs;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 }
