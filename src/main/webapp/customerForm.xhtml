@@ -9,6 +9,15 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:composition template="Layouts/template.xhtml">
+        <ui:define name="header">
+            <ui:insert>
+                <ui:include src="Layouts/header.xhtml"></ui:include>
+            </ui:insert>
+            <f:metadata>
+                <f:viewAction action="#{allCustomers.doRefresh}" />
+            </f:metadata>
+        </ui:define>
+
         <ui:define name="content">
 
             <h:form id="create-customer-form">
@@ -17,36 +26,35 @@
                     <br/>
 
 
-                    <h:outputLabel for="firstname" value="Firstname" style="display: inline-block; width: 150px"/>
+                    <h:outputLabel for="firstname" value="Firstname"  styleClass="form-label"/>
                     <h:inputText id="firstname" value="#{customerForm.firstName}" required="true"
-                                 style="width: 77%"
+                                 styleClass="form-input-text"
 
                     />
                     <br/><br/>
 
-                    <h:outputLabel for="lastname" value="Lastname" style="display: inline-block; width: 150px"/>
-                    <h:inputText id="lastname" value="#{customerForm.lastName}" required="true"
-                                 style="width: 77%"
+                    <h:outputLabel for="lastname" value="Lastname" styleClass="form-label"/>
+                    <h:inputText id="lastname" value="#{customerForm.lastName}" required="true" styleClass="form-input-text"
                     />
                     <br/><br/>
 
 
-                    <h:outputLabel for="email" value="Email" style="display: inline-block; width: 150px"/>
+                    <h:outputLabel for="email" value="Email"  styleClass="form-label"/>
                     <h:inputText id="email" type="email" value="#{customerForm.email}" required="true"
-                                 style="width: 77%"
+                                 styleClass="form-input-text"
                     />
                     <br/><br/>
 
 
-                    <h:outputLabel for="zip" value="Zip Code" style="display: inline-block; width: 150px"/>
+                    <h:outputLabel for="zip" value="Zip Code"  styleClass="form-label"/>
                     <h:inputText id="zip" value="#{customerForm.zip}" required="true"
-                                 style="width: 77%"
+                                 styleClass="form-input-text"
                     />
                     <br/><br/>
 
-                    <h:outputLabel for="street" value="Street" style="display: inline-block; width: 150px"/>
+                    <h:outputLabel for="street" value="Street"  styleClass="form-label"/>
                     <h:inputText id="street" value="#{customerForm.street}" required="true"
-                                 style="width: 77%"
+                                 styleClass="form-input-text"
                     />
                     <br/><br/><br/>
 

@@ -13,6 +13,7 @@ import java.util.Set;
 public class Order {
     @Id
     @GeneratedValue
+    @Column(name = "order_id")
     private Long id;
 
     @Column(name = "order_date")
@@ -24,7 +25,7 @@ public class Order {
     @Column(name = "required_date")
     private LocalDate requiredDate;
 
-    @Column(name = "shippedDate")
+    @Column(name = "shipped_date")
     private LocalDate shippedDate;
 
 
@@ -32,8 +33,16 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customer = new Customer();
 
-    @Column(name = "total_price")
-    private Double totalPrice;
+
+    @OneToOne
+    @JoinColumn(name = "staff_id")
+    private Staff staff = new Staff();
+
+    @OneToOne
+    @JoinColumn(name = "store_id")
+    private Store store = new Store();
+
+
 
 
 
@@ -77,11 +86,43 @@ public class Order {
         this.customer = customer;
     }
 
-    public Double getTotalPrice() {
-        return totalPrice;
+    public Integer getOderStatus() {
+        return oderStatus;
     }
 
-    public void setTotalPrice(Double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setOderStatus(Integer oderStatus) {
+        this.oderStatus = oderStatus;
+    }
+
+    public LocalDate getRequiredDate() {
+        return requiredDate;
+    }
+
+    public void setRequiredDate(LocalDate requiredDate) {
+        this.requiredDate = requiredDate;
+    }
+
+    public LocalDate getShippedDate() {
+        return shippedDate;
+    }
+
+    public void setShippedDate(LocalDate shippedDate) {
+        this.shippedDate = shippedDate;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 }

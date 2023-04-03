@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 public class OrderItem {
     @Id
     @GeneratedValue
+    @Column(name = "item_id")
     private Long id;
 
     @Column(name = "discount")
@@ -22,6 +23,7 @@ public class OrderItem {
     private Order order = new Order();
 
     @OneToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
     public OrderItem() {

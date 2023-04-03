@@ -7,14 +7,23 @@
          xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <ui:composition template="Layouts/template.xhtml">
+
     <ui:define name="header">
-        <h:outputStylesheet library="css" name="table.css"></h:outputStylesheet>
-        <ui:insert name="header"></ui:insert>
+        <ui:insert name="header">
+            <ui:include src="header.xhtml"></ui:include>
+        </ui:insert>
+        <f:metadata>
+            <f:viewAction action="#{allOrders.doRefresh}" />
+        </f:metadata>
+
     </ui:define>
+
     <ui:define name="content">
         <span style="font-size: small">Showing #{allOrders.orders.size()} orders(s) in the database</span><br></br>
         <h:form>
             <h:dataTable value="#{allOrders.map}" var="entry"
+                         first="#{allOrders.currentRows}"
+                         rows="#{allOrders.maxTblRows}"
                          styleClass="customers-table"
                          headerClass="customers-table-header"
                          rowClasses="customers-table-odd-row,customers-table-even-row"
@@ -25,7 +34,8 @@
 
                 <h:column>
                     <f:facet name="header">Fullname</f:facet>
-                    #{entry.key.customer}
+                    <h:link style="text-decoration:none; color: inherit" outcome="allCustomers.xhtml">#{entry.key.customer}</h:link>
+
 
                 </h:column>
 
@@ -37,6 +47,18 @@
                         </ui:repeat>
                     </ol>
                 </h:column>
+
+                <f:facet name="footer">
+                    <h:panelGroup rendered="#{allOrders.showPageList}">
+                        <h:commandButton value="Zurueck" action="#{allOrders.zurueck}" rendered="#{allOrders.displayZurueckBtn}" styleClass="footerBtn" />
+                        <h:selectOneMenu value="#{allOrders.selectedPage}">
+                            <f:selectItems value="#{allOrders.pages}" var="page" itemLabel="Seite #{page}" itemValue="#{page}" />
+                            <f:ajax listener="#{allOrders.pageChange}" render="@form"/>
+                        </h:selectOneMenu>
+                        <h:commandButton value="Weiter" action="#{allOrders.weiter}" rendered="#{allOrders.displayWeiterBtn}" styleClass="footerBtn" />
+                    </h:panelGroup>
+                </f:facet>
+
 
             </h:dataTable>
         </h:form>

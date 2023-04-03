@@ -62,11 +62,6 @@ public class CustomerForm implements Serializable {
     }
 
 
-    /**
-     * Helper Method to convert string to LocalDate
-     * @param dateString
-     * @return LocalDate
-     */
 
     //Getter and Setters
     public String getFirstName() {

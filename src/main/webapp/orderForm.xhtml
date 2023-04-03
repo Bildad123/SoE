@@ -20,18 +20,18 @@
                     <legend>Create Order</legend>
                     <br/>
 
-                    <h:outputLabel  value="Customer" style="display: inline-block; width: 150px"/>
-                    <h:selectOneMenu value="#{orderForm.selectedCustomer}" style="width: 78%">
+                    <h:outputLabel  value="Customer" styleClass="form-label"/>
+                    <h:selectOneMenu value="#{orderForm.selectedCustomer}" styleClass="form-input-text">
                         <f:selectItems value="#{orderForm.customers}"  />
                     </h:selectOneMenu>
                     <br/><br/>
                     <hr style="width: 100%; color: #EEEEEE"></hr><br/>
-                    <h:outputLabel value="Product" style="display: inline-block; width: 150px"/>
-                    <h:selectOneMenu value="#{orderForm.selectedProduct}" style="width: 62%; margin-right: 15px">
+                    <h:outputLabel value="Product" styleClass="form-label"/>
+                    <h:selectOneMenu value="#{orderForm.selectedProduct}" style="width: 58%; margin-right: 15px">
                         <f:selectItems value="#{orderForm.products}"  />
                     </h:selectOneMenu>
-                    <h:commandButton  style="padding: 0 10px 0 10px; margin-right: 15px" value="&#10133;" action="#{orderForm.updateOrderItems(true)}"></h:commandButton>
-                    <h:commandButton  style="padding: 0 10px 0 10px" value="&#10134;" action="#{orderForm.updateOrderItems(false)}"></h:commandButton>
+                    <h:commandButton  style="padding: 0 1% 0 1%; margin-right: 15px" value="&#10133;" action="#{orderForm.updateOrderItems(true)}"></h:commandButton>
+                    <h:commandButton  style="padding: 0 1% 0 1%" value="&#10134;" action="#{orderForm.updateOrderItems(false)}"></h:commandButton>
 
                     <br/><br/>
                 </fieldset>
@@ -48,6 +48,7 @@
 
                     <h:column>
                         <f:facet name="header">Product</f:facet>
+
                         #{oi.product}
                     </h:column>
 

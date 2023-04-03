@@ -7,14 +7,24 @@
          xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <ui:composition template="Layouts/template.xhtml">
+
         <ui:define name="header">
-            <h:outputStylesheet library="css" name="table.css"></h:outputStylesheet>
-            <ui:insert name="header"></ui:insert>
+            <ui:insert name="header">
+                <ui:include src="header.xhtml"></ui:include>
+            </ui:insert>
+            <f:metadata>
+                <f:viewAction action="#{allCustomers.doRefresh}" />
+            </f:metadata>
+
         </ui:define>
+
+
         <ui:define name="content">
             <span style="font-size: small">Showing #{allCustomers.customers.size()} customer(s) in the database</span><br></br>
             <h:form>
                 <h:dataTable value="#{allCustomers.customers}" var="c"
+                             first="#{allCustomers.currentRows}"
+                             rows="#{allCustomers.maxTblRows}"
                              styleClass="customers-table"
                              headerClass="customers-table-header"
                              rowClasses="customers-table-odd-row,customers-table-even-row"
@@ -39,6 +49,17 @@
                         #{c.zip}, #{c.street}
 
                     </h:column>
+
+                    <f:facet name="footer">
+                        <h:panelGroup rendered="#{allCustomers.showPageList}">
+                            <h:commandButton value="Zurueck" action="#{allCustomers.zurueck}" rendered="#{allCustomers.displayZurueckBtn}" styleClass="footerBtn" />
+                            <h:selectOneMenu value="#{allCustomers.selectedPage}">
+                                <f:selectItems value="#{allCustomers.pages}" var="page" itemLabel="Seite #{page}" itemValue="#{page}" />
+                                <f:ajax listener="#{allCustomers.pageChange}" render="@form"/>
+                            </h:selectOneMenu>
+                            <h:commandButton value="Weiter" action="#{allCustomers.weiter}" rendered="#{allCustomers.displayWeiterBtn}" styleClass="footerBtn" />
+                        </h:panelGroup>
+                    </f:facet>
                 </h:dataTable>
             </h:form>
 

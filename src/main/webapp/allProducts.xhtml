@@ -8,13 +8,20 @@
 
 <ui:composition template="Layouts/template.xhtml">
     <ui:define name="header">
-        <h:outputStylesheet library="css" name="table.css"></h:outputStylesheet>
-        <ui:insert name="header"></ui:insert>
+        <ui:insert name="header">
+            <ui:include src="header.xhtml"></ui:include>
+        </ui:insert>
+        <f:metadata>
+            <f:viewAction action="#{allProducts.doRefresh}" />
+        </f:metadata>
+
     </ui:define>
     <ui:define name="content">
         <span style="font-size: small">Showing #{allProducts.products.size()} products(s) in the database</span><br></br>
         <h:form>
             <h:dataTable value="#{allProducts.products}" var="p"
+                         first="#{allProducts.currentRows}"
+                         rows="#{allProducts.maxTblRows}"
                          styleClass="customers-table"
                          headerClass="customers-table-header"
                          rowClasses="customers-table-odd-row,customers-table-even-row"
@@ -34,6 +41,16 @@
                     <span style="margin-left: 10px">&#8364;</span>
 
                 </h:column>
+                <f:facet name="footer">
+                    <h:panelGroup rendered="#{allProducts.showPageList}">
+                        <h:commandButton value="Zurueck" action="#{allProducts.zurueck}" rendered="#{allProducts.displayZurueckBtn}" styleClass="footerBtn" />
+                        <h:selectOneMenu value="#{allProducts.selectedPage}">
+                            <f:selectItems value="#{allProducts.pages}" var="page" itemLabel="Seite #{page}" itemValue="#{page}" />
+                            <f:ajax listener="#{allProducts.pageChange}" render="@form"/>
+                        </h:selectOneMenu>
+                        <h:commandButton value="Weiter" action="#{allProducts.weiter}" rendered="#{allProducts.displayWeiterBtn}" styleClass="footerBtn" />
+                    </h:panelGroup>
+                </f:facet>
             </h:dataTable>
         </h:form>
 

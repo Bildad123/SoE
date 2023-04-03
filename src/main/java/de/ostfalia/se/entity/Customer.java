@@ -2,15 +2,14 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "customers")
 public class Customer {
     @Id
     @GeneratedValue
+    @Column(name = "customer_id")
     private Long id;
 
     private String email;
@@ -110,5 +109,21 @@ public class Customer {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

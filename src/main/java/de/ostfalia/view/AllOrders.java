@@ -4,6 +4,7 @@ import de.ostfalia.se.boundary.OrderService;
 import de.ostfalia.se.entity.Customer;
 import de.ostfalia.se.entity.Order;
 import de.ostfalia.se.entity.OrderItem;
+import de.ostfalia.se.pagination.Pagination;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -20,7 +21,7 @@ import java.util.Map;
  */
 @Named
 @ViewScoped
-public class AllOrders implements Serializable {
+public class AllOrders extends Pagination<Order> implements Serializable {
 
     @Inject
     OrderService os;
@@ -71,6 +72,11 @@ public class AllOrders implements Serializable {
 
     public void setMap(Map<Order, List<OrderItem>> map) {
         this.map = map;
+    }
+
+    @Override
+    public List<Order> loadContent() {
+        return this.orders;
     }
 }
 

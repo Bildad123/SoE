@@ -17,16 +17,16 @@
                <br/>
 
 
-               <h:outputLabel for="name" value="Name" style="display: inline-block; width: 150px"/>
+               <h:outputLabel for="name" value="Name" styleClass="form-label"/>
                <h:inputText id="name" value="#{productForm.name}" required="true"
-                            style="width: 77%"
+                            styleClass="form-input-text"
 
                />
                <br/><br/>
 
-               <h:outputLabel for="price" value="price" style="display: inline-block; width: 128px"/>
+               <h:outputLabel for="price" value="Price" style="display: inline-block; width: 16.1%"/>
                <span style="margin-right: 10px">&#8364;</span>
-               <input type="number" jsf:id="price" jsf:value="#{productForm.price}" name="Price"  step="0.01"  style="width: 77%"/>
+               <input type="number" jsf:id="price"  id="price" jsf:value="#{productForm.price}" name="Price"  step="0.01"  class="form-input-text"/>
                <br/><br/>
 
 

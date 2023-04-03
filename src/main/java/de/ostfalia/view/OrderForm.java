@@ -191,7 +191,6 @@ public class OrderForm implements Serializable{
                     totalPrice += this.orderItems.get(i).getQuantity() * this.orderItems.get(i).getListPrice();
                     this.ois.getEm().persist(this.orderItems.get(i));
                 }
-                order.setTotalPrice(totalPrice);
 
                 os.getEm().persist(order);
 
