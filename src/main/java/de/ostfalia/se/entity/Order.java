@@ -27,21 +27,20 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @Column(name = "staff_id")
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
     private Staff staff;
 
-    @Column(name = "store_id")
+    @ManyToOne
+    @JoinColumn(name = "store_id")
     private Store store;
 
     //Wird nicht mehr benötigt
     //@Column(name = "total_price") Wird nicht mehr benötigt
     //private Double totalPrice;
 
-    //Wird nicht mehr benötigt
-   // @OneToMany(cascade =
-   // CascadeType.ALL, fetch = FetchType.EAGER)
-   //@JoinColumn(name = "order_id")
-   // private Set<OrderItem> orderItems = new HashSet<>();
+    @OneToOne(mappedBy = "order")
+    private OrderItem orderItem;
 
 
     public Order(Long id, LocalDate orderDate, Integer orderStatus, LocalDate requiredDate, LocalDate shippedDate, Customer customer, Staff staff, Store store) {
@@ -57,7 +56,6 @@ public class Order {
 
     /**
      * Constructor of the class Order
-     * @param customer
      */
 
 
@@ -75,8 +73,8 @@ public class Order {
                     totalPrice += oi.getQuantity()  * oi.getProduct().getPrice();
                 }
                 this.totalPrice = totalPrice;
-            }*/
-    }
+            }
+    }*/
 
     @Override
     public String toString() {
@@ -157,5 +155,13 @@ public class Order {
 
     public void setStore(Store store) {
         this.store = store;
+    }
+
+    public OrderItem getOrderItem() {
+        return orderItem;
+    }
+
+    public void setOrderItem(OrderItem orderItem) {
+        this.orderItem = orderItem;
     }
 }

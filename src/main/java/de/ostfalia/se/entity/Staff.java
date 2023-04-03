@@ -2,12 +2,16 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "staffs")
 public class Staff {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "staff_id")
     private Integer id;
 
     @Column(name = "first_name")
@@ -22,11 +26,20 @@ public class Staff {
 
     private Integer active;
 
-    @Column(name = "store_id")
+    @ManyToOne
+    @JoinColumn(name = "store_id")
     private Store store;
 
+    @OneToMany
     @Column(name = "manager_id")
+    private Set<Staff> staffs;
+
+    @ManyToOne
+    @JoinColumn(name = "manager_id")
     private Staff manager;
+
+    @OneToMany(mappedBy = "staff")
+    private Set<Order> orders = new HashSet<>();
 
     public Staff(Integer id, String firstName, String lastName, String email, String phone, Integer active, Store store, Staff manager) {
         this.id = id;
@@ -118,5 +131,21 @@ public class Staff {
 
     public void setManager(Staff manager) {
         this.manager = manager;
+    }
+
+    public Set<Staff> getStaffs() {
+        return staffs;
+    }
+
+    public void setStaffs(Set<Staff> staffs) {
+        this.staffs = staffs;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 }

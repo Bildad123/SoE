@@ -2,6 +2,9 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "categories")
 public class Category {
@@ -12,6 +15,9 @@ public class Category {
 
     @Column(name = "category_name")
     private String categoryName;
+
+    @OneToMany(mappedBy = "category")
+    private Set<Product> products = new HashSet<>();
 
     public Category(Long id, String categoryName) {
         this.id = id;
@@ -45,5 +51,13 @@ public class Category {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 }

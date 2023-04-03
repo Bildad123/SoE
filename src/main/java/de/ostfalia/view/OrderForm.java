@@ -50,16 +50,16 @@ public class OrderForm implements Serializable{
      *
      */
     @PostConstruct
-    public void init(){
-
-        orderItems = new ArrayList<>();
-
-        customers = cs.findAll();
-        customers.add(0, new Customer("","","",null, "",""));
-
-        products = ps.findAll();
-        products.add(0, new Product("", null));
-    }
+//    public void init(){
+//
+//        orderItems = new ArrayList<>();
+//
+//        customers = cs.findAll();
+//        customers.add(0, new Customer("","","",null, "",""));
+//
+//        products = ps.findAll();
+//        products.add(0, new Product("", null));
+//    }
 
 
     /**
@@ -76,10 +76,10 @@ public class OrderForm implements Serializable{
             if(shouldAdd){  // + Button was selected
                 if(!this.selectedItemIsPresent()){
                     if( this.orderItems.isEmpty() ){
-                        OrderItem item = new OrderItem(1,product);
-                        this.orderItems.add(item);   //very first order
+//                        OrderItem item = new OrderItem(1,product);
+//                        this.orderItems.add(item);   //very first order
                     }  else{
-                        this.addOrderItem(product);  //next orders
+//                        this.addOrderItem(product);  //next orders
                     }
 
                 }else{
@@ -102,9 +102,9 @@ public class OrderForm implements Serializable{
      * Creates a new Order and adds to the attribute orderItems
      * @param product
      */
-    public void addOrderItem(Product product){
-        this.orderItems.add(new OrderItem(1,product ));
-    }
+//    public void addOrderItem(Product product){
+//        this.orderItems.add(new OrderItem(1,product ));
+//    }
 
     /**
      * Checks if the selectedOrder is already present
@@ -169,26 +169,26 @@ public class OrderForm implements Serializable{
      *
      * @return 'allOrders?faces-redirect=true' / null
      */
-    @Transactional
-    public String submitForm(){
-        if(this.selectedCustomer != null && this.selectedCustomer.length() > 0){
-            String[] name = this.selectedCustomer.split("   ");
-            if(name.length > 1){
-                Customer customer = cs.findByName(name[0], name[1]);
-
-                Order cOrder = new Order(customer);
-
-                cOrder.getOrderItems().addAll(this.orderItems);
-                cOrder.calculateTotalPrice();  //to calculate the totalPrice
-
-
-                cs.getEm().merge(customer).getCustomerOrders().add(os.getEm().merge(cOrder)); //to avoid detached entity
-
-                return "allOrders" + "?faces-redirect=true";
-            }
-        }
-        return null;
-    }
+//    @Transactional
+//    public String submitForm(){
+//        if(this.selectedCustomer != null && this.selectedCustomer.length() > 0){
+//            String[] name = this.selectedCustomer.split("   ");
+//            if(name.length > 1){
+//                Customer customer = cs.findByName(name[0], name[1]);
+//
+//                Order cOrder = new Order(customer);
+//
+//                cOrder.getOrderItems().addAll(this.orderItems);
+//                cOrder.calculateTotalPrice();  //to calculate the totalPrice
+//
+//
+//                cs.getEm().merge(customer).getCustomerOrders().add(os.getEm().merge(cOrder)); //to avoid detached entity
+//
+//                return "allOrders" + "?faces-redirect=true";
+//            }
+//        }
+//        return null;
+//    }
 
 
 

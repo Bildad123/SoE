@@ -3,6 +3,7 @@ package de.ostfalia.se.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Table(name = "order_items")
@@ -13,7 +14,8 @@ public class OrderItem {
     private Long id;
 
     @Id
-    @Column(name = "order_id")
+    @OneToOne
+    @JoinColumn(name = "order_id")
     private Order order;
 
     private BigDecimal discount;
@@ -23,7 +25,8 @@ public class OrderItem {
 
     private Integer quantity;
 
-    @Column(name = "product_id")
+    @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
 
@@ -101,4 +104,6 @@ public class OrderItem {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+
 }

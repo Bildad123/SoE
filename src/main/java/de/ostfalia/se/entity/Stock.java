@@ -7,11 +7,13 @@ import jakarta.persistence.*;
 public class Stock {
 
     @Id
-    @Column(name = "product_id")
+    @OneToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @Id
-    @Column(name = "store_id")
+    @OneToOne
+    @JoinColumn(name = "store_id")
     private Store store;
 
     private Integer quantity;
@@ -48,4 +50,6 @@ public class Stock {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+
 }

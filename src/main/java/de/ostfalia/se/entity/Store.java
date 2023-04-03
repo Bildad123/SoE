@@ -2,6 +2,9 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "stores")
 public class Store {
@@ -25,6 +28,15 @@ public class Store {
     private String city;
 
     private String state;
+
+    @OneToMany(mappedBy = "store")
+    private Set<Order> orders = new HashSet<>();
+
+    @OneToMany(mappedBy = "store")
+    private Set<Staff> staffs = new HashSet<>();
+
+    @OneToOne(mappedBy = "store")
+    private Stock stock;
 
     public Store(Long id, String storeName, String email, String phone, String street, String zipCode, String city, String state) {
         this.id = id;
@@ -118,5 +130,29 @@ public class Store {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Set<Staff> getStaffs() {
+        return staffs;
+    }
+
+    public void setStaffs(Set<Staff> staffs) {
+        this.staffs = staffs;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 }

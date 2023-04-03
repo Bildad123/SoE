@@ -3,6 +3,8 @@ package de.ostfalia.se.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
@@ -22,11 +24,19 @@ public class Product {
     @Column(name = "product_name")
     private String name;
 
-    @Column(name = "brand_id")
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    @Column(name = "category_id")
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
+
+    @OneToMany(mappedBy = "product")
+    private Set<OrderItem> orderItem = new HashSet<>();
+
+    @OneToOne(mappedBy = "product")
+    private Stock stock;
 
     //private Double price; Wird nicht mehr benötigt
 
@@ -105,5 +115,21 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Set<OrderItem> getOrderItem() {
+        return orderItem;
+    }
+
+    public void setOrderItem(Set<OrderItem> orderItem) {
+        this.orderItem = orderItem;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 }
