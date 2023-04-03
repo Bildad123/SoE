@@ -2,7 +2,7 @@ Planung 1
 
 1. Arbeitsfähig werden
 -Installieren fehlender Software
--Verbindungf zum Server
+-Verbindung zum Server
 -Einbetten der Datenbank 
 
 2. Strucktur der Daten
