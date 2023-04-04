@@ -2,6 +2,7 @@ package de.ostfalia.view;
 
 import de.ostfalia.se.boundary.StoreService;
 import de.ostfalia.se.entity.Store;
+import de.ostfalia.se.pagination.AllStoresPagination;
 import de.ostfalia.se.pagination.Pagination;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
@@ -14,21 +15,19 @@ import java.util.List;
 
 @Named
 @ViewScoped
-public class AllStores extends Pagination<Store> implements Serializable {
+public class AllStores implements Serializable {
 
     @Inject
     StoreService ss;
 
     private List<Store> stores;
 
+    private AllStoresPagination pagination;
+
     @PostConstruct
     public void init(){
         stores = ss.findAll();
-    }
-
-    @Override
-    public List<Store> loadContent() {
-        return this.stores;
+        pagination = new AllStoresPagination(stores);
     }
 
 
@@ -44,4 +43,11 @@ public class AllStores extends Pagination<Store> implements Serializable {
     }
 
 
+    public AllStoresPagination getPagination() {
+        return pagination;
+    }
+
+    public void setPagination(AllStoresPagination pagination) {
+        this.pagination = pagination;
+    }
 }

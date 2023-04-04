@@ -2,6 +2,7 @@ package de.ostfalia.view;
 
 import de.ostfalia.se.boundary.ProductService;
 import de.ostfalia.se.entity.Product;
+import de.ostfalia.se.pagination.AllProductsPagination;
 import de.ostfalia.se.pagination.Pagination;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
@@ -16,10 +17,12 @@ import java.util.List;
  */
 @Named
 @ViewScoped
-public class AllProducts extends Pagination<Product> implements Serializable {
+public class AllProducts implements Serializable {
     @Inject
     ProductService ps;
     List<Product> products;
+
+    private AllProductsPagination pagination;
 
     /**
      * Gets all customers from the products table
@@ -28,6 +31,7 @@ public class AllProducts extends Pagination<Product> implements Serializable {
     @PostConstruct
     public void init(){
         products = ps.findAll();
+        pagination = new AllProductsPagination(products);
     }
 
     //Getters and Setters
@@ -40,8 +44,11 @@ public class AllProducts extends Pagination<Product> implements Serializable {
         this.products = products;
     }
 
-    @Override
-    public List<Product> loadContent() {
-        return this.products;
+    public AllProductsPagination getPagination() {
+        return pagination;
+    }
+
+    public void setPagination(AllProductsPagination pagination) {
+        this.pagination = pagination;
     }
 }

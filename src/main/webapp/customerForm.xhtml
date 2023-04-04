@@ -9,14 +9,6 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:composition template="Layouts/template.xhtml">
-        <ui:define name="header">
-            <ui:insert>
-                <ui:include src="Layouts/header.xhtml"></ui:include>
-            </ui:insert>
-            <f:metadata>
-                <f:viewAction action="#{allCustomers.doRefresh}" />
-            </f:metadata>
-        </ui:define>
 
         <ui:define name="content">
 

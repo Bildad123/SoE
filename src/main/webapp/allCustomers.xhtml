@@ -13,7 +13,7 @@
                 <ui:include src="header.xhtml"></ui:include>
             </ui:insert>
             <f:metadata>
-                <f:viewAction action="#{allCustomers.doRefresh}" />
+                <f:viewAction action="#{allCustomers.pagination.doRefresh()}" />
             </f:metadata>
 
         </ui:define>
@@ -24,12 +24,12 @@
 
 
 
-            <input type="text" placeholder="Search for Customer" style="width: 60%; height: 30px; margin-bottom: 20px; margin-top: 20px " ></input>
+            <input type="text" placeholder="Search for Customer"  style="width: 60%; height: 30px; margin-bottom: 20px; margin-top: 20px " ></input>
 
             <h:form>
                 <h:dataTable value="#{allCustomers.customers}" var="c"
-                             first="#{allCustomers.currentRows}"
-                             rows="#{allCustomers.maxTableRows}"
+                             first="#{allCustomers.pagination.currentRows}"
+                             rows="#{allCustomers.pagination.maxTableRows}"
                              styleClass="customers-table"
                              headerClass="customers-table-header"
                              rowClasses="customers-table-odd-row,customers-table-even-row"
@@ -56,13 +56,13 @@
                     </h:column>
 
                     <f:facet name="footer">
-                        <h:panelGroup rendered="#{allCustomers.showPageList}">
-                            <h:commandButton value="Back" action="#{allCustomers.back}" rendered="#{allCustomers.displayBackButton}" styleClass="form-paginating-button-back" />
-                            <h:selectOneMenu value="#{allCustomers.selectedPage}">
-                                <f:selectItems value="#{allCustomers.pages}" var="page" itemLabel="Seite #{page}" itemValue="#{page}" />
-                                <f:ajax listener="#{allCustomers.pageChange}" render="@form"/>
+                        <h:panelGroup rendered="#{allCustomers.pagination.showPageList}">
+                            <h:commandButton value="Back" action="#{allCustomers.pagination.back}" disabled="#{!allCustomers.pagination.displayBackButton}" styleClass="form-paginating-button-back" />
+                            <h:selectOneMenu value="#{allCustomers.pagination.selectedPage}">
+                                <f:selectItems value="#{allCustomers.pagination.pages}" var="page" itemLabel="Seite #{page}" itemValue="#{page}" />
+                                <f:ajax listener="#{allCustomers.pagination.pageChange}" render="@form"/>
                             </h:selectOneMenu>
-                            <h:commandButton value="Next" action="#{allCustomers.next}" rendered="#{allCustomers.displayNextButton}" styleClass="form-paginating-button-next" />
+                            <h:commandButton value="Next" action="#{allCustomers.pagination.next}" disabled="#{!allCustomers.pagination.displayNextButton}" styleClass="form-paginating-button-next" />
 
 
                             <h:commandButton value="Create Customer" action="#{customerForm.createCustomer}"  styleClass="form-paginating-button-next" />

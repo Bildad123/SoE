@@ -13,7 +13,7 @@
             <ui:include src="header.xhtml"></ui:include>
         </ui:insert>
         <f:metadata>
-            <f:viewAction action="#{allOrders.doRefresh}" />
+            <f:viewAction action="#{allOrders.pagination.doRefresh}" />
         </f:metadata>
 
     </ui:define>
@@ -22,8 +22,8 @@
         <span style="font-size: small">Showing #{allOrders.orders.size()} orders(s) in the database</span><br></br>
         <h:form>
             <h:dataTable value="#{allOrders.map}" var="entry"
-                         first="#{allOrders.currentRows}"
-                         rows="#{allOrders.maxTableRows}"
+                         first="#{allOrders.pagination.currentRows}"
+                         rows="#{allOrders.pagination.maxTableRows}"
                          styleClass="customers-table"
                          headerClass="customers-table-header"
                          rowClasses="customers-table-odd-row,customers-table-even-row"
@@ -49,13 +49,13 @@
                 </h:column>
 
                 <f:facet name="footer">
-                    <h:panelGroup rendered="#{allOrders.showPageList}">
-                        <h:commandButton value="Back" action="#{allOrders.back}" rendered="#{allOrders.displayBackButton}" styleClass="form-paginating-button-back" />
-                        <h:selectOneMenu value="#{allOrders.selectedPage}">
-                            <f:selectItems value="#{allOrders.pages}" var="page" itemLabel="Seite #{page}" itemValue="#{page}" />
-                            <f:ajax listener="#{allOrders.pageChange}" render="@form"/>
+                    <h:panelGroup rendered="#{allOrders.pagination.showPageList}">
+                        <h:commandButton value="Back" action="#{allOrders.pagination.back}" disabled="#{!allOrders.pagination.displayBackButton}" styleClass="form-paginating-button-back" />
+                        <h:selectOneMenu value="#{allOrders.pagination.selectedPage}">
+                            <f:selectItems value="#{allOrders.pagination.pages}" var="page" itemLabel="Seite #{page}" itemValue="#{page}" />
+                            <f:ajax listener="#{allOrders.pagination.pageChange}" render="@form"/>
                         </h:selectOneMenu>
-                        <h:commandButton value="Next" action="#{allOrders.next}" rendered="#{allOrders.displayNextButton}" styleClass="form-paginating-button-next" />
+                        <h:commandButton value="Next" action="#{allOrders.pagination.next}" disabled="#{!allOrders.pagination.displayNextButton}" styleClass="form-paginating-button-next" />
                     </h:panelGroup>
                 </f:facet>
 

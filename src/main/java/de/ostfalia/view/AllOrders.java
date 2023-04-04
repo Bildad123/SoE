@@ -4,6 +4,7 @@ import de.ostfalia.se.boundary.OrderService;
 import de.ostfalia.se.entity.Customer;
 import de.ostfalia.se.entity.Order;
 import de.ostfalia.se.entity.OrderItem;
+import de.ostfalia.se.pagination.AllOrdersPagination;
 import de.ostfalia.se.pagination.Pagination;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
@@ -21,7 +22,7 @@ import java.util.Map;
  */
 @Named
 @ViewScoped
-public class AllOrders extends Pagination<Order> implements Serializable {
+public class AllOrders implements Serializable {
 
     @Inject
     OrderService os;
@@ -31,6 +32,8 @@ public class AllOrders extends Pagination<Order> implements Serializable {
     private List<Order> orders;
     private List<OrderItem> oderItems;
     private Map<Order, List<OrderItem>> map;
+
+    private AllOrdersPagination pagination;
 
 
 
@@ -45,12 +48,15 @@ public class AllOrders extends Pagination<Order> implements Serializable {
         this.map = new HashMap<>();
 
 
+
+
         this.orders = os.findAll();  //get all orders from the database
         for(int i = 0; i < this.orders.size(); i++){
             Customer customer =this.orders.get(i).getCustomer();  //get customer for each order
             this.oderItems = ois.findOrderItemByCustomer(customer, orders.get(i));
             this.map.put(this.orders.get(i), this.oderItems);
         }
+        this.pagination = new AllOrdersPagination(orders);
     }
 
 
@@ -74,10 +80,12 @@ public class AllOrders extends Pagination<Order> implements Serializable {
         this.map = map;
     }
 
-    @Override
-    public List<Order> loadContent() {
-        this.setMaxTableRows(5);
-        return this.orders;
+    public AllOrdersPagination getPagination() {
+        return pagination;
+    }
+
+    public void setPagination(AllOrdersPagination pagination) {
+        this.pagination = pagination;
     }
 }
 

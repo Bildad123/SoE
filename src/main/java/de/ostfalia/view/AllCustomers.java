@@ -2,6 +2,7 @@ package de.ostfalia.view;
 
 import de.ostfalia.se.boundary.CustomerService;
 import de.ostfalia.se.entity.Customer;
+import de.ostfalia.se.pagination.AllCustomersPagination;
 import de.ostfalia.se.pagination.Pagination;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
@@ -16,11 +17,13 @@ import java.util.List;
  */
 @Named
 @ViewScoped
-public class AllCustomers extends Pagination<Customer> implements Serializable {
+public class AllCustomers implements Serializable {
     @Inject
     CustomerService cs;
 
     private List<Customer> customers;
+
+    private AllCustomersPagination pagination;
 
     AllCustomers(){
 
@@ -33,6 +36,7 @@ public class AllCustomers extends Pagination<Customer> implements Serializable {
     @PostConstruct
     public void init(){
         customers = cs.findAll();
+        pagination = new AllCustomersPagination(customers);
     }
 
 
@@ -42,8 +46,7 @@ public class AllCustomers extends Pagination<Customer> implements Serializable {
         return customers;
     }
 
-    @Override
-    public List<Customer> loadContent() {
-        return this.customers;
+    public AllCustomersPagination getPagination() {
+        return pagination;
     }
 }
