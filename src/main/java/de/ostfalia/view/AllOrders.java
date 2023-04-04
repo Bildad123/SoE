@@ -76,6 +76,7 @@ public class AllOrders extends Pagination<Order> implements Serializable {
 
     @Override
     public List<Order> loadContent() {
+        this.setMaxTableRows(5);
         return this.orders;
     }
 }

@@ -21,7 +21,7 @@
         <h:form>
             <h:dataTable value="#{allStocks.stocks}" var="s"
                          first="#{allStocks.currentRows}"
-                         rows="#{allStocks.maxTblRows}"
+                         rows="#{allStocks.maxTableRows}"
                          styleClass="customers-table"
                          headerClass="customers-table-header"
                          rowClasses="customers-table-odd-row,customers-table-even-row"
@@ -47,12 +47,12 @@
 
                 <f:facet name="footer">
                     <h:panelGroup rendered="#{allStocks.showPageList}">
-                        <h:commandButton value="Zurueck" action="#{allStocks.zurueck}" rendered="#{allStocks.displayZurueckBtn}" styleClass="footerBtn" />
+                        <h:commandButton value="Back" action="#{allStocks.back}" rendered="#{allStocks.displayBackButton}" styleClass="form-paginating-button-back" />
                         <h:selectOneMenu value="#{allStocks.selectedPage}">
                             <f:selectItems value="#{allStocks.pages}" var="page" itemLabel="Seite #{page}" itemValue="#{page}" />
-                            <f:ajax listener="#{allStores.pageChange}" render="@form"/>
+                            <f:ajax listener="#{allStocks.pageChange}" render="@form"/>
                         </h:selectOneMenu>
-                        <h:commandButton value="Weiter" action="#{allStocks.weiter}" rendered="#{allStocks.displayWeiterBtn}" styleClass="footerBtn" />
+                        <h:commandButton value="Next" action="#{allStocks.next}" rendered="#{allStocks.displayNextButton}" styleClass="form-paginating-button-next" />
                     </h:panelGroup>
                 </f:facet>
             </h:dataTable>

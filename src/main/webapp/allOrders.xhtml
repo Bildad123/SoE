@@ -23,7 +23,7 @@
         <h:form>
             <h:dataTable value="#{allOrders.map}" var="entry"
                          first="#{allOrders.currentRows}"
-                         rows="#{allOrders.maxTblRows}"
+                         rows="#{allOrders.maxTableRows}"
                          styleClass="customers-table"
                          headerClass="customers-table-header"
                          rowClasses="customers-table-odd-row,customers-table-even-row"
@@ -50,12 +50,12 @@
 
                 <f:facet name="footer">
                     <h:panelGroup rendered="#{allOrders.showPageList}">
-                        <h:commandButton value="Zurueck" action="#{allOrders.zurueck}" rendered="#{allOrders.displayZurueckBtn}" styleClass="footerBtn" />
+                        <h:commandButton value="Back" action="#{allOrders.back}" rendered="#{allOrders.displayBackButton}" styleClass="form-paginating-button-back" />
                         <h:selectOneMenu value="#{allOrders.selectedPage}">
                             <f:selectItems value="#{allOrders.pages}" var="page" itemLabel="Seite #{page}" itemValue="#{page}" />
                             <f:ajax listener="#{allOrders.pageChange}" render="@form"/>
                         </h:selectOneMenu>
-                        <h:commandButton value="Weiter" action="#{allOrders.weiter}" rendered="#{allOrders.displayWeiterBtn}" styleClass="footerBtn" />
+                        <h:commandButton value="Next" action="#{allOrders.next}" rendered="#{allOrders.displayNextButton}" styleClass="form-paginating-button-next" />
                     </h:panelGroup>
                 </f:facet>
 

@@ -26,14 +26,14 @@
                     <br/>
 
 
-                    <h:outputLabel for="firstname" value="Firstname"  styleClass="form-label"/>
+                    <h:outputLabel for="firstname" value="First Name"  styleClass="form-label"/>
                     <h:inputText id="firstname" value="#{customerForm.firstName}" required="true"
                                  styleClass="form-input-text"
 
                     />
                     <br/><br/>
 
-                    <h:outputLabel for="lastname" value="Lastname" styleClass="form-label"/>
+                    <h:outputLabel for="lastname" value="Last Name" styleClass="form-label"/>
                     <h:inputText id="lastname" value="#{customerForm.lastName}" required="true" styleClass="form-input-text"
                     />
                     <br/><br/>
@@ -45,9 +45,21 @@
                     />
                     <br/><br/>
 
+                    <h:outputLabel for="phone" value="Phone"  styleClass="form-label"/>
+                    <h:inputText id="phone" value="#{customerForm.phone}" required="true"
+                                 styleClass="form-input-text"
+                    />
+                    <br/><br/>
+
 
                     <h:outputLabel for="zip" value="Zip Code"  styleClass="form-label"/>
                     <h:inputText id="zip" value="#{customerForm.zip}" required="true"
+                                 styleClass="form-input-text"
+                    />
+                    <br/><br/>
+
+                    <h:outputLabel for="state" value="State"  styleClass="form-label"/>
+                    <h:inputText id="state" value="#{customerForm.state}" required="true"
                                  styleClass="form-input-text"
                     />
                     <br/><br/>

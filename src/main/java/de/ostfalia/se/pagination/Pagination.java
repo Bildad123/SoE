@@ -10,7 +10,7 @@ public abstract class Pagination<T> {
 
 	private static final String SUCCESS = "SUCCESS";
 
-	private int maxTblRows = 5;
+	private int maxTableRows = 10;
 
 	private boolean showPageList;
 
@@ -20,10 +20,10 @@ public abstract class Pagination<T> {
 
 	private int selectedPage = 1;
 
-	private boolean displayWeiterBtn;
-	private boolean displayZurueckBtn;
+	private boolean displayNextButton;
+	private boolean displayBackButton;
 
-	protected List<T> tblContent = new ArrayList<>();
+	protected List<T> tableContent = new ArrayList<>();
 
 	private List<Integer> pages = new ArrayList<>();
 
@@ -38,12 +38,12 @@ public abstract class Pagination<T> {
 	public abstract List<T> loadContent();
 
 	public String doRefresh() {
-		tblContent.clear();
-		tblContent.addAll(loadContent());
+		tableContent.clear();
+		tableContent.addAll(loadContent());
 
-		this.showPageList = this.maxTblRows < this.tblContent.size();
+		this.showPageList = this.maxTableRows < this.tableContent.size();
 		pages.clear();
-		int maxPages = (int) Math.ceil((double) (tblContent.size() / maxTblRows));
+		int maxPages = (int) Math.ceil((double) (tableContent.size() / maxTableRows));
 		for (int i = 1; i <= maxPages; i++) {
 			pages.add(i);
 		}
@@ -52,18 +52,18 @@ public abstract class Pagination<T> {
 		return SUCCESS;
 	}
 
-	public String weiter() {
-		currentRows += maxTblRows;
-		if (currentRows > tblContent.size()) {
+	public String next() {
+		currentRows += maxTableRows;
+		if (currentRows > tableContent.size()) {
 			currentRows = 0;
 		}
 		handlePagination();
 		return SUCCESS;
 	}
 
-	public String zurueck() {
-		currentRows -= maxTblRows;
-		if (currentRows <= maxTblRows) {
+	public String back() {
+		currentRows -= maxTableRows;
+		if (currentRows <= maxTableRows) {
 			currentRows = 0;
 		}
 		handlePagination();
@@ -71,13 +71,13 @@ public abstract class Pagination<T> {
 	}
 
 	private void handlePagination() {
-		displayWeiterBtn = (currentRows + maxTblRows) < getTblContent().size();
-		displayZurueckBtn = currentRows >= maxTblRows;
-		selectedPage = (int) Math.ceil((double) (currentRows / maxTblRows)) + 1;
+		displayNextButton = (currentRows + maxTableRows) < getTableContent().size();
+		displayBackButton = currentRows >= maxTableRows;
+		selectedPage = (int) Math.ceil((double) (currentRows / maxTableRows)) + 1;
 	}
 
 	public void pageChange(AjaxBehaviorEvent abe) {
-		currentRows = (selectedPage - 1) * maxTblRows;
+		currentRows = (selectedPage - 1) * maxTableRows;
 		handlePagination();
 	}
 
@@ -89,28 +89,28 @@ public abstract class Pagination<T> {
 		this.currentRows = currentRows;
 	}
 
-	public List<T> getTblContent() {
-		return tblContent;
+	public List<T> getTableContent() {
+		return tableContent;
 	}
 
-	public void setTblContent(List<T> tblContent) {
-		this.tblContent = tblContent;
+	public void setTableContent(List<T> tableContent) {
+		this.tableContent = tableContent;
 	}
 
-	public boolean isDisplayWeiterBtn() {
-		return displayWeiterBtn;
+	public boolean isDisplayNextButton() {
+		return displayNextButton;
 	}
 
-	public void setDisplayWeiterBtn(boolean displayWeiterBtn) {
-		this.displayWeiterBtn = displayWeiterBtn;
+	public void setDisplayNextButton(boolean displayNextButton) {
+		this.displayNextButton = displayNextButton;
 	}
 
-	public boolean isDisplayZurueckBtn() {
-		return displayZurueckBtn;
+	public boolean isDisplayBackButton() {
+		return displayBackButton;
 	}
 
-	public void setDisplayZurueckBtn(boolean displayZurueckBtn) {
-		this.displayZurueckBtn = displayZurueckBtn;
+	public void setDisplayBackButton(boolean displayBackButton) {
+		this.displayBackButton = displayBackButton;
 	}
 
 	public int getCurrentPageNumber() {
@@ -129,12 +129,12 @@ public abstract class Pagination<T> {
 		this.selectedPage = selectedPage;
 	}
 
-	public int getMaxTblRows() {
-		return maxTblRows;
+	public int getMaxTableRows() {
+		return maxTableRows;
 	}
 
-	public void setMaxTblRows(int maxTblRows) {
-		this.maxTblRows = maxTblRows;
+	public void setMaxTableRows(int maxTableRows) {
+		this.maxTableRows = maxTableRows;
 	}
 
 	public boolean isShowPageList() {

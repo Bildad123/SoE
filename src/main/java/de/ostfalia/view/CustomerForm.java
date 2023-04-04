@@ -9,8 +9,7 @@ import jakarta.inject.Named;
 import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 
 /**
  * Bean for the JSF Page 'customerForm.xhtml'
@@ -31,12 +30,21 @@ public class CustomerForm implements Serializable {
     @NotNull(message = "Email cannot be empty")
     String email;
 
+    @NotNull(message = "Phone cannot be null")
+    String phone;
 
     @NotNull(message = "Zip cannot be empty")
     String zip;
 
+    @NotNull(message = "State cannot be null")
+    String state;
+
     @NotNull(message = "Street cannot be empty")
     String street;
+
+    private String formType;
+
+
 
 
     public CustomerForm() {
@@ -57,7 +65,24 @@ public class CustomerForm implements Serializable {
                 this.zip,
                 this.street
         );
-        cs.save(c);
+       // cs.save(c);
+        return "allCustomers" + "?faces-redirect=true";
+    }
+
+
+    public String createCustomer(){
+        this.formType = "Create Customer";
+        return "customerForm.xhtml" + "?faces-redirect=true";
+    }
+
+    public String editCustomer(Customer customer){
+        this.firstName = customer.getFirstname();
+        this.lastName = customer.getLastname();
+        this.phone = customer.getPhone();
+        this.email = customer.getEmail();
+        this.street = customer.getStreet();
+        this.state = customer.getState();
+        this.formType = "Edit Customer";
         return "allCustomers" + "?faces-redirect=true";
     }
 
@@ -105,5 +130,29 @@ public class CustomerForm implements Serializable {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getFormType() {
+        return formType;
+    }
+
+    public void setFormType(String formType) {
+        this.formType = formType;
     }
 }

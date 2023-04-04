@@ -21,10 +21,15 @@
 
         <ui:define name="content">
             <span style="font-size: small">Showing #{allCustomers.customers.size()} customer(s) in the database</span><br></br>
+
+
+
+            <input type="text" placeholder="Search for Customer" style="width: 60%; height: 30px; margin-bottom: 20px; margin-top: 20px " ></input>
+
             <h:form>
                 <h:dataTable value="#{allCustomers.customers}" var="c"
                              first="#{allCustomers.currentRows}"
-                             rows="#{allCustomers.maxTblRows}"
+                             rows="#{allCustomers.maxTableRows}"
                              styleClass="customers-table"
                              headerClass="customers-table-header"
                              rowClasses="customers-table-odd-row,customers-table-even-row"
@@ -52,12 +57,17 @@
 
                     <f:facet name="footer">
                         <h:panelGroup rendered="#{allCustomers.showPageList}">
-                            <h:commandButton value="Zurueck" action="#{allCustomers.zurueck}" rendered="#{allCustomers.displayZurueckBtn}" styleClass="footerBtn" />
+                            <h:commandButton value="Back" action="#{allCustomers.back}" rendered="#{allCustomers.displayBackButton}" styleClass="form-paginating-button-back" />
                             <h:selectOneMenu value="#{allCustomers.selectedPage}">
                                 <f:selectItems value="#{allCustomers.pages}" var="page" itemLabel="Seite #{page}" itemValue="#{page}" />
                                 <f:ajax listener="#{allCustomers.pageChange}" render="@form"/>
                             </h:selectOneMenu>
-                            <h:commandButton value="Weiter" action="#{allCustomers.weiter}" rendered="#{allCustomers.displayWeiterBtn}" styleClass="footerBtn" />
+                            <h:commandButton value="Next" action="#{allCustomers.next}" rendered="#{allCustomers.displayNextButton}" styleClass="form-paginating-button-next" />
+
+
+                            <h:commandButton value="Create Customer" action="#{customerForm.createCustomer}"  styleClass="form-paginating-button-next" />
+
+
                         </h:panelGroup>
                     </f:facet>
                 </h:dataTable>

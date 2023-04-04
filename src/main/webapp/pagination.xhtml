@@ -13,10 +13,10 @@
    <ui:define name="content">
 
       <h:form id="create-customer-form">
-         <h:dataTable value="#{allCustomers.tblContent}" var="tblEntry"
+         <h:dataTable value="#{allCustomers.tableContent}" var="tblEntry"
                       styleClass="table" headerClass="tableHeader"
                       rowClasses="tableRowOdd,tableRowEven"
-                      first="#{allCustomers.currentRows}" rows="#{allCustomers.maxTblRows}"
+                      first="#{allCustomers.currentRows}" rows="#{allCustomers.maxTableRows}"
                       cellpadding="3">
             <h:column>
                <f:facet name="header">ID</f:facet>
@@ -29,12 +29,12 @@
 
             <f:facet name="footer">
                <h:panelGroup>
-                  <h:commandButton value="Zurueck" action="#{allCustomers.zurueck}" rendered="#{allCustomers.displayZurueckBtn}" styleClass="footerBtn" />
+                  <h:commandButton value="Zurueck" action="#{allCustomers.back}" rendered="#{allCustomers.displayBackButton}" styleClass="footerBtn" />
                   <h:selectOneMenu value="#{allCustomers.selectedPage}">
                      <f:selectItems value="#{allCustomers.pages}" var="page" itemLabel="Seite #{page}" itemValue="#{page}" />
                      <f:ajax listener="#{allCustomers.pageChange}" render="@form"/>
                   </h:selectOneMenu>
-                  <h:commandButton value="Weiter" action="#{allCustomers.weiter}" rendered="#{allCustomers.displayWeiterBtn}" styleClass="footerBtn" />
+                  <h:commandButton value="Weiter" action="#{allCustomers.next}" rendered="#{allCustomers.displayNextButton}" styleClass="footerBtn" />
                </h:panelGroup>
             </f:facet>
          </h:dataTable>
