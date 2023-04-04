@@ -10,10 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2d63f969-09cb-4121-91e8-5eb18ede76c6/storage_v2/_src_/database/iteration1.9OyYlw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2d63f969-09cb-4121-91e8-5eb18ede76c6/storage_v2/_src_/database/iteration1.9OyYlw/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2d63f969-09cb-4121-91e8-5eb18ede76c6/storage_v2/_src_/database/iteration1.9OyYlw/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Brand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Brand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" afterDir="false" />
@@ -23,10 +24,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Staff.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Stock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/CustomerForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/CustomerForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/OrderForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/OrderForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/ProductForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/ProductForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +83,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/UserData/z0047yht/Documents/xOstfalia/Semester/6.Semester/SE_Projekt/Projekt/sep-team-11/pom.xml&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Studium/Ostfalia/SoSe 23/SE_Projekt/iteration1/postgresql-42.5.1.jar&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -124,7 +121,6 @@
       </method>
     </configuration>
     <configuration name="JBoss/WildFly 27.0.1.Final" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 27.0.1.Final" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="19" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/bikes11/" />
       <option name="UPDATING_POLICY" value="hot-swap-classes" />
       <deployment>
         <artifact name="jakarta-ee-10-starter:war">
@@ -341,6 +337,8 @@
       <workItem from="1679939325338" duration="3317000" />
       <workItem from="1679942689850" duration="10951000" />
       <workItem from="1680524912327" duration="6799000" />
+      <workItem from="1680553487811" duration="543000" />
+      <workItem from="1680603908207" duration="2329000" />
     </task>
     <task id="LOCAL-00001" summary="Staff und Stock">
       <created>1680545100776</created>

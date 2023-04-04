@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "stores")
+@Table(name = "stores", schema = "sales")
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,8 +66,7 @@ public class Store {
                 '}';
     }
 
-    //Getter und Setter
-
+    // Getter und Setter
     public Long getId() {
         return id;
     }

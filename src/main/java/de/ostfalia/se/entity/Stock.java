@@ -3,17 +3,17 @@ package de.ostfalia.se.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "stocks")
+@Table(name = "stocks", schema = "production")
 public class Stock {
 
     @Id
     @OneToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
     @Id
     @OneToOne
-    @JoinColumn(name = "store_id")
+    @JoinColumn(name = "store_id", nullable = false)
     private Store store;
 
     private Integer quantity;
@@ -50,6 +50,5 @@ public class Stock {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
-
 
 }

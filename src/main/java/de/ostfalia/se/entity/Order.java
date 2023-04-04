@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "orders", schema = "sales")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +28,11 @@ public class Order {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "staff_id")
+    @JoinColumn(name = "staff_id", nullable = false)
     private Staff staff;
 
     @ManyToOne
-    @JoinColumn(name = "store_id")
+    @JoinColumn(name = "store_id", nullable = false)
     private Store store;
 
     //Wird nicht mehr benötigt
