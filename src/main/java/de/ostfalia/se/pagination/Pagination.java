@@ -43,7 +43,7 @@ public abstract class Pagination<T> {
 
 		this.showPageList = this.maxTableRows < this.tableContent.size();
 		pages.clear();
-		int maxPages = (int) Math.ceil((double) (tableContent.size() / maxTableRows));
+		int maxPages = (int)Math.ceil(tableContent.size()*1.0 / maxTableRows);
 		for (int i = 1; i <= maxPages; i++) {
 			pages.add(i);
 		}

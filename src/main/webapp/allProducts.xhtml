@@ -45,7 +45,7 @@
                     <h:panelGroup rendered="#{allProducts.pagination.showPageList}">
                         <h:commandButton value="Back" action="#{allProducts.pagination.back}" disabled="#{!allProducts.pagination.displayBackButton}" styleClass="form-paginating-button-back" />
                         <h:selectOneMenu value="#{allProducts.pagination.selectedPage}">
-                            <f:selectItems value="#{allProducts.pagination.pages}" var="page" itemLabel="Seite #{page}" itemValue="#{page}" />
+                            <f:selectItems value="#{allProducts.pagination.pages}" var="page" itemLabel="Page #{page}" itemValue="#{page}" />
                             <f:ajax listener="#{allProducts.pagination.pageChange}" render="@form"/>
                         </h:selectOneMenu>
                         <h:commandButton value="Next" action="#{allProducts.pagination.next}" disabled="#{!allProducts.pagination.displayNextButton}" styleClass="form-paginating-button-next" />
