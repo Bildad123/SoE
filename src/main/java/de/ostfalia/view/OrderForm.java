@@ -17,6 +17,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Bean for the JSF Page 'orderForm.xhtml'
@@ -187,7 +189,7 @@ public class OrderForm implements Serializable{
                 Order order = new Order(customer);
                 double totalPrice = 0;
                 for(int i = 0; i < this.orderItems.size(); i++){
-                    this.orderItems.get(i).setOrder(order);
+                  //  this.orderItems.get(i).setOrder(order);
                     totalPrice += this.orderItems.get(i).getQuantity() * this.orderItems.get(i).getListPrice();
                     this.ois.getEm().persist(this.orderItems.get(i));
                 }

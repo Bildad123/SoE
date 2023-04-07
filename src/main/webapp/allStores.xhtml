@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html 	xmlns="http://www.w3.org/1999/xhtml"
+<html 	 xmlns="http://www.w3.org/1999/xhtml"
          xmlns:f="http://xmlns.jcp.org/jsf/core"
-         xmlns:h="http://xmlns.jcp.org/jsf/html"
-         xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+         xmlns:h = "http://xmlns.jcp.org/jsf/html"
+         xmlns:jsf = "http://xmlns.jcp.org/jsf">
+
 
 <ui:composition template="Layouts/template.xhtml">
     <ui:define name="header">
@@ -17,9 +19,14 @@
 
     </ui:define>
     <ui:define name="content">
-        <span style="font-size: small">Showing #{allStores.stores.size()} store(s) in the database</span><br></br>
-        <h:form>
-            <h:dataTable value="#{allStores.stores}" var="s"
+        <h:outputLabel style="font-size: small" id="qty">Matched #{allStores.filteredStores.size()} store(s) in the database</h:outputLabel><br></br>
+        <h:form onsubmit="return false" autocomplete="off">
+            <input type="text" placeholder="Search for Stores" jsf:id="serch_text" jsf:value="#{allStores.searchText}"  class="form-search-text-input" >
+                <f:ajax event="keyup" listener="#{allStores.keypress()}" render="data-table qty" execute="@this"/>
+            </input>
+
+            <h:dataTable value="#{allStores.filteredStores}" var="s"
+                         id="data-table"
                          first="#{allStores.pagination.currentRows}"
                          rows="#{allStores.pagination.maxTableRows}"
                          styleClass="customers-table"
@@ -28,7 +35,7 @@
                          cellspacing="15px"
                          cellpadding="15px"
                          style="text-align: left"
-                         rendered="#{allStores.stores.size() > 0}">
+                         rendered="#{allStores.filteredStores.size() > 0}">
 
                 <h:column>
                     <f:facet name="header">Store Name</f:facet>
@@ -54,8 +61,6 @@
                     <f:facet name="header">Zip Code</f:facet>
                     #{s.zipCode}
                 </h:column>
-
-
 
 
                 <f:facet name="footer">

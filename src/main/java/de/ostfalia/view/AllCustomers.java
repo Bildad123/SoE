@@ -2,6 +2,7 @@ package de.ostfalia.view;
 
 import de.ostfalia.se.boundary.CustomerService;
 import de.ostfalia.se.entity.Customer;
+import de.ostfalia.se.filtering.AllCustomersFilter;
 import de.ostfalia.se.pagination.AllCustomersPagination;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
@@ -26,6 +27,8 @@ public class AllCustomers implements Serializable {
 
     private AllCustomersPagination pagination;
 
+    private AllCustomersFilter filter;
+
     private String searchText;
 
 
@@ -44,23 +47,19 @@ public class AllCustomers implements Serializable {
         customers = cs.findAll();
         filteredCustomers = cs.findAll();
         pagination = new AllCustomersPagination(filteredCustomers);
+        filter = new AllCustomersFilter();
     }
 
-    public boolean predicate(Customer customer, String searchText){
-        return searchText.toLowerCase().contains(customer.getLastname().toLowerCase())
-                || searchText.toLowerCase().contains(customer.getFirstname().toLowerCase())
-                || customer.getFirstname().toLowerCase().contains(searchText.toLowerCase())
-                || customer.getLastname().toLowerCase().contains(searchText.toLowerCase());
-    }
+
 
 
 
 
 
     public void keypress() {
-        if(searchText != null){
             if(!searchText.isBlank()){;
-                this.filteredCustomers = customers.stream().filter(c -> predicate(c,searchText)).collect(Collectors.toList());
+                filter.setSearchText(searchText);
+                this.filteredCustomers = customers.stream().filter(c -> filter.test(c)).collect(Collectors.toList());
 
             } else{
                 this.filteredCustomers = new ArrayList<>();
@@ -71,8 +70,6 @@ public class AllCustomers implements Serializable {
             this.pagination.setSelectedPage(1);
             this.pagination.doRefresh();
             System.out.println("search Text : " + searchText);
-        }
-
     }
 
 

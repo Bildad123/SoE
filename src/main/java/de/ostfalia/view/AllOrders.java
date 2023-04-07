@@ -4,6 +4,7 @@ import de.ostfalia.se.boundary.OrderService;
 import de.ostfalia.se.entity.Customer;
 import de.ostfalia.se.entity.Order;
 import de.ostfalia.se.entity.OrderItem;
+import de.ostfalia.se.filtering.AllOrdersFilter;
 import de.ostfalia.se.pagination.AllOrdersPagination;
 import de.ostfalia.se.pagination.Pagination;
 import jakarta.annotation.PostConstruct;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Bean for the JSF Page 'allCustomers.xhtml'
@@ -27,13 +29,16 @@ public class AllOrders implements Serializable {
     @Inject
     OrderService os;
 
-    @Inject
-    OrderItemService ois;
     private List<Order> orders;
-    private List<OrderItem> oderItems;
-    private Map<Order, List<OrderItem>> map;
+
+    private List<Order> filteredOrders;
+
 
     private AllOrdersPagination pagination;
+
+    private AllOrdersFilter filter;
+
+    private String searchText;
 
 
 
@@ -43,20 +48,30 @@ public class AllOrders implements Serializable {
      */
     @PostConstruct
     public void init(){
-        this.orders = new ArrayList<>();
-        this.oderItems=new ArrayList<>();
-        this.map = new HashMap<>();
-
-
-
-
         this.orders = os.findAll();  //get all orders from the database
-        for(int i = 0; i < this.orders.size(); i++){
-            Customer customer =this.orders.get(i).getCustomer();  //get customer for each order
-            this.oderItems = ois.findOrderItemByCustomer(customer, orders.get(i));
-            this.map.put(this.orders.get(i), this.oderItems);
-        }
+        this.filteredOrders = os.findAll();
+        System.out.println("orders size : " + orders.size());
+
         this.pagination = new AllOrdersPagination(orders);
+        filter = new AllOrdersFilter();
+    }
+
+
+    public void keypress() {
+        if(!searchText.isBlank()){;
+            filter.setSearchText(searchText);
+            this.filteredOrders = orders.stream().filter(c -> filter.test(c)).collect(Collectors.toList());
+
+        } else{
+            this.filteredOrders = new ArrayList<>();
+            this.filteredOrders.addAll(this.orders);
+        }
+        this.pagination.setOrders(filteredOrders);
+        this.pagination.setCurrentRows(0);
+        this.pagination.setSelectedPage(1);
+        this.pagination.doRefresh();
+        System.out.println("size : " + this.filteredOrders.size());
+        System.out.println("search Text : " + searchText);
     }
 
 
@@ -72,13 +87,6 @@ public class AllOrders implements Serializable {
     }
 
 
-    public Map<Order, List<OrderItem>> getMap() {
-        return map;
-    }
-
-    public void setMap(Map<Order, List<OrderItem>> map) {
-        this.map = map;
-    }
 
     public AllOrdersPagination getPagination() {
         return pagination;
@@ -86,6 +94,22 @@ public class AllOrders implements Serializable {
 
     public void setPagination(AllOrdersPagination pagination) {
         this.pagination = pagination;
+    }
+
+    public List<Order> getFilteredOrders() {
+        return filteredOrders;
+    }
+
+    public void setFilteredOrders(List<Order> filteredOrders) {
+        this.filteredOrders = filteredOrders;
+    }
+
+    public String getSearchText() {
+        return searchText;
+    }
+
+    public void setSearchText(String searchText) {
+        this.searchText = searchText;
     }
 }
 

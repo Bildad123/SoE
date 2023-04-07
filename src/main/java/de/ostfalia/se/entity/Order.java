@@ -1,11 +1,10 @@
 package de.ostfalia.se.entity;
 
-import jakarta.ejb.Local;
+
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 @Entity
@@ -41,6 +40,12 @@ public class Order {
     @OneToOne
     @JoinColumn(name = "store_id")
     private Store store = new Store();
+
+    @OneToMany(cascade =
+            CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "order_id")
+    private Set<OrderItem> orderItem = new HashSet<>();
+
 
 
 
@@ -124,5 +129,13 @@ public class Order {
 
     public void setStore(Store store) {
         this.store = store;
+    }
+
+    public Set<OrderItem> getOrderItem() {
+        return orderItem;
+    }
+
+    public void setOrderItem(Set<OrderItem> orderItem) {
+        this.orderItem = orderItem;
     }
 }

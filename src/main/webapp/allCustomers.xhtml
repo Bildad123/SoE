@@ -25,9 +25,9 @@
                 Matched #{allCustomers.filteredCustomers.size()} customer(s) from the database
             </h:outputLabel><br></br>
 
-            <h:form onkeydown="return event.key != 'Enter';">
-                <input type="text" placeholder="Search for Customer" jsf:id="serch_text" jsf:value="#{allCustomers.searchText}" style="width: 60%; height: 30px; margin: 20px 0; padding: 0 10px; " >
-                    <f:ajax event="keyup" listener="#{allCustomers.keypress()}" render="data-table qty select-menu" execute="@this"/>
+            <h:form onsubmit="return false" autocomplete="off">
+                <input type="text" placeholder="Search for Customer" jsf:id="serch_text" jsf:value="#{allCustomers.searchText}"  class="form-search-text-input" >
+                    <f:ajax event="keyup" listener="#{allCustomers.keypress()}" render="data-table qty" execute="@this"/>
                 </input>
 
                 <h:dataTable value="#{allCustomers.filteredCustomers}" var="c"
@@ -62,7 +62,7 @@
                     <f:facet name="footer">
                         <h:panelGroup rendered="#{allCustomers.pagination.showPageList}">
                             <h:commandButton value="Back" action="#{allCustomers.pagination.back}" disabled="#{!allCustomers.pagination.displayBackButton}" styleClass="form-paginating-button-back" />
-                            <h:selectOneMenu value="#{allCustomers.pagination.selectedPage}" id="select-menu">
+                            <h:selectOneMenu value="#{allCustomers.pagination.selectedPage}">
                                 <f:selectItems value="#{allCustomers.pagination.pages}" var="page" itemLabel="Page #{page}" itemValue="#{page}" />
                                 <f:ajax listener="#{allCustomers.pagination.pageChange}" render="@form"/>
                             </h:selectOneMenu>
