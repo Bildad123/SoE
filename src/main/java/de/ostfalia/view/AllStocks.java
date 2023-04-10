@@ -39,6 +39,7 @@ public class AllStocks implements Serializable {
         filteredStocks = ss.findAll();
         pagination = new AllStocksPagination(stocks);
         filter = new AllStocksFilter();
+        this.pagination.doRefresh();
     }
 
 

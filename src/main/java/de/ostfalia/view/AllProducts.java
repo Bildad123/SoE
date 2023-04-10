@@ -44,6 +44,7 @@ public class AllProducts implements Serializable {
         filteredProducts = ps.findAll();
         pagination = new AllProductsPagination(products);
         filter = new AllProductsFilter();
+        this.pagination.doRefresh();
     }
 
     public void keypress() {

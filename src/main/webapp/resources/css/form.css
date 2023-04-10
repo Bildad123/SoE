@@ -1,3 +1,15 @@
+input[type=submit]{
+    cursor: pointer;
+}
+
+fieldset{
+    border: 1px solid #ddd;
+}
+
+legend{
+    padding: 20px 30px;
+}
+
 
 .form-input-text {
     width: 77%;
@@ -15,3 +27,22 @@
 .form-paginating-button-next{
     margin: 0 8px;
 }
+
+.form-search-text-input{
+    padding: 6px 10px;
+    margin: 20px 0;
+    width: 50%;
+}
+
+.data-table-create-h-link{
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.data-table-create-h-link:hover{
+    background-color: #ddd;
+}
+

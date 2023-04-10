@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:f="http://xmlns.jcp.org/jsf/core"
+         xmlns:h="http://xmlns.jcp.org/jsf/html"
+         xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="Layouts/template.xhtml">
+   <ui:define name="content">
+      <h:form>
+         <h:dataTable value="#{meineBackingBean.meineDatenListe}" var="loopElement">
+            <h:column>
+               <f:facet name="header"><h:outputText value="Auswahl"></h:outputText></f:facet>
+               <h:selectBooleanCheckbox value="#{meineBackingBean.merkerMap[ loopElement ]}" />
+            </h:column>
+            <h:column>
+               <f:facet name="header"><h:outputText value="ID"></h:outputText></f:facet>
+               <h:outputText value="#{loopElement.id}" />
+            </h:column>
+            <h:column>
+               <f:facet name="header"><h:outputText value="Name"></h:outputText></f:facet>
+               <h:outputText value="#{loopElement.name}" />
+            </h:column>
+
+            <h:column>
+               <f:facet name="header"><h:outputText value="Price"></h:outputText></f:facet>
+               <h:outputText value="#{loopElement.price}" />
+            </h:column>
+            <h:column>
+               <f:facet name="header"><h:outputText value="Model Year"></h:outputText></f:facet>
+               <h:outputText value="#{loopElement.modelYear}" />
+            </h:column>
+            <h:column>
+               <f:facet name="header"><h:outputText value="Aktion"></h:outputText></f:facet>
+               <h:commandButton value="Element &auml;ndern" action="#{meineBackingBean.einzelnesElementEditieren}">
+                  <f:setPropertyActionListener target="#{meineBackingBean.einzelnesElement}" value="#{loopElement}" />
+               </h:commandButton>
+            </h:column>
+         </h:dataTable>
+         <h:outputText value="&lt;br/&gt;" escape="false" />
+         <h:commandButton value="Markierte Elemente l&ouml;schen" action="#{meineBackingBean.markierteElementeLoeschen}" />
+         <h:outputText value="&nbsp;&nbsp;&nbsp;" />
+         <h:commandButton value="Neues Element erstellen" action="#{meineBackingBean.neuesElementErstellen}" />
+      </h:form>
+
+   </ui:define>
+</ui:composition>
+
+</html>

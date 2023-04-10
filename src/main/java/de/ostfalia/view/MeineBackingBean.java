@@ -1,7 +1,9 @@
 package de.ostfalia.view;
 
 import de.ostfalia.se.boundary.CustomerService;
+import de.ostfalia.se.boundary.ProductService;
 import de.ostfalia.se.entity.Customer;
+import de.ostfalia.se.entity.Product;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -16,59 +18,94 @@ import java.util.*;
 @ViewScoped
 public class MeineBackingBean implements Serializable {
 
-    @Inject
-    CustomerService cs;
+
+
 
     private static final String KEY_IN_SESSION = "einzelnesElement";
-    private List<Customer> meineDatenListe;
-    private Customer einzelnesElement;
-    private Map<Customer,Boolean> merkerMap = new HashMap<>();
+    private List<Product> meineDatenListe;
+    private Product einzelnesElement;
+
+    @Inject
+    ProductService ps;
+    private Map<Product,Boolean> merkerMap = new HashMap<>();
 
     @PostConstruct
-    public void init()
-    {
-        meineDatenListe = cs.findAll();
+    public void init(){
+        meineDatenListe = ps.findAll();
 
-        einzelnesElement = (Customer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get( KEY_IN_SESSION );
+        //meineDatenListe = MeineEntityDao.findAll();
+
+
+
+
+    }
+
+    public MeineBackingBean()
+    {
+
+        einzelnesElement = (Product) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get( KEY_IN_SESSION );
+        System.out.println("einzelnesElement -- init  : " + einzelnesElementSpeichern() );
+
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put( KEY_IN_SESSION, null );
+       // meineDatenListe = ps.findAll();
+
+        //meineDatenListe = MeineEntityDao.findAll();
+
+        //einzelnesElement = (Product) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get( KEY_IN_SESSION );
+        //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put( KEY_IN_SESSION, null );
+
+        // Die folgenden Zeilen erzeugen eine Daten-Vorbelegung fuer erste einfache Tests:
+        /*if( meineDatenListe == null ) {
+            meineDatenListe = MeineEntityDao.createTestDaten();
+        } */
 
 
     }
 
     public String neuesElementErstellen()
     {
-        meineDatenListe = cs.findAll();
+        /*
+        meineDatenListe = MeineEntityDao.findAll();
         int idNeu = 0;
-        for( Customer me : meineDatenListe ) {
+        for( MeineEntity me : meineDatenListe ) {
             idNeu = Math.max( idNeu, me.getId().intValue() + 1 );
         }
-        einzelnesElement = new Customer("Firstname", "Lastname", "", "", "");
+        einzelnesElement = new MeineEntity( idNeu, null, new Date() );
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put( KEY_IN_SESSION, einzelnesElement );
+
+         */
         return "einzelnesElementEditieren.xhtml";
     }
 
     public String einzelnesElementEditieren()
     {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put( KEY_IN_SESSION, einzelnesElement );
-        return "einzelnesElementEditieren.xhtml";
+        System.out.println("einzelnes Element name: " + einzelnesElement.getName());
+        return "productForm.xhtml";
     }
 
     public String einzelnesElementSpeichern()
     {
-        cs.save( einzelnesElement );
+        /*
+        MeineEntityDao.saveOrUpdateEntity( einzelnesElement );
+
+         */
         return "tabelle.xhtml";
     }
 
     public String markierteElementeLoeschen()
     {
-        meineDatenListe = cs.findAll();
-        for( Map.Entry<Customer,Boolean> mapEntry : merkerMap.entrySet() ) {
+        /*
+        meineDatenListe = MeineEntityDao.findAll();
+        for( Map.Entry<MeineEntity,Boolean> mapEntry : merkerMap.entrySet() ) {
             if( mapEntry.getValue().booleanValue() && !meineDatenListe.remove( mapEntry.getKey() ) ) {
                 addFacesMessage( FacesMessage.SEVERITY_ERROR, "Fehler: Datenelement existiert nicht mehr." );
             }
         }
-        //MeineEntityDao.writeAll( meineDatenListe );
+        MeineEntityDao.writeAll( meineDatenListe );
         merkerMap.clear();
+
+         */
         return null;
     }
 
@@ -78,27 +115,10 @@ public class MeineBackingBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage( null, facesMsg );
     }
 
-    public List<Customer> getMeineDatenListe() {
-        return meineDatenListe;
-    }
-
-    public void setMeineDatenListe(List<Customer> meineDatenListe) {
-        this.meineDatenListe = meineDatenListe;
-    }
-
-    public Customer getEinzelnesElement() {
-        return einzelnesElement;
-    }
-
-    public void setEinzelnesElement(Customer einzelnesElement) {
-        this.einzelnesElement = einzelnesElement;
-    }
-
-    public Map<Customer, Boolean> getMerkerMap() {
-        return merkerMap;
-    }
-
-    public void setMerkerMap(Map<Customer, Boolean> merkerMap) {
-        this.merkerMap = merkerMap;
-    }
+    public List<Product>        getMeineDatenListe()  { return meineDatenListe; }
+    public Product              getEinzelnesElement() { return einzelnesElement; }
+    public Map<Product,Boolean> getMerkerMap()        { return merkerMap; }
+    public void setMeineDatenListe(  List<Product> meineDatenListe )  { this.meineDatenListe = meineDatenListe; }
+    public void setEinzelnesElement( Product einzelnesElement )       { this.einzelnesElement = einzelnesElement; }
+    public void setMerkerMap(        Map<Product,Boolean> merkerMap ) { this.merkerMap = merkerMap; }
 }

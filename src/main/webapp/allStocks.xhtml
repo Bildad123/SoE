@@ -8,15 +8,6 @@
          xmlns:jsf = "http://xmlns.jcp.org/jsf">
 
 <ui:composition template="Layouts/template.xhtml">
-    <ui:define name="header">
-        <ui:insert name="header">
-            <ui:include src="header.xhtml"></ui:include>
-        </ui:insert>
-        <f:metadata>
-            <f:viewAction action="#{allStocks.pagination.doRefresh}" />
-        </f:metadata>
-
-    </ui:define>
     <ui:define name="content">
         <h:outputLabel style="font-size: small" id="qty">Matched #{allStocks.filteredStocks.size()} stocks(s) in the database</h:outputLabel><br></br>
         <h:form onsubmit="return false" autocomplete="off" >

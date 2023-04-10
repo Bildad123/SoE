@@ -14,19 +14,16 @@
          <h:form id="create-product-form">
             <fieldset>
                <legend>Create Product</legend>
-               <br/>
-
 
                <h:outputLabel for="name" value="Name" styleClass="form-label"/>
-               <h:inputText id="name" value="#{productForm.name}" required="true"
+               <h:inputText id="name" value="#{productForm.name}" required="true" label="Name"
                             styleClass="form-input-text"
 
                />
                <br/><br/>
 
-               <h:outputLabel for="price" value="Price" style="display: inline-block; width: 16.1%"/>
-               <span style="margin-right: 10px">&#8364;</span>
-               <input type="number" jsf:id="price"  id="price" jsf:value="#{productForm.price}" name="Price"  step="0.01"  class="form-input-text"/>
+               <h:outputLabel for="price" value="Price  (&#8364;)" styleClass="form-label"/>
+               <input type="number" jsf:id="price"  id="price" jsf:value="#{productForm.price}" name="Price"  step="0.01" label="Price" class="form-input-text"/>
                <br/><br/>
 
 

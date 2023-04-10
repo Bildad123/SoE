@@ -54,6 +54,7 @@ public class AllOrders implements Serializable {
 
         this.pagination = new AllOrdersPagination(orders);
         filter = new AllOrdersFilter();
+        this.pagination.doRefresh();
     }
 
 

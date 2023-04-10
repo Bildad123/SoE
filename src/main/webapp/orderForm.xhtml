@@ -18,14 +18,13 @@
             <h:form id="create-order-form">
                 <fieldset>
                     <legend>Create Order</legend>
-                    <br/>
 
                     <h:outputLabel  value="Customer" styleClass="form-label"/>
                     <h:selectOneMenu value="#{orderForm.selectedCustomer}" styleClass="form-input-text">
                         <f:selectItems value="#{orderForm.customers}"  />
                     </h:selectOneMenu>
                     <br/><br/>
-                    <hr style="width: 100%; color: #EEEEEE"></hr><br/>
+                    <hr style="width: 100%; color: #DDD; border: 1px solid #DDD"></hr><br/>
                     <h:outputLabel value="Product" styleClass="form-label"/>
                     <h:selectOneMenu value="#{orderForm.selectedProduct}" style="width: 58%; margin-right: 15px">
                         <f:selectItems value="#{orderForm.products}"  />

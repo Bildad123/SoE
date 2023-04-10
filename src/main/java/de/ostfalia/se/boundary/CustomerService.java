@@ -58,6 +58,21 @@ public class CustomerService implements Serializable {
     }
 
 
+    public Customer findById(Long id){
+        TypedQuery<Customer> query = em.createQuery("select c from Customer  c where c.id = :id", Customer.class);
+        query.setParameter("id", id);
+
+        List<Customer> customer = query.getResultList();
+        if(!customer.isEmpty()){
+            return customer.get(0);
+        }
+        return null;
+    }
+
+
+
+
+
     //Getter
     public EntityManager getEm() {
         return em;

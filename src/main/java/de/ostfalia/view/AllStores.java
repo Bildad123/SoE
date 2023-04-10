@@ -38,6 +38,7 @@ public class AllStores implements Serializable {
         filteredStores = ss.findAll();
         pagination = new AllStoresPagination(stores);
         filter = new AllStoresFilter();
+        this.pagination.doRefresh();
     }
 
     public void keypress() {

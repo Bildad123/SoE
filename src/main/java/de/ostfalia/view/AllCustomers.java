@@ -5,6 +5,7 @@ import de.ostfalia.se.entity.Customer;
 import de.ostfalia.se.filtering.AllCustomersFilter;
 import de.ostfalia.se.pagination.AllCustomersPagination;
 import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -48,6 +49,7 @@ public class AllCustomers implements Serializable {
         filteredCustomers = cs.findAll();
         pagination = new AllCustomersPagination(filteredCustomers);
         filter = new AllCustomersFilter();
+        this.pagination.doRefresh();
     }
 
 
@@ -69,7 +71,7 @@ public class AllCustomers implements Serializable {
             this.pagination.setCurrentRows(0);
             this.pagination.setSelectedPage(1);
             this.pagination.doRefresh();
-            System.out.println("search Text : " + searchText);
+            //System.out.println("search Text : " + searchText);
     }
 
 
