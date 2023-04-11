@@ -4,7 +4,6 @@ import de.ostfalia.se.boundary.StoreService;
 import de.ostfalia.se.entity.Store;
 import de.ostfalia.se.filtering.AllStoresFilter;
 import de.ostfalia.se.pagination.AllStoresPagination;
-import de.ostfalia.se.pagination.Pagination;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -54,7 +53,6 @@ public class AllStores implements Serializable {
         this.pagination.setCurrentRows(0);
         this.pagination.setSelectedPage(1);
         this.pagination.doRefresh();
-        System.out.println("search Text : " + searchText);
     }
 
 

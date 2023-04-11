@@ -1,5 +1,6 @@
 package de.ostfalia.se.boundary;
 
+import de.ostfalia.se.entity.Customer;
 import de.ostfalia.se.entity.Product;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -51,6 +52,17 @@ public class ProductService implements Serializable {
         List<Product> product = query.getResultList();
         if(!product.isEmpty()){
             return product.get(0);
+        }
+        return null;
+    }
+
+    public Product findById(Long id){
+        TypedQuery<Product> query = em.createQuery("select p from Product  p where p.id = :id", Product.class);
+        query.setParameter("id", id);
+
+        List<Product> customer = query.getResultList();
+        if(!customer.isEmpty()){
+            return customer.get(0);
         }
         return null;
     }

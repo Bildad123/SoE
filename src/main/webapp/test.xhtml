@@ -18,12 +18,7 @@
             <input type="text" placeholder="Search for Customer" jsf:id="serch_text" jsf:value="#{allCustomers.searchText}"  class="form-search-text-input" >
                   <f:ajax event="keyup" listener="#{allCustomers.keypress()}" render="data-table qty" execute="@this"/>
             </input>
-
-
             <h:link value="&#10133;  Create Customer" styleClass="data-table-create-h-link" outcome="customerForm.xhtml"></h:link>
-
-
-
          </div>
 
 

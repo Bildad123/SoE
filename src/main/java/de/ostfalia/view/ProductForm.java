@@ -1,7 +1,10 @@
 package de.ostfalia.view;
 
 import de.ostfalia.se.boundary.ProductService;
+import de.ostfalia.se.entity.Customer;
 import de.ostfalia.se.entity.Product;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -23,7 +26,40 @@ public class ProductForm implements Serializable {
     private String name;
 
     @NotNull(message = "price cannot be null")
-    private double price;
+    private String price;
+
+    private Product product;
+
+    private String operation;
+
+    private Form form;
+
+
+    @PostConstruct
+    public void init(){
+        Form form = new Form();
+        String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+        if(id != null){
+            this.product = ps.findById(Long.valueOf(id));
+        } else {
+            this.product = new Product();
+        }
+        String operation = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("operation");
+        this.operation = form.operation(operation, "Product");
+        autoFillForm();
+    }
+
+
+    public void autoFillForm(){
+        this.name = product.getName();
+        this.price = product.getPrice()+"";
+    }
+
+    public String submitForm() {
+        Product p = new Product(this.name, Double.valueOf(this.price) );
+        //ps.save(p);
+        return "allProducts" + "?faces-redirect=true";
+    }
 
 
     //Getters and Setters
@@ -35,17 +71,30 @@ public class ProductForm implements Serializable {
         this.name = name;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public String submitForm() {
-        Product p = new Product(this.name, this.price);
-        ps.save(p);
-        return "allProducts" + "?faces-redirect=true";
+
+    public String getOperation() {
+        return operation;
     }
+
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
+
+    public Form getForm() {
+        return form;
+    }
+
+    public void setForm(Form form) {
+        this.form = form;
+    }
+
+
 }

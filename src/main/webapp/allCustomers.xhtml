@@ -5,7 +5,9 @@
          xmlns:f="http://xmlns.jcp.org/jsf/core"
          xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
          xmlns:h = "http://xmlns.jcp.org/jsf/html"
-         xmlns:jsf = "http://xmlns.jcp.org/jsf">
+         xmlns:jsf = "http://xmlns.jcp.org/jsf"
+         xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+>
 
     <ui:composition template="Layouts/template.xhtml">
         <ui:define name="content">
@@ -14,9 +16,12 @@
             </h:outputLabel><br></br>
 
             <h:form onsubmit="return false" autocomplete="off">
-                <input type="text" placeholder="Search for Customer" jsf:id="serch_text" jsf:value="#{allCustomers.searchText}"  class="form-search-text-input" >
-                    <f:ajax event="keyup" listener="#{allCustomers.keypress()}" render="data-table qty" execute="@this"/>
-                </input>
+                <div style="display: flex; flex-direction: row; justify-content:space-between; align-items: center;" >
+                    <h:inputText pt:type="text" pt:placeholder="Search for Product" id="serch_text" value="#{allCustomers.searchText}"  styleClass="form-search-text-input" >
+                        <f:ajax event="keyup" listener="#{allCustomers.keypress()}" render="data-table qty" execute="@this"/>
+                    </h:inputText>
+                    <h:link value="&#10133;  Create Customer" styleClass="data-table-create-h-link" outcome="customerForm.xhtml"></h:link>
+                </div>
 
                 <h:dataTable value="#{allCustomers.filteredCustomers}" var="c"
                              id="data-table"
@@ -32,19 +37,34 @@
 
                     <h:column>
                         <f:facet name="header">Fullname</f:facet>
-                        #{c.firstname} #{c.lastname}
+                        <h:link value="#{c.firstname} #{c.lastname}" outcome="customerForm.xhtml">
+                            <f:param name="id" value="#{c.id}" />
+                            <f:param name="operation" value="Read"/>
+                        </h:link>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">Email</f:facet>
                         #{c.email}
-
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">Address</f:facet>
                         #{c.zip}, #{c.street}
+                    </h:column>
 
+                    <h:column>
+                        <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
+
+                        <h:link value="&#128221;" outcome="customerForm.xhtml" styleClass="data-table-edit-h-link">
+                            <f:param name="id" value="#{c.id}" />
+                            <f:param name="operation" value="Edit"/>
+                        </h:link>
+
+                        <h:link value="&#x274C;" outcome="customerForm.xhtml" styleClass="data-table-edit-h-link">
+                            <f:param name="id" value="#{c.id}" />
+                            <f:param name="operation" value="Delete"/>
+                        </h:link>
                     </h:column>
 
                     <f:facet name="footer">
@@ -55,10 +75,9 @@
                                 <f:ajax listener="#{allCustomers.pagination.pageChange}" render="@form"/>
                             </h:selectOneMenu>
                             <h:commandButton value="Next" action="#{allCustomers.pagination.next}" disabled="#{!allCustomers.pagination.displayNextButton}" styleClass="form-paginating-button-next" />
-
-
                         </h:panelGroup>
                     </f:facet>
+
                 </h:dataTable>
             </h:form>
 

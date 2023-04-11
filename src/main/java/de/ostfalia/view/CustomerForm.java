@@ -4,11 +4,11 @@ import de.ostfalia.se.boundary.CustomerService;
 import de.ostfalia.se.entity.Customer;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 
@@ -23,48 +23,59 @@ public class CustomerForm implements Serializable {
     @Inject
     CustomerService cs;
 
+    @NotNull(message = "First Name cannot be null")
+    private String firstname;
+
+    @NotNull(message = "Last Name cannot be null")
+    private String lastname;
+
+    @NotNull(message = "Email cannot be null")
+    private String email;
+
+    @NotNull(message = "Phone cannot be null")
+    private String phone;
+
+    @NotNull(message = "Zip cannot be null")
+    private String zip;
+
+    @NotNull(message = "State cannot be null")
+    private String state;
+
+    @NotNull(message = "Street cannot be null")
+    private String street;
+
     private String operation;
     private Customer customer;
+
+    private Form form;
 
     public CustomerForm() {
     }
 
     @PostConstruct
     public void init(){
-        String customerId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
-        System.out.println("customer id : " + customerId);
-        if(customerId != null){
-            this.customer = cs.findById(Long.valueOf(customerId));
+        Form form = new Form();
+        String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+        if(id != null){
+            this.customer = cs.findById(Long.valueOf(id));
         } else {
-
             this.customer = new Customer();
         }
         String operation = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("operation");
-        this.operation = operation(operation);
-
-    }
-
-    public String operation(String operation){
-        if(operation != null){
-            switch (operation){
-                case "Edit" :  {
-                    return "Edit Customer";
-                }
-                case "Delete" : {
-                    return "Delete Customer";
-                }
-                case "Read" : {
-                    return "Read Customer";
-                }
-                case "Create" : {
-                    return "Create Customer";
-                }
-            }
-        }
-        return "Create Customer";  //default
+        this.operation = form.operation(operation, "Customer");
+        autoFillForm();
     }
 
 
+    public void autoFillForm(){
+        this.firstname = customer.getFirstname();
+        this.lastname = customer.getLastname();
+        this.email = customer.getEmail();
+        this.phone = customer.getPhone();
+        this.zip = customer.getZip();
+        this.state = customer.getState();
+        this.street = customer.getStreet();
+    }
 
     /**
      * creates a customer and saves to the customers table
@@ -83,7 +94,61 @@ public class CustomerForm implements Serializable {
 
 
     //Getter and Setters
+    public String getFirstname() {
+        return firstname;
+    }
 
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
 
     public String getOperation() {
         return operation;
@@ -101,5 +166,11 @@ public class CustomerForm implements Serializable {
         this.customer = customer;
     }
 
+    public Form getForm() {
+        return form;
+    }
 
+    public void setForm(Form form) {
+        this.form = form;
+    }
 }

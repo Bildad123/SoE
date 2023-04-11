@@ -18,7 +18,7 @@
 
 
                     <h:outputLabel for="firstname" value="First Name"  styleClass="form-label"/>
-                    <h:inputText id="firstname" value="#{customerForm.customer.firstname}" required="true"
+                    <h:inputText id="firstname" value="#{customerForm.firstname}" required="true"
                                  styleClass="form-input-text"
                                  readonly="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                                  disabled="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
@@ -26,7 +26,7 @@
                     <br/><br/>
 
                     <h:outputLabel for="lastname" value="Last Name" styleClass="form-label"/>
-                    <h:inputText id="lastname" value="#{customerForm.customer.lastname}" required="true"
+                    <h:inputText id="lastname" value="#{customerForm.lastname}" required="true"
                                  styleClass="form-input-text"
                                  readonly="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                                  disabled="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
@@ -35,7 +35,7 @@
 
 
                     <h:outputLabel for="email" value="Email"  styleClass="form-label"/>
-                    <h:inputText id="email" type="email" value="#{customerForm.customer.email}" required="true"
+                    <h:inputText id="email" type="email" value="#{customerForm.email}" required="true"
                                  styleClass="form-input-text"
                                  readonly="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                                  disabled="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
@@ -43,7 +43,7 @@
                     <br/><br/>
 
                     <h:outputLabel for="phone" value="Phone"  styleClass="form-label"/>
-                    <h:inputText id="phone" value="#{customerForm.customer.phone}" required="true"
+                    <h:inputText id="phone" value="#{customerForm.phone}" required="true"
                                  styleClass="form-input-text"
                                  readonly="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                                  disabled="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
@@ -52,7 +52,7 @@
 
 
                     <h:outputLabel for="zip" value="Zip Code"  styleClass="form-label"/>
-                    <h:inputText id="zip" value="#{customerForm.customer.zip}" required="true"
+                    <h:inputText id="zip" value="#{customerForm.zip}" required="true"
                                  styleClass="form-input-text"
                                  readonly="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                                  disabled="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
@@ -60,7 +60,7 @@
                     <br/><br/>
 
                     <h:outputLabel for="state" value="State"  styleClass="form-label"/>
-                    <h:inputText id="state" value="#{customerForm.customer.state}" required="true"
+                    <h:inputText id="state" value="#{customerForm.state}" required="true"
                                  styleClass="form-input-text"
                                  readonly="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                                  disabled="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
@@ -68,7 +68,7 @@
                     <br/><br/>
 
                     <h:outputLabel for="street" value="Street"  styleClass="form-label"/>
-                    <h:inputText id="street" value="#{customerForm.customer.street}" required="true"
+                    <h:inputText id="street" value="#{customerForm.street}" required="true"
                                  styleClass="form-input-text"
                                  readonly="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                                  disabled="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"

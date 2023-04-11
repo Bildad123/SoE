@@ -62,7 +62,6 @@ public class AllOrders implements Serializable {
         if(!searchText.isBlank()){;
             filter.setSearchText(searchText);
             this.filteredOrders = orders.stream().filter(c -> filter.test(c)).collect(Collectors.toList());
-
         } else{
             this.filteredOrders = new ArrayList<>();
             this.filteredOrders.addAll(this.orders);
@@ -71,8 +70,6 @@ public class AllOrders implements Serializable {
         this.pagination.setCurrentRows(0);
         this.pagination.setSelectedPage(1);
         this.pagination.doRefresh();
-        System.out.println("size : " + this.filteredOrders.size());
-        System.out.println("search Text : " + searchText);
     }
 
 

@@ -54,13 +54,12 @@ public class AllProducts implements Serializable {
             filteredProducts = products.stream().filter(c -> filter.test(c)).collect(Collectors.toList());
         } else{
             filteredProducts = new ArrayList<>();
-            filteredProducts.addAll(filteredProducts);
+            filteredProducts.addAll(this.products);
         }
         this.pagination.setProducts(filteredProducts);
         this.pagination.setCurrentRows(0);
         this.pagination.setSelectedPage(1);
         this.pagination.doRefresh();
-        System.out.println("search Text : " + searchText);
     }
 
 

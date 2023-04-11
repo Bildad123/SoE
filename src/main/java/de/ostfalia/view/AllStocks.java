@@ -56,8 +56,6 @@ public class AllStocks implements Serializable {
         this.pagination.setCurrentRows(0);
         this.pagination.setSelectedPage(1);
         this.pagination.doRefresh();
-        System.out.println("search Text : " + searchText);
-
     }
 
     public List<Stock> getStocks() {
