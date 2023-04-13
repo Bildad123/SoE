@@ -1,0 +1,14 @@
+- Fr Wenisch sehr positiv in Retro aufgefallen
+- Commits inkonsistent Deutsch/Englisch - bitte für eine Sprache entscheiden -
+- Formatierung inkonsistent (Leerzeilen, Leerzeichen) -
+- Methodennamen teils nicht sprechend (CustomerService getEm()) -
+- Nutzung von Branches +
+- Kommentare vorhanden +
+
+- .idea, jakarta-ee-10-starter.iml
+- sehr schön: JSF-Template
+- Betrag als double
+- nicht so schön: mergen in JSF-Bean statt Service
+- falsches Docs-Verzeichnis
+- sonst gefällt mir es sehr
+Bewertung: 90%
