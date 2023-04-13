@@ -9,24 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Brand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Brand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/OrderItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Staff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Stock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/CustomerForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/CustomerForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/OrderForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/OrderForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/ProductForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/ProductForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+    <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="Erweiterung der bisherigen Datenstruktur um die Klassen Catagories, Brands und Stores; Beziehungen fehlen">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2d63f969-09cb-4121-91e8-5eb18ede76c6/storage_v2/_src_/database/iteration1.9OyYlw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2d63f969-09cb-4121-91e8-5eb18ede76c6/storage_v2/_src_/database/iteration1.9OyYlw/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2d63f969-09cb-4121-91e8-5eb18ede76c6/storage_v2/_src_/database/iteration1.9OyYlw/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
