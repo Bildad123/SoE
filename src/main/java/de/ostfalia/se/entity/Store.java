@@ -66,8 +66,7 @@ public class Store {
                 '}';
     }
 
-    //Getter und Setter
-
+    // Getter und Setter
     public Long getId() {
         return id;
     }

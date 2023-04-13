@@ -18,18 +18,18 @@ public class Product {
     @Column(name = "list_price")
     private BigDecimal listPrice;
 
-    @Column(name = "model-year")
+    @Column(name = "model_year")
     private Integer modelYear;
 
     @Column(name = "product_name")
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "brand_id")
+    @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
     @OneToMany(mappedBy = "product")
@@ -41,33 +41,22 @@ public class Product {
     //private Double price; Wird nicht mehr benötigt
 
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", listPrice=" + listPrice +
-                ", modelYear=" + modelYear +
-                ", name='" + name + '\'' +
-                ", brand=" + brand +
-                ", category=" + category +
-                '}';
-    }
-
-    public Product(Long id, BigDecimal listPrice, Integer modelYear, String name, Brand brand, Category category) {
+    public Product(Long id, BigDecimal listPrice, Integer modelYear, String name, Brand brand, Category category, Set<OrderItem> orderItem, Stock stock) {
         this.id = id;
         this.listPrice = listPrice;
         this.modelYear = modelYear;
         this.name = name;
         this.brand = brand;
         this.category = category;
+        this.orderItem = orderItem;
+        this.stock = stock;
     }
 
     public Product() {
 
     }
 
-    //Getters and Setters
-
+    // Getters and Setters
     public Long getId() {
         return id;
     }

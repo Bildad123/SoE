@@ -27,10 +27,10 @@ public class Staff {
     private Integer active;
 
     @ManyToOne
-    @JoinColumn(name = "store_id")
+    @JoinColumn(name = "store_id", nullable = false)
     private Store store;
 
-    @OneToMany
+    @OneToMany(mappedBy = "manager")
     @Column(name = "manager_id")
     private Set<Staff> staffs;
 
@@ -41,7 +41,7 @@ public class Staff {
     @OneToMany(mappedBy = "staff")
     private Set<Order> orders = new HashSet<>();
 
-    public Staff(Integer id, String firstName, String lastName, String email, String phone, Integer active, Store store, Staff manager) {
+    public Staff(Integer id, String firstName, String lastName, String email, String phone, Integer active, Store store, Set<Staff> staffs, Staff manager, Set<Order> orders) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,7 +49,9 @@ public class Staff {
         this.phone = phone;
         this.active = active;
         this.store = store;
+        this.staffs = staffs;
         this.manager = manager;
+        this.orders = orders;
     }
 
     public Staff() {
@@ -65,7 +67,9 @@ public class Staff {
                 ", phone='" + phone + '\'' +
                 ", active=" + active +
                 ", store=" + store +
+                ", staffs=" + staffs +
                 ", manager=" + manager +
+                ", orders=" + orders +
                 '}';
     }
 

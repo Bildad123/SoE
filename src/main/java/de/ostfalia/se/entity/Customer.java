@@ -22,7 +22,7 @@ public class Customer {
 
     private String email;
 
-    //private LocalDate birthdate; nicht mehr notwendig
+    // private LocalDate birthdate; nicht mehr notwendig
 
     private String street;
 
@@ -37,9 +37,9 @@ public class Customer {
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER, mappedBy = "customer")
-    private Set<Order> customerOrders = new HashSet<>();
+    private Set<Order> orders = new HashSet<>();
 
-    public Customer(Long id, String firstname, String lastname, String email, String street, String zip, String state, String city, String phone, Set<Order> customerOrders) {
+    public Customer(Long id, String firstname, String lastname, String email, String street, String zip, String state, String city, String phone, Set<Order> orders) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -49,7 +49,7 @@ public class Customer {
         this.state = state;
         this.city = city;
         this.phone = phone;
-        this.customerOrders = customerOrders;
+        this.orders = orders;
     }
 
     public Customer() {
@@ -67,13 +67,11 @@ public class Customer {
                 ", state='" + state + '\'' +
                 ", city='" + city + '\'' +
                 ", phone='" + phone + '\'' +
-                ", customerOrders=" + customerOrders +
+                ", orders=" + orders +
                 '}';
     }
 
-    //Getters and Setters
-
-
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -146,13 +144,11 @@ public class Customer {
         this.phone = phone;
     }
 
-    public Set<Order> getCustomerOrders() {
-        return customerOrders;
+    public Set<Order> getOrders() {
+        return orders;
     }
 
-    public void setCustomerOrders(Set<Order> customerOrders) {
-        this.customerOrders = customerOrders;
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
-
-
 }

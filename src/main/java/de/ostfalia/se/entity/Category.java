@@ -19,9 +19,10 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private Set<Product> products = new HashSet<>();
 
-    public Category(Long id, String categoryName) {
+    public Category(Long id, String categoryName, Set<Product> products) {
         this.id = id;
         this.categoryName = categoryName;
+        this.products = products;
     }
 
     public Category() {
@@ -32,11 +33,11 @@ public class Category {
         return "Category{" +
                 "id=" + id +
                 ", categoryName='" + categoryName + '\'' +
+                ", products=" + products +
                 '}';
     }
 
-    //Getter und Setter
-
+    // Getter und Setter
     public Long getId() {
         return id;
     }

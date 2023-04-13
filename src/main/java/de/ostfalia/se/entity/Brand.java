@@ -19,9 +19,10 @@ public class Brand {
     @OneToMany(mappedBy = "brand")
     private Set<Product> products = new HashSet<>();
 
-    public Brand(Long id, String brandName) {
+    public Brand(Long id, String brandName, Set<Product> products) {
         this.id = id;
         this.brandName = brandName;
+        this.products = products;
     }
 
     public Brand() {
@@ -29,13 +30,14 @@ public class Brand {
 
     @Override
     public String toString() {
-        return "Brands{" +
+        return "Brand{" +
                 "id=" + id +
                 ", brandName='" + brandName + '\'' +
+                ", products=" + products +
                 '}';
     }
 
-    //Getter und Setter
+    // Getter und Setter
     public Long getId() {
         return id;
     }

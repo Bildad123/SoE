@@ -7,6 +7,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "order_items")
+@IdClass(OrderItemPK.class)
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,8 +15,8 @@ public class OrderItem {
     private Long id;
 
     @Id
-    @OneToOne
-    @JoinColumn(name = "order_id")
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
     private BigDecimal discount;
@@ -26,7 +27,7 @@ public class OrderItem {
     private Integer quantity;
 
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
 
@@ -56,7 +57,6 @@ public class OrderItem {
     }
 
     //Getters and Setters
-
     public Long getId() {
         return id;
     }
@@ -104,6 +104,4 @@ public class OrderItem {
     public void setProduct(Product product) {
         this.product = product;
     }
-
-
 }
