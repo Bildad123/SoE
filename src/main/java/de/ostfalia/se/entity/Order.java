@@ -3,9 +3,11 @@ package de.ostfalia.se.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "orders", schema = "sales")
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,8 +41,8 @@ public class Order {
     //@Column(name = "total_price") Wird nicht mehr benötigt
     //private Double totalPrice;
 
-    @OneToOne(mappedBy = "order")
-    private OrderItem orderItem;
+    @OneToMany(mappedBy = "order")
+    private Set<OrderItem> orderItems = new HashSet<>();
 
 
     public Order(Long id, LocalDate orderDate, Integer orderStatus, LocalDate requiredDate, LocalDate shippedDate, Customer customer, Staff staff, Store store) {
@@ -157,11 +159,20 @@ public class Order {
         this.store = store;
     }
 
-    public OrderItem getOrderItem() {
-        return orderItem;
+//    public OrderItem getOrderItem() {
+//        return orderItem;
+//    }
+//
+//    public void setOrderItem(OrderItem orderItem) {
+//        this.orderItem = orderItem;
+//    }
+
+
+    public Set<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrderItem(OrderItem orderItem) {
-        this.orderItem = orderItem;
+    public void setOrderItems(Set<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }

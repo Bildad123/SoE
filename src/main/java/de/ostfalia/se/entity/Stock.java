@@ -3,7 +3,8 @@ package de.ostfalia.se.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "stocks", schema = "production")
+@Table(name = "stocks")
+@IdClass(StockPK.class)
 public class Stock {
 
     @Id
