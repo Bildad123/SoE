@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="team11:war" />
+      <artifact name="team-11:war" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,15 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/jakarta_ee_10_starter_war.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Brand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Brand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/OrderItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Staff.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Stock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Store.java" afterDir="false" />
     </list>
@@ -80,14 +74,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Studium/Ostfalia/SoSe 23/SE_Projekt/iteration1/postgresql-42.5.1.jar",
+    "last_opened_file_path": "D:/java_projects/sep/sep-team-11/target",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
+    "project.structure.side.proportion": "0.2551724",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -117,10 +111,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JBoss/WildFly 27.0.1.Final" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 27.0.1.Final" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="19" nameIsGenerated="true">
-      <option name="UPDATING_POLICY" value="hot-swap-classes" />
+    <configuration name="JBoss/WildFly 27.0.1.Final" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 27.0.1.Final" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="openjdk-19" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="team11:war">
+        <artifact name="team-11:war">
           <settings />
         </artifact>
       </deployment>
@@ -184,10 +178,10 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="team11:war" />
+          <artifact name="team-11:war" />
         </option>
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="team11:war" />
+          <artifact name="team-11:war" />
         </option>
       </method>
     </configuration>
@@ -333,50 +327,8 @@
       <workItem from="1679918531521" duration="2059000" />
       <workItem from="1679939325338" duration="3317000" />
       <workItem from="1679942689850" duration="10951000" />
-      <workItem from="1680524912327" duration="6799000" />
-      <workItem from="1680553487811" duration="543000" />
-      <workItem from="1680603908207" duration="2770000" />
-      <workItem from="1680622782239" duration="2213000" />
-      <workItem from="1681310088044" duration="1895000" />
-      <workItem from="1681330653293" duration="4261000" />
-      <workItem from="1681367139317" duration="3880000" />
+      <workItem from="1681392119692" duration="5976000" />
     </task>
-    <task id="LOCAL-00001" summary="Staff und Stock">
-      <created>1680545100776</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1680545100776</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Staff und Stock">
-      <created>1680546047767</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1680546047767</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Staff und Stock">
-      <created>1680546076724</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1680546076724</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Klassen ohne Beziehung">
-      <created>1680546405099</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1680546405099</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Schema hinzufügen">
-      <created>1680606959178</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1680606959178</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -392,11 +344,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Staff und Stock" />
-    <MESSAGE value="Klassen ohne Beziehung" />
-    <MESSAGE value="Schema hinzufügen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Schema hinzufügen" />
   </component>
 </project>
