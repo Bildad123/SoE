@@ -67,6 +67,10 @@ public class OrderFormTest implements Serializable{
 
     private AllProductsFilter filterForProducts;
 
+    private boolean showCustomerTable;
+
+    private boolean showProductTable;
+
 
 
 
@@ -97,8 +101,8 @@ public class OrderFormTest implements Serializable{
         paginationProducts = new AllProductsPagination(products);
         paginationCustomer = new AllCustomersPagination(customers);
 
-        paginationProducts.setMaxTableRows(3);
-        paginationCustomer.setMaxTableRows(3);
+        paginationProducts.setMaxTableRows(1);
+        paginationCustomer.setMaxTableRows(1);
 
         filterForProducts = new AllProductsFilter();
         filterForCustomers = new AllCustomersFilter();
@@ -247,6 +251,7 @@ public class OrderFormTest implements Serializable{
 
 
     public void keypressCustomer() {
+
         if( searchTextCustomers != null &&!searchTextCustomers.isBlank()){;
             filterForCustomers.setSearchText(searchTextCustomers);
             this.filteredCustomers = customers.stream().filter(c -> filterForCustomers.test(c)).collect(Collectors.toList());
@@ -255,11 +260,16 @@ public class OrderFormTest implements Serializable{
             this.filteredCustomers = new ArrayList<>();
             this.filteredCustomers.addAll(this.customers);
         }
+
+        this.showCustomerTable = this.filteredCustomers.size() != this.customers.size();
+        System.out.println(this.showCustomerTable);
+        System.out.println("customer size : " + this.customers.size());
+        System.out.println("filtered customers size : " + this.filteredCustomers.size());
+
         this.paginationCustomer.setCustomers(filteredCustomers);
         this.paginationCustomer.setCurrentRows(0);
         this.paginationCustomer.setSelectedPage(1);
         this.paginationCustomer.doRefresh();
-        System.out.println("search Text Customers : " + searchTextCustomers);
     }
 
 
@@ -272,6 +282,8 @@ public class OrderFormTest implements Serializable{
             filteredProducts = new ArrayList<>();
             filteredProducts.addAll(this.products);
         }
+        this.showProductTable = this.filteredProducts.size() != this.products.size();
+
         this.paginationProducts.setProducts(filteredProducts);
         this.paginationProducts.setCurrentRows(0);
         this.paginationProducts.setSelectedPage(1);
@@ -387,4 +399,19 @@ public class OrderFormTest implements Serializable{
         this.filterForProducts = filterForProducts;
     }
 
+    public boolean isShowCustomerTable() {
+        return showCustomerTable;
+    }
+
+    public void setShowCustomerTable(boolean showCustomerTable) {
+        this.showCustomerTable = showCustomerTable;
+    }
+
+    public boolean isShowProductTable() {
+        return showProductTable;
+    }
+
+    public void setShowProductTable(boolean showProductTable) {
+        this.showProductTable = showProductTable;
+    }
 }
