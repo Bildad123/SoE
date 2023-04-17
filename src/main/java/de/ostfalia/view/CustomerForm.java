@@ -19,34 +19,24 @@ import java.io.Serializable;
 @Named
 @ViewScoped
 public class CustomerForm implements Serializable {
-
     @Inject
     CustomerService cs;
-
-    @NotNull(message = "First Name cannot be null")
+    @NotNull(message = "First Name cannot be empty")
     private String firstname;
-
-    @NotNull(message = "Last Name cannot be null")
+    @NotNull(message = "Last Name cannot be empty")
     private String lastname;
-
-    @NotNull(message = "Email cannot be null")
+    @NotNull(message = "Email cannot be empty")
     private String email;
-
-    @NotNull(message = "Phone cannot be null")
+    @NotNull(message = "Phone cannot be empty")
     private String phone;
-
-    @NotNull(message = "Zip cannot be null")
+    @NotNull(message = "Zip cannot be empty")
     private String zip;
-
-    @NotNull(message = "State cannot be null")
+    @NotNull(message = "State cannot be empty")
     private String state;
-
-    @NotNull(message = "Street cannot be null")
+    @NotNull(message = "Street cannot be empty")
     private String street;
-
-    private String operation;
+    private String operation; //Can either be Create, Read, Edit or Delete
     private Customer customer;
-
     private Form form;
 
     public CustomerForm() {
@@ -62,7 +52,7 @@ public class CustomerForm implements Serializable {
             this.customer = new Customer();
         }
         String operation = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("operation");
-        this.operation = form.operation(operation, "Customer");
+        this.operation = form.operation(operation, "Customer");  //determines operation to be performed
         autoFillForm();
     }
 
@@ -88,10 +78,6 @@ public class CustomerForm implements Serializable {
        // cs.save(c);
         return "allCustomers" + "?faces-redirect=true";
     }
-
-
-
-
 
     //Getter and Setters
     public String getFirstname() {

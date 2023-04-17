@@ -4,6 +4,9 @@ import de.ostfalia.se.entity.Store;
 
 import java.util.List;
 
+/**
+ * Pagination class for the JSF page 'allStores.xhtml'
+ */
 public class AllStoresPagination extends Pagination<Store>{
     private List<Store> stores;
 
@@ -16,6 +19,7 @@ public class AllStoresPagination extends Pagination<Store>{
         return this.stores;
     }
 
+    //Getter and Setters
     public List<Store> getStores() {
         return stores;
     }

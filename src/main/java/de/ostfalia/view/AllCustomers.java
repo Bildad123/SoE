@@ -5,7 +5,6 @@ import de.ostfalia.se.entity.Customer;
 import de.ostfalia.se.filtering.AllCustomersFilter;
 import de.ostfalia.se.pagination.AllCustomersPagination;
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -23,16 +22,10 @@ import java.util.stream.Collectors;
 public class AllCustomers implements Serializable {
     @Inject
     CustomerService cs;
-
     private List<Customer> customers;
-
     private AllCustomersPagination pagination;
-
     private AllCustomersFilter filter;
-
     private String searchText;
-
-
     private List<Customer> filteredCustomers;
 
     AllCustomers(){
@@ -52,12 +45,6 @@ public class AllCustomers implements Serializable {
         this.pagination.doRefresh();
     }
 
-
-
-
-
-
-
     public void keypress() {
             if(!searchText.isBlank()){;
                 filter.setSearchText(searchText);
@@ -71,34 +58,24 @@ public class AllCustomers implements Serializable {
             this.pagination.setCurrentRows(0);
             this.pagination.setSelectedPage(1);
             this.pagination.doRefresh();
-            //System.out.println("search Text : " + searchText);
     }
-
-
-
-
 
     //Getter
     public List<Customer> getCustomers() {
         return customers;
     }
-
     public AllCustomersPagination getPagination() {
         return pagination;
     }
-
     public String getSearchText() {
         return searchText;
     }
-
     public void setSearchText(String searchText) {
         this.searchText = searchText;
     }
-
     public List<Customer> getFilteredCustomers() {
         return filteredCustomers;
     }
-
     public void setFilteredCustomers(List<Customer> filteredCustomers) {
         this.filteredCustomers = filteredCustomers;
     }

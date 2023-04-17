@@ -2,10 +2,8 @@ package de.ostfalia.view;
 
 import de.ostfalia.se.boundary.ProductService;
 import de.ostfalia.se.entity.Product;
-import de.ostfalia.se.filtering.AllCustomersFilter;
 import de.ostfalia.se.filtering.AllProductsFilter;
 import de.ostfalia.se.pagination.AllProductsPagination;
-import de.ostfalia.se.pagination.Pagination;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -25,13 +23,9 @@ public class AllProducts implements Serializable {
     @Inject
     ProductService ps;
     private List<Product> products;
-
     private List<Product> filteredProducts;
-
     private AllProductsPagination pagination;
-
     private String searchText;
-
     private AllProductsFilter filter;
 
     /**

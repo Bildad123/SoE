@@ -4,6 +4,9 @@ import de.ostfalia.se.entity.Order;
 
 import java.util.List;
 
+/**
+ * Pagination class for the JSF Page 'allOrders.xhtml'
+ */
 public class AllOrdersPagination extends Pagination<Order>{
 
     private List<Order> orders;
@@ -17,6 +20,7 @@ public class AllOrdersPagination extends Pagination<Order>{
         return this.orders;
     }
 
+    //Getters and Setters
     public List<Order> getOrders() {
         return orders;
     }

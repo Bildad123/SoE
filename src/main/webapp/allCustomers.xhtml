@@ -15,16 +15,17 @@
                 Matched #{allCustomers.filteredCustomers.size()} customer(s) from the database
             </h:outputLabel><br></br>
 
-            <h:form onsubmit="return false" autocomplete="off">
+            <h:form autocomplete="off">
                 <div style="display: flex; flex-direction: row; justify-content:space-between; align-items: center;" >
                     <h:inputText pt:type="text" pt:placeholder="Search for Product" id="serch_text" value="#{allCustomers.searchText}"  styleClass="form-search-text-input" >
-                        <f:ajax event="keyup" listener="#{allCustomers.keypress()}" render="data-table qty" execute="@this"/>
+                        <f:ajax event="keyup" listener="#{allCustomers.keypress()}" render="data-table-customers qty" execute="@this"/>
                     </h:inputText>
                     <h:link value="&#10133;  Create Customer" styleClass="data-table-create-h-link" outcome="customerForm.xhtml"></h:link>
                 </div>
 
+                <h:panelGroup id="data-table-customers">
                 <h:dataTable value="#{allCustomers.filteredCustomers}" var="c"
-                             id="data-table"
+                             id="customers-data-table"
                              first="#{allCustomers.pagination.currentRows}"
                              rows="#{allCustomers.pagination.maxTableRows}"
                              styleClass="customers-table"
@@ -79,6 +80,7 @@
                     </f:facet>
 
                 </h:dataTable>
+                </h:panelGroup>
             </h:form>
 
         </ui:define>

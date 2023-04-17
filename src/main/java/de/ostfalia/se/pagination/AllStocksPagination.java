@@ -5,6 +5,9 @@ import de.ostfalia.se.entity.Stock;
 
 import java.util.List;
 
+/**
+ * Pagination class for the JSF Page 'allStocks.xhtml'
+ */
 public class AllStocksPagination extends Pagination<Stock>{
     private List<Stock> stocks;
 
@@ -17,6 +20,7 @@ public class AllStocksPagination extends Pagination<Stock>{
         return this.stocks;
     }
 
+    //Getters and Setters
     public List<Stock> getStocks() {
         return stocks;
     }

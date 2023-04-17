@@ -17,6 +17,7 @@ public class AllCustomersPagination extends Pagination<Customer>{
         return this.customers;
     }
 
+    //Getters and Setters
     public List<Customer> getCustomers() {
         return customers;
     }

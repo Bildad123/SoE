@@ -4,7 +4,6 @@ import de.ostfalia.se.boundary.StockService;
 import de.ostfalia.se.entity.Stock;
 import de.ostfalia.se.filtering.AllStocksFilter;
 import de.ostfalia.se.pagination.AllStocksPagination;
-import de.ostfalia.se.pagination.Pagination;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -18,18 +17,12 @@ import java.util.stream.Collectors;
 @Named
 @ViewScoped
 public class AllStocks implements Serializable {
-
     @Inject
     private  StockService ss;
-
     private List<Stock> stocks;
-
     private List<Stock> filteredStocks;
-
     private AllStocksPagination pagination;
-
     private AllStocksFilter filter;
-
     private String searchText;
 
 
@@ -58,6 +51,7 @@ public class AllStocks implements Serializable {
         this.pagination.doRefresh();
     }
 
+    //Getters and Setters
     public List<Stock> getStocks() {
         return stocks;
     }

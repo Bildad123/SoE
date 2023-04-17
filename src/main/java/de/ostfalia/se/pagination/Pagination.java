@@ -6,37 +6,35 @@ import jakarta.faces.event.AjaxBehaviorEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Abstract Class used for Pagination on the JSF pages
+ *
+ * @param <T>
+ */
+
 public abstract class Pagination<T> {
-
 	private static final String SUCCESS = "SUCCESS";
+	private int maxTableRows = 10;   //default is 10.
+	private boolean showPageList;    //determines if pageList is rendered
+	private int currentRows;    //keeps track of current row
+	private int currentPageNumber;  //keeps track of current page number
+	private int selectedPage = 1;   //first page is shown by default
+	private boolean displayNextButton;   //determines if nextButton is disabled
+	private boolean displayBackButton;   //determines if backButton is disabled
+	protected List<T> tableContent = new ArrayList<>();  //T could be Customer, Product, Order, Stock, Stores, ...
+	private List<Integer> pages = new ArrayList<>();     //List for storing all pages
 
-	private int maxTableRows = 10;
-
-	private boolean showPageList;
-
-	private int currentRows;
-
-	private int currentPageNumber;
-
-	private int selectedPage = 1;
-
-	private boolean displayNextButton;
-	private boolean displayBackButton;
-
-	protected List<T> tableContent = new ArrayList<>();
-
-	private List<Integer> pages = new ArrayList<>();
-
-	public List<Integer> getPages() {
-		return pages;
-	}
-
-	public void setPages(List<Integer> pages) {
-		this.pages = pages;
-	}
 
 	public abstract List<T> loadContent();
 
+
+	/**
+	 * Updates the pageList
+	 * Updates showPageList
+	 * Updates the number of pages
+	 *
+	 * @return 'SUCCESS'
+	 */
 	public String doRefresh() {
 		tableContent.clear();
 		tableContent.addAll(loadContent());
@@ -52,15 +50,27 @@ public abstract class Pagination<T> {
 		return SUCCESS;
 	}
 
+	/**
+	 * Updates the currentRows by setting it maxTableRow times forward
+	 *
+	 * @return 'SUCCESS'
+	 */
 	public String next() {
+		System.out.println("ShowPageList : " + this.showPageList);
 		currentRows += maxTableRows;
 		if (currentRows > tableContent.size()) {
 			currentRows = 0;
 		}
 		handlePagination();
+		System.out.println("ShowPageList : " + this.showPageList);
 		return SUCCESS;
 	}
 
+	/**
+	 * updates the currentRows by setting it maxTableRow times backward
+	 *
+	 * @return 'SUCCESS'
+	 */
 	public String back() {
 		currentRows -= maxTableRows;
 		if (currentRows <= maxTableRows) {
@@ -70,15 +80,31 @@ public abstract class Pagination<T> {
 		return SUCCESS;
 	}
 
+	/**
+	 * updates the attribute displayNextButton
+	 * updates the attribute displayBackButton
+	 * updates the selectedPage
+	 *
+	 */
 	private void handlePagination() {
 		displayNextButton = (currentRows + maxTableRows) < getTableContent().size();
 		displayBackButton = currentRows >= maxTableRows;
 		selectedPage = (int) Math.ceil((double) (currentRows / maxTableRows)) + 1;
 	}
 
-	public void pageChange(AjaxBehaviorEvent abe) {
+	public void pageChange(AjaxBehaviorEvent ajaxBehaviorEvent) {
 		currentRows = (selectedPage - 1) * maxTableRows;
 		handlePagination();
+	}
+
+
+	// Getters and Setters
+	public List<Integer> getPages() {
+		return pages;
+	}
+
+	public void setPages(List<Integer> pages) {
+		this.pages = pages;
 	}
 
 	public int getCurrentRows() {

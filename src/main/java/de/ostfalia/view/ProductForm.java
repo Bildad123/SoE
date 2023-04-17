@@ -1,7 +1,6 @@
 package de.ostfalia.view;
 
 import de.ostfalia.se.boundary.ProductService;
-import de.ostfalia.se.entity.Customer;
 import de.ostfalia.se.entity.Product;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
@@ -18,20 +17,14 @@ import java.io.Serializable;
 @Named
 @ViewScoped
 public class ProductForm implements Serializable {
-
     @Inject
     ProductService ps;
-
-    @NotNull(message = "name cannot be null")
+    @NotNull(message = "name cannot be empty")
     private String name;
-
-    @NotNull(message = "price cannot be null")
+    @NotNull(message = "price cannot be empty")
     private String price;
-
     private Product product;
-
     private String operation;
-
     private Form form;
 
 
@@ -45,10 +38,9 @@ public class ProductForm implements Serializable {
             this.product = new Product();
         }
         String operation = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("operation");
-        this.operation = form.operation(operation, "Product");
+        this.operation = form.operation(operation, "Product");    //determines operation to be performed
         autoFillForm();
     }
-
 
     public void autoFillForm(){
         this.name = product.getName();
@@ -57,7 +49,7 @@ public class ProductForm implements Serializable {
 
     public String submitForm() {
         Product p = new Product(this.name, Double.valueOf(this.price) );
-        //ps.save(p);
+        //ps.save(p);  iteration3
         return "allProducts" + "?faces-redirect=true";
     }
 
@@ -66,35 +58,26 @@ public class ProductForm implements Serializable {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getPrice() {
         return price;
     }
-
     public void setPrice(String price) {
         this.price = price;
     }
-
-
     public String getOperation() {
         return operation;
     }
-
     public void setOperation(String operation) {
         this.operation = operation;
     }
-
     public Form getForm() {
         return form;
     }
-
     public void setForm(Form form) {
         this.form = form;
     }
-
 
 }

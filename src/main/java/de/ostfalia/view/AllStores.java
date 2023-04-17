@@ -20,15 +20,10 @@ public class AllStores implements Serializable {
 
     @Inject
     StoreService ss;
-
     private List<Store> stores;
-
     private List<Store> filteredStores;
-
     private AllStoresPagination pagination;
-
     private AllStoresFilter filter;
-
     private String searchText;
 
     @PostConstruct
@@ -56,39 +51,28 @@ public class AllStores implements Serializable {
     }
 
 
-
-
     //Getters and Setters
-
     public List<Store> getStores() {
         return stores;
     }
-
     public void setStores(List<Store> stores) {
         this.stores = stores;
     }
-
-
     public AllStoresPagination getPagination() {
         return pagination;
     }
-
     public void setPagination(AllStoresPagination pagination) {
         this.pagination = pagination;
     }
-
     public List<Store> getFilteredStores() {
         return filteredStores;
     }
-
     public void setFilteredStores(List<Store> filteredStores) {
         this.filteredStores = filteredStores;
     }
-
     public String getSearchText() {
         return searchText;
     }
-
     public void setSearchText(String searchText) {
         this.searchText = searchText;
     }
