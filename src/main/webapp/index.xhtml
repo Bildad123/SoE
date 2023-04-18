@@ -15,16 +15,23 @@
       <h:outputLabel value="Dashboard"></h:outputLabel>
 
       <dl>
-         <dt>Create</dt>
+         <dt>Customer</dt>
          <dd style="margin-bottom: 15px"> <h:link value="Create Customer" outcome="customerForm.xhtml"> </h:link> </dd>
-         <dd style="margin-bottom: 15px">  <h:link value="Create Products" outcome="productForm.xhtml"></h:link> </dd>
-         <dd style="margin-bottom: 30px"> <h:link value="Create Orders" outcome="orderForm.xhtml"></h:link> </dd>
+         <dd style="margin-bottom: 30px"> <h:link value="Show Customrs" outcome="allCustomers.xhtml"></h:link> </dd>
 
-         <dt>Read</dt>
-         <dd style="margin-bottom: 15px"> <h:link value="Show Customrs" outcome="allCustomers.xhtml"></h:link> </dd>
-         <dd style="margin-bottom: 15px"> <h:link value="Show Orders" outcome="allOrders.xhtml"></h:link> </dd>
-         <dd style="margin-bottom: 15px"> <h:link value="Show Stocks" outcome="allStocks.xhtml"></h:link>  </dd>
-         <dd style="margin-bottom: 15px"> <h:link value="Show Stores" outcome="allStores.xhtml"></h:link> </dd>
+         <dt>Product</dt>
+         <dd style="margin-bottom: 15px">  <h:link value="Create Products" outcome="productForm.xhtml"></h:link> </dd>
+         <dd style="margin-bottom: 30px">  <h:link value="Show Products" outcome="allProducts.xhtml"></h:link> </dd>
+
+         <dt>Orders</dt>
+         <dd style="margin-bottom: 15px"> <h:link value="Create Orders" outcome="orderForm.xhtml"></h:link> </dd>
+         <dd style="margin-bottom: 30px"> <h:link value="Show Orders" outcome="allOrders.xhtml"></h:link> </dd>
+
+         <dt>Stocks</dt>
+         <dd style="margin-bottom: 30px"> <h:link value="Show Stocks" outcome="allStocks.xhtml"></h:link>  </dd>
+
+         <dt>Stores</dt>
+         <dd style="margin-bottom: 30px"> <h:link value="Show Stores" outcome="allStores.xhtml"></h:link> </dd>
       </dl>
 
    </ui:define>

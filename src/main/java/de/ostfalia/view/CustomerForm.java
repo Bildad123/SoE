@@ -3,6 +3,7 @@ package de.ostfalia.view;
 import de.ostfalia.se.boundary.CustomerService;
 import de.ostfalia.se.entity.Customer;
 
+import de.ostfalia.se.form.Form;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
@@ -52,7 +53,7 @@ public class CustomerForm implements Serializable {
             this.customer = new Customer();
         }
         String operation = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("operation");
-        this.operation = form.operation(operation, "Customer");  //determines operation to be performed
+        this.operation = form.operationOnForm(operation, "Customer");  //determines operation to be performed
         autoFillForm();
     }
 

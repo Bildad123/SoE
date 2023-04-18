@@ -17,7 +17,6 @@ import static jakarta.persistence.PersistenceContextType.TRANSACTION;
 
 @Stateless
 public class CustomerService implements Serializable {
-
     @PersistenceContext (type = TRANSACTION )
     EntityManager em;
 
@@ -57,24 +56,15 @@ public class CustomerService implements Serializable {
         return null;
     }
 
-
+    /**
+     * Returns customer with corresponding id
+     * @param id
+     * @return customer
+     */
     public Customer findById(Long id){
-        TypedQuery<Customer> query = em.createQuery("select c from Customer  c where c.id = :id", Customer.class);
-        query.setParameter("id", id);
-
-        List<Customer> customer = query.getResultList();
-        if(!customer.isEmpty()){
-            return customer.get(0);
-        }
-        return null;
+        Customer customer = em.find(Customer.class, id);
+        return customer;
     }
 
 
-
-
-
-    //Getter
-    public EntityManager getEm() {
-        return em;
-    }
 }

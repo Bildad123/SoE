@@ -10,11 +10,12 @@
 
 <ui:composition template="Layouts/template.xhtml">
     <ui:define name="content">
-        <h:outputLabel style="font-size: small" id="qty">Matched #{allStocks.filteredStocks.size()} stocks(s) in the database</h:outputLabel><br></br>
+        <h:outputLabel style="font-size: small" id="matched-stocks">Matched #{allStocks.filteredStocks.size()} stocks(s) in the database</h:outputLabel><br></br>
         <h:form autocomplete="off" >
             <h:inputText pt:type="text" pt:placeholder="Search for Stocks" id="search_text" value="#{allStocks.searchText}"  styleClass="form-search-text-input" >
-                <f:ajax event="keyup" listener="#{allStocks.keypress()}" render="data-table qty" execute="@this"/>
+                <f:ajax event="keyup" listener="#{allStocks.keypress()}" render="data-table-stocks matched-stocks" execute="@this"/>
             </h:inputText>
+            <h:panelGroup id="data-table-stocks">
             <h:dataTable value="#{allStocks.filteredStocks}" var="s"
                          id="data-table"
                          first="#{allStocks.pagination.currentRows}"
@@ -53,6 +54,7 @@
                     </h:panelGroup>
                 </f:facet>
             </h:dataTable>
+            </h:panelGroup>
         </h:form>
 
     </ui:define>
