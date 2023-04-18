@@ -16,7 +16,7 @@
         <h:outputLabel style="font-size: small" id="qty">Matched #{allOrders.filteredOrders.size()} orders(s) in the database</h:outputLabel><br></br>
         <h:form autocomplete="off">
             <div style="display: flex; flex-direction: row; justify-content:space-between; align-items: center;" >
-                <h:inputText pt:type="text" pt:placeholder="Search for Orders" id="serch_text" value="#{allOrders.searchText}"  class="form-search-text-input" >
+                <h:inputText pt:type="text" pt:placeholder="Search for Order by Customer Name" id="serch_text" value="#{allOrders.searchText}"  class="form-search-text-input" >
                     <f:ajax event="keyup" listener="#{allOrders.keypress()}" render="data-table-orders qty" execute="@this"/>
                 </h:inputText>
             </div>
@@ -48,8 +48,37 @@
                             <li>#{s.product} ( #{s.quantity}X )</li>
                         </ui:repeat>
                     </ol>
-
                 </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Order Date</f:facet>
+                        #{o.orderDate}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Order Status</f:facet>
+                        #{o.oderStatus}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Required Date</f:facet>
+                        #{o.requiredDate}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Shipped Date</f:facet>
+                        #{o.shippedDate}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Staff Fullname</f:facet>
+                        #{o.staff.firstname} #{o.staff.lastname}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Store Name</f:facet>
+                        #{o.store.storeName}
+                    </h:column>
 
 
                 <f:facet name="footer">

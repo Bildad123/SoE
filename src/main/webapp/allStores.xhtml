@@ -14,7 +14,7 @@
     <ui:define name="content">
         <h:outputLabel style="font-size: small" id="matched-stores">Matched #{allStores.filteredStores.size()} store(s) in the database</h:outputLabel><br></br>
         <h:form autocomplete="off">
-            <h:inputText pt:type="text" pt:placeholder="Search for Stores"  id="search-text" value="#{allStores.searchText}" styleClass="form-search-text-input" >
+            <h:inputText pt:type="text" pt:placeholder="Search for Store by Store Name"  id="search-text" value="#{allStores.searchText}" styleClass="form-search-text-input" >
                 <f:ajax event="keyup" listener="#{allStores.keypress()}" render="data-table-stores matched-stores" execute="@this"/>
             </h:inputText>
 
@@ -44,6 +44,16 @@
                 <h:column>
                     <f:facet name="header">Email</f:facet>
                     #{s.email}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">State</f:facet>
+                    #{s.state}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">City</f:facet>
+                    #{s.city}
                 </h:column>
 
                 <h:column>

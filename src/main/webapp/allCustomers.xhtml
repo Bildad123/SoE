@@ -36,8 +36,17 @@
                              rendered="#{allCustomers.filteredCustomers.size() > 0}">
 
                     <h:column>
-                        <f:facet name="header">Fullname</f:facet>
-                        <h:link value="#{c.firstname} #{c.lastname}" outcome="customerForm.xhtml">
+                        <f:facet name="header">Firstname</f:facet>
+                        <h:link value="#{c.firstname}" outcome="customerForm.xhtml">
+                            <f:param name="id" value="#{c.id}" />
+                            <f:param name="operation" value="Read"/>
+                        </h:link>
+                    </h:column>
+
+
+                    <h:column>
+                        <f:facet name="header">Lastname</f:facet>
+                        <h:link value="#{c.lastname}" outcome="customerForm.xhtml">
                             <f:param name="id" value="#{c.id}" />
                             <f:param name="operation" value="Read"/>
                         </h:link>
@@ -49,8 +58,23 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Address</f:facet>
-                        #{c.zip}, #{c.street}
+                        <f:facet name="header">Phone</f:facet>
+                        #{c.phone}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">State</f:facet>
+                        #{c.state}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Street</f:facet>
+                        #{c.street}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Zip</f:facet>
+                        #{c.zip}
                     </h:column>
 
 
