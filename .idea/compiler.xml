@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="jakarta-ee-10-starter" />
+        <module name="sep-team-11" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="jakarta-ee-10-starter" target="19" />
+      <module name="sep-team-11" target="19" />
     </bytecodeTargetLevel>
   </component>
 </project>
