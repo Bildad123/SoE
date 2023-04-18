@@ -1,10 +1,10 @@
 package de.ostfalia.se.entity;
 
+
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 @Entity
@@ -12,23 +12,43 @@ import java.util.Set;
 public class Order {
     @Id
     @GeneratedValue
+    @Column(name = "order_id")
     private Long id;
 
     @Column(name = "order_date")
     private LocalDate orderDate;
 
+    @Column(name = "order_status")
+    private Integer oderStatus;
+
+    @Column(name = "required_date")
+    private LocalDate requiredDate;
+
+    @Column(name = "shipped_date")
+    private LocalDate shippedDate;
+
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer = new Customer();
 
-    @Column(name = "total_price")
-    private Double totalPrice;
 
+    @OneToOne
+    @JoinColumn(name = "staff_id")
+    private Staff staff = new Staff();
+
+    @OneToOne
+    @JoinColumn(name = "store_id")
+    private Store store = new Store();
 
     @OneToMany(cascade =
             CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id")
-    private Set<OrderItem> orderItems = new HashSet<>();
+    private Set<OrderItem> orderItem = new HashSet<>();
+
+
+
+
 
 
     /**
@@ -45,28 +65,7 @@ public class Order {
     }
 
 
-    public void calculateTotalPrice(){
-        Iterator<OrderItem> iterator = this.orderItems.iterator();
-        double totalPrice = 0;
-        if(iterator != null){
-            while (iterator.hasNext()){
-                OrderItem oi = iterator.next();
-                totalPrice += oi.getQuantity()  * oi.getProduct().getPrice();
-            }
-            this.totalPrice = totalPrice;
-        }
-    }
-
-
     //Getters and Setters
-
-    public Set<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(Set<OrderItem> orderItems) {
-        this.orderItems = orderItems;
-    }
 
     public LocalDate getOrderDate() {
         return orderDate;
@@ -92,11 +91,51 @@ public class Order {
         this.customer = customer;
     }
 
-    public Double getTotalPrice() {
-        return totalPrice;
+    public Integer getOderStatus() {
+        return oderStatus;
     }
 
-    public void setTotalPrice(Double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setOderStatus(Integer oderStatus) {
+        this.oderStatus = oderStatus;
+    }
+
+    public LocalDate getRequiredDate() {
+        return requiredDate;
+    }
+
+    public void setRequiredDate(LocalDate requiredDate) {
+        this.requiredDate = requiredDate;
+    }
+
+    public LocalDate getShippedDate() {
+        return shippedDate;
+    }
+
+    public void setShippedDate(LocalDate shippedDate) {
+        this.shippedDate = shippedDate;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
+
+    public Set<OrderItem> getOrderItem() {
+        return orderItem;
+    }
+
+    public void setOrderItem(Set<OrderItem> orderItem) {
+        this.orderItem = orderItem;
     }
 }

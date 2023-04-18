@@ -2,17 +2,35 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
+
+
 @Entity
 @Table(name = "products")
 public class Product {
 
     @Id
     @GeneratedValue
+    @Column(name = "product_id")
     private Long id;
 
+    @Column(name = "list_price")
+    private Double price;
+
+    @Column(name = "product_name")
     private String name;
 
-    private Double price;
+    @Column(name = "model_year")
+    Integer modelYear;
+
+    @OneToOne
+    @JoinColumn(name = "category_id")
+    Category category = new Category();
+
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    Brand brand = new Brand();
+
+
 
 
     /**
@@ -56,5 +74,29 @@ public class Product {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Integer getModelYear() {
+        return modelYear;
+    }
+
+    public void setModelYear(Integer modelYear) {
+        this.modelYear = modelYear;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 }

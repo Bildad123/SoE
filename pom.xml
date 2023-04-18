@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.example</groupId>
-    <artifactId>first-iteration</artifactId>
+    <groupId>de.ostfalia.sep</groupId>
+    <artifactId>bikes11</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>first-iteration</name>
+    <name>team-11</name>
     <packaging>war</packaging>
 
     <properties>
@@ -46,7 +46,7 @@
     </dependencies>
 
     <build>
-        <finalName>first-iteration</finalName>
+        <finalName>team-11</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

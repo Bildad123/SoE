@@ -19,6 +19,14 @@ public class OrderService implements Serializable {
     @PersistenceContext (type = TRANSACTION )
     EntityManager em;
 
+    /**
+     * Saves the order in the database
+     * @param order
+     */
+    public void save(Order order){
+        em.persist(order);
+    }
+
 
     /**
      * Returns all orders in the orders table
@@ -32,12 +40,4 @@ public class OrderService implements Serializable {
         return query.getResultList();
     }
 
-
-
-
-
-    //Getter
-    public EntityManager getEm() {
-        return em;
-    }
 }

@@ -1,0 +1,17 @@
+
+.form-input-text {
+    width: 77%;
+}
+
+.form-label{
+    display: inline-block;
+    width: 20%;
+}
+
+.form-paginating-button-back{
+    margin: 0 8px 0 0;
+}
+
+.form-paginating-button-next{
+    margin: 0 8px;
+}

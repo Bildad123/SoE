@@ -2,33 +2,35 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "customers")
 public class Customer {
     @Id
     @GeneratedValue
+    @Column(name = "customer_id")
     private Long id;
-
-    private String firstname;
-
-    private String lastname;
 
     private String email;
 
-    private LocalDate birthdate;
+    @Column(name = "first_name")
+    private String firstname;
 
-    private String zip;
+    @Column(name = "last_name")
+    private String lastname;
+
+    private String phone;
+
+    private String state;
 
     private String street;
 
+    @Column(name = "zip_code")
+    private String zip;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER, mappedBy = "customer")
-    private Set<Order> customerOrders = new HashSet<>();
+
+
 
 
     /**
@@ -36,15 +38,13 @@ public class Customer {
      * @param firstname
      * @param lastname
      * @param email
-     * @param birthdate
      * @param zip
      * @param street
      */
-    public Customer(String firstname, String lastname, String email, LocalDate birthdate, String zip, String street) {
+    public Customer(String firstname, String lastname, String email, String zip, String street) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
-        this.birthdate = birthdate;
         this.zip = zip;
         this.street = street;
     }
@@ -72,9 +72,6 @@ public class Customer {
         return email;
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
-    }
 
     public String getZip() {
         return zip;
@@ -92,9 +89,6 @@ public class Customer {
         this.email = email;
     }
 
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
-    }
 
     public void setZip(String zip) {
         this.zip = zip;
@@ -104,13 +98,6 @@ public class Customer {
         this.street = street;
     }
 
-    public Set<Order> getCustomerOrders() {
-        return customerOrders;
-    }
-
-    public void setCustomerOrders(Set<Order> customerOrders) {
-        this.customerOrders = customerOrders;
-    }
 
     public String getStreet() {
         return street;
@@ -122,5 +109,21 @@ public class Customer {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

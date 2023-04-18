@@ -7,14 +7,15 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition>
-    <div style="display: flex; background-color: #FFF;  flex-direction: row; justify-content: space-around; height: 30px; align-items: center; position: sticky; ">
-        <h:link style="text-decoration:none" outcome="customerForm.xhtml">Create Customer</h:link>
-        <h:link style="text-decoration: none" outcome="productForm.xhtml">Create Product</h:link>
-        <h:link style="text-decoration: none" outcome="orderForm.xhtml">Create Order</h:link>
-        <h:link style="text-decoration: none" outcome="allCustomers.xhtml">Show Customers</h:link>
-        <h:link style="text-decoration: none" outcome="allProducts.xhtml">Show Products</h:link>
-        <h:link style="text-decoration: none" outcome="allOrders.xhtml">Show Orders</h:link>
-
+    <div style="display: flex; background-color: #FFF;  flex-direction: row; justify-content: space-around; height: 30px; align-items: center; position: sticky;top: 0 ">
+     <!--   <h:link styleClass="header-nav" outcome="customerForm.xhtml">Create Customer</h:link>  -->
+     <!--   <h:link styleClass="header-nav" outcome="productForm.xhtml">Create Product</h:link> -->
+     <!--   <h:link styleClass="header-nav" outcome="orderForm.xhtml">Create Order</h:link>  -->
+        <h:link styleClass="header-nav" outcome="allCustomers.xhtml">Show Customers</h:link>
+        <h:link styleClass="header-nav" outcome="allProducts.xhtml">Show Products</h:link>
+        <h:link styleClass="header-nav" outcome="allOrders.xhtml">Show Orders</h:link>
+        <h:link styleClass="header-nav" outcome="allStores.xhtml">Show Stores</h:link>
+        <h:link styleClass="header-nav" outcome="allStocks.xhtml">Show Stocks</h:link>
     </div>
 </ui:composition>
 

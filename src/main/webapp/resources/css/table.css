@@ -17,3 +17,12 @@
 .customers-table-even-row {
     background-color: rgb(255, 255, 255);
 }
+
+.data-table-edit-h-link{
+    display: inline-block;
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+
+
