@@ -17,7 +17,6 @@
                 <h:inputText pt:type="text" pt:placeholder="Search for Product"  id="search-text" value="#{allProducts.searchText}" styleClass="form-search-text-input" >
                     <f:ajax event="keyup" listener="#{allProducts.keypress()}" render="data-table-product matched-product" execute="@this"/>
                 </h:inputText>
-                <h:link value="&#10133;  Create Product" styleClass="data-table-create-h-link" outcome="productForm.xhtml"></h:link>
             </div>
 
             <h:panelGroup id="data-table-product">
@@ -44,19 +43,6 @@
                     <span style="margin-left: 10px">&#8364;</span>
                 </h:column>
 
-                <h:column>
-                    <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
-
-                    <h:link value="&#128221;" outcome="productForm.xhtml" styleClass="data-table-edit-h-link">
-                        <f:param name="id" value="#{p.id}" />
-                        <f:param name="operation" value="Edit"/>
-                    </h:link>
-
-                    <h:link value="&#x274C;" outcome="productForm.xhtml" styleClass="data-table-edit-h-link">
-                        <f:param name="id" value="#{p.id}" />
-                        <f:param name="operation" value="Delete"/>
-                    </h:link>
-                </h:column>
 
                 <f:facet name="footer">
                     <h:panelGroup rendered="#{allProducts.pagination.showPageList}">

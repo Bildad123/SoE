@@ -13,3 +13,7 @@ a.header-nav{
 a.header-nav:hover:not(.active) {
     background-color: #ddd;
 }
+
+dd:hover:not(.active){
+    background-color: #ddd;
+}

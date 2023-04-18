@@ -19,7 +19,6 @@
                 <h:inputText pt:type="text" pt:placeholder="Search for Orders" id="serch_text" value="#{allOrders.searchText}"  class="form-search-text-input" >
                     <f:ajax event="keyup" listener="#{allOrders.keypress()}" render="data-table-orders qty" execute="@this"/>
                 </h:inputText>
-                <h:link value="&#10133;  Create Order" styleClass="data-table-create-h-link" outcome="orderForm.xhtml"></h:link>
             </div>
             <h:panelGroup id="data-table-orders">
                 <h:dataTable value="#{allOrders.filteredOrders}" var="o"
