@@ -17,7 +17,7 @@
 
             <h:form autocomplete="off">
                 <div style="display: flex; flex-direction: row; justify-content:space-between; align-items: center;" >
-                    <h:inputText pt:type="text" pt:placeholder="Search for Product" id="serch_text" value="#{allCustomers.searchText}"  styleClass="form-search-text-input" >
+                    <h:inputText pt:type="text" pt:placeholder="Search for Customer by Customer Name" id="serch_text" value="#{allCustomers.searchText}"  styleClass="form-search-text-input" >
                         <f:ajax event="keyup" listener="#{allCustomers.keypress()}" render="data-table-customers qty" execute="@this"/>
                     </h:inputText>
                 </div>
