@@ -55,9 +55,14 @@ public class ProductService implements Serializable {
         return null;
     }
 
-
-    //Getters
-    public EntityManager getEm() {
-        return em;
+    /**
+     * Returns the product with the corresponding id
+     * @param id
+     * @return product
+     */
+    public Product findById(Long id){
+        Product product = em.find(Product.class, id);
+        return product;
     }
+
 }

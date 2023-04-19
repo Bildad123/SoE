@@ -1,19 +1,23 @@
 body {
     background-color: #EEE;
-    font-family: "Times New Roman";
+    font-family: "Times New Roman", serif;
     margin-top: 0;
     margin-right: 0;
     margin-left: 0;
+    font-size: 14px;
 }
 
 .container {
     width: fit-content;
-    min-width: 800px;
+    min-width: 55%;
     overflow: scroll;
     background-color: #ffffff;
     height: 50%;
     margin: 10px auto 10px auto;
+}
 
+input{
+    font-family: inherit;
 }
 
 .header {
