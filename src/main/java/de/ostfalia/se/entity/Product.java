@@ -2,78 +2,72 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
-
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
 public class Product {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Long id;
 
     @Column(name = "list_price")
-    private Double price;
+    private BigDecimal listPrice;
+
+    @Column(name = "model_year")
+    private Integer modelYear;
 
     @Column(name = "product_name")
     private String name;
 
-    @Column(name = "model_year")
-    Integer modelYear;
-
-    @OneToOne
-    @JoinColumn(name = "category_id")
-    Category category = new Category();
+    @ManyToOne
+    @JoinColumn(name = "brand_id", nullable = false)
+    private Brand brand;
 
     @ManyToOne
-    @JoinColumn(name = "brand_id")
-    Brand brand = new Brand();
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
+    @OneToMany(mappedBy = "product")
+    private Set<OrderItem> orderItem = new HashSet<>();
 
+    @OneToMany(mappedBy = "product")
+    private Set<Stock> stocks = new HashSet<>();
 
-
-    /**
-     * Constructor of the class Product
-     * @param name
-     * @param price
-     */
-    public Product(String name, Double price) {
+    public Product(Long id, BigDecimal listPrice, Integer modelYear, String name, Brand brand, Category category, Set<OrderItem> orderItem, Set<Stock> stocks) {
+        this.id = id;
+        this.listPrice = listPrice;
+        this.modelYear = modelYear;
         this.name = name;
-        this.price = price;
+        this.brand = brand;
+        this.category = category;
+        this.orderItem = orderItem;
+        this.stocks = stocks;
     }
 
     public Product() {
 
     }
 
-    //Getters and Setters
-    public String toString(){
-        return this.name;
+    // Getters and Setters
+    public Long getId() {
+        return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Long getId() {
-        return id;
+    public BigDecimal getListPrice() {
+        return listPrice;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setListPrice(BigDecimal listPrice) {
+        this.listPrice = listPrice;
     }
 
     public Integer getModelYear() {
@@ -84,6 +78,23 @@ public class Product {
         this.modelYear = modelYear;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Brand
+    getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -92,11 +103,19 @@ public class Product {
         this.category = category;
     }
 
-    public Brand getBrand() {
-        return brand;
+    public Set<OrderItem> getOrderItem() {
+        return orderItem;
     }
 
-    public void setBrand(Brand brand) {
-        this.brand = brand;
+    public void setOrderItem(Set<OrderItem> orderItem) {
+        this.orderItem = orderItem;
+    }
+
+    public Set<Stock> getStocks() {
+        return stocks;
+    }
+
+    public void setStocks(Set<Stock> stocks) {
+        this.stocks = stocks;
     }
 }

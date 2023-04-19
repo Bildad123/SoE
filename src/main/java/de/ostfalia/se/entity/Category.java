@@ -2,26 +2,48 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "categories")
 public class Category {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
     private Long id;
 
     @Column(name = "category_name")
     private String categoryName;
 
+    @OneToMany(mappedBy = "category")
+    private Set<Product> products = new HashSet<>();
 
-    //Getters and Setters
+    public Category(Long id, String categoryName, Set<Product> products) {
+        this.id = id;
+        this.categoryName = categoryName;
+        this.products = products;
+    }
+
+    public Category() {
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", categoryName='" + categoryName + '\'' +
+                ", products=" + products +
+                '}';
+    }
+
+    // Getter und Setter
+    public Long getId() {
+        return id;
+    }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getCategoryName() {
@@ -30,5 +52,13 @@ public class Category {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 }

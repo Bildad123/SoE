@@ -2,52 +2,91 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.util.Set;
+
 @Entity
 @Table(name = "order_items")
+@IdClass(OrderItemPK.class)
 public class OrderItem {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
     private Long id;
 
-    @Column(name = "discount")
-    private Double discount;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
+
+    private BigDecimal discount;
 
     @Column(name = "list_price")
-    private Double listPrice;
+    private BigDecimal listPrice;
 
     private Integer quantity;
 
-    @OneToOne
-    @JoinColumn(name = "order_id")
-    private Order order = new Order();
-
-    @OneToOne
-    @JoinColumn(name = "product_id")
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
+
+
+    public OrderItem(Long id, Order order, BigDecimal discount, BigDecimal listPrice, Integer quantity, Product product) {
+        this.id = id;
+        this.order = order;
+        this.discount = discount;
+        this.listPrice = listPrice;
+        this.quantity = quantity;
+        this.product = product;
+    }
 
     public OrderItem() {
 
     }
 
-    /**
-     * Constructor of the class OrderItem
-     * @param product
-     */
-    public OrderItem(Product product) {
-        this.quantity = 1;
-        this.product = product;
-        this.listPrice = product.getPrice();
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "id=" + id +
+                ", order=" + order +
+                ", discount=" + discount +
+                ", listPrice=" + listPrice +
+                ", quantity=" + quantity +
+                ", product=" + product +
+                '}';
     }
 
-
     //Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Long getId() {
-        return id;
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
+    }
+
+    public BigDecimal getListPrice() {
+        return listPrice;
+    }
+
+    public void setListPrice(BigDecimal listPrice) {
+        this.listPrice = listPrice;
     }
 
     public Integer getQuantity() {
@@ -65,35 +104,4 @@ public class OrderItem {
     public void setProduct(Product product) {
         this.product = product;
     }
-
-    public Double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(Double discount) {
-        this.discount = discount;
-    }
-
-    public Double getListPrice() {
-        return listPrice;
-    }
-
-    public void setListPrice(Double listPrice) {
-        this.listPrice = listPrice;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-
-    public String toString(){
-        return  "( " + this.getQuantity() + "  X " + this.getProduct().getName() + " )";
-    }
-
-
 }

@@ -84,8 +84,8 @@ public class OrderForm implements Serializable{
         if(shouldAdd){  // + Button was selected
             if(!this.selectedItemIsPresent()){
                 if( this.orderItems.isEmpty() ){
-                    OrderItem item = new OrderItem(product);
-                    this.orderItems.add(item);   //very first order
+                   // OrderItem item = new OrderItem(product);
+                   // this.orderItems.add(item);   //very first order
                 }  else{
                     this.addOrderItem(product);  //next orders
                 }
@@ -113,7 +113,7 @@ public class OrderForm implements Serializable{
      * @param product
      */
     public void addOrderItem(Product product){
-        this.orderItems.add(new OrderItem(product ));
+        //this.orderItems.add(new OrderItem(product ));
     }
 
     /**
@@ -182,7 +182,7 @@ public class OrderForm implements Serializable{
     @Transactional
     public String submitForm(){
         if(this.selectedCustomer != null){
-            Order order = new Order(selectedCustomer);
+            //Order order = new Order(selectedCustomer);
             for(int i = 0; i < this.orderItems.size(); i++){
                 //this.ois.save(this.orderItems.get(i));   //Needed for iteration3
             }

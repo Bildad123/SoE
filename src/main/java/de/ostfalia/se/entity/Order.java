@@ -1,6 +1,5 @@
 package de.ostfalia.se.entity;
 
-
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -11,7 +10,7 @@ import java.util.Set;
 @Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
     private Long id;
 
@@ -19,53 +18,75 @@ public class Order {
     private LocalDate orderDate;
 
     @Column(name = "order_status")
-    private Integer oderStatus;
+    private Integer orderStatus;
 
     @Column(name = "required_date")
     private LocalDate requiredDate;
 
     @Column(name = "shipped_date")
     private LocalDate shippedDate;
-
-
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private Customer customer = new Customer();
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "staff_id", nullable = false)
+    private Staff staff;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id", nullable = false)
+    private Store store;
 
 
-    @OneToOne
-    @JoinColumn(name = "staff_id")
-    private Staff staff = new Staff();
-
-    @OneToOne
-    @JoinColumn(name = "store_id")
-    private Store store = new Store();
-
-    @OneToMany(cascade =
-            CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
-    private Set<OrderItem> orderItem = new HashSet<>();
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            mappedBy = "order",
+            fetch = FetchType.EAGER
+    )
+    private Set<OrderItem> orderItems = new HashSet<>();
 
 
-
-
-
+    public Order(Long id, LocalDate orderDate, Integer orderStatus, LocalDate requiredDate, LocalDate shippedDate, Customer customer, Staff staff, Store store) {
+        this.id = id;
+        this.orderDate = orderDate;
+        this.orderStatus = orderStatus;
+        this.requiredDate = requiredDate;
+        this.shippedDate = shippedDate;
+        this.customer = customer;
+        this.staff = staff;
+        this.store = store;
+    }
 
     /**
      * Constructor of the class Order
-     * @param customer
      */
-    public Order(Customer customer){
-        this.customer = customer;
-        this.orderDate = LocalDate.now();
-    }
-
     public Order() {
 
     }
 
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderDate=" + orderDate +
+                ", orderStatus=" + orderStatus +
+                ", requiredDate=" + requiredDate +
+                ", shippedDate=" + shippedDate +
+                ", customer=" + customer +
+                ", staff=" + staff +
+                ", store=" + store +
+                '}';
+    }
+
     //Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public LocalDate getOrderDate() {
         return orderDate;
@@ -75,28 +96,12 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Integer getOrderStatus() {
+        return orderStatus;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Integer getOderStatus() {
-        return oderStatus;
-    }
-
-    public void setOderStatus(Integer oderStatus) {
-        this.oderStatus = oderStatus;
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public LocalDate getRequiredDate() {
@@ -115,6 +120,14 @@ public class Order {
         this.shippedDate = shippedDate;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public Staff getStaff() {
         return staff;
     }
@@ -131,11 +144,11 @@ public class Order {
         this.store = store;
     }
 
-    public Set<OrderItem> getOrderItem() {
-        return orderItem;
+    public Set<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrderItem(Set<OrderItem> orderItem) {
-        this.orderItem = orderItem;
+    public void setOrderItems(Set<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }

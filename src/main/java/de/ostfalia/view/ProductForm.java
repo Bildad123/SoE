@@ -11,6 +11,7 @@ import jakarta.inject.Named;
 import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * Bean for the JSF Page 'orderForm.xhtml'
@@ -45,12 +46,10 @@ public class ProductForm implements Serializable {
 
     public void autoFillForm(){
         this.name = product.getName();
-        this.price = product.getPrice()+"";
+        //this.price = product.getPrice()+"";
     }
 
     public String submitForm() {
-        Product p = new Product(this.name, Double.valueOf(this.price) );
-        //ps.save(p);  iteration3
         return "allProducts" + "?faces-redirect=true";
     }
 

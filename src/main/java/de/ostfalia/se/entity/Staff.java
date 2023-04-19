@@ -2,58 +2,99 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "staffs")
 public class Staff {
-    @Id
-    @GeneratedValue
-    @Column(name = "staff_id")
-    private Long id;
 
-    private Integer active;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "staff_id")
+    private Integer id;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
 
     private String email;
 
-    @Column(name = "first_name")
-    private String firstname;
-
-    @Column(name = "last_name")
-    private String lastname;
-
     private String phone;
+
+    private Integer active;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id", nullable = false)
+    private Store store;
+
+    @OneToMany(mappedBy = "manager")
+    @Column(name = "manager_id")
+    private Set<Staff> staffs;
 
     @ManyToOne
     @JoinColumn(name = "manager_id")
     private Staff manager;
 
-    @ManyToOne
-    @JoinColumn(name = "store_id")
-    private Store store = new Store();
+    @OneToMany(mappedBy = "staff")
+    private Set<Order> orders = new HashSet<>();
 
-
-    public Staff(){
-
-    }
-
-
-
-
-    //Getters and Setters
-
-    public void setId(Long id) {
+    public Staff(Integer id, String firstName, String lastName, String email, String phone, Integer active, Store store, Set<Staff> staffs, Staff manager, Set<Order> orders) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.active = active;
+        this.store = store;
+        this.staffs = staffs;
+        this.manager = manager;
+        this.orders = orders;
     }
 
-    public Long getId() {
+    public Staff() {
+    }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", active=" + active +
+                ", store=" + store +
+                ", staffs=" + staffs +
+                ", manager=" + manager +
+                ", orders=" + orders +
+                '}';
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public Integer getActive() {
-        return active;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setActive(Integer active) {
-        this.active = active;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -64,22 +105,6 @@ public class Staff {
         this.email = email;
     }
 
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -88,12 +113,12 @@ public class Staff {
         this.phone = phone;
     }
 
-    public Staff getManager() {
-        return manager;
+    public Integer getActive() {
+        return active;
     }
 
-    public void setManager(Staff manager) {
-        this.manager = manager;
+    public void setActive(Integer active) {
+        this.active = active;
     }
 
     public Store getStore() {
@@ -104,8 +129,27 @@ public class Staff {
         this.store = store;
     }
 
+    public Staff getManager() {
+        return manager;
+    }
 
+    public void setManager(Staff manager) {
+        this.manager = manager;
+    }
 
+    public Set<Staff> getStaffs() {
+        return staffs;
+    }
 
+    public void setStaffs(Set<Staff> staffs) {
+        this.staffs = staffs;
+    }
 
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
 }

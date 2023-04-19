@@ -56,13 +56,11 @@ public abstract class Pagination<T> {
 	 * @return 'SUCCESS'
 	 */
 	public String next() {
-		System.out.println("ShowPageList : " + this.showPageList);
 		currentRows += maxTableRows;
 		if (currentRows > tableContent.size()) {
 			currentRows = 0;
 		}
 		handlePagination();
-		System.out.println("ShowPageList : " + this.showPageList);
 		return SUCCESS;
 	}
 

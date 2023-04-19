@@ -73,8 +73,8 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${maven-javadoc-plugin.version}</version>
                 <configuration>
-                    <header>First Iteration</header>
-                    <doctitle>First Iteration</doctitle>
+                    <header>team-11</header>
+                    <doctitle>team-11</doctitle>
                     <bottom>Copyright &#169; 2023 Bernd Müller</bottom>
                     <doclint>none</doclint>
                     <release>19</release>

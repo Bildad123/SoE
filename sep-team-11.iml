@@ -33,6 +33,7 @@
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
           <factory-entry name="bikes-11" />
+          <factory-entry name="bikes11" />
           <factory-entry name="default" />
           <factory-entry name="iteration1" />
         </datasource-mapping>

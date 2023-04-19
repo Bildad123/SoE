@@ -2,34 +2,32 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "stocks")
+@IdClass(StockPK.class)
 public class Stock {
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 
     private Integer quantity;
 
-    @Id
-    @GeneratedValue
-    @OneToOne
-    @JoinColumn(name = "product_id")
-    private Product product = new Product();
-
-    @Id
-    @GeneratedValue
-    @OneToOne
-    @JoinColumn(name = "store_id")
-    private Store store = new Store();
-
-
-    //Getters and Setters
-
-
-    public Integer getQuantity() {
-        return quantity;
+    public Stock(Product product, Store store, Integer quantity) {
+        this.product = product;
+        this.store = store;
+        this.quantity = quantity;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public Stock() {
     }
 
     public Product getProduct() {
@@ -48,5 +46,24 @@ public class Stock {
         this.store = store;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
 
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Stock stock = (Stock) o;
+        return Objects.equals(product, stock.product) && Objects.equals(store, stock.store) && Objects.equals(quantity, stock.quantity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(product, store, quantity);
+    }
 }
