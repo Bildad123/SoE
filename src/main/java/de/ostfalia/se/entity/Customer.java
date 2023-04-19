@@ -22,7 +22,6 @@ public class Customer {
 
     private String email;
 
-    // private LocalDate birthdate; nicht mehr notwendig
 
     private String street;
 

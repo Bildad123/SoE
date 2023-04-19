@@ -9,18 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+    <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="Lesen aus Order/OrderItem Tabellen funktioniert">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sep-team-11.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sep-team-11.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/CustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/pagination/Pagination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/pagination/Pagination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/OrderForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/OrderForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/ProductForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/ProductForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/allOrders.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allOrders.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/allProducts.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allProducts.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/allCustomers.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allCustomers.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,6 +208,14 @@
     </configuration>
   </component>
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="Lesen aus Order/OrderItem Tabellen funktioniert">
+      <created>1681919693463</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1681919693463</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -226,5 +228,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Lesen aus Order/OrderItem Tabellen funktioniert" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lesen aus Order/OrderItem Tabellen funktioniert" />
   </component>
 </project>

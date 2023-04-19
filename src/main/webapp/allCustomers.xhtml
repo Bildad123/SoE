@@ -54,27 +54,43 @@
 
                     <h:column>
                         <f:facet name="header">Email</f:facet>
-                        #{c.email}
+                        <h:link value="#{c.email}" outcome="customerForm.xhtml">
+                            <f:param name="id" value="#{c.id}" />
+                            <f:param name="operation" value="Read"/>
+                        </h:link>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">Phone</f:facet>
-                        #{c.phone}
+                        <h:link value="#{c.phone}" outcome="customerForm.xhtml">
+                            <f:param name="id" value="#{c.id}" />
+                            <f:param name="operation" value="Read"/>
+                        </h:link>
+
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">State</f:facet>
-                        #{c.state}
+                        <h:link value="#{c.state}" outcome="customerForm.xhtml">
+                            <f:param name="id" value="#{c.id}" />
+                            <f:param name="operation" value="Read"/>
+                        </h:link>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">Street</f:facet>
-                        #{c.street}
+                        <h:link value="#{c.street}" outcome="customerForm.xhtml">
+                            <f:param name="id" value="#{c.id}" />
+                            <f:param name="operation" value="Read"/>
+                        </h:link>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">Zip</f:facet>
-                        #{c.zip}
+                        <h:link value="#{c.zip}" outcome="customerForm.xhtml">
+                            <f:param name="id" value="#{c.id}" />
+                            <f:param name="operation" value="Read"/>
+                        </h:link>
                     </h:column>
 
 

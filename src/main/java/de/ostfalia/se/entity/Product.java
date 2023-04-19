@@ -38,9 +38,6 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<Stock> stocks = new HashSet<>();
 
-    //private Double price; Wird nicht mehr benötigt
-
-
     public Product(Long id, BigDecimal listPrice, Integer modelYear, String name, Brand brand, Category category, Set<OrderItem> orderItem, Set<Stock> stocks) {
         this.id = id;
         this.listPrice = listPrice;

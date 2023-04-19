@@ -60,8 +60,6 @@ public class Order {
     /**
      * Constructor of the class Order
      */
-
-
     public Order() {
 
     }
@@ -82,8 +80,6 @@ public class Order {
     }
 
     //Getters and Setters
-
-
     public Long getId() {
         return id;
     }
@@ -147,15 +143,6 @@ public class Order {
     public void setStore(Store store) {
         this.store = store;
     }
-
-//    public OrderItem getOrderItem() {
-//        return orderItem;
-//    }
-//
-//    public void setOrderItem(OrderItem orderItem) {
-//        this.orderItem = orderItem;
-//    }
-
 
     public Set<OrderItem> getOrderItems() {
         return orderItems;
