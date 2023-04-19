@@ -37,11 +37,12 @@ public class Order {
     @JoinColumn(name = "store_id", nullable = false)
     private Store store;
 
-    //Wird nicht mehr benötigt
-    //@Column(name = "total_price") Wird nicht mehr benötigt
-    //private Double totalPrice;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            mappedBy = "order",
+            fetch = FetchType.EAGER
+    )
     private Set<OrderItem> orderItems = new HashSet<>();
 
 
@@ -65,18 +66,6 @@ public class Order {
 
     }
 
-
-/*        public void calculateTotalPrice(){
-            Iterator<OrderItem> iterator = this.orderItems.iterator();
-            double totalPrice = 0;
-            if(iterator != null){
-                while (iterator.hasNext()){
-                    OrderItem oi = iterator.next();
-                    totalPrice += oi.getQuantity()  * oi.getProduct().getPrice();
-                }
-                this.totalPrice = totalPrice;
-            }
-    }*/
 
     @Override
     public String toString() {

@@ -44,8 +44,8 @@
                 <h:column>
                     <f:facet name="header">Orders</f:facet>
                     <ol style="font-size: small">
-                        <ui:repeat value="#{o.orderItem}" var="s">
-                            <li>#{s.product} ( #{s.quantity}X )</li>
+                        <ui:repeat value="#{o.orderItems}" var="s">
+                            <li>#{s.product.name} ( #{s.quantity}X )</li>
                         </ui:repeat>
                     </ol>
                 </h:column>
@@ -57,7 +57,7 @@
 
                     <h:column>
                         <f:facet name="header">Order Status</f:facet>
-                        #{o.oderStatus}
+                        #{o.orderStatus}
                     </h:column>
 
                     <h:column>
@@ -72,7 +72,7 @@
 
                     <h:column>
                         <f:facet name="header">Staff Fullname</f:facet>
-                        #{o.staff.firstname} #{o.staff.lastname}
+                        #{o.staff.firstName} #{o.staff.lastName}
                     </h:column>
 
                     <h:column>

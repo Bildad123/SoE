@@ -39,22 +39,6 @@ public class CustomerService implements Serializable {
         return query.getResultList();
     }
 
-    /**
-     * Returns the customer with the corresponding firstname and lastname
-     * @param firstname
-     * @param lastname
-     * @return Customer
-     */
-    public Customer findByName(String firstname, String lastname){
-        TypedQuery<Customer> query = em.createQuery("select C from Customer  c where c.firstname = :firstname AND c.lastname =: lastname", Customer.class);
-        query.setParameter("firstname", firstname);
-        query.setParameter("lastname", lastname);
-        List<Customer> customer = query.getResultList();
-        if(!customer.isEmpty()){
-            return customer.get(0);
-        }
-        return null;
-    }
 
     /**
      * Returns customer with corresponding id

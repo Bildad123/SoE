@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="team-11:war" />
+      <artifact name="sep-team-11:war" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,65 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/bikes11_war_exploded.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/jakarta_ee_10_starter_war.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jakarta-ee-10-starter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sep-team-11.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/se/boundary/CustomerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/se/boundary/CustomerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/se/boundary/OrderItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/se/boundary/OrderItemService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/se/boundary/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/se/boundary/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/se/boundary/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/se/boundary/ProductService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/se/boundary/StockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/se/boundary/StockService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/se/boundary/StoreService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/se/boundary/StoreService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/se/entity/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/se/entity/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/se/entity/OrderItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/se/entity/OrderItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/se/pagination/Pagination.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/se/pagination/Pagination.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/se/pagination/TableEntrie.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/se/pagination/WelcomeBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/view/AllCustomers.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/view/AllCustomers.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/view/AllOrders.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/view/AllOrders.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/view/AllProducts.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/view/AllProducts.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/view/AllStocks.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/view/AllStocks.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/view/AllStores.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/view/AllStores.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/view/CustomerForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/view/CustomerForm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/view/MeineBackingBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/view/OrderForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/view/OrderForm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/ostfalia/view/ProductForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/ostfalia/view/ProductForm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/boundary/CustomerService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/boundary/OrderItemService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/boundary/OrderService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/boundary/ProductService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/boundary/StockService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/boundary/StoreService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/entity/Brand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/entity/Category.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/entity/Customer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/entity/Order.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/entity/OrderItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/entity/Product.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/entity/Staff.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/entity/Stock.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/entity/Store.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/pagination/Pagination.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/pagination/TableEntrie.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/se/pagination/WelcomeBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/view/AllCustomers.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/view/AllOrders.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/view/AllProducts.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/view/AllStocks.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/view/AllStores.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/view/CustomerForm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/view/MeineBackingBean.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/view/OrderForm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/classes/de/ostfalia/view/ProductForm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/WEB-INF/faces-config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/resources/css/form.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/resources/css/header.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/resources/css/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/resources/css/table.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/first-iteration/resources/css/template.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sep-team-11.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sep-team-11.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/pagination/Pagination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/pagination/Pagination.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/OrderForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/OrderForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/ProductForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/ProductForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/allOrders.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allOrders.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/allProducts.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allProducts.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,6 +67,19 @@
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>
     </facet>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_19">
     <output url="file://$MODULE_DIR$/target/classes" />
@@ -167,19 +132,19 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="JBoss/WildFly 27.0.1.Final" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 27.0.1.Final" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="team-11:war">
+        <artifact name="sep-team-11:war">
           <settings />
         </artifact>
       </deployment>
@@ -193,7 +158,7 @@
       </server-settings>
       <predefined_log_file enabled="true" id="JBoss" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="50826" />
+        <option name="DEBUG_PORT" value="51986" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -243,12 +208,23 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="team-11:war" />
+          <artifact name="sep-team-11:war" />
         </option>
       </method>
     </configuration>
   </component>
   <component name="TaskManager">
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
