@@ -1,0 +1,35 @@
+Planung 3
+
+1. Arbeitsfähig werden
+- Wildfly anpassen
+
+
+2. CRUD-Funktionen
+- Erstellung der einzelnen Funktionen
+- Darstellung anpassen
+- Weiterleitung beim Ändern von der Anzeige zum Erstellen
+- Zugriff auf Funktionen abhängig von der Rolle
+
+3. Authentifizierungskomponente
+- Login-Abfrage erstellen
+- Login-Daten aus Datenbank ziehen
+- Bei der Abfrage die Rolle überprüfen
+
+4. Autorisierungskomponente
+- Rollen erstellen
+- Abfrage der Rolle durch id aus der Datenbank
+- Zugriff auf Funktionen abhängig von der Rolle
+
+5. Aufgaben Große Teams
+- Status für Bestellungen einfügen
+- Lagerbestände vor einer Bestellung prüfen
+- Darstellung auf mobilen Endgeräten
+
+6. Funktion
+Es sollen die CRUD-Funktionen für die Anwendung (außer den Geschäften) zur Vervügung stehen.Bei Marken und Kategorien hingegen, reicht das Hinzufügen und Löschen.
+Dabei hat das Erstellen eine eigene Seite. Bei der Auflistung der Daten sollen Button zum Löschen und Ändern einzelner Datensatze angeboten werden.
+Das Ändern verweist dabei auf die Seite zum Erstellen, die in diesem Fall vorausgefüllt ist.
+Außerdem soll eine Authentifizierungs- und Autorisierungsabfrage mit verschiedenen Rollen hinzugefügt werden.
+Die Benutzung auf mobilen Endgeräten soll möglich sein.
+
+
