@@ -9,13 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="Lesen aus Order/OrderItem Tabellen funktioniert">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Layouts/footer.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Layouts/footer.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Layouts/template.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Layouts/template.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/allCustomers.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allCustomers.xhtml" afterDir="false" />
+    <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="Iteration1 Anfang">
       <change beforePath="$PROJECT_DIR$/src/main/webapp/orderForm.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/orderForm.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/template.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/template.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +59,11 @@
     </facet>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JpbToolWindowState">
@@ -236,9 +236,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682028621287</updated>
-      <workItem from="1682028625491" duration="12958000" />
+      <workItem from="1682028625491" duration="13406000" />
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Iteration1 Anfang">
+      <created>1682357302479</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1682357302479</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,6 +264,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Lesen aus Order/OrderItem Tabellen funktioniert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lesen aus Order/OrderItem Tabellen funktioniert" />
+    <MESSAGE value="Iteration1 Anfang" />
+    <option name="LAST_COMMIT_MESSAGE" value="Iteration1 Anfang" />
   </component>
 </project>
