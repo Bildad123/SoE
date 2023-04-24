@@ -32,4 +32,15 @@ Das Ändern verweist dabei auf die Seite zum Erstellen, die in diesem Fall vorau
 Außerdem soll eine Authentifizierungs- und Autorisierungsabfrage mit verschiedenen Rollen hinzugefügt werden.
 Die Benutzung auf mobilen Endgeräten soll möglich sein.
 
+7. Arbeitsteilung:
+Autorisierungskomponente: Bildad, Laith
+CRUD-Funktionen: Haoxiang, Doreen
+Springer: Ayham
+
+8. Zeitplan:
+28.04. Treffen zur Besprechung des Fortschritts
+01.05. Fertigstellung Autorisierungskomponente und CRUD-Funktionen
+05.05. Treffen zur Besprechung des Fortschritts
+09.05. Fertigstellung Authentifizierungskomponente und Aufgabenteil für große Gruppen
+10.05. Abgabe
 
