@@ -35,13 +35,10 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<OrderItem> orderItem = new HashSet<>();
 
-    @OneToOne(mappedBy = "product")
-    private Stock stock;
+    @OneToMany(mappedBy = "product")
+    private Set<Stock> stocks = new HashSet<>();
 
-    //private Double price; Wird nicht mehr benötigt
-
-
-    public Product(Long id, BigDecimal listPrice, Integer modelYear, String name, Brand brand, Category category, Set<OrderItem> orderItem, Stock stock) {
+    public Product(Long id, BigDecimal listPrice, Integer modelYear, String name, Brand brand, Category category, Set<OrderItem> orderItem, Set<Stock> stocks) {
         this.id = id;
         this.listPrice = listPrice;
         this.modelYear = modelYear;
@@ -49,7 +46,7 @@ public class Product {
         this.brand = brand;
         this.category = category;
         this.orderItem = orderItem;
-        this.stock = stock;
+        this.stocks = stocks;
     }
 
     public Product() {
@@ -114,11 +111,11 @@ public class Product {
         this.orderItem = orderItem;
     }
 
-    public Stock getStock() {
-        return stock;
+    public Set<Stock> getStocks() {
+        return stocks;
     }
 
-    public void setStock(Stock stock) {
-        this.stock = stock;
+    public void setStocks(Set<Stock> stocks) {
+        this.stocks = stocks;
     }
 }

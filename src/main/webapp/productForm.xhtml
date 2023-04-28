@@ -13,31 +13,41 @@
 
          <h:form id="create-product-form">
             <fieldset>
-               <legend>Create Product</legend>
-               <br/>
+               <legend>#{productForm.operation}</legend>
 
-
-               <h:outputLabel for="name" value="Name" style="display: inline-block; width: 150px"/>
-               <h:inputText id="name" value="#{productForm.name}" required="true"
-                            style="width: 77%"
+               <h:outputLabel for="name" value="Name" styleClass="form-label"/>
+               <h:inputText id="name" value="#{productForm.name}" required="true" label="Name"
+                            styleClass="form-input-text"
+                            readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
+                            disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
 
                />
                <br/><br/>
 
-               <h:outputLabel for="price" value="price" style="display: inline-block; width: 128px"/>
-               <span style="margin-right: 10px">&#8364;</span>
-               <input type="number" jsf:id="price" jsf:value="#{productForm.price}" name="Price"  step="0.01"  style="width: 77%"/>
+
+               <h:outputLabel for="price" value="Price  (&#8364;)" styleClass="form-label"/>
+               <h:inputText id="price" value="#{productForm.price}" required="true" label="Name"
+                            styleClass="form-input-text"
+                            pt:type = "number" pt:step ="0.01"
+                            readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
+                            disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
+
+               />
                <br/><br/>
 
 
 
             </fieldset>
             <br/><br/>
-            <h:commandButton id="reset"  value="reset" action="#{productForm.submitForm()}"
-                             style="width: 100%" pt:type="reset"/>
+            <h:commandButton id="reset"  value="Reset" action="#{productForm.submitForm()}"
+                             style="width: 100%" pt:type="reset"
+                             rendered="#{productForm.operation.equals('Create Product')}"
+            />
             <br/><br/>
-            <h:commandButton id="submit" type="submit" value="create product" action="#{productForm.submitForm()}"
+
+            <h:commandButton id="submit" type="submit" value="#{productForm.operation}" action="#{productForm.submitForm()}"
                              style="width: 100%"
+                             rendered="#{!productForm.operation.equals('Read Product')}"
             />
             <br/><br/>
 

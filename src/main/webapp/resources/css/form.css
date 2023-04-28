@@ -1,0 +1,88 @@
+input[type=submit]{
+    cursor: pointer;
+}
+
+fieldset{
+    border: 1px solid #ddd;
+}
+
+legend{
+    padding: 20px 30px;
+}
+
+
+.form-input-text {
+    width: 77%;
+}
+
+.form-label{
+    display: inline-block;
+    width: 20%;
+}
+
+.form-paginating-button-back{
+    margin: 0 8px 0 0;
+}
+
+.form-paginating-button-next{
+    margin: 0 8px;
+}
+
+.form-search-text-input{
+    padding: 6px 10px;
+    margin: 20px 0;
+    width: 50%;
+}
+
+.data-table-create-h-link{
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.data-table-create-h-link:hover{
+    background-color: #ddd;
+}
+
+
+.searchable-select {
+    position: relative;
+}
+
+.searchable-select input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #ccc;
+}
+
+.searchable-select input[type=text]:focus {
+    outline: none;
+    border-bottom: 2px solid #000;
+}
+
+.searchable-select select {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    border: none;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.searchable-select select option {
+    padding: 12px 20px;
+    border: none;
+    background-color: #fff;
+    color: #000;
+}
+
+.searchable-select select option:hover {
+    background-color: #f2f2f2;
+}

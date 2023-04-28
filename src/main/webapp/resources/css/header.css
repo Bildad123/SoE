@@ -1,0 +1,19 @@
+
+a{
+    display: block;
+    color: #333333;
+    text-decoration: none;
+}
+
+a.header-nav{
+    padding: 8px 8px;
+    text-align: center;
+}
+
+a.header-nav:hover:not(.active) {
+    background-color: #ddd;
+}
+
+dd:hover:not(.active){
+    background-color: #ddd;
+}

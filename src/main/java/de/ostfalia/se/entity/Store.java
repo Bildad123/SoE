@@ -35,10 +35,10 @@ public class Store {
     @OneToMany(mappedBy = "store")
     private Set<Staff> staffs = new HashSet<>();
 
-    @OneToOne(mappedBy = "store")
-    private Stock stock;
+    @OneToMany(mappedBy = "store")
+    private Set<Stock> stocks = new HashSet<>();
 
-    public Store(Long id, String storeName, String email, String phone, String street, String zipCode, String city, String state) {
+    public Store(Long id, String storeName, String email, String phone, String street, String zipCode, String city, String state, Set<Order> orders, Set<Staff> staffs, Set<Stock> stocks) {
         this.id = id;
         this.storeName = storeName;
         this.email = email;
@@ -47,6 +47,9 @@ public class Store {
         this.zipCode = zipCode;
         this.city = city;
         this.state = state;
+        this.orders = orders;
+        this.staffs = staffs;
+        this.stocks = stocks;
     }
 
     public Store() {
@@ -147,11 +150,11 @@ public class Store {
         this.staffs = staffs;
     }
 
-    public Stock getStock() {
-        return stock;
+    public Set<Stock> getStocks() {
+        return stocks;
     }
 
-    public void setStock(Stock stock) {
-        this.stock = stock;
+    public void setStocks(Set<Stock> stocks) {
+        this.stocks = stocks;
     }
 }

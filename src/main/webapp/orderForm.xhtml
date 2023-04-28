@@ -8,71 +8,170 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
-    <ui:composition template="Layouts/template.xhtml">
-        <ui:define name="header">
-            <h:outputStylesheet library="css" name="table.css"></h:outputStylesheet>
-            <ui:insert name="header"></ui:insert>
-        </ui:define>
-        <ui:define name="content">
+<ui:composition template="Layouts/template.xhtml">
+   <ui:define name="header">
+      <h:outputStylesheet library="css" name="table.css"></h:outputStylesheet>
+      <ui:insert name="header"></ui:insert>
+   </ui:define>
+   <ui:define name="content">
 
-            <h:form id="create-order-form">
-                <fieldset>
-                    <legend>Create Order</legend>
-                    <br/>
+      <h:form autocomplete="off" id="create-order-form">
 
-                    <h:outputLabel  value="Customer" style="display: inline-block; width: 150px"/>
-                    <h:selectOneMenu value="#{orderForm.selectedCustomer}" style="width: 78%">
-                        <f:selectItems value="#{orderForm.customers}"  />
-                    </h:selectOneMenu>
-                    <br/><br/>
-                    <hr style="width: 100%; color: #EEEEEE"></hr><br/>
-                    <h:outputLabel value="Product" style="display: inline-block; width: 150px"/>
-                    <h:selectOneMenu value="#{orderForm.selectedProduct}" style="width: 62%; margin-right: 15px">
-                        <f:selectItems value="#{orderForm.products}"  />
-                    </h:selectOneMenu>
-                    <h:commandButton  style="padding: 0 10px 0 10px; margin-right: 15px" value="&#10133;" action="#{orderForm.updateOrderItems(true)}"></h:commandButton>
-                    <h:commandButton  style="padding: 0 10px 0 10px" value="&#10134;" action="#{orderForm.updateOrderItems(false)}"></h:commandButton>
+         <div style="display: flex; flex-direction: column;">
+            <fieldset >
+               <legend>Create Order</legend>
+               <h:outputLabel style="font-size: x-small" id="matched-customers" value="Matched #{orderForm.filteredCustomers.size()} customer(s) from the database">
+               </h:outputLabel><br></br>
 
-                    <br/><br/>
-                </fieldset>
-                <br/><br/>
+               <h:inputText pt:type="text" pt:placeholder="Search for Customer" id="search_text" value="#{orderForm.searchTextCustomers}" styleClass="form-search-text-input" style="width: 100%;  box-sizing: border-box; margin-top: 0" >
+                  <f:ajax event="keyup" listener="#{orderForm.keypressCustomer()}" render="data-table-customer matched-customers" execute="@this"/>
+               </h:inputText>
 
-                <h:dataTable value="#{orderForm.orderItems}" var="oi"
-                             styleClass="customers-table"
-                             headerClass="customers-table-header"
-                             rowClasses="customers-table-odd-row,customers-table-even-row"
-                             cellspacing="15px"
-                             cellpadding="15px"
-                             style="text-align: left"
-                             rendered="#{orderForm.orderItems.size() > 0}">
+               <h:panelGroup id="data-table-customer">
+                  <h:dataTable value="#{orderForm.filteredCustomers}" var="c"
+                               id="customer-data-table"
+                               first="#{orderForm.paginationCustomer.currentRows}"
+                               rows="#{orderForm.paginationCustomer.maxTableRows}"
+                               styleClass="customers-table"
+                               headerClass="customers-table-header"
+                               rowClasses="customers-table-odd-row,customers-table-even-row"
+                               cellspacing="15px"
+                               cellpadding="15px"
+                               style="text-align: left"
+                               rendered="#{orderForm.showCustomerTable and orderForm.filteredCustomers.size()>0}">
 
-                    <h:column>
-                        <f:facet name="header">Product</f:facet>
-                        #{oi.product}
-                    </h:column>
+                     <h:column>
+                        <f:facet name="header">Fullname</f:facet>
+                        <h:link value="#{c.firstname} #{c.lastname}" outcome="customerForm.xhtml">
+                           <f:param name="id" value="#{c.id}" />
+                           <f:param name="operation" value="Read"/>
+                        </h:link>
+                     </h:column>
 
-                    <h:column>
-                        <f:facet name="header">Quantity</f:facet>
-                        #{oi.quantity}
+                     <h:column>
+                        <f:facet name="header">Address</f:facet>
+                        #{c.zip}, #{c.street}
+                     </h:column>
 
-                    </h:column>
+                     <h:column>
+                        <f:facet name="header">Add</f:facet>
+                        <h:commandButton  style="padding: 0 1% 0 1%; margin-right: 15px" value="&#10133;" action="#{orderForm.updateSelectedCustomer(c)}"></h:commandButton>
+                     </h:column>
 
-                    <h:column>
-                        <f:facet name="header">Delete</f:facet>
-                        <h:commandButton  style="padding: 0 3px 0 3px" value="&#x274C;" action="#{orderForm.deleteItem(oi)}"></h:commandButton>
-                    </h:column>
+                     <f:facet name="footer">
+                        <h:panelGroup rendered="#{orderForm.paginationCustomer.showPageList}">
+                           <h:commandButton value="Back" action="#{orderForm.paginationCustomer.back}" disabled="#{!orderForm.paginationCustomer.displayBackButton}" styleClass="form-paginating-button-back" />
+                           <h:selectOneMenu value="#{orderForm.paginationCustomer.selectedPage}">
+                              <f:selectItems value="#{orderForm.paginationCustomer.pages}" var="page" itemLabel="Page #{page}" itemValue="#{page}" />
+                              <f:ajax listener="#{orderForm.paginationCustomer.pageChange}" render="@form"/>
+                           </h:selectOneMenu>
+                           <h:commandButton value="Next" action="#{orderForm.paginationCustomer.next}" disabled="#{!orderForm.paginationCustomer.displayNextButton}" styleClass="form-paginating-button-next" />
+                        </h:panelGroup>
+                     </f:facet>
+                  </h:dataTable>
+               </h:panelGroup>
 
-                </h:dataTable><br></br>
+               <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
 
-                <h:commandButton id="submit" type="submit" value="make order" action="#{orderForm.submitForm()}"
-                                 style="width: 100%"
-                />
-                <br/><br/>
 
-            </h:form>
 
-        </ui:define>
-    </ui:composition>
+               <h:outputLabel style="font-size: x-small" id="matched-products">Matched #{orderForm.filteredProducts.size()} products(s) in the database</h:outputLabel><br></br>
+
+               <h:inputText pt:type="text" pt:placeholder="Search for Product" id="search_text1" value="#{orderForm.searchTextProducts}" styleClass="form-search-text-input" style="width: 100%; box-sizing: border-box; margin-top: 0" >
+                  <f:ajax event="keyup" listener="#{orderForm.keypressProduct()}" render="data-table-product matched-products" execute="@this"/>
+               </h:inputText>
+               <h:panelGroup id="data-table-product">
+                  <h:dataTable value="#{orderForm.filteredProducts}" var="p"
+                               id="product-data-table"
+                               first="#{orderForm.paginationProducts.currentRows}"
+                               rows="#{orderForm.paginationProducts.maxTableRows}"
+                               styleClass="customers-table"
+                               headerClass="customers-table-header"
+                               rowClasses="customers-table-odd-row,customers-table-even-row"
+                               cellspacing="15px"
+                               cellpadding="15px"
+                               style="text-align: left"
+                               rendered="#{orderForm.showProductTable and orderForm.filteredProducts.size()>0}">
+
+                  <h:column>
+                     <f:facet name="header">Name</f:facet>
+                     #{p.name}
+                  </h:column>
+
+                  <h:column>
+                     <f:facet name="header">Price</f:facet>
+                     #{p.price}
+                     <span style="margin-left: 10px">&#8364;</span>
+                  </h:column>
+
+                  <h:column>
+                     <f:facet name="header">Add</f:facet>
+                     <h:commandButton  style="padding: 0 1% 0 1%; margin-right: 15px" value="&#10133;" action="#{orderForm.updateOrderItems(true, p)}"></h:commandButton>
+                  </h:column>
+
+
+
+
+                  <f:facet name="footer">
+                     <h:panelGroup rendered="#{orderForm.paginationProducts.showPageList}">
+                        <h:commandButton value="Back" action="#{orderForm.paginationProducts.back}" disabled="#{!orderForm.paginationProducts.displayBackButton}" styleClass="form-paginating-button-back" />
+                        <h:selectOneMenu value="#{orderForm.paginationProducts.selectedPage}">
+                           <f:selectItems value="#{orderForm.paginationProducts.pages}" var="page" itemLabel="Page #{page}" itemValue="#{page}" />
+                           <f:ajax listener="#{orderForm.paginationProducts.pageChange}" render="@form"/>
+                        </h:selectOneMenu>
+                        <h:commandButton value="Next" action="#{orderForm.paginationProducts.next}" disabled="#{!orderForm.paginationProducts.displayNextButton}" styleClass="form-paginating-button-next" />
+                     </h:panelGroup>
+                  </f:facet>
+               </h:dataTable>
+               </h:panelGroup>
+            </fieldset>
+         </div>
+
+
+         <br/><br/>
+
+         <h:dataTable value="#{orderForm.orderItems}" var="oi"
+                      id="data-table-3"
+                      styleClass="customers-table"
+                      headerClass="customers-table-header"
+                      rowClasses="customers-table-odd-row,customers-table-even-row"
+                      cellspacing="15px"
+                      cellpadding="15px"
+                      style="text-align: left"
+                      rendered="#{orderForm.orderItems.size() > 0}">
+
+            <h:column>
+               <f:facet name="header">Product</f:facet>
+
+               #{oi.product}
+            </h:column>
+
+            <h:column>
+               <f:facet name="header">Quantity</f:facet>
+               #{oi.quantity}
+
+            </h:column>
+
+            <h:column>
+               <f:facet name="header">Delete</f:facet>
+               <h:commandButton  style="padding: 0 3px 0 3px" value="&#x274C;" action="#{orderForm.deleteItem(oi)}"></h:commandButton>
+            </h:column>
+
+         </h:dataTable><br></br>
+
+
+         <h:commandButton id="submit" type="submit" value="Make order" action="#{orderForm.submitForm()}"
+                          style="width: 100%"
+         />
+         <br/><br/>
+
+      </h:form>
+
+   </ui:define>
+</ui:composition>
+
+
+
 
 </html>

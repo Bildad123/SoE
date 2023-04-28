@@ -22,7 +22,6 @@ public class Customer {
 
     private String email;
 
-    // private LocalDate birthdate; nicht mehr notwendig
 
     private String street;
 
@@ -35,8 +34,7 @@ public class Customer {
 
     private String phone;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER, mappedBy = "customer")
+    @OneToMany(mappedBy = "customer")
     private Set<Order> orders = new HashSet<>();
 
     public Customer(Long id, String firstname, String lastname, String email, String street, String zip, String state, String city, String phone, Set<Order> orders) {

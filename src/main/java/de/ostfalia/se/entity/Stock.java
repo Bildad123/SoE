@@ -2,19 +2,21 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "stocks")
 @IdClass(StockPK.class)
 public class Stock {
 
     @Id
-    @OneToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @Id
-    @OneToOne
-    @JoinColumn(name = "store_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "store_id")
     private Store store;
 
     private Integer quantity;
@@ -52,4 +54,16 @@ public class Stock {
         this.quantity = quantity;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Stock stock = (Stock) o;
+        return Objects.equals(product, stock.product) && Objects.equals(store, stock.store) && Objects.equals(quantity, stock.quantity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(product, store, quantity);
+    }
 }

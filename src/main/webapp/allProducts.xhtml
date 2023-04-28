@@ -3,25 +3,34 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html 	xmlns="http://www.w3.org/1999/xhtml"
          xmlns:f="http://xmlns.jcp.org/jsf/core"
-         xmlns:h="http://xmlns.jcp.org/jsf/html"
-         xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+         xmlns:h = "http://xmlns.jcp.org/jsf/html"
+         xmlns:jsf = "http://xmlns.jcp.org/jsf"
+         xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
 
 <ui:composition template="Layouts/template.xhtml">
-    <ui:define name="header">
-        <h:outputStylesheet library="css" name="table.css"></h:outputStylesheet>
-        <ui:insert name="header"></ui:insert>
-    </ui:define>
     <ui:define name="content">
-        <span style="font-size: small">Showing #{allProducts.products.size()} products(s) in the database</span><br></br>
-        <h:form>
-            <h:dataTable value="#{allProducts.products}" var="p"
+        <h:outputLabel style="font-size: small" id="matched-product">Matched #{allProducts.filteredProducts.size()} products(s) in the database</h:outputLabel><br></br>
+        <h:form autocomplete="off">
+            <div style="display: flex; flex-direction: row; justify-content:space-between; align-items: center;" >
+                <h:inputText pt:type="text" pt:placeholder="Search for Product by Product Name"  id="search-text" value="#{allProducts.searchText}" styleClass="form-search-text-input" >
+                    <f:ajax event="keyup" listener="#{allProducts.keypress()}" render="data-table-product matched-product" execute="@this"/>
+                </h:inputText>
+            </div>
+
+            <h:panelGroup id="data-table-product">
+                <h:dataTable value="#{allProducts.filteredProducts}" var="p"
+                         id="product-data-table"
+                         first="#{allProducts.pagination.currentRows}"
+                         rows="#{allProducts.pagination.maxTableRows}"
                          styleClass="customers-table"
                          headerClass="customers-table-header"
                          rowClasses="customers-table-odd-row,customers-table-even-row"
                          cellspacing="15px"
                          cellpadding="15px"
                          style="text-align: left"
-                         rendered="#{allProducts.products.size() > 0}">
+                         rendered="#{allProducts.filteredProducts.size() > 0}">
 
                 <h:column>
                     <f:facet name="header">Name</f:facet>
@@ -30,11 +39,39 @@
 
                 <h:column>
                     <f:facet name="header">Price</f:facet>
-                    #{p.price}
+                    #{p.listPrice}
                     <span style="margin-left: 10px">&#8364;</span>
-
                 </h:column>
-            </h:dataTable>
+
+
+                <h:column>
+                    <f:facet name="header">Band Name</f:facet>
+                    #{p.brand.brandName}
+                </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Model Year</f:facet>
+                        #{p.modelYear}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Category Name</f:facet>
+                        #{p.category.categoryName}
+                    </h:column>
+
+
+                    <f:facet name="footer">
+                    <h:panelGroup rendered="#{allProducts.pagination.showPageList}">
+                        <h:commandButton value="Back" action="#{allProducts.pagination.back}" disabled="#{!allProducts.pagination.displayBackButton}" styleClass="form-paginating-button-back" />
+                        <h:selectOneMenu value="#{allProducts.pagination.selectedPage}">
+                            <f:selectItems value="#{allProducts.pagination.pages}" var="page" itemLabel="Page #{page}" itemValue="#{page}" />
+                            <f:ajax listener="#{allProducts.pagination.pageChange}" render="@form"/>
+                        </h:selectOneMenu>
+                        <h:commandButton value="Next" action="#{allProducts.pagination.next}" disabled="#{!allProducts.pagination.displayNextButton}" styleClass="form-paginating-button-next" />
+                    </h:panelGroup>
+                </f:facet>
+                </h:dataTable>
+            </h:panelGroup>
         </h:form>
 
     </ui:define>

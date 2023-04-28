@@ -2,61 +2,71 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="team11:war" />
+      <artifact name="sep-team-11:war" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/jakarta_ee_10_starter_war.xml" beforeDir="false" />
+    <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="Lesen aus Order/OrderItem Tabellen funktioniert">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Brand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Brand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/OrderItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Staff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Stock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/allCustomers.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allCustomers.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-        <option value="jsf" />
-        <option value="Class" />
-      </list>
-    </option>
+  <component name="FacetManager">
+    <facet type="web" name="Web">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
+        </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/main/resources" />
+        </sourceRoots>
+      </configuration>
+    </facet>
+    <facet type="web" name="Web2">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/target/jakarta/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/target/jakarta" relative="/" />
+        </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+        </sourceRoots>
+      </configuration>
+    </facet>
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <datasource-mapping>
+          <factory-entry name="bikes-11" />
+          <factory-entry name="default" />
+          <factory-entry name="iteration1" />
+        </datasource-mapping>
+        <naming-strategy-map />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
+      </configuration>
+    </facet>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
   </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -65,62 +75,70 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="2N790AEMQYHI6FkY5OrVBOcQ8oo" />
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_19">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.platform:jakarta.jakartaee-api:10.0.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.platform:jakarta.jakartaee-web-api:10.0.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.servlet:jakarta.servlet-api:6.0.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.el:jakarta.el-api:5.0.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.faces:jakarta.faces-api:4.0.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.ws.rs:jakarta.ws.rs-api:3.1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.websocket:jakarta.websocket-api:2.1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.websocket:jakarta.websocket-client-api:2.1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.json:jakarta.json-api:2.1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.json.bind:jakarta.json.bind-api:3.0.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.annotation:jakarta.annotation-api:2.1.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.ejb:jakarta.ejb-api:4.0.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.transaction:jakarta.transaction-api:2.0.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.persistence:jakarta.persistence-api:3.1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.validation:jakarta.validation-api:3.0.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.interceptor:jakarta.interceptor-api:2.1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.enterprise:jakarta.enterprise.lang-model:4.0.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.inject:jakarta.inject-api:2.0.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.authentication:jakarta.authentication-api:3.0.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.security.enterprise:jakarta.security.enterprise-api:3.0.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.jms:jakarta.jms-api:3.1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.activation:jakarta.activation-api:2.1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.mail:jakarta.mail-api:2.1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.resource:jakarta.resource-api:2.1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.authorization:jakarta.authorization-api:2.1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jakarta.batch:jakarta.batch-api:2.1.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.9.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.opentest4j:opentest4j:1.2.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-commons:1.9.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.9.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.9.1" level="project" />
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Studium/Ostfalia/SoSe 23/SE_Projekt/iteration1/postgresql-42.5.1.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
-    ]
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\J EE\SoE Projekt\jakarta-ee-10-starter\src\main\webapp\resources\css" />
-      <recent name="C:\J EE\SoE Projekt\jakarta-ee-10-starter\src\main\webapp" />
-      <recent name="C:\J EE\SoE Projekt\jakarta-ee-10-starter\src\main\java" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\J EE\SoE Projekt\lab\src\main\webapp" />
-      <recent name="C:\J EE\SoE Projekt\jakarta-ee-10-starter\src\main\webapp" />
-      <recent name="C:\J EE\SoE Projekt\jakarta-ee-10-starter\src\main\webapp\Layouts" />
-      <recent name="C:\J EE\SoE Projekt\jakarta-ee-10-starter\src\main\webapp\resources\css" />
-      <recent name="C:\J EE\SoE Projekt\jakarta-ee-10-starter\src\main\webapp\css" />
-    </key>
-  </component>
+}</component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="JBoss/WildFly 27.0.1.Final" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 27.0.1.Final" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="19" nameIsGenerated="true">
-      <option name="UPDATING_POLICY" value="hot-swap-classes" />
+    <configuration name="JBoss/WildFly 27.0.1.Final" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 27.0.1.Final" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="team11:war">
+        <artifact name="sep-team-11:war">
           <settings />
         </artifact>
       </deployment>
@@ -128,13 +146,13 @@
         <option name="SERVER" />
         <option name="BINDING_SET_NAME" value="" />
         <option name="DOMAIN" value="false" />
-        <option name="SERVER_GROUP" />
+        <option name="SERVER_GROUP" value="main-server-group" />
         <option name="USERNAME" value="" />
         <option name="CREDENTIAL_ALIAS" />
       </server-settings>
       <predefined_log_file enabled="true" id="JBoss" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="52959" />
+        <option name="DEBUG_PORT" value="51986" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -184,203 +202,21 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="team11:war" />
+          <artifact name="sep-team-11:war" />
         </option>
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="team11:war" />
-        </option>
-      </method>
-    </configuration>
-    <configuration default="true" type="JBossConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="UPDATING_POLICY" value="restart-server" />
-      <deployment />
-      <server-settings>
-        <option name="SERVER" />
-        <option name="BINDING_SET_NAME" value="" />
-        <option name="DOMAIN" value="false" />
-        <option name="SERVER_GROUP" />
-        <option name="USERNAME" value="" />
-      </server-settings>
-      <predefined_log_file enabled="true" id="JBoss" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="58120" />
-      </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Java Scratch">
-      <option name="ALTERNATIVE_JRE_PATH" value="19" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
-      <module name="jakarta-ee-10-starter" />
-      <shortenClasspath name="ARGS_FILE" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true" />
       </method>
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="" />
-      <created>1679004029280</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1679004029280</updated>
-      <workItem from="1679004034673" duration="245000" />
-      <workItem from="1679004695945" duration="3431000" />
-      <workItem from="1679010846566" duration="3233000" />
-      <workItem from="1679014138159" duration="17865000" />
-      <workItem from="1679070457646" duration="2258000" />
-      <workItem from="1679077556810" duration="1569000" />
-      <workItem from="1679081441404" duration="414000" />
-      <workItem from="1679091027828" duration="748000" />
-      <workItem from="1679092590278" duration="2920000" />
-      <workItem from="1679096448859" duration="4295000" />
-      <workItem from="1679122919161" duration="595000" />
-      <workItem from="1679123573089" duration="532000" />
-      <workItem from="1679124144417" duration="966000" />
-      <workItem from="1679125169683" duration="1382000" />
-      <workItem from="1679126853740" duration="662000" />
-      <workItem from="1679127555682" duration="581000" />
-      <workItem from="1679128837168" duration="527000" />
-      <workItem from="1679129604191" duration="2601000" />
-      <workItem from="1679134271162" duration="1289000" />
-      <workItem from="1679135606584" duration="955000" />
-      <workItem from="1679136726435" duration="2963000" />
-      <workItem from="1679139748143" duration="3292000" />
-      <workItem from="1679144331091" duration="811000" />
-      <workItem from="1679145179778" duration="534000" />
-      <workItem from="1679145750830" duration="4000" />
-      <workItem from="1679145834703" duration="62000" />
-      <workItem from="1679146479824" duration="12104000" />
-      <workItem from="1679234537270" duration="1522000" />
-      <workItem from="1679236085489" duration="1678000" />
-      <workItem from="1679237804588" duration="1643000" />
-      <workItem from="1679246423609" duration="4987000" />
-      <workItem from="1679252298609" duration="2607000" />
-      <workItem from="1679257926389" duration="5080000" />
-      <workItem from="1679263129456" duration="2670000" />
-      <workItem from="1679315346832" duration="685000" />
-      <workItem from="1679316056897" duration="2329000" />
-      <workItem from="1679325897728" duration="2333000" />
-      <workItem from="1679328436762" duration="17256000" />
-      <workItem from="1679356936050" duration="4855000" />
-      <workItem from="1679362378889" duration="313000" />
-      <workItem from="1679392258069" duration="2292000" />
-      <workItem from="1679402498164" duration="286000" />
-      <workItem from="1679402801455" duration="267000" />
-      <workItem from="1679403188823" duration="1381000" />
-      <workItem from="1679570065260" duration="11591000" />
-      <workItem from="1679603646130" duration="5349000" />
-      <workItem from="1679616306292" duration="5278000" />
-      <workItem from="1679654681514" duration="9136000" />
-      <workItem from="1679665399828" duration="5548000" />
-      <workItem from="1679689761234" duration="5559000" />
-      <workItem from="1679695377897" duration="3249000" />
-      <workItem from="1679733511752" duration="13864000" />
-      <workItem from="1679753545617" duration="19913000" />
-      <workItem from="1679785167849" duration="6593000" />
-      <workItem from="1679867674140" duration="15322000" />
-      <workItem from="1679883597049" duration="4160000" />
-      <workItem from="1679918531521" duration="2059000" />
-      <workItem from="1679939325338" duration="3317000" />
-      <workItem from="1679942689850" duration="10951000" />
-      <workItem from="1680524912327" duration="6799000" />
-      <workItem from="1680553487811" duration="543000" />
-      <workItem from="1680603908207" duration="2770000" />
-      <workItem from="1680622782239" duration="2213000" />
-      <workItem from="1681310088044" duration="1895000" />
-      <workItem from="1681330653293" duration="4261000" />
-      <workItem from="1681367139317" duration="3880000" />
-    </task>
-    <task id="LOCAL-00001" summary="Staff und Stock">
-      <created>1680545100776</created>
+    <task id="LOCAL-00001" summary="Lesen aus Order/OrderItem Tabellen funktioniert">
+      <created>1681919693463</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1680545100776</updated>
+      <updated>1681919693463</updated>
     </task>
-    <task id="LOCAL-00002" summary="Staff und Stock">
-      <created>1680546047767</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1680546047767</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Staff und Stock">
-      <created>1680546076724</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1680546076724</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Klassen ohne Beziehung">
-      <created>1680546405099</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1680546405099</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Schema hinzufügen">
-      <created>1680606959178</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1680606959178</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="2" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -394,9 +230,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Staff und Stock" />
-    <MESSAGE value="Klassen ohne Beziehung" />
-    <MESSAGE value="Schema hinzufügen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Schema hinzufügen" />
+    <MESSAGE value="Lesen aus Order/OrderItem Tabellen funktioniert" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lesen aus Order/OrderItem Tabellen funktioniert" />
   </component>
 </project>
