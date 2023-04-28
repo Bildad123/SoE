@@ -14,5 +14,5 @@ icklungsbranch gemerged werden -
 - Viel zu viel geladen. allOrders.xhtml sehr markant, EAGER
 - nicht deutsch lokalisiert
 - alte JSF-Namespaces
-Bewertung: 76%
+Bewertung: 80%
 
