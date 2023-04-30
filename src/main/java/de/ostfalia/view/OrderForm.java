@@ -68,6 +68,10 @@ public class OrderForm implements Serializable{
 
     LocalDate orderDate;
 
+    LocalDate requiredDate;
+
+    LocalDate shippedDate;
+
     /**
      * Gets all customers from the database and saves in the attribute customers
      *
@@ -125,18 +129,16 @@ public class OrderForm implements Serializable{
         showProductTable=false;
     }
     public void updateOrderedDate(AjaxBehaviorEvent event) {
-        String newInputValue = (String) event.getComponent().getAttributes().get("value");
-        System.out.println("orderDate : " + newInputValue);
+        this.orderDate= (LocalDate) event.getComponent().getAttributes().get("value");
     }
 
     public void updateRequiredDate(AjaxBehaviorEvent event) {
-        String newInputValue = (String) event.getComponent().getAttributes().get("value");
-        System.out.println("requiredDate : " + newInputValue);
+        this.requiredDate = (LocalDate) event.getComponent().getAttributes().get("value");
     }
 
     public void updateShippedDate(AjaxBehaviorEvent event) {
-        String newInputValue = (String) event.getComponent().getAttributes().get("value");
-        System.out.println("shippedDate : " + newInputValue);
+        this.shippedDate = (LocalDate) event.getComponent().getAttributes().get("value");
+
     }
 
 
@@ -441,5 +443,21 @@ public class OrderForm implements Serializable{
 
     public void setSelectedOrderStatus(int selectedOrderStatus) {
         this.selectedOrderStatus = selectedOrderStatus;
+    }
+
+    public LocalDate getRequiredDate() {
+        return requiredDate;
+    }
+
+    public void setRequiredDate(LocalDate requiredDate) {
+        this.requiredDate = requiredDate;
+    }
+
+    public LocalDate getShippedDate() {
+        return shippedDate;
+    }
+
+    public void setShippedDate(LocalDate shippedDate) {
+        this.shippedDate = shippedDate;
     }
 }
