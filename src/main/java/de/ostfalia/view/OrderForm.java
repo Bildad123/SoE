@@ -17,6 +17,7 @@ import jakarta.transaction.Transactional;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -62,7 +63,7 @@ public class OrderForm implements Serializable{
 
 
     private List<Store> stores;
-    private Long selectedStoreId;
+    private Store selectedStore;
 
     private List<Staff> staffs;
 
@@ -80,7 +81,6 @@ public class OrderForm implements Serializable{
 
     private Order order;
 
-    private Form form;
     private String operation;
 
     /**
@@ -108,9 +108,7 @@ public class OrderForm implements Serializable{
 
         stores= storeService.findAll();
         staffs=staffService.findAll();
-        orderStatuses = new ArrayList<>();
-        orderStatuses.add(3);
-        orderStatuses.add(4);
+        orderStatuses = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
 
         Form form = new Form();
         String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
@@ -125,8 +123,6 @@ public class OrderForm implements Serializable{
             autoFillForm();
         }
 
-        System.out.println("size : " + orderItems.size());
-
     }
 
 
@@ -138,18 +134,12 @@ public class OrderForm implements Serializable{
         this.requiredDate = order.getRequiredDate();
         this.shippedDate = order.getRequiredDate();
         this.searchTextCustomers = order.getCustomer().getFirstname().concat("   ").concat(order.getCustomer().getLastname()).concat("      ").concat(order.getCustomer().getZip()).concat(", ").concat(order.getCustomer().getStreet());
-        //this.selectedStore = order.getStore();
-        //this.selectedStaff = order.getStaff();
-        //this.orderItems = order.getOrderItems().stream().toList();
+        this.selectedStore = order.getStore();
+        this.selectedStaff = order.getStaff();
         this.orderItems = orderItemService.findByOrderIdAndCustomerId(order.getId(), order.getCustomer().getId());
-
-
-      //  this.name = product.getName();
-      //  this.price = product.getListPrice();
-      //  this.brandName = product.getBrand().getBrandName();
-      //  this.modelYear = product.getModelYear().toString();
-      //  this.categoryName = product.getCategory().getCategoryName();
     }
+
+
 
     public void fillOrder() {
       //  product.setName(name);
@@ -465,12 +455,12 @@ public class OrderForm implements Serializable{
         this.staffs = staffs;
     }
 
-    public Long getSelectedStoreId() {
-        return selectedStoreId;
+    public Store getSelectedStore() {
+        return selectedStore;
     }
 
-    public void setSelectedStoreId(Long selectedStoreId) {
-        this.selectedStoreId = selectedStoreId;
+    public void setSelectedStore(Store selectedStore) {
+        this.selectedStore = selectedStore;
     }
 
     public Staff getSelectedStaff() {

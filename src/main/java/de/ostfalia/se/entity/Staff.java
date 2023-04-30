@@ -56,8 +56,23 @@ public class Staff {
 
     @Override
     public boolean equals(Object o){
-        Staff staff = (Staff) o;
-        return this.id.equals(staff.id);
+        return this.id.equals(((Staff) o).id);
+    }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", active=" + active +
+                ", store=" + store +
+                ", staffs=" + staffs +
+                ", manager=" + manager +
+                ", orders=" + orders +
+                '}';
     }
 
     public Staff() {

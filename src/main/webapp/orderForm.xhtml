@@ -106,8 +106,10 @@
                <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
                <h:outputLabel value="Stores" id="store"></h:outputLabel>
-               <h:selectOneMenu value="#{orderForm.selectedStoreId}" styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
-                  <f:selectItems value="#{orderForm.stores}"  var="store" itemLabel="#{store.storeName}" itemValue="#{store.id}"  />
+               <h:selectOneMenu
+                       converter="storeConverter"
+                       value="#{orderForm.selectedStore}" styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
+                  <f:selectItems value="#{orderForm.stores}"  var="store" itemLabel="#{store.storeName}" itemValue="#{store}"  />
                </h:selectOneMenu>
 
                <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>

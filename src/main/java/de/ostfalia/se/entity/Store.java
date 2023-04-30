@@ -52,6 +52,11 @@ public class Store {
         this.stocks = stocks;
     }
 
+    @Override
+    public boolean equals(Object o){
+        return this.id.equals(((Store)o).id);
+    }
+
     public Store() {
     }
 
