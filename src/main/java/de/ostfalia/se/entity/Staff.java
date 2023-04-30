@@ -30,7 +30,7 @@ public class Staff {
     @JoinColumn(name = "store_id", nullable = false)
     private Store store;
 
-    @OneToMany(mappedBy = "manager")
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
     @Column(name = "manager_id")
     private Set<Staff> staffs;
 

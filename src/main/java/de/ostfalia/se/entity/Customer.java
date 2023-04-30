@@ -22,7 +22,6 @@ public class Customer {
 
     private String email;
 
-
     private String street;
 
     @Column(name = "zip_code")
@@ -34,7 +33,7 @@ public class Customer {
 
     private String phone;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private Set<Order> orders = new HashSet<>();
 
     public Customer(Long id, String firstname, String lastname, String email, String street, String zip, String state, String city, String phone, Set<Order> orders) {

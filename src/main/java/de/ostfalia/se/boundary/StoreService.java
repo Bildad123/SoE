@@ -1,5 +1,6 @@
 package de.ostfalia.se.boundary;
 
+import de.ostfalia.se.entity.Product;
 import de.ostfalia.se.entity.Store;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -23,5 +24,23 @@ public class StoreService {
                 "select s from Store s ", Store.class
         );
         return query.getResultList();
+    }
+
+    public void save(Store store){
+        em.persist(store);
+    }
+
+    public Store findById(Long id){
+        Store store = em.find(Store.class, id);
+        return store;
+    }
+
+    public void delete(Store store) {
+        Store detachedStore = em.merge(store);
+        em.remove(detachedStore);
+    }
+
+    public void update(Store store) {
+        em.merge(store);
     }
 }

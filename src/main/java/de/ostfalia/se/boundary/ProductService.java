@@ -1,5 +1,6 @@
 package de.ostfalia.se.boundary;
 
+import de.ostfalia.se.entity.Customer;
 import de.ostfalia.se.entity.Product;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -39,7 +40,6 @@ public class ProductService implements Serializable {
         return query.getResultList();
     }
 
-
     /**
      * Returns the product with the corresponding name
      * @param name
@@ -63,6 +63,15 @@ public class ProductService implements Serializable {
     public Product findById(Long id){
         Product product = em.find(Product.class, id);
         return product;
+    }
+
+    public void delete(Product product) {
+        Product detachedProduct = em.merge(product);
+        em.remove(detachedProduct);
+    }
+
+    public void update(Product product) {
+        em.merge(product);
     }
 
 }

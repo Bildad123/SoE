@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+   <ui:composition template="Layouts/template.xhtml">
+      <ui:define name="content">
+
+         <h:form id="create-Store-form">
+            <fieldset>
+               <legend>#{storeForm.operation}</legend>
+
+               <h:outputLabel for="storeName" value="Store Name" styleClass="form-label"/>
+               <h:inputText id="storeName" value="#{storeForm.storeName}" required="true" label="Name"
+                            styleClass="form-input-text"
+                            readonly="#{storeForm.operation.equals('Delete Store') || storeForm.operation.equals('Read Store')}"
+                            disabled="#{storeForm.operation.equals('Delete Store') || storeForm.operation.equals('Read Store')}"
+               />
+               <br/><br/>
+
+               <h:outputLabel for="phone" value="Phone" styleClass="form-label"/>
+               <h:inputText id="phone" value="#{storeForm.phone}" required="true" label="Name"
+                            styleClass="form-input-text"
+                            readonly="#{storeForm.operation.equals('Delete Store') || storeForm.operation.equals('Read Store')}"
+                            disabled="#{storeForm.operation.equals('Delete Store') || storeForm.operation.equals('Read Store')}"
+               />
+               <br/><br/>
+
+               <h:outputLabel for="email" value="Email" styleClass="form-label"/>
+               <h:inputText id="email" value="#{storeForm.email}" required="true" label="Name"
+                            styleClass="form-input-text"
+                            readonly="#{storeForm.operation.equals('Delete Store') || storeForm.operation.equals('Read Store')}"
+                            disabled="#{storeForm.operation.equals('Delete Store') || storeForm.operation.equals('Read Store')}"
+               />
+               <br/><br/>
+
+               <h:outputLabel for="state" value="State" styleClass="form-label"/>
+               <h:inputText id="state" value="#{storeForm.state}" required="true" label="Name"
+                            styleClass="form-input-text"
+                            readonly="#{storeForm.operation.equals('Delete Store') || storeForm.operation.equals('Read Store')}"
+                            disabled="#{storeForm.operation.equals('Delete Store') || storeForm.operation.equals('Read Store')}"
+               />
+               <br/><br/>
+
+               <h:outputLabel for="city" value="City" styleClass="form-label"/>
+               <h:inputText id="city" value="#{storeForm.city}" required="true" label="Name"
+                            styleClass="form-input-text"
+                            readonly="#{storeForm.operation.equals('Delete Store') || storeForm.operation.equals('Read Store')}"
+                            disabled="#{storeForm.operation.equals('Delete Store') || storeForm.operation.equals('Read Store')}"
+               />
+               <br/><br/>
+
+               <h:outputLabel for="street" value="Street" styleClass="form-label"/>
+               <h:inputText id="street" value="#{storeForm.street}" required="true" label="Name"
+                            styleClass="form-input-text"
+                            readonly="#{storeForm.operation.equals('Delete Store') || storeForm.operation.equals('Read Store')}"
+                            disabled="#{storeForm.operation.equals('Delete Store') || storeForm.operation.equals('Read Store')}"
+               />
+               <br/><br/>
+
+               <h:outputLabel for="zipCode" value="Zip Code" styleClass="form-label"/>
+               <h:inputText id="zipCode" value="#{storeForm.zipCode}" required="true" label="Name"
+                            styleClass="form-input-text"
+                            readonly="#{storeForm.operation.equals('Delete Store') || storeForm.operation.equals('Read Store')}"
+                            disabled="#{storeForm.operation.equals('Delete Store') || storeForm.operation.equals('Read Store')}"
+               />
+               <br/><br/>
+
+            </fieldset>
+            <br/><br/>
+            <h:commandButton id="reset"  value="Reset" action="#{storeForm.submitForm()}"
+                             style="width: 100%" pt:type="reset"
+                             rendered="#{storeForm.operation.equals('Create Store')}"
+            />
+            <br/><br/>
+
+            <h:commandButton id="submit" type="submit" value="#{storeForm.operation}" action="#{storeForm.submitForm()}"
+                             style="width: 100%"
+                             rendered="#{!storeForm.operation.equals('Read Store')}"
+            />
+            <br/><br/>
+
+         </h:form>
+
+      </ui:define>
+   </ui:composition>
+</html>
