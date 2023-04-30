@@ -57,21 +57,6 @@ public class Staff {
     public Staff() {
     }
 
-    @Override
-    public String toString() {
-        return "Staff{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", active=" + active +
-                ", store=" + store +
-                ", staffs=" + staffs +
-                ", manager=" + manager +
-                ", orders=" + orders +
-                '}';
-    }
 
     public Integer getId() {
         return id;

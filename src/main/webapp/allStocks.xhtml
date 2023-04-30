@@ -45,12 +45,16 @@
 
                 <f:facet name="footer">
                     <h:panelGroup rendered="#{allStocks.pagination.showPageList}">
-                        <h:commandButton value="Back" action="#{allStocks.pagination.back}" disabled="#{!allStocks.pagination.displayBackButton}" styleClass="form-paginating-button-back" />
+                        <h:commandButton value="Back" disabled="#{!allStocks.pagination.displayBackButton}" styleClass="form-paginating-button-back">
+                            <f:ajax listener="#{allStocks.pagination.back()}" render="@form"/>
+                        </h:commandButton>
                         <h:selectOneMenu value="#{allStocks.pagination.selectedPage}">
                             <f:selectItems value="#{allStocks.pagination.pages}" var="page" itemLabel="Page #{page}" itemValue="#{page}" />
                             <f:ajax listener="#{allStocks.pagination.pageChange}" render="@form"/>
                         </h:selectOneMenu>
-                        <h:commandButton value="Next" action="#{allStocks.pagination.next}" disabled="#{!allStocks.pagination.displayNextButton}" styleClass="form-paginating-button-next" />
+                        <h:commandButton value="Next" disabled="#{!allStocks.pagination.displayNextButton}" styleClass="form-paginating-button-next">
+                            <f:ajax listener="#{allStocks.pagination.next()}" render="@form"/>
+                        </h:commandButton>
                     </h:panelGroup>
                 </f:facet>
             </h:dataTable>

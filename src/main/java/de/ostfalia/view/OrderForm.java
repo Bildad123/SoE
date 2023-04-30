@@ -1,22 +1,24 @@
 package de.ostfalia.view;
 import de.ostfalia.se.boundary.CustomerService;
 import de.ostfalia.se.boundary.ProductService;
-import de.ostfalia.se.entity.Customer;
-import de.ostfalia.se.entity.Order;
-import de.ostfalia.se.entity.OrderItem;
-import de.ostfalia.se.entity.Product;
+import de.ostfalia.se.boundary.StaffService;
+import de.ostfalia.se.boundary.StoreService;
+import de.ostfalia.se.entity.*;
 import de.ostfalia.se.filtering.AllCustomersFilter;
 import de.ostfalia.se.filtering.AllProductsFilter;
 import de.ostfalia.se.pagination.AllCustomersPagination;
 import de.ostfalia.se.pagination.AllProductsPagination;
 import jakarta.annotation.PostConstruct;
+import jakarta.faces.event.AjaxBehaviorEvent;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.transaction.Transactional;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,16 +29,21 @@ import java.util.stream.Collectors;
 @ViewScoped
 public class OrderForm implements Serializable{
     @Inject
-    ProductService ps;
+    ProductService productService;
     @Inject
-    CustomerService cs;
+    CustomerService customerService;
+
+    @Inject
+    StoreService storeService;
+
+    @Inject
+    StaffService staffService;
 
     private List<Customer> customers;
     private List<Customer> filteredCustomers;
     private Customer selectedCustomer;
     private List<Product> products;
     private List<Product> filteredProducts;
-    //private String selectedProduct;
     private Product selectedProduct;
     private List<OrderItem> orderItems;
     private AllCustomersPagination paginationCustomer;
@@ -48,6 +55,19 @@ public class OrderForm implements Serializable{
     private boolean showCustomerTable;
     private boolean showProductTable;
 
+    private List<Store> stores;
+    private Long selectedStoreId;
+
+    private List<Staff> staffs;
+
+    private Long selectedStaffId;
+
+    private List<Integer> orderStatuses;
+
+    private int selectedOrderStatus;
+
+    LocalDate orderDate;
+
     /**
      * Gets all customers from the database and saves in the attribute customers
      *
@@ -57,18 +77,25 @@ public class OrderForm implements Serializable{
     @PostConstruct
     public void init(){
         orderItems = new ArrayList<>();
-        customers = cs.findAll();
+        customers = customerService.findAll();
         filteredCustomers = new ArrayList<>();
-        products = ps.findAll();
+        products = productService.findAll();
         filteredProducts = new ArrayList<>();
         paginationProducts = new AllProductsPagination(products);
         paginationCustomer = new AllCustomersPagination(customers);
-        paginationProducts.setMaxTableRows(1);
-        paginationCustomer.setMaxTableRows(1);
+        paginationProducts.setMaxTableRows(5);
+        paginationCustomer.setMaxTableRows(5);
         filterForProducts = new AllProductsFilter();
         filterForCustomers = new AllCustomersFilter();
         paginationProducts.doRefresh();
         paginationCustomer.doRefresh();
+
+        stores= storeService.findAll();
+        staffs=staffService.findAll();
+        orderStatuses = new ArrayList<>();
+        orderStatuses.add(3);
+        orderStatuses.add(4);
+
     }
 
 
@@ -77,44 +104,49 @@ public class OrderForm implements Serializable{
      *
      * The Update could be increasing the quantity,
      * reducing the quantity or deleting an order Item
-     * @param shouldAdd
      */
-    public void updateOrderItems(boolean shouldAdd, Product product){
+    public void addOrderItems(Product product){
         this.selectedProduct = product;
-        if(shouldAdd){  // + Button was selected
-            if(!this.selectedItemIsPresent()){
-                if( this.orderItems.isEmpty() ){
-                   // OrderItem item = new OrderItem(product);
-                   // this.orderItems.add(item);   //very first order
-                }  else{
-                    this.addOrderItem(product);  //next orders
-                }
-
-            }else{
-                this.increaseQuantity(product);   //adding order quantity
-            }
-        } else{      // - Button was selected
-            if(this.selectedItemIsPresent()){
-                this.decreaseQuantity(product);
-
-            }
+        if(!this.selectedItemIsPresent()){
+            OrderItem item = new OrderItem();
+            item.setProduct(selectedProduct);
+            item.setQuantity(1);
+            this.orderItems.add(item);
         }
-
     }
+
+    public void updateCustomerSearchText(String s){
+        this.searchTextCustomers = s;
+        showCustomerTable=false;
+    }
+
+    public void updateProductSearchText(String s){
+        this.searchTextProducts=s;
+        showProductTable=false;
+    }
+    public void updateOrderedDate(AjaxBehaviorEvent event) {
+        String newInputValue = (String) event.getComponent().getAttributes().get("value");
+        System.out.println("orderDate : " + newInputValue);
+    }
+
+    public void updateRequiredDate(AjaxBehaviorEvent event) {
+        String newInputValue = (String) event.getComponent().getAttributes().get("value");
+        System.out.println("requiredDate : " + newInputValue);
+    }
+
+    public void updateShippedDate(AjaxBehaviorEvent event) {
+        String newInputValue = (String) event.getComponent().getAttributes().get("value");
+        System.out.println("shippedDate : " + newInputValue);
+    }
+
+
 
     public void updateSelectedCustomer(Customer customer){
         this.selectedCustomer = customer;
     }
 
-    /**
-     * Adds an orderItem
-     *
-     * Creates a new Order and adds to the attribute orderItems
-     * @param product
-     */
-    public void addOrderItem(Product product){
-        //this.orderItems.add(new OrderItem(product ));
-    }
+
+
 
     /**
      * Checks if the selectedOrder is already present
@@ -127,7 +159,7 @@ public class OrderForm implements Serializable{
     public boolean selectedItemIsPresent(){
         for(int i = 0; i < this.orderItems.size(); i++){
             Product product = this.orderItems.get(i).getProduct();
-            if(this.selectedProduct.equals(product)){
+            if(this.selectedProduct.getId().equals(product.getId())){
                 return true;
             }
         }
@@ -138,30 +170,25 @@ public class OrderForm implements Serializable{
      * Increases the quantity of an orderItem
      * @param product
      */
-    public void increaseQuantity(Product product){
-        for(int j = 0; j < this.orderItems.size(); j++){
-            String name = this.orderItems.get(j).getProduct().getName();
-            if(product != null && product.getName().equals(name)){
-                this.orderItems.get(j).setQuantity( this.orderItems.get(j).getQuantity() + 1 );
+    public void changeQuantity(boolean increaseQuantity ,Product product){
+        showProductTable=false;
+        for(int i = 0; i < this.orderItems.size(); i++){
+            Product p = this.orderItems.get(i).getProduct();
+            if(product.getId().equals(p.getId())){
+                if(increaseQuantity){
+                    this.orderItems.get(i).setQuantity( this.orderItems.get(i).getQuantity() + 1 );
+                } else{
+                    this.orderItems.get(i).setQuantity( this.orderItems.get(i).getQuantity() - 1 );
+                    if(this.orderItems.get(i).getQuantity() <= 0){
+                        this.deleteItem(this.orderItems.get(i));
+                    }
+                }
+
             }
         }
     }
 
-    /**
-     * Reduces the quantity of an orderItem
-     * @param product
-     */
-    public void decreaseQuantity(Product product){
-        for(int i = 0; i < this.orderItems.size(); i++){
-            String name = this.orderItems.get(i).getProduct().getName();
-            if(product != null && product.getName().equals(name)){
-                this.orderItems.get(i).setQuantity( this.orderItems.get(i).getQuantity() - 1 );
-                if(this.orderItems.get(i).getQuantity() <= 0){
-                    this.deleteItem(this.orderItems.get(i));   //delete item if number is 0
-                }
-            }
-        }
-    }
+
 
 
     /**
@@ -171,6 +198,7 @@ public class OrderForm implements Serializable{
      * @param item
      */
     public void deleteItem(OrderItem item){
+        showProductTable=false;
         this.orderItems.remove(item);
     }
 
@@ -181,11 +209,9 @@ public class OrderForm implements Serializable{
      */
     @Transactional
     public String submitForm(){
-        if(this.selectedCustomer != null){
-            //Order order = new Order(selectedCustomer);
-            for(int i = 0; i < this.orderItems.size(); i++){
-                //this.ois.save(this.orderItems.get(i));   //Needed for iteration3
-            }
+        if(this.selectedCustomer != null && this.orderItems.size() > 0){
+            Order order = new Order();
+            order.setCustomer(selectedCustomer);
             //os.save(order); Needed for iteration3
             return "allOrders" + "?faces-redirect=true";
         }
@@ -193,7 +219,35 @@ public class OrderForm implements Serializable{
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void keypressCustomer() {
+        showCustomerTable=true;
         if( searchTextCustomers != null &&!searchTextCustomers.isBlank()){;
             filterForCustomers.setSearchText(searchTextCustomers);
             this.filteredCustomers = customers.stream().filter(c -> filterForCustomers.test(c)).collect(Collectors.toList());
@@ -211,6 +265,7 @@ public class OrderForm implements Serializable{
 
 
     public void keypressProduct() {
+        showProductTable = true;
         filterForProducts.setSearchText(searchTextProducts);
         if(!searchTextProducts.isBlank()){
             filterForProducts.setSearchText(searchTextProducts);
@@ -226,9 +281,6 @@ public class OrderForm implements Serializable{
         this.paginationProducts.setSelectedPage(1);
         this.paginationProducts.doRefresh();
     }
-
-
-
 
 
     //Getters and Setters
@@ -333,5 +385,61 @@ public class OrderForm implements Serializable{
 
     public void setShowProductTable(boolean showProductTable) {
         this.showProductTable = showProductTable;
+    }
+
+    public List<Store> getStores() {
+        return stores;
+    }
+
+    public void setStores(List<Store> stores) {
+        this.stores = stores;
+    }
+
+    public List<Staff> getStaffs() {
+        return staffs;
+    }
+
+    public void setStaffs(List<Staff> staffs) {
+        this.staffs = staffs;
+    }
+
+    public Long getSelectedStoreId() {
+        return selectedStoreId;
+    }
+
+    public void setSelectedStoreId(Long selectedStoreId) {
+        this.selectedStoreId = selectedStoreId;
+    }
+
+    public Long getSelectedStaffId() {
+        return selectedStaffId;
+    }
+
+    public void setSelectedStaffId(Long selectedStaffId) {
+        this.selectedStaffId = selectedStaffId;
+    }
+
+    public List<Integer> getOrderStatuses() {
+        return orderStatuses;
+    }
+
+    public void setOrderStatuses(List<Integer> orderStatuses) {
+        this.orderStatuses = orderStatuses;
+    }
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public int getSelectedOrderStatus() {
+        return selectedOrderStatus;
+    }
+
+    public void setSelectedOrderStatus(int selectedOrderStatus) {
+        this.selectedOrderStatus = selectedOrderStatus;
     }
 }

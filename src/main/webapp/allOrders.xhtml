@@ -41,14 +41,6 @@
                     </h:link>
                 </h:column>
 
-                <h:column>
-                    <f:facet name="header">Orders</f:facet>
-                    <ol style="font-size: small">
-                        <ui:repeat value="#{o.orderItems}" var="s">
-                            <li>#{s.product.name} ( #{s.quantity}X )</li>
-                        </ui:repeat>
-                    </ol>
-                </h:column>
 
                     <h:column>
                         <f:facet name="header">Order Date</f:facet>
@@ -80,15 +72,27 @@
                         #{o.store.storeName}
                     </h:column>
 
+                    <h:column rendered="#{request.userPrincipal.name.equals('admin')}">
+                        <f:facet name="header">Action</f:facet>
+                        <h:link value="&#x1F504;" outcome="orderItems.xhtml" styleClass="data-table-edit-h-link">
+                            <f:param name="orderId" value="#{o.id}" />
+                            <f:param name="customerId" value="#{o.customer.id}" />
+                        </h:link>
+                    </h:column>
+
 
                 <f:facet name="footer">
                     <h:panelGroup rendered="#{allOrders.pagination.showPageList}">
-                        <h:commandButton value="Back" action="#{allOrders.pagination.back}" disabled="#{!allOrders.pagination.displayBackButton}" styleClass="form-paginating-button-back" />
+                        <h:commandButton value="Back"  disabled="#{!allOrders.pagination.displayBackButton}" styleClass="form-paginating-button-back" >
+                            <f:ajax listener="#{allOrders.pagination.back()}" render="@form"/>
+                        </h:commandButton>
                         <h:selectOneMenu value="#{allOrders.pagination.selectedPage}">
                             <f:selectItems value="#{allOrders.pagination.pages}" var="page" itemLabel="Page #{page}" itemValue="#{page}" />
                             <f:ajax listener="#{allOrders.pagination.pageChange}" render="@form"/>
                         </h:selectOneMenu>
-                        <h:commandButton value="Next" action="#{allOrders.pagination.next}" disabled="#{!allOrders.pagination.displayNextButton}" styleClass="form-paginating-button-next" />
+                        <h:commandButton value="Next"  disabled="#{!allOrders.pagination.displayNextButton}" styleClass="form-paginating-button-next" >
+                            <f:ajax listener="#{allOrders.pagination.next}" render="@form"/>
+                        </h:commandButton>
                     </h:panelGroup>
                 </f:facet>
 

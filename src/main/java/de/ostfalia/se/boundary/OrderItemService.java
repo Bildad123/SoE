@@ -1,9 +1,15 @@
 package de.ostfalia.se.boundary;
+import de.ostfalia.se.entity.Customer;
+import de.ostfalia.se.entity.Order;
 import de.ostfalia.se.entity.OrderItem;
+import de.ostfalia.se.entity.Product;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 
+
+import java.util.List;
 
 import static jakarta.persistence.PersistenceContextType.TRANSACTION;
 
@@ -19,6 +25,14 @@ public class OrderItemService {
      */
     public void save(OrderItem orderItem){
         em.persist(orderItem);
+    }
+
+    public List<OrderItem> findByOrderIdAndCustomerId(Long orderId, Long customerId ){
+        TypedQuery<OrderItem> query = em.createQuery("select oi from OrderItem oi where oi.order.id = :orderId and oi.order.customer.id = :customerId", OrderItem.class);
+        query.setParameter("orderId", orderId);
+        query.setParameter("customerId", customerId);
+        List<OrderItem> orderItems = query.getResultList();
+        return orderItems;
     }
 
 }

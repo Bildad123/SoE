@@ -24,4 +24,10 @@ public class StoreService {
         );
         return query.getResultList();
     }
+
+
+    public Store findById(Long id){
+        Store store = em.find(Store.class, id);
+        return store;
+    }
 }

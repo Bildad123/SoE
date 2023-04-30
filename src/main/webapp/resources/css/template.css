@@ -10,7 +10,7 @@ body {
 .container {
     width: fit-content;
     min-width: 55%;
-    overflow: scroll;
+    overflow: hidden;
     background-color: #ffffff;
     height: 50%;
     margin: 10px auto 10px auto;

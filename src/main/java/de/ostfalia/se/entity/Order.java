@@ -40,8 +40,7 @@ public class Order {
 
     @OneToMany(
             cascade = CascadeType.ALL,
-            mappedBy = "order",
-            fetch = FetchType.EAGER
+            mappedBy = "order"
     )
     private Set<OrderItem> orderItems = new HashSet<>();
 
