@@ -1,14 +1,13 @@
 package de.ostfalia.view;
-import de.ostfalia.se.boundary.CustomerService;
-import de.ostfalia.se.boundary.ProductService;
-import de.ostfalia.se.boundary.StaffService;
-import de.ostfalia.se.boundary.StoreService;
+import de.ostfalia.se.boundary.*;
 import de.ostfalia.se.entity.*;
 import de.ostfalia.se.filtering.AllCustomersFilter;
 import de.ostfalia.se.filtering.AllProductsFilter;
+import de.ostfalia.se.form.Form;
 import de.ostfalia.se.pagination.AllCustomersPagination;
 import de.ostfalia.se.pagination.AllProductsPagination;
 import jakarta.annotation.PostConstruct;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.AjaxBehaviorEvent;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -39,6 +38,12 @@ public class OrderForm implements Serializable{
     @Inject
     StaffService staffService;
 
+    @Inject
+    OrderService orderService;
+
+    @Inject
+    OrderItemService orderItemService;
+
     private List<Customer> customers;
     private List<Customer> filteredCustomers;
     private Customer selectedCustomer;
@@ -55,22 +60,28 @@ public class OrderForm implements Serializable{
     private boolean showCustomerTable;
     private boolean showProductTable;
 
+
     private List<Store> stores;
     private Long selectedStoreId;
 
     private List<Staff> staffs;
 
-    private Long selectedStaffId;
+    private Staff selectedStaff;
 
     private List<Integer> orderStatuses;
 
     private int selectedOrderStatus;
 
-    LocalDate orderDate;
+    private LocalDate orderDate;
 
-    LocalDate requiredDate;
+    private LocalDate requiredDate;
 
-    LocalDate shippedDate;
+    private LocalDate shippedDate;
+
+    private Order order;
+
+    private Form form;
+    private String operation;
 
     /**
      * Gets all customers from the database and saves in the attribute customers
@@ -80,6 +91,7 @@ public class OrderForm implements Serializable{
      */
     @PostConstruct
     public void init(){
+
         orderItems = new ArrayList<>();
         customers = customerService.findAll();
         filteredCustomers = new ArrayList<>();
@@ -100,7 +112,55 @@ public class OrderForm implements Serializable{
         orderStatuses.add(3);
         orderStatuses.add(4);
 
+        Form form = new Form();
+        String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+        if(id != null){
+            this.order = orderService.findById(Long.valueOf(id));
+        } else {
+            this.order = new Order();
+        }
+        String operation = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("operation");
+        this.operation = form.operationOnForm(operation, "Order");    //determines operation to be performed
+        if (!this.operation.equals("Create Order")) {
+            autoFillForm();
+        }
+
+        System.out.println("size : " + orderItems.size());
+
     }
+
+
+
+    public void autoFillForm(){
+        this.selectedCustomer = order.getCustomer();
+        this.orderDate = order.getOrderDate();
+        this.selectedOrderStatus = order.getOrderStatus();
+        this.requiredDate = order.getRequiredDate();
+        this.shippedDate = order.getRequiredDate();
+        this.searchTextCustomers = order.getCustomer().getFirstname().concat("   ").concat(order.getCustomer().getLastname()).concat("      ").concat(order.getCustomer().getZip()).concat(", ").concat(order.getCustomer().getStreet());
+        //this.selectedStore = order.getStore();
+        //this.selectedStaff = order.getStaff();
+        //this.orderItems = order.getOrderItems().stream().toList();
+        this.orderItems = orderItemService.findByOrderIdAndCustomerId(order.getId(), order.getCustomer().getId());
+
+
+      //  this.name = product.getName();
+      //  this.price = product.getListPrice();
+      //  this.brandName = product.getBrand().getBrandName();
+      //  this.modelYear = product.getModelYear().toString();
+      //  this.categoryName = product.getCategory().getCategoryName();
+    }
+
+    public void fillOrder() {
+      //  product.setName(name);
+      //  product.setListPrice(price);
+      //  product.setBrand(new Brand());
+      //  product.getBrand().setBrandName(brandName);
+      //  product.setModelYear(Integer.parseInt(modelYear));
+      //  product.setCategory(new Category());
+      //  product.getCategory().setCategoryName(categoryName);
+    }
+
 
 
     /**
@@ -413,12 +473,12 @@ public class OrderForm implements Serializable{
         this.selectedStoreId = selectedStoreId;
     }
 
-    public Long getSelectedStaffId() {
-        return selectedStaffId;
+    public Staff getSelectedStaff() {
+        return selectedStaff;
     }
 
-    public void setSelectedStaffId(Long selectedStaffId) {
-        this.selectedStaffId = selectedStaffId;
+    public void setSelectedStaff(Staff selectedStaff) {
+        this.selectedStaff = selectedStaff;
     }
 
     public List<Integer> getOrderStatuses() {

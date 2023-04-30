@@ -40,4 +40,9 @@ public class OrderService implements Serializable {
         return query.getResultList();
     }
 
+    public Order findById(Long id){
+        Order product = em.find(Order.class, id);
+        return product;
+    }
+
 }

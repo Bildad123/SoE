@@ -113,8 +113,10 @@
                <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
                <h:outputLabel value="Staffs" id="staff"></h:outputLabel>
-               <h:selectOneMenu value="#{orderForm.selectedStaffId}" styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
-                  <f:selectItems value="#{orderForm.staffs}" var="staff" itemLabel="#{staff.firstName.concat(',  ').concat(staff.lastName)}" itemValue="#{staff.id}" />
+               <h:selectOneMenu
+                       converter="staffConverter"
+                       value="#{orderForm.selectedStaff}" styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
+                  <f:selectItems value="#{orderForm.staffs}" var="staff" itemLabel="#{staff.firstName.concat(',  ').concat(staff.lastName)}" itemValue="#{staff}" />
                </h:selectOneMenu>
 
                <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br><br></br>

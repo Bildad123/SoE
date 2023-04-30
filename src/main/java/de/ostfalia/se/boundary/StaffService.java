@@ -1,6 +1,5 @@
 package de.ostfalia.se.boundary;
 
-import de.ostfalia.se.entity.Order;
 import de.ostfalia.se.entity.Staff;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -20,5 +19,10 @@ public class StaffService {
                 "select s from Staff s ", Staff.class
         );
         return query.getResultList();
+    }
+
+    public Staff findById(Long id){
+        Staff staff = em.find(Staff.class, id);
+        return staff;
     }
 }

@@ -19,7 +19,8 @@
                 <h:inputText pt:type="text" pt:placeholder="Search for Order by Customer Name" id="serch_text" value="#{allOrders.searchText}"  class="form-search-text-input" >
                     <f:ajax event="keyup" listener="#{allOrders.keypress()}" render="data-table-orders qty" execute="@this"/>
                 </h:inputText>
-            </div>
+                <h:link value="&#10133;  Create Order" styleClass="data-table-create-h-link" outcome="orderForm.xhtml"></h:link>
+        </div>
             <h:panelGroup id="data-table-orders">
                 <h:dataTable value="#{allOrders.filteredOrders}" var="o"
                          id="orders-data-table"
@@ -80,8 +81,29 @@
                         </h:link>
                     </h:column>
 
+                    <h:column>
+                        <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
 
-                <f:facet name="footer">
+                        <h:link value="&#128221;" outcome="orderForm.xhtml" styleClass="data-table-edit-h-link">
+                            <f:param name="id" value="#{o.id}" />
+                            <f:param name="operation" value="Read"/>
+                        </h:link>
+
+
+                        <h:link value="&#128221;" outcome="orderForm.xhtml" styleClass="data-table-edit-h-link">
+                            <f:param name="id" value="#{o.id}" />
+                            <f:param name="operation" value="Edit"/>
+                        </h:link>
+
+                        <h:link value="&#x274C;" outcome="orderForm.xhtml" styleClass="data-table-edit-h-link">
+                            <f:param name="id" value="#{o.id}" />
+                            <f:param name="operation" value="Delete"/>
+                        </h:link>
+                    </h:column>
+
+
+
+                    <f:facet name="footer">
                     <h:panelGroup rendered="#{allOrders.pagination.showPageList}">
                         <h:commandButton value="Back"  disabled="#{!allOrders.pagination.displayBackButton}" styleClass="form-paginating-button-back" >
                             <f:ajax listener="#{allOrders.pagination.back()}" render="@form"/>
