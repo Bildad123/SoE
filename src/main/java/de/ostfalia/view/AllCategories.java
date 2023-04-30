@@ -50,7 +50,6 @@ public class AllCategories implements Serializable {
         this.pagination.doRefresh();
     }
 
-
     //Getters and Setters
     public List<Category> getCategories() {
         return categories;
