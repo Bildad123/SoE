@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	 xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:f="http://xmlns.jcp.org/jsf/core"
+          xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+          xmlns:h = "http://xmlns.jcp.org/jsf/html"
+          xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+
+<ui:composition template="Layouts/template.xhtml">
+
+    <ui:define name="content">
+        <h:outputLabel style="font-size: small" id="matched-categories">Matched #{allCategories.filteredCategories.size()} category(s) in the database</h:outputLabel><br></br>
+        <h:form autocomplete="off">
+            <div style="display: flex; flex-direction: row; justify-content:space-between; align-items: center;" >
+                <h:inputText pt:type="text" pt:placeholder="Search for Category by Category Name"  id="search-text" value="#{allCategories.searchText}" styleClass="form-search-text-input" >
+                    <f:ajax event="keyup" listener="#{allCategories.keypress()}" render="data-table-categories matched-categories" execute="@this"/>
+                </h:inputText>
+
+                <h:link value="&#10133;  Create Category" styleClass="data-table-create-h-link" outcome="categoryForm.xhtml"></h:link>
+            </div>
+
+            <h:panelGroup id="data-table-categories">
+            <h:dataTable value="#{allCategories.filteredCategories}" var="c"
+                         id="data-table"
+                         first="#{allCategories.pagination.currentRows}"
+                         rows="#{allCategories.pagination.maxTableRows}"
+                         styleClass="customers-table"
+                         headerClass="customers-table-header"
+                         rowClasses="customers-table-odd-row,customers-table-even-row"
+                         cellspacing="15px"
+                         cellpadding="15px"
+                         style="text-align: left"
+                         rendered="#{allCategories.filteredCategories.size() > 0}">
+
+                <h:column>
+                    <f:facet name="header">Category Name</f:facet>
+                    <h:link value="#{c.categoryName}" outcome="categoryForm.xhtml">
+                        <f:param name="id" value="#{c.id}" />
+                        <f:param name="operation" value="Read"/>
+                    </h:link>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
+
+                    <h:link value="&#x274C;" outcome="categoryForm.xhtml" styleClass="data-table-edit-h-link">
+                        <f:param name="id" value="#{c.id}" />
+                        <f:param name="operation" value="Delete"/>
+                    </h:link>
+                </h:column>
+
+
+                <f:facet name="footer">
+                    <h:panelGroup rendered="#{allCategories.pagination.showPageList}">
+                        <h:commandButton value="Back" action="#{allCategories.pagination.back}" disabled="#{!allCategories.pagination.displayBackButton}" styleClass="form-paginating-button-back" />
+                        <h:selectOneMenu value="#{allCategories.pagination.selectedPage}">
+                            <f:selectItems value="#{allCategories.pagination.pages}" var="Page" itemLabel="Seite #{page}" itemValue="#{page}" />
+                            <f:ajax listener="#{allCategories.pagination.pageChange}" render="@form"/>
+                        </h:selectOneMenu>
+                        <h:commandButton value="Next" action="#{allCategories.pagination.next}" disabled="#{!allCategories.pagination.displayNextButton}" styleClass="form-paginating-button-next" />
+                    </h:panelGroup>
+                </f:facet>
+            </h:dataTable>
+            </h:panelGroup>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+
+</html>

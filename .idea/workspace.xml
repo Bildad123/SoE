@@ -9,19 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="Lesen aus Order/OrderItem Tabellen funktioniert">
+    <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/BrandService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/filtering/AllBrandsFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/pagination/AllBrandsPagination.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/AllBrands.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/BrandForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/allBrands.xhtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/brandForm.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/StoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/StoreService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Staff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/CustomerForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/CustomerForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/ProductForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/ProductForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/allProducts.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allProducts.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/allStores.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allStores.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/productForm.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/productForm.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Layouts/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Layouts/header.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,25 +150,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Studium/Ostfalia/SoSe 23/SE_Projekt/iteration1/postgresql-42.5.1.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/java_projects/sep/sep-team-11/src/main/webapp",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\java_projects\sep\sep-team-11\src\main\webapp" />
+      <recent name="D:\java_projects\sep\sep-team-11\src\main\webapp\WEB-INF" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="de.ostfalia.se.filtering" />
+      <recent name="de.ostfalia.se.pagination" />
+      <recent name="de.ostfalia.se.boundary" />
+      <recent name="de.ostfalia.view" />
     </key>
   </component>
   <component name="RunManager">
@@ -275,7 +279,7 @@
       <workItem from="1682672659966" duration="761000" />
       <workItem from="1682673484956" duration="2595000" />
       <workItem from="1682778789194" duration="1968000" />
-      <workItem from="1682841373723" duration="946000" />
+      <workItem from="1682841373723" duration="5045000" />
     </task>
     <task id="LOCAL-00002" summary="Iteration1 Anfang">
       <created>1682357302479</created>
@@ -284,7 +288,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682357302479</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="CRUD für Customer, Product, Store">
+      <created>1682842679091</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682842679091</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,6 +315,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Lesen aus Order/OrderItem Tabellen funktioniert" />
     <MESSAGE value="Iteration1 Anfang" />
-    <option name="LAST_COMMIT_MESSAGE" value="Iteration1 Anfang" />
+    <MESSAGE value="CRUD für Customer, Product, Store" />
+    <option name="LAST_COMMIT_MESSAGE" value="CRUD für Customer, Product, Store" />
   </component>
 </project>
