@@ -39,7 +39,11 @@ public class Order {
     private Store store;
 
 
-
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            mappedBy = "order"
+    )
+    private Set<OrderItem> orderItems = new HashSet<>();
 
 
     public Order(Integer id, LocalDate orderDate, Integer orderStatus, LocalDate requiredDate, LocalDate shippedDate, Customer customer, Staff staff, Store store) {
@@ -139,5 +143,11 @@ public class Order {
         this.store = store;
     }
 
+    public Set<OrderItem> getOrderItems() {
+        return orderItems;
+    }
 
+    public void setOrderItems(Set<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
 }

@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "order_items")
-@IdClass(OrderItem.class)
+@IdClass(OrderItemPK.class)
 public class OrderItem implements Serializable {
     @Id
     @Column(name = "item_id")
@@ -29,6 +29,8 @@ public class OrderItem implements Serializable {
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
+
+
 
 
 

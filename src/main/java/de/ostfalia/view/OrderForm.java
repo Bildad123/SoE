@@ -142,6 +142,8 @@ public class OrderForm implements Serializable{
 
 
     public void fillOrder() {
+        setItemIdForEachOrderItem();
+        setOrderForEachOrderItem();
         order.setCustomer(selectedCustomer);
         order.setOrderDate(orderDate);
         order.setOrderStatus(selectedOrderStatus);
@@ -281,12 +283,11 @@ public class OrderForm implements Serializable{
         Iterator<OrderItem> iterator = orderItems.iterator();
         while (iterator.hasNext()){
             OrderItem oi = iterator.next();
-            oi.setOrder(order);
             System.out.println("orderId : " + order.getId());
         }
     }
 
-    public void saveOrderItems(Order order){
+    public void saveOrderItems(){
         Iterator<OrderItem> iterator = orderItems.iterator();
         while (iterator.hasNext()){
             OrderItem oi = iterator.next();
@@ -305,12 +306,13 @@ public class OrderForm implements Serializable{
     public String submitForm(){
         if (operation.equals("Create Order")) {
             {
-                fillOrder();
                 orderService.save(order);
+                fillOrder();
+
             }
             {
-                setItemIdForEachOrderItem();
-                saveOrderItems(orderService.findById(order.getId()));
+              //  setItemIdForEachOrderItem();
+                 saveOrderItems();
             }
 
             showOrderToBeSaved();
