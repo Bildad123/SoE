@@ -16,7 +16,7 @@ public class Brand {
     @Column(name ="brand_name")
     private String brandName;
 
-    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Product> products = new HashSet<>();
 
     public Brand(Long id, String brandName, Set<Product> products) {

@@ -27,11 +27,9 @@ public class ProductForm implements Serializable {
     private String name;
     @NotNull(message = "price cannot be empty")
     private BigDecimal price;
-    @NotNull(message = "price cannot be empty")
     private String brandName;
     @NotNull(message = "price cannot be empty")
     private String modelYear;
-    @NotNull(message = "price cannot be empty")
     private String categoryName;
     private Product product;
     private String operation;
@@ -65,11 +63,9 @@ public class ProductForm implements Serializable {
     public void fillProduct() {
         product.setName(name);
         product.setListPrice(price);
-        product.setBrand(new Brand());
-        product.getBrand().setBrandName(brandName);
+        product.setBrand(ps.findBrandByName(brandName));
         product.setModelYear(Integer.parseInt(modelYear));
-        product.setCategory(new Category());
-        product.getCategory().setCategoryName(categoryName);
+        product.setCategory(ps.findCategoryByName(categoryName));
     }
 
     public String submitForm() {

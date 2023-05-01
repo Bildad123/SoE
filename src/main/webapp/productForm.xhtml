@@ -31,7 +31,7 @@
                <br/><br/>
 
                <h:outputLabel for="brandName" value="Brand Name" styleClass="form-label"/>
-               <h:selectOneMenu id="brandName" value="#{brandForm.brandName}"
+               <h:selectOneMenu id="brandName" value="#{productForm.brandName}"
                                 readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
                                 disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}">
                   <f:selectItems value="#{allBrands.brands}"/>
@@ -48,11 +48,16 @@
                <br/><br/>
 
                <h:outputLabel for="categoryName" value="Category Name" styleClass="form-label"/>
-               <h:selectOneMenu id="categoryName" value="#{categoryForm.categoryName}"
+               <h:selectOneMenu id="categoryName" value="#{productForm.categoryName}"
                                 readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
                                 disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}">
                   <f:selectItems value="#{allCategories.categories}"/>
                </h:selectOneMenu>
+<!--               <h:inputText id="categoryName" value="#{productForm.categoryName}" required="true" label="Name"-->
+<!--                            styleClass="form-input-text"-->
+<!--                            readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"-->
+<!--                            disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"-->
+<!--               />-->
                <br/><br/>
 
             </fieldset>
