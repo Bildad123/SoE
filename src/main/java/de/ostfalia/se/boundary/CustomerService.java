@@ -2,9 +2,12 @@ package de.ostfalia.se.boundary;
 
 import de.ostfalia.se.entity.Customer;
 import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
@@ -39,7 +42,6 @@ public class CustomerService implements Serializable {
         return query.getResultList();
     }
 
-
     /**
      * Returns customer with corresponding id
      * @param id
@@ -50,5 +52,13 @@ public class CustomerService implements Serializable {
         return customer;
     }
 
+    public void delete(Customer customer) {
+        Customer detachedCustomer = em.merge(customer);
+        em.remove(detachedCustomer);
+    }
+
+    public void update(Customer customer) {
+        em.merge(customer);
+    }
 
 }

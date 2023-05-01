@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+   <ui:composition template="Layouts/template.xhtml">
+      <ui:define name="content">
+
+         <h:form id="create-Brand-form">
+            <fieldset>
+               <legend>#{brandForm.operation}</legend>
+
+               <h:outputLabel for="brandName" value="Brand Name" styleClass="form-label"/>
+               <h:inputText id="brandName" value="#{brandForm.brandName}" required="true" label="Name"
+                            styleClass="form-input-text"
+                            readonly="#{brandForm.operation.equals('Delete Brand') || brandForm.operation.equals('Read Brand')}"
+                            disabled="#{brandForm.operation.equals('Delete Brand') || brandForm.operation.equals('Read Brand')}"
+               />
+               <br/><br/>
+
+
+            </fieldset>
+            <br/><br/>
+            <h:commandButton id="reset"  value="Reset" action="#{brandForm.submitForm()}"
+                             style="width: 100%" pt:type="reset"
+                             rendered="#{brandForm.operation.equals('Create Brand')}"
+            />
+            <br/><br/>
+
+            <h:commandButton id="submit" type="submit" value="#{brandForm.operation}" action="#{brandForm.submitForm()}"
+                             style="width: 100%"
+                             rendered="#{!brandForm.operation.equals('Read Brand')}"
+            />
+            <br/><br/>
+
+         </h:form>
+
+      </ui:define>
+   </ui:composition>
+</html>

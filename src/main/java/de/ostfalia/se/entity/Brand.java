@@ -16,7 +16,7 @@ public class Brand {
     @Column(name ="brand_name")
     private String brandName;
 
-    @OneToMany(mappedBy = "brand")
+    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Product> products = new HashSet<>();
 
     public Brand(Long id, String brandName, Set<Product> products) {
@@ -30,11 +30,7 @@ public class Brand {
 
     @Override
     public String toString() {
-        return "Brand{" +
-                "id=" + id +
-                ", brandName='" + brandName + '\'' +
-                ", products=" + products +
-                '}';
+        return brandName;
     }
 
     // Getter und Setter

@@ -1,5 +1,8 @@
 package de.ostfalia.se.boundary;
 
+import de.ostfalia.se.entity.Brand;
+import de.ostfalia.se.entity.Category;
+import de.ostfalia.se.entity.Customer;
 import de.ostfalia.se.entity.Product;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -25,6 +28,11 @@ public class ProductService implements Serializable {
      * @param product
      */
     public void save(Product product){
+        Brand mergedBrand = em.merge(product.getBrand());
+        Category mergedCategory = em.merge(product.getCategory());
+        product.setBrand(mergedBrand);
+        product.setCategory(mergedCategory);
+
         em.persist(product);
     }
 
@@ -38,7 +46,6 @@ public class ProductService implements Serializable {
         );
         return query.getResultList();
     }
-
 
     /**
      * Returns the product with the corresponding name
@@ -63,6 +70,27 @@ public class ProductService implements Serializable {
     public Product findById(Long id){
         Product product = em.find(Product.class, id);
         return product;
+    }
+
+    public void delete(Product product) {
+        Product mergedProduct = em.merge(product);
+        em.remove(mergedProduct);
+    }
+
+    public void update(Product product) {
+        em.merge(product);
+    }
+
+    public Brand findBrandByName(String brandName) {
+        TypedQuery<Brand> query = em.createQuery("select b from Brand b where b.brandName = :brandName", Brand.class);
+        query.setParameter("brandName", brandName);
+        return query.getSingleResult();
+    }
+
+    public Category findCategoryByName(String categoryName) {
+        TypedQuery<Category> query = em.createQuery("select c from Category c where c.categoryName = :categoryName", Category.class);
+        query.setParameter("categoryName", categoryName);
+        return query.getSingleResult();
     }
 
 }

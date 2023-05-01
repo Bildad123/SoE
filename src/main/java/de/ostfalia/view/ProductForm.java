@@ -1,6 +1,8 @@
 package de.ostfalia.view;
 
 import de.ostfalia.se.boundary.ProductService;
+import de.ostfalia.se.entity.Brand;
+import de.ostfalia.se.entity.Category;
 import de.ostfalia.se.entity.Product;
 import de.ostfalia.se.form.Form;
 import jakarta.annotation.PostConstruct;
@@ -24,7 +26,11 @@ public class ProductForm implements Serializable {
     @NotNull(message = "name cannot be empty")
     private String name;
     @NotNull(message = "price cannot be empty")
-    private String price;
+    private BigDecimal price;
+    private String brandName;
+    @NotNull(message = "price cannot be empty")
+    private String modelYear;
+    private String categoryName;
     private Product product;
     private String operation;
     private Form form;
@@ -41,15 +47,39 @@ public class ProductForm implements Serializable {
         }
         String operation = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("operation");
         this.operation = form.operationOnForm(operation, "Product");    //determines operation to be performed
-        autoFillForm();
+        if (!this.operation.equals("Create Product")) {
+            autoFillForm();
+        }
     }
 
     public void autoFillForm(){
         this.name = product.getName();
-        //this.price = product.getPrice()+"";
+        this.price = product.getListPrice();
+        this.brandName = product.getBrand().getBrandName();
+        this.modelYear = product.getModelYear().toString();
+        this.categoryName = product.getCategory().getCategoryName();
+    }
+
+    public void fillProduct() {
+        product.setName(name);
+        product.setListPrice(price);
+        product.setBrand(ps.findBrandByName(brandName));
+        product.setModelYear(Integer.parseInt(modelYear));
+        product.setCategory(ps.findCategoryByName(categoryName));
     }
 
     public String submitForm() {
+        if (operation.equals("Create Product")) {
+            fillProduct();
+            ps.save(product);
+        }
+        if (operation.equals("Delete Product")) {
+            ps.delete(product);
+        }
+        if (operation.equals("Edit Product")) {
+            fillProduct();
+            ps.update(product);
+        }
         return "allProducts" + "?faces-redirect=true";
     }
 
@@ -61,12 +91,39 @@ public class ProductForm implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    public String getPrice() {
+
+    public BigDecimal getPrice() {
         return price;
     }
-    public void setPrice(String price) {
+
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public String getModelYear() {
+        return modelYear;
+    }
+
+    public void setModelYear(String modelYear) {
+        this.modelYear = modelYear;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
     public String getOperation() {
         return operation;
     }

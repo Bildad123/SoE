@@ -3,12 +3,14 @@ package de.ostfalia.view;
 import de.ostfalia.se.boundary.CustomerService;
 import de.ostfalia.se.entity.Customer;
 
+import de.ostfalia.se.entity.Order;
 import de.ostfalia.se.form.Form;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
@@ -54,9 +56,10 @@ public class CustomerForm implements Serializable {
         }
         String operation = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("operation");
         this.operation = form.operationOnForm(operation, "Customer");  //determines operation to be performed
-        autoFillForm();
+        if (!this.operation.equals("Create Customer")) {
+            autoFillForm();
+        }
     }
-
 
     public void autoFillForm(){
         this.firstname = customer.getFirstname();
@@ -68,6 +71,16 @@ public class CustomerForm implements Serializable {
         this.street = customer.getStreet();
     }
 
+    public void fillCustomer() {
+        customer.setFirstname(firstname);
+        customer.setLastname(lastname);
+        customer.setEmail(email);
+        customer.setPhone(phone);
+        customer.setStreet(street);
+        customer.setZip(zip);
+        customer.setState(state);
+    }
+
     /**
      * creates a customer and saves to the customers table
      *
@@ -76,7 +89,18 @@ public class CustomerForm implements Serializable {
      * @return 'allCustomers.xhtml?faces-redirect=true'
      */
     public String submitForm() {
-       // cs.save(c);
+        if (operation.equals("Create Customer")) {
+            fillCustomer();
+            cs.save(customer);
+        }
+        if (operation.equals("Delete Customer")) {
+            cs.delete(customer);
+        }
+        if (operation.equals("Edit Customer")) {
+            fillCustomer();
+            cs.update(customer);
+        }
+
         return "allCustomers" + "?faces-redirect=true";
     }
 

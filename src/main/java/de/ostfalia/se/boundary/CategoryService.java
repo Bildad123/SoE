@@ -1,0 +1,41 @@
+package de.ostfalia.se.boundary;
+
+import de.ostfalia.se.entity.Category;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+
+import java.util.List;
+
+@Stateless
+public class CategoryService {
+    @PersistenceContext
+    EntityManager em;
+
+    /**
+     * Returns all the categories in the database
+     *
+     * @return List<Category>
+     */
+    public List<Category> findAll(){
+        TypedQuery<Category> query = em.createQuery(
+                "select s from Category s ", Category.class
+        );
+        return query.getResultList();
+    }
+
+    public void save(Category category){
+        em.persist(category);
+    }
+
+    public Category findById(Long id){
+        Category category = em.find(Category.class, id);
+        return category;
+    }
+
+    public void delete(Category category) {
+        Category detachedCategory = em.merge(category);
+        em.remove(detachedCategory);
+    }
+}

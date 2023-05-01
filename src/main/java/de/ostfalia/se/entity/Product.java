@@ -32,10 +32,10 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Set<OrderItem> orderItem = new HashSet<>();
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Set<Stock> stocks = new HashSet<>();
 
     public Product(Long id, BigDecimal listPrice, Integer modelYear, String name, Brand brand, Category category, Set<OrderItem> orderItem, Set<Stock> stocks) {
@@ -86,8 +86,7 @@ public class Product {
         this.name = name;
     }
 
-    public Brand
-    getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
