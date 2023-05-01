@@ -25,9 +25,27 @@ public class StoreService {
         return query.getResultList();
     }
 
-
     public Store findById(Integer id){
         Store store = em.find(Store.class, id);
         return store;
+    }
+
+
+    public void save(Store store){
+        em.persist(store);
+    }
+
+    public Store findById(Long id){
+        Store store = em.find(Store.class, id);
+        return store;
+    }
+
+    public void delete(Store store) {
+        Store detachedStore = em.merge(store);
+        em.remove(detachedStore);
+    }
+
+    public void update(Store store) {
+        em.merge(store);
     }
 }

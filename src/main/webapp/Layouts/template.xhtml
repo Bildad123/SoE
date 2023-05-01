@@ -7,6 +7,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     <h:outputStylesheet library="css" name="template.css"></h:outputStylesheet>
     <h:outputStylesheet library="css" name="header.css"></h:outputStylesheet>
     <h:outputStylesheet library="css" name="table.css"></h:outputStylesheet>
@@ -15,7 +17,6 @@
 </h:head>
 
 <h:body>
-    <div class="page">
         <div class="header" style="margin-bottom: 15px; height: 30px">
             <ui:insert name="header">
                 <ui:include src="header.xhtml"></ui:include>
@@ -39,7 +40,7 @@
                 <ui:include src="footer.xhtml"></ui:include>
             </ui:insert>
         </div>
-    </div>
+
 </h:body>
 
 

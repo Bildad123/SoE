@@ -14,9 +14,13 @@
     <ui:define name="content">
         <h:outputLabel style="font-size: small" id="matched-stores">Matched #{allStores.filteredStores.size()} store(s) in the database</h:outputLabel><br></br>
         <h:form autocomplete="off">
-            <h:inputText pt:type="text" pt:placeholder="Search for Store by Store Name"  id="search-text" value="#{allStores.searchText}" styleClass="form-search-text-input" >
-                <f:ajax event="keyup" listener="#{allStores.keypress()}" render="data-table-stores matched-stores" execute="@this"/>
-            </h:inputText>
+            <div style="display: flex; flex-direction: row; justify-content:space-between; align-items: center;" >
+                <h:inputText pt:type="text" pt:placeholder="Search for Store by Store Name"  id="search-text" value="#{allStores.searchText}" styleClass="form-search-text-input" >
+                    <f:ajax event="keyup" listener="#{allStores.keypress()}" render="data-table-stores matched-stores" execute="@this"/>
+                </h:inputText>
+
+                <h:link value="&#10133;  Create Store" styleClass="data-table-create-h-link" outcome="storeForm.xhtml"></h:link>
+            </div>
 
             <h:panelGroup id="data-table-stores">
             <h:dataTable value="#{allStores.filteredStores}" var="s"
@@ -33,37 +37,72 @@
 
                 <h:column>
                     <f:facet name="header">Store Name</f:facet>
-                    #{s.storeName}
+                    <h:link value="#{s.storeName}" outcome="storeForm.xhtml">
+                        <f:param name="id" value="#{s.id}" />
+                        <f:param name="operation" value="Read"/>
+                    </h:link>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Phone</f:facet>
-                    #{s.phone}
+                    <h:link value="#{s.phone}" outcome="storeForm.xhtml">
+                        <f:param name="id" value="#{s.id}" />
+                        <f:param name="operation" value="Read"/>
+                    </h:link>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Email</f:facet>
-                    #{s.email}
+                    <h:link value="#{s.email}" outcome="storeForm.xhtml">
+                        <f:param name="id" value="#{s.id}" />
+                        <f:param name="operation" value="Read"/>
+                    </h:link>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">State</f:facet>
-                    #{s.state}
+                    <h:link value="#{s.state}" outcome="storeForm.xhtml">
+                        <f:param name="id" value="#{s.id}" />
+                        <f:param name="operation" value="Read"/>
+                    </h:link>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">City</f:facet>
-                    #{s.city}
+                    <h:link value="#{s.city}" outcome="storeForm.xhtml">
+                        <f:param name="id" value="#{s.id}" />
+                        <f:param name="operation" value="Read"/>
+                    </h:link>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Street</f:facet>
-                    #{s.street}
+                    <h:link value="#{s.street}" outcome="storeForm.xhtml">
+                        <f:param name="id" value="#{s.id}" />
+                        <f:param name="operation" value="Read"/>
+                    </h:link>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Zip Code</f:facet>
-                    #{s.zipCode}
+                    <h:link value="#{s.zipCode}" outcome="storeForm.xhtml">
+                        <f:param name="id" value="#{s.id}" />
+                        <f:param name="operation" value="Read"/>
+                    </h:link>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
+
+                    <h:link value="&#128221;" outcome="storeForm.xhtml" styleClass="data-table-edit-h-link">
+                        <f:param name="id" value="#{s.id}" />
+                        <f:param name="operation" value="Edit"/>
+                    </h:link>
+
+                    <h:link value="&#x274C;" outcome="storeForm.xhtml" styleClass="data-table-edit-h-link">
+                        <f:param name="id" value="#{s.id}" />
+                        <f:param name="operation" value="Delete"/>
+                    </h:link>
                 </h:column>
 
 

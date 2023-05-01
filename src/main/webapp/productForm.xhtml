@@ -4,9 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:f="http://java.sun.com/jsf/core">
 
    <ui:composition template="Layouts/template.xhtml">
       <ui:define name="content">
@@ -20,10 +18,8 @@
                             styleClass="form-input-text"
                             readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
                             disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
-
                />
                <br/><br/>
-
 
                <h:outputLabel for="price" value="Price  (&#8364;)" styleClass="form-label"/>
                <h:inputText id="price" value="#{productForm.price}" required="true" label="Name"
@@ -31,11 +27,38 @@
                             pt:type = "number" pt:step ="0.01"
                             readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
                             disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
-
                />
                <br/><br/>
 
+               <h:outputLabel for="brandName" value="Brand Name" styleClass="form-label"/>
+               <h:selectOneMenu id="brandName" value="#{productForm.brandName}"
+                                readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
+                                disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}">
+                  <f:selectItems value="#{allBrands.brands}"/>
+               </h:selectOneMenu>
 
+               <br/><br/>
+
+               <h:outputLabel for="modelYear" value="Model Year" styleClass="form-label"/>
+               <h:inputText id="modelYear" value="#{productForm.modelYear}" required="true" label="Name"
+                            styleClass="form-input-text"
+                            readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
+                            disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
+               />
+               <br/><br/>
+
+               <h:outputLabel for="categoryName" value="Category Name" styleClass="form-label"/>
+               <h:selectOneMenu id="categoryName" value="#{productForm.categoryName}"
+                                readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
+                                disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}">
+                  <f:selectItems value="#{allCategories.categories}"/>
+               </h:selectOneMenu>
+<!--               <h:inputText id="categoryName" value="#{productForm.categoryName}" required="true" label="Name"-->
+<!--                            styleClass="form-input-text"-->
+<!--                            readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"-->
+<!--                            disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"-->
+<!--               />-->
+               <br/><br/>
 
             </fieldset>
             <br/><br/>
