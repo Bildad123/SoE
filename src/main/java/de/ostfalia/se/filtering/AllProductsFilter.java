@@ -19,8 +19,12 @@ public class AllProductsFilter implements Predicate<Product> {
      */
     @Override
     public boolean test(Product product) {
-        return product.getName().toLowerCase().contains(searchText.toLowerCase())
-                || searchText.toLowerCase().contains(product.getName().toLowerCase());
+        if(product != null && product.getName() != null){
+            return product.getName().toLowerCase().contains(searchText.toLowerCase())
+                    || searchText.toLowerCase().contains(product.getName().toLowerCase());
+        }
+        return false;
+
     }
 
     //Getters and Setters

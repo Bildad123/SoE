@@ -22,7 +22,7 @@ public class AllOrdersFilter implements Predicate<Order> {
     @Override
     public boolean test(Order order) {
 
-        if(order.getCustomer() != null && order.getCustomer().getLastname() != null &&
+        if(order != null && order.getCustomer() != null && order.getCustomer().getLastname() != null &&
           order.getCustomer().getFirstname() != null && order.getCustomer().getFirstname() != null){
             return order.getCustomer().getLastname().toLowerCase().contains(searchText.toLowerCase()) ||
                     order.getCustomer().getFirstname().toLowerCase().contains(searchText.toLowerCase()) ||

@@ -25,8 +25,8 @@
                <h:inputText
                        pt:type="text" pt:placeholder="Search for Customer"
                        id="search_text" value="#{orderForm.searchTextCustomers}"
-                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
-                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
+                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
+                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
                        styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0" >
                   <f:ajax event="keyup" listener="#{orderForm.keypressCustomer()}" render="data-table-customer matched-customers" execute="@this"/>
                </h:inputText>
@@ -74,8 +74,8 @@
                        value="#{orderForm.orderDate}"
                        converter="localDateConverter"
                        type="date"
-                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
-                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
+                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
+                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
                        styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0" >
                   <f:ajax listener="#{orderForm.updateOrderedDate}"></f:ajax>
                </h:inputText>
@@ -98,8 +98,8 @@
                        value="#{orderForm.requiredDate}"
                        converter="localDateConverter"
                        type="date"
-                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
-                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
+                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
+                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
                        styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0" >
                   <f:ajax listener="#{orderForm.updateRequiredDate}"></f:ajax>
                </h:inputText>
@@ -124,8 +124,8 @@
                <h:selectOneMenu
                        converter="storeConverter"
                        value="#{orderForm.selectedStore}"
-                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
-                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
+                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
+                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
                        styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
                   <f:selectItems value="#{orderForm.stores}"  var="store" itemLabel="#{store.storeName}" itemValue="#{store}"  />
                </h:selectOneMenu>
@@ -136,8 +136,8 @@
                <h:selectOneMenu
                        converter="staffConverter"
                        value="#{orderForm.selectedStaff}"
-                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
-                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
+                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
+                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
                        styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
                   <f:selectItems value="#{orderForm.staffs}" var="staff" itemLabel="#{staff.firstName.concat(',  ').concat(staff.lastName)}" itemValue="#{staff}" />
                </h:selectOneMenu>
@@ -218,9 +218,13 @@
             </h:column>
 
             <h:column>
+               <f:facet name="header">Price</f:facet>
+               #{oi.product.listPrice}
+            </h:column>
+
+            <h:column>
                <f:facet name="header">Quantity</f:facet>
                #{oi.quantity}
-
             </h:column>
 
             <h:column rendered="#{orderForm.operation.equals('Create Order')}">

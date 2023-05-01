@@ -23,10 +23,14 @@ public class AllCustomersFilter implements Predicate<Customer> {
      */
     @Override
     public boolean test(Customer customer) {
-        return searchText.toLowerCase().contains(customer.getLastname().toLowerCase())
-                || searchText.toLowerCase().contains(customer.getFirstname().toLowerCase())
-                || customer.getFirstname().toLowerCase().contains(searchText.toLowerCase())
-                || customer.getLastname().toLowerCase().contains(searchText.toLowerCase());
+        if(customer != null && customer.getFirstname() != null && customer.getFirstname() != null){
+            return searchText.toLowerCase().contains(customer.getLastname().toLowerCase())
+                    || searchText.toLowerCase().contains(customer.getFirstname().toLowerCase())
+                    || customer.getFirstname().toLowerCase().contains(searchText.toLowerCase())
+                    || customer.getLastname().toLowerCase().contains(searchText.toLowerCase());
+        }
+        return false;
+
     }
 
     //Getters and Setters

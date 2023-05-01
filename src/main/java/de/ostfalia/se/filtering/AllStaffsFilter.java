@@ -10,10 +10,15 @@ public class AllStaffsFilter implements Predicate<Staff> {
 
     @Override
     public boolean test(Staff staff) {
-        return searchText.toLowerCase().contains(staff.getLastName().toLowerCase())
-                || searchText.toLowerCase().contains(staff.getFirstName().toLowerCase())
-                || staff.getFirstName().toLowerCase().contains(searchText.toLowerCase())
-                || staff.getLastName().toLowerCase().contains(searchText.toLowerCase());
+
+        if(staff != null && staff.getFirstName() != null && staff.getLastName() != null){
+            return searchText.toLowerCase().contains(staff.getLastName().toLowerCase())
+                    || searchText.toLowerCase().contains(staff.getFirstName().toLowerCase())
+                    || staff.getFirstName().toLowerCase().contains(searchText.toLowerCase())
+                    || staff.getLastName().toLowerCase().contains(searchText.toLowerCase());
+        }
+        return false;
+
     }
 
     //Getters and Setters
