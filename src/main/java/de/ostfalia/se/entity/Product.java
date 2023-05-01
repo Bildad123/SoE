@@ -53,6 +53,16 @@ public class Product {
 
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", listPrice=" + listPrice +
+                ", modelYear=" + modelYear +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
     // Getters and Setters
     public Long getId() {
         return id;

@@ -45,4 +45,15 @@ public class OrderService implements Serializable {
         return product;
     }
 
+
+    public void delete(Order order) {
+        Order detachedOrder = em.merge(order);
+        em.remove(detachedOrder);
+    }
+
+    public void update(Order order) {
+        em.merge(order);
+    }
+
+
 }

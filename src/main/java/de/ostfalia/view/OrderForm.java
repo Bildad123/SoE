@@ -16,10 +16,7 @@ import jakarta.transaction.Transactional;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -83,6 +80,8 @@ public class OrderForm implements Serializable{
 
     private String operation;
 
+
+
     /**
      * Gets all customers from the database and saves in the attribute customers
      *
@@ -137,19 +136,23 @@ public class OrderForm implements Serializable{
         this.selectedStore = order.getStore();
         this.selectedStaff = order.getStaff();
         this.orderItems = orderItemService.findByOrderIdAndCustomerId(order.getId(), order.getCustomer().getId());
+
     }
 
 
 
     public void fillOrder() {
-      //  product.setName(name);
-      //  product.setListPrice(price);
-      //  product.setBrand(new Brand());
-      //  product.getBrand().setBrandName(brandName);
-      //  product.setModelYear(Integer.parseInt(modelYear));
-      //  product.setCategory(new Category());
-      //  product.getCategory().setCategoryName(categoryName);
+        order.setCustomer(selectedCustomer);
+        order.setOrderDate(orderDate);
+        order.setOrderStatus(selectedOrderStatus);
+        order.setRequiredDate(requiredDate);
+        order.setShippedDate(shippedDate);
+        order.setStore(selectedStore);
+        order.setStaff(selectedStaff);
+        order.setOrderItems(new HashSet<>(this.orderItems));
     }
+
+
 
 
 
@@ -165,12 +168,15 @@ public class OrderForm implements Serializable{
             OrderItem item = new OrderItem();
             item.setProduct(selectedProduct);
             item.setQuantity(1);
+            item.setListPrice(selectedProduct.getListPrice());
+            item.setOrder(order);
             this.orderItems.add(item);
         }
     }
 
-    public void updateCustomerSearchText(String s){
+    public void updateCustomerSearchText(String s, Customer c){
         this.searchTextCustomers = s;
+        this.selectedCustomer=c;
         showCustomerTable=false;
     }
 
@@ -218,6 +224,8 @@ public class OrderForm implements Serializable{
         return false;
     }
 
+
+
     /**
      * Increases the quantity of an orderItem
      * @param product
@@ -254,6 +262,14 @@ public class OrderForm implements Serializable{
         this.orderItems.remove(item);
     }
 
+    public void showOrderToBeSaved(){
+        Iterator<OrderItem> iterator = order.getOrderItems().iterator();
+        while (iterator.hasNext()){
+            OrderItem oi = iterator.next();
+            System.out.println(oi);
+        }
+    }
+
     /**
      * Assigns an order to the corresponding customer and updates the tables in the database
      *
@@ -261,13 +277,26 @@ public class OrderForm implements Serializable{
      */
     @Transactional
     public String submitForm(){
-        if(this.selectedCustomer != null && this.orderItems.size() > 0){
-            Order order = new Order();
-            order.setCustomer(selectedCustomer);
-            //os.save(order); Needed for iteration3
+        if (operation.equals("Create Order")) {
+            fillOrder();
+            showOrderToBeSaved();
+
+
+            orderService.save(order);
+          //  orderItemService.save(this.orderItems.get(0));
+            return null;
+        }
+        if (operation.equals("Delete Order")) {
+            orderService.delete(order);
+            return "allOrders" + "?faces-redirect=true";
+        }
+        if (operation.equals("Edit Order")) {
+            fillOrder();
+            orderService.update(order);
             return "allOrders" + "?faces-redirect=true";
         }
         return null;
+
     }
 
 
@@ -509,5 +538,13 @@ public class OrderForm implements Serializable{
 
     public void setShippedDate(LocalDate shippedDate) {
         this.shippedDate = shippedDate;
+    }
+
+    public String getOperation() {
+        return operation;
+    }
+
+    public void setOperation(String operation) {
+        this.operation = operation;
     }
 }

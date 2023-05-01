@@ -3,16 +3,15 @@ package de.ostfalia.se.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Entity
 @Table(name = "order_items")
 @IdClass(OrderItemPK.class)
 public class OrderItem {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
     private Long id;
+
 
     @Id
     @ManyToOne

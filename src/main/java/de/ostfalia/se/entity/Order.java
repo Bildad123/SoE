@@ -73,8 +73,6 @@ public class Order {
                 ", requiredDate=" + requiredDate +
                 ", shippedDate=" + shippedDate +
                 ", customer=" + customer +
-                ", staff=" + staff +
-                ", store=" + store +
                 '}';
     }
 

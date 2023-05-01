@@ -65,7 +65,6 @@ public class Customer {
                 ", state='" + state + '\'' +
                 ", city='" + city + '\'' +
                 ", phone='" + phone + '\'' +
-                ", orders=" + orders +
                 '}';
     }
 
