@@ -35,7 +35,7 @@ public class ProductForm implements Serializable {
         Form form = new Form();
         String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
         if(id != null){
-            this.product = ps.findById(Long.valueOf(id));
+            this.product = ps.findById(Integer.valueOf(id));
         } else {
             this.product = new Product();
         }

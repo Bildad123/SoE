@@ -11,7 +11,7 @@ public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "brand_id")
-    private Long id;
+    private Integer id;
 
     @Column(name ="brand_name")
     private String brandName;
@@ -19,7 +19,7 @@ public class Brand {
     @OneToMany(mappedBy = "brand")
     private Set<Product> products = new HashSet<>();
 
-    public Brand(Long id, String brandName, Set<Product> products) {
+    public Brand(Integer id, String brandName, Set<Product> products) {
         this.id = id;
         this.brandName = brandName;
         this.products = products;
@@ -38,11 +38,11 @@ public class Brand {
     }
 
     // Getter und Setter
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

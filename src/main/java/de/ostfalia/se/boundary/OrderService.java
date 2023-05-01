@@ -40,7 +40,7 @@ public class OrderService implements Serializable {
         return query.getResultList();
     }
 
-    public Order findById(Long id){
+    public Order findById(Integer id){
         Order product = em.find(Order.class, id);
         return product;
     }
@@ -51,8 +51,8 @@ public class OrderService implements Serializable {
         em.remove(detachedOrder);
     }
 
-    public void update(Order order) {
-        em.merge(order);
+    public Order update(Order order) {
+        return em.merge(order);
     }
 
 

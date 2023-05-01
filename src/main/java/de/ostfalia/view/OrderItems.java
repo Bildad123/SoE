@@ -31,9 +31,9 @@ public class OrderItems {
     @PostConstruct
     public void  init(){
         String customerId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("customerId");
-        customer = cs.findById(Long.parseLong(customerId));
+        customer = cs.findById(Integer.parseInt(customerId));
         String orderId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("orderId");
-        orderItems = ois.findByOrderIdAndCustomerId(Long.parseLong(orderId), Long.parseLong(customerId));
+        orderItems = ois.findByOrderIdAndCustomerId(Integer.parseInt(orderId), Integer.parseInt(customerId));
     }
 
     public List<OrderItem> getOrderItems() {

@@ -11,7 +11,7 @@ public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "store_id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "store_name")
     private String storeName;
@@ -38,7 +38,7 @@ public class Store {
     @OneToMany(mappedBy = "store")
     private Set<Stock> stocks = new HashSet<>();
 
-    public Store(Long id, String storeName, String email, String phone, String street, String zipCode, String city, String state, Set<Order> orders, Set<Staff> staffs, Set<Stock> stocks) {
+    public Store(Integer id, String storeName, String email, String phone, String street, String zipCode, String city, String state, Set<Order> orders, Set<Staff> staffs, Set<Stock> stocks) {
         this.id = id;
         this.storeName = storeName;
         this.email = email;
@@ -75,11 +75,11 @@ public class Store {
     }
 
     // Getter und Setter
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -12,7 +12,7 @@ public class Staff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "staff_id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -41,7 +41,7 @@ public class Staff {
     @OneToMany(mappedBy = "staff")
     private Set<Order> orders = new HashSet<>();
 
-    public Staff(Long id, String firstName, String lastName, String email, String phone, Integer active, Store store, Set<Staff> staffs, Staff manager, Set<Order> orders) {
+    public Staff(Integer id, String firstName, String lastName, String email, String phone, Integer active, Store store, Set<Staff> staffs, Staff manager, Set<Order> orders) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -79,11 +79,11 @@ public class Staff {
     }
 
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

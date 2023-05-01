@@ -11,7 +11,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "category_name")
     private String categoryName;
@@ -19,7 +19,7 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private Set<Product> products = new HashSet<>();
 
-    public Category(Long id, String categoryName, Set<Product> products) {
+    public Category(Integer id, String categoryName, Set<Product> products) {
         this.id = id;
         this.categoryName = categoryName;
         this.products = products;
@@ -38,11 +38,11 @@ public class Category {
     }
 
     // Getter und Setter
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

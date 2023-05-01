@@ -16,7 +16,7 @@ public class StoreConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
-        return (ss.findById(Long.parseLong(s)));
+        return (ss.findById(Integer.parseInt(s)));
     }
 
     @Override

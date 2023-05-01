@@ -45,7 +45,7 @@ public class CustomerService implements Serializable {
      * @param id
      * @return customer
      */
-    public Customer findById(Long id){
+    public Customer findById(Integer id){
         Customer customer = em.find(Customer.class, id);
         return customer;
     }

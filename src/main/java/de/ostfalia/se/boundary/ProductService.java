@@ -41,26 +41,11 @@ public class ProductService implements Serializable {
 
 
     /**
-     * Returns the product with the corresponding name
-     * @param name
-     * @return Product
-     */
-    public Product findByName(String name){
-        TypedQuery<Product> query = em.createQuery("select p from Product  p where p.name = :name", Product.class);
-        query.setParameter("name", name);
-        List<Product> product = query.getResultList();
-        if(!product.isEmpty()){
-            return product.get(0);
-        }
-        return null;
-    }
-
-    /**
      * Returns the product with the corresponding id
      * @param id
      * @return product
      */
-    public Product findById(Long id){
+    public Product findById(Integer id){
         Product product = em.find(Product.class, id);
         return product;
     }

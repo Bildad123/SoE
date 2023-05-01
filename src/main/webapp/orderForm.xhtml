@@ -144,7 +144,8 @@
 
                <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br><br></br>
 
-            <h:panelGroup rendered="#{ not (orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order'))}" >
+            <h:panelGroup
+                    rendered="#{orderForm.operation.equals('Create Order')}" >
                <h:outputLabel value="Product"></h:outputLabel>
                <h:inputText
                        pt:type="text"
@@ -222,7 +223,7 @@
 
             </h:column>
 
-            <h:column rendered="#{ not (orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order'))}">
+            <h:column rendered="#{orderForm.operation.equals('Create Order')}">
                <f:facet name="header">Action</f:facet>
                <h:commandButton  style="padding: 0 3px 0 3px; margin-right: 30px" value="&#10133;">
                   <f:ajax  listener="#{orderForm.changeQuantity(true, oi.product)}" render="@form"></f:ajax>

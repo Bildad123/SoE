@@ -7,6 +7,7 @@ import de.ostfalia.se.form.Form;
 import de.ostfalia.se.pagination.AllCustomersPagination;
 import de.ostfalia.se.pagination.AllProductsPagination;
 import jakarta.annotation.PostConstruct;
+import jakarta.ejb.Stateless;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.AjaxBehaviorEvent;
 import jakarta.faces.view.ViewScoped;
@@ -90,7 +91,6 @@ public class OrderForm implements Serializable{
      */
     @PostConstruct
     public void init(){
-
         orderItems = new ArrayList<>();
         customers = customerService.findAll();
         filteredCustomers = new ArrayList<>();
@@ -112,7 +112,7 @@ public class OrderForm implements Serializable{
         Form form = new Form();
         String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
         if(id != null){
-            this.order = orderService.findById(Long.valueOf(id));
+            this.order = orderService.findById(Integer.valueOf(id));
         } else {
             this.order = new Order();
         }
@@ -149,8 +149,15 @@ public class OrderForm implements Serializable{
         order.setShippedDate(shippedDate);
         order.setStore(selectedStore);
         order.setStaff(selectedStaff);
-        order.setOrderItems(new HashSet<>(this.orderItems));
     }
+
+
+
+
+
+
+
+
 
 
 
@@ -194,16 +201,7 @@ public class OrderForm implements Serializable{
 
     public void updateShippedDate(AjaxBehaviorEvent event) {
         this.shippedDate = (LocalDate) event.getComponent().getAttributes().get("value");
-
     }
-
-
-
-    public void updateSelectedCustomer(Customer customer){
-        this.selectedCustomer = customer;
-    }
-
-
 
 
     /**
@@ -263,10 +261,37 @@ public class OrderForm implements Serializable{
     }
 
     public void showOrderToBeSaved(){
-        Iterator<OrderItem> iterator = order.getOrderItems().iterator();
+        Iterator<OrderItem> iterator = orderItems.iterator();
         while (iterator.hasNext()){
             OrderItem oi = iterator.next();
             System.out.println(oi);
+        }
+    }
+
+    public void setItemIdForEachOrderItem(){
+        Integer maxOrderItemId = orderItemService.maxOrderItemId();
+        Iterator<OrderItem> iterator = orderItems.iterator();
+        while (iterator.hasNext()){
+            OrderItem oi = iterator.next();
+            oi.setId(maxOrderItemId++);
+        }
+    }
+
+    public void setOrderForEachOrderItem(){
+        Iterator<OrderItem> iterator = orderItems.iterator();
+        while (iterator.hasNext()){
+            OrderItem oi = iterator.next();
+            oi.setOrder(order);
+            System.out.println("orderId : " + order.getId());
+        }
+    }
+
+    public void saveOrderItems(Order order){
+        Iterator<OrderItem> iterator = orderItems.iterator();
+        while (iterator.hasNext()){
+            OrderItem oi = iterator.next();
+            oi.setOrder(order);
+            orderItemService.save(oi);
         }
     }
 
@@ -275,25 +300,29 @@ public class OrderForm implements Serializable{
      *
      * @return 'allOrders?faces-redirect=true' / null
      */
+
     @Transactional
     public String submitForm(){
         if (operation.equals("Create Order")) {
-            fillOrder();
+            {
+                fillOrder();
+                orderService.save(order);
+            }
+            {
+                setItemIdForEachOrderItem();
+                saveOrderItems(orderService.findById(order.getId()));
+            }
+
             showOrderToBeSaved();
-
-
-            orderService.save(order);
-          //  orderItemService.save(this.orderItems.get(0));
             return null;
         }
         if (operation.equals("Delete Order")) {
-            orderService.delete(order);
-            return "allOrders" + "?faces-redirect=true";
+            return null;
         }
         if (operation.equals("Edit Order")) {
             fillOrder();
             orderService.update(order);
-            return "allOrders" + "?faces-redirect=true";
+            return null;
         }
         return null;
 

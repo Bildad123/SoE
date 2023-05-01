@@ -21,7 +21,7 @@ public class StaffService {
         return query.getResultList();
     }
 
-    public Staff findById(Long id){
+    public Staff findById(Integer id){
         Staff staff = em.find(Staff.class, id);
         return staff;
     }

@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class OrderItemPK implements Serializable {
-    private Long id;
+    private Integer id;
     private Order order;
 
-    public OrderItemPK(Long id, Order order) {
+    public OrderItemPK(Integer id, Order order) {
         this.id = id;
         this.order = order;
     }
@@ -15,11 +15,11 @@ public class OrderItemPK implements Serializable {
     public OrderItemPK() {
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

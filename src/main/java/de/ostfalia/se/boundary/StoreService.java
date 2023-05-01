@@ -26,7 +26,7 @@ public class StoreService {
     }
 
 
-    public Store findById(Long id){
+    public Store findById(Integer id){
         Store store = em.find(Store.class, id);
         return store;
     }
