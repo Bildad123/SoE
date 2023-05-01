@@ -11,11 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Brand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Brand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/ProductForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/ProductForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/productForm.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/productForm.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Staff.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,9 +167,9 @@
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="de.ostfalia.se.filtering" />
+      <recent name="de.ostfalia.view" />
       <recent name="de.ostfalia.se.pagination" />
       <recent name="de.ostfalia.se.boundary" />
-      <recent name="de.ostfalia.view" />
     </key>
   </component>
   <component name="RunManager">
@@ -279,7 +276,7 @@
       <workItem from="1682673484956" duration="2595000" />
       <workItem from="1682778789194" duration="1968000" />
       <workItem from="1682841373723" duration="18668000" />
-      <workItem from="1682927677983" duration="1037000" />
+      <workItem from="1682927677983" duration="9437000" />
     </task>
     <task id="LOCAL-00002" summary="Iteration1 Anfang">
       <created>1682357302479</created>
@@ -309,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682850922190</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fehler bei SelectList beheben">
+      <created>1682929779022</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1682929779022</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,6 +336,7 @@
     <MESSAGE value="CRUD für Customer, Product, Store" />
     <MESSAGE value="Hinzufügen und Löschen für Brand und Category" />
     <MESSAGE value="SelectList bei ProductForm implementieren" />
-    <option name="LAST_COMMIT_MESSAGE" value="SelectList bei ProductForm implementieren" />
+    <MESSAGE value="Fehler bei SelectList beheben" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fehler bei SelectList beheben" />
   </component>
 </project>
