@@ -112,7 +112,6 @@ public class OrderForm implements Serializable{
         this.selectedStore = order.getStore();
         this.selectedStaff = order.getStaff();
         this.orderItems = orderItemService.findByOrderIdAndCustomerId(order.getId(), order.getCustomer().getId());
-
     }
 
     @Transactional
@@ -124,7 +123,7 @@ public class OrderForm implements Serializable{
                 fillOrder();
                 saveOrderItems();
                // showOrderToBeSaved();
-                return null;
+                return "allOrders" + "?faces-redirect=true";
             }
             case "Edit Order" : {
                 fillOrder();
@@ -133,7 +132,7 @@ public class OrderForm implements Serializable{
                 return null;
             }
         }
-        return "dashboard.xhtml";
+        return null;
     }
 
 
@@ -356,6 +355,26 @@ public class OrderForm implements Serializable{
      */
     public void updateShippedDate(AjaxBehaviorEvent event) {
         this.shippedDate = (LocalDate) event.getComponent().getAttributes().get("value");
+    }
+
+    public void updateOrderStatus(Integer status){
+        if(status != null){
+            this.selectedOrderStatus=status;
+        }
+
+    }
+
+    public void updateSelectedStore(Integer storeId){
+        if(storeId != null){
+            this.selectedStore = storeService.findById(storeId);
+        }
+
+    }
+    public void updateSelectedStaff(Integer staffId){
+        if(staffId != null){
+            this.selectedStaff = staffService.findById(staffId);
+        }
+
     }
     //--------------------------------- AJAX EVENTS END ----------------------------------------
 

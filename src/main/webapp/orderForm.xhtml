@@ -89,6 +89,7 @@
                        disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
                        styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
                   <f:selectItems value="#{orderForm.orderStatuses}"  var="status" itemLabel="#{status}" itemValue="#{status}"  />
+                  <f:ajax listener="#{orderForm.updateOrderStatus(status)}"></f:ajax>
                </h:selectOneMenu>
 
                <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
@@ -128,6 +129,7 @@
                        disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
                        styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
                   <f:selectItems value="#{orderForm.stores}"  var="store" itemLabel="#{store.storeName}" itemValue="#{store}"  />
+                  <f:ajax listener="#{orderForm.updateSelectedStore(store.id)}"></f:ajax>
                </h:selectOneMenu>
 
                <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
@@ -140,6 +142,7 @@
                        disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
                        styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
                   <f:selectItems value="#{orderForm.staffs}" var="staff" itemLabel="#{staff.firstName.concat(',  ').concat(staff.lastName)}" itemValue="#{staff}" />
+                  <f:ajax listener="#{orderForm.updateSelectedStaff(staff.id)}"></f:ajax>
                </h:selectOneMenu>
 
                <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br><br></br>

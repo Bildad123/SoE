@@ -1,7 +1,9 @@
 package de.ostfalia.se.security;
 
 
+import de.ostfalia.se.boundary.StaffService;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import jakarta.security.enterprise.credential.Credential;
 import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import jakarta.security.enterprise.identitystore.CredentialValidationResult;
@@ -13,13 +15,21 @@ import java.util.HashSet;
 
 @ApplicationScoped
 public class CustomInMemoryIdentityStore implements IdentityStore {
+    @Inject
+    StaffService staffService;
 
     @Override
     public CredentialValidationResult validate(Credential credential) {
 
         UsernamePasswordCredential login = (UsernamePasswordCredential) credential;
-        System.out.println(((UsernamePasswordCredential) credential).getPasswordAsString()) ;
-        System.out.println(((UsernamePasswordCredential) credential).getCaller());
+        String role = staffService.groupsQuery( ((UsernamePasswordCredential) credential).getCaller() );
+       System.out.println("Caller : " +  ((UsernamePasswordCredential) credential).getCaller() );
+       System.out.println("role : " + role);
+
+       System.out.println("Caller Password : " + ((UsernamePasswordCredential) credential).getPasswordAsString());
+
+       String password = staffService.callerQuery(login.getCaller());
+       System.out.println("Password from DB : " + password );
 
         if (login.getCaller().equals("admin@mail.com")
                 && login.getPasswordAsString().equals("ADMIN1234")) {
@@ -28,8 +38,17 @@ public class CustomInMemoryIdentityStore implements IdentityStore {
                 && login.getPasswordAsString().equals("USER1234")) {
             return new CredentialValidationResult("user", new HashSet<>(Arrays.asList("USER")));
         } else {
-            return CredentialValidationResult.NOT_VALIDATED_RESULT;
+
+
+            System.out.println("Caller : " +  ((UsernamePasswordCredential) credential).getCaller() );
+            System.out.println("role : " + role);
+
+            System.out.println("Caller Password : " + ((UsernamePasswordCredential) credential).getPasswordAsString());
+
+            System.out.println("Password from DB : " + password );
+            return new CredentialValidationResult("user", new HashSet<>(Arrays.asList("USER")));
         }
+
     }
 }
 
