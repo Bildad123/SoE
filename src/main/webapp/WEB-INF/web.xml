@@ -7,7 +7,7 @@
 
     <display-name>sep-team-11</display-name>
     <welcome-file-list>
-        <welcome-file>login.xhtml</welcome-file>
+    <!--    <welcome-file>login.xhtml</welcome-file>  -->
         <welcome-file>dashboard.xhtml</welcome-file>
     </welcome-file-list>
 

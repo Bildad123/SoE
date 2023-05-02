@@ -42,7 +42,6 @@ public class StaffService {
         query.setParameter("email", email);
 
         if(query.getResultList().size() > 0){
-            System.out.println("Role from service : " + query.getResultList().get(0));
             return query.getResultList().get(0);
         } else {
             return null;
@@ -53,12 +52,10 @@ public class StaffService {
         TypedQuery<String> query = em.createQuery("SELECT s.phone FROM Staff s WHERE  s.email = :email", String.class);
         query.setParameter("email", email);
         if(query.getResultList().size() > 0){
-            System.out.println("phone from service : " + query.getResultList().get(0));
             return query.getResultList().get(0).toString();
         } else {
             return null;
         }
-
-
     }
+
 }

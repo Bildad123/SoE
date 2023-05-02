@@ -12,7 +12,10 @@ import jakarta.security.enterprise.authentication.mechanism.http.AuthenticationP
 import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.io.IOException;
 
@@ -20,11 +23,11 @@ import java.io.IOException;
 @RequestScoped
 public class Login {
 
-    @NotEmpty
-    private String password;
-
-    @NotEmpty
+    @NotNull
     private String email;
+    @NotNull
+    @Size(min = 8, message = "Password must be at least 8 characters")
+    private String password;
 
     @Inject
     private SecurityContext securityContext;
@@ -43,15 +46,15 @@ public class Login {
                 facesContext.responseComplete();
                 break;
             case SEND_FAILURE:
-                facesContext.addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login failed", null));
+                facesContext.addMessage(null, new FacesMessage(
+                        FacesMessage.SEVERITY_ERROR, "Login failed", null));
                 break;
             case SUCCESS:
-                facesContext.addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_INFO, "Login succeed", null));
-                externalContext.redirect(externalContext.getRequestContextPath() + "/dashboard.xhtml");
+                facesContext.addMessage(null, new FacesMessage(
+                        FacesMessage.SEVERITY_INFO, "Login succeed", null));
                 break;
             case NOT_DONE:
+                // Doesn't happen here
         }
     }
 
@@ -59,8 +62,11 @@ public class Login {
         return securityContext.authenticate(
                 (HttpServletRequest) externalContext.getRequest(),
                 (HttpServletResponse) externalContext.getResponse(),
-                AuthenticationParameters.withParams()
-                        .credential(new UsernamePasswordCredential(email, password))
+                AuthenticationParameters
+                        .withParams()
+                        .credential(
+                                new UsernamePasswordCredential(
+                                        email, password))
         );
     }
 
