@@ -57,16 +57,7 @@ public class Store {
 
     @Override
     public String toString() {
-        return "Stores{" +
-                "id=" + id +
-                ", storeName='" + storeName + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", street='" + street + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                '}';
+        return storeName;
     }
 
     // Getter und Setter

@@ -12,9 +12,14 @@
     <ui:define name="content">
         <h:outputLabel style="font-size: small" id="matched-stocks">Matched #{allStocks.filteredStocks.size()} stocks(s) in the database</h:outputLabel><br></br>
         <h:form autocomplete="off" >
-            <h:inputText pt:type="text" pt:placeholder="Search for Stocks" id="search_text" value="#{allStocks.searchText}"  styleClass="form-search-text-input" >
-                <f:ajax event="keyup" listener="#{allStocks.keypress()}" render="data-table-stocks matched-stocks" execute="@this"/>
-            </h:inputText>
+            <div style="display: flex; flex-direction: row; justify-content:space-between; align-items: center;" >
+                <h:inputText pt:type="text" pt:placeholder="Search for Stocks" id="search_text" value="#{allStocks.searchText}"  styleClass="form-search-text-input" >
+                    <f:ajax event="keyup" listener="#{allStocks.keypress()}" render="data-table-stocks matched-stocks" execute="@this"/>
+                </h:inputText>
+
+                <h:link value="&#10133;  Create Stock" styleClass="data-table-create-h-link" outcome="stockForm.xhtml"></h:link>
+            </div>
+
             <h:panelGroup id="data-table-stocks">
             <h:dataTable value="#{allStocks.filteredStocks}" var="s"
                          id="data-table"
@@ -30,17 +35,45 @@
 
                 <h:column>
                     <f:facet name="header">Product</f:facet>
-                    #{s.product.name}
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">Quantity</f:facet>
-                    #{s.quantity}
+                    <h:link value="#{s.product.name}" outcome="stockForm.xhtml">
+                        <f:param name="id1" value="#{s.product.id}" />
+                        <f:param name="id2" value="#{s.store.id}" />
+                        <f:param name="operation" value="Read"/>
+                    </h:link>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Store</f:facet>
-                    #{s.store.storeName}
+                    <h:link value="#{s.store.storeName}" outcome="stockForm.xhtml">
+                        <f:param name="id1" value="#{s.product.id}" />
+                        <f:param name="id2" value="#{s.store.id}" />
+                        <f:param name="operation" value="Read"/>
+                    </h:link>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Quantity</f:facet>
+                    <h:link value="#{s.quantity}" outcome="stockForm.xhtml">
+                        <f:param name="id1" value="#{s.product.id}" />
+                        <f:param name="id2" value="#{s.store.id}" />
+                        <f:param name="operation" value="Read"/>
+                    </h:link>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
+
+                    <h:link value="&#128221;" outcome="stockForm.xhtml" styleClass="data-table-edit-h-link">
+                        <f:param name="id1" value="#{s.product.id}" />
+                        <f:param name="id2" value="#{s.store.id}" />
+                        <f:param name="operation" value="Edit"/>
+                    </h:link>
+
+                    <h:link value="&#x274C;" outcome="stockForm.xhtml" styleClass="data-table-edit-h-link">
+                        <f:param name="id1" value="#{s.product.id}" />
+                        <f:param name="id2" value="#{s.store.id}" />
+                        <f:param name="operation" value="Delete"/>
+                    </h:link>
                 </h:column>
 
                 <f:facet name="footer">
