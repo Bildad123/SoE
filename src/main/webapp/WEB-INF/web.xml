@@ -27,26 +27,60 @@
     </context-param>
 
     <!-- SECURITY  START -->
+
     <security-constraint>
+        <!-- USER1 PAGES START -->
         <web-resource-collection>
-            <web-resource-name>admin pages </web-resource-name>
+            <web-resource-name>user2 pages </web-resource-name>
+            <url-pattern>/allBrands.xhtml</url-pattern>
+            <url-pattern>/allCategories.xhtml</url-pattern>
             <url-pattern>/allCustomers.xhtml</url-pattern>
             <url-pattern>/allOrders.xhtml</url-pattern>
             <url-pattern>/allProducts.xhtml</url-pattern>
-            <url-pattern>/allStores.xhtml</url-pattern>
             <url-pattern>/allStocks.xhtml</url-pattern>
+            <url-pattern>/allStores.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>ADMIN</role-name>
-            <role-name>USER</role-name>
+            <role-name>USER1</role-name>
+            <role-name>USER2</role-name>
         </auth-constraint>
     </security-constraint>
+    <!-- USER1 PAGES END -->
+
+    <security-constraint>
+        <!-- USER2 PAGES START -->
+        <web-resource-collection>
+            <web-resource-name>user1 pages </web-resource-name>
+            <url-pattern>/brandForm.xhtml</url-pattern>
+            <url-pattern>/categoryForm.xhtml</url-pattern>
+            <url-pattern>/customerForm.xhtml</url-pattern>
+            <url-pattern>/orderForm.xhtml</url-pattern>
+            <url-pattern>/productForm.xhtml</url-pattern>
+            <url-pattern>/stockForm.xhtml</url-pattern>
+            <url-pattern>/storeForm.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+            <role-name>USER1</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <!-- USER1 PAGES END -->
+
+
+
+
+
+
 
     <security-role>
         <role-name>ADMIN</role-name>
     </security-role>
     <security-role>
-        <role-name>USER</role-name>
+        <role-name>USER1</role-name>
+    </security-role>
+    <security-role>
+        <role-name>USER2</role-name>
     </security-role>
 
     <!-- SECURITY  END -->

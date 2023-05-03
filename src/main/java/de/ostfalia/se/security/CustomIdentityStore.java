@@ -28,7 +28,7 @@ public class CustomIdentityStore implements IdentityStore {
 
 
         if(matchedPasswordFromDatabase != null && userGroupOfMatchedStaff != null){
-            if (matchedPasswordFromDatabase.equals(login.getPasswordAsString())) {
+            if (matchedPasswordFromDatabase.contains(login.getPasswordAsString())) {
                 return new CredentialValidationResult(
                         login.getCaller().concat(" (").concat(userGroupOfMatchedStaff).concat(") "),
                         new HashSet<>(Arrays.asList(userGroupOfMatchedStaff)));
