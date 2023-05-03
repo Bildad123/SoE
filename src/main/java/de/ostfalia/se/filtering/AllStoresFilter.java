@@ -21,8 +21,12 @@ public class AllStoresFilter implements Predicate<Store> {
      */
     @Override
     public boolean test(Store store) {
-        return searchText.toLowerCase().contains(store.getStoreName().toLowerCase())
-                || store.getStoreName().toLowerCase().contains(searchText.toLowerCase());
+        if(store != null && store.getStoreName() != null){
+            return searchText.toLowerCase().contains(store.getStoreName().toLowerCase())
+                    || store.getStoreName().toLowerCase().contains(searchText.toLowerCase());
+        }
+        return false;
+
     }
 
     //Getters and Setters

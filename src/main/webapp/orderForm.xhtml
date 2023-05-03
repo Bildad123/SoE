@@ -19,11 +19,15 @@
 
          <div style="display: flex; flex-direction: column;">
             <fieldset >
-               <legend>Create Order</legend>
-               <h:outputLabel style="font-size: x-small" id="matched-customers" value="Matched #{orderForm.filteredCustomers.size()} customer(s) from the database">
-               </h:outputLabel><br></br>
+               <legend>#{orderForm.operation.toUpperCase()}</legend>
 
-               <h:inputText pt:type="text" pt:placeholder="Search for Customer" id="search_text" value="#{orderForm.searchTextCustomers}" styleClass="form-search-text-input" style="width: 100%;  box-sizing: border-box; margin-top: 0" >
+               <h:outputLabel value="Customer"></h:outputLabel>
+               <h:inputText
+                       pt:type="text" pt:placeholder="Search for Customer"
+                       id="search_text" value="#{orderForm.searchTextCustomers}"
+                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
+                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
+                       styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0" >
                   <f:ajax event="keyup" listener="#{orderForm.keypressCustomer()}" render="data-table-customer matched-customers" execute="@this"/>
                </h:inputText>
 
@@ -41,31 +45,23 @@
                                rendered="#{orderForm.showCustomerTable and orderForm.filteredCustomers.size()>0}">
 
                      <h:column>
-                        <f:facet name="header">Fullname</f:facet>
-                        <h:link value="#{c.firstname} #{c.lastname}" outcome="customerForm.xhtml">
-                           <f:param name="id" value="#{c.id}" />
-                           <f:param name="operation" value="Read"/>
-                        </h:link>
-                     </h:column>
-
-                     <h:column>
-                        <f:facet name="header">Address</f:facet>
-                        #{c.zip}, #{c.street}
-                     </h:column>
-
-                     <h:column>
-                        <f:facet name="header">Add</f:facet>
-                        <h:commandButton  style="padding: 0 1% 0 1%; margin-right: 15px" value="&#10133;" action="#{orderForm.updateSelectedCustomer(c)}"></h:commandButton>
+                        <h:commandLink value="#{c.firstname.concat('  ').concat(c.lastname).concat('      ').concat(c.zip).concat(', ').concat(c.street)}" style="white-space: pre-wrap" >
+                           <f:ajax listener="#{orderForm.updateCustomerSearchText(c.firstname.concat(' ').concat(c.lastname).concat('        ').concat(c.city).concat('        ').concat(c.zip).concat(',  ').concat(c.street), c)}" render="@form"></f:ajax>
+                        </h:commandLink>
                      </h:column>
 
                      <f:facet name="footer">
                         <h:panelGroup rendered="#{orderForm.paginationCustomer.showPageList}">
-                           <h:commandButton value="Back" action="#{orderForm.paginationCustomer.back}" disabled="#{!orderForm.paginationCustomer.displayBackButton}" styleClass="form-paginating-button-back" />
+                           <h:commandButton value="Back" disabled="#{!orderForm.paginationCustomer.displayBackButton}" styleClass="form-paginating-button-back" >
+                              <f:ajax listener="#{orderForm.paginationCustomer.back()}" render="@form"/>
+                           </h:commandButton>
                            <h:selectOneMenu value="#{orderForm.paginationCustomer.selectedPage}">
                               <f:selectItems value="#{orderForm.paginationCustomer.pages}" var="page" itemLabel="Page #{page}" itemValue="#{page}" />
                               <f:ajax listener="#{orderForm.paginationCustomer.pageChange}" render="@form"/>
                            </h:selectOneMenu>
-                           <h:commandButton value="Next" action="#{orderForm.paginationCustomer.next}" disabled="#{!orderForm.paginationCustomer.displayNextButton}" styleClass="form-paginating-button-next" />
+                           <h:commandButton value="Next" disabled="#{!orderForm.paginationCustomer.displayNextButton}" styleClass="form-paginating-button-next" >
+                              <f:ajax listener="#{orderForm.paginationCustomer.next()}" render="@form"/>
+                           </h:commandButton>
                         </h:panelGroup>
                      </f:facet>
                   </h:dataTable>
@@ -73,14 +69,99 @@
 
                <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
+               <h:outputLabel value="Order date"></h:outputLabel>
+               <h:inputText
+                       value="#{orderForm.orderDate}"
+                       converter="localDateConverter"
+                       type="date"
+                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
+                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
+                       styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0" >
+                  <f:ajax listener="#{orderForm.updateOrderedDate}"></f:ajax>
+               </h:inputText>
+
+               <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
+
+               <h:outputLabel value="Order status"></h:outputLabel>
+               <h:selectOneMenu
+                       value="#{orderForm.selectedOrderStatus}"
+                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
+                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
+                       styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
+                  <f:selectItems value="#{orderForm.orderStatuses}"  var="status" itemLabel="#{status}" itemValue="#{status}"  />
+                  <f:ajax listener="#{orderForm.updateOrderStatus(status)}"></f:ajax>
+               </h:selectOneMenu>
+
+               <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
+
+               <h:outputLabel value="Required date"></h:outputLabel>
+               <h:inputText
+                       value="#{orderForm.requiredDate}"
+                       converter="localDateConverter"
+                       type="date"
+                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
+                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
+                       styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0" >
+                  <f:ajax listener="#{orderForm.updateRequiredDate}"></f:ajax>
+               </h:inputText>
+
+               <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
 
+               <h:outputLabel value="Shipped date"></h:outputLabel>
+               <h:inputText
+                       value="#{orderForm.shippedDate}"
+                       converter="localDateConverter"
+                       type="date"
+                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
+                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
+                       styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0" >
+                  <f:ajax listener="#{orderForm.updateShippedDate}"></f:ajax>
+               </h:inputText>
 
-               <h:outputLabel style="font-size: x-small" id="matched-products">Matched #{orderForm.filteredProducts.size()} products(s) in the database</h:outputLabel><br></br>
+               <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
-               <h:inputText pt:type="text" pt:placeholder="Search for Product" id="search_text1" value="#{orderForm.searchTextProducts}" styleClass="form-search-text-input" style="width: 100%; box-sizing: border-box; margin-top: 0" >
+               <h:outputLabel value="Stores" id="store"></h:outputLabel>
+               <h:selectOneMenu
+                       converter="storeConverter"
+                       value="#{orderForm.selectedStore}"
+                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
+                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
+                       styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
+                  <f:selectItems value="#{orderForm.stores}"  var="store" itemLabel="#{store.storeName}" itemValue="#{store}"  />
+                  <f:ajax listener="#{orderForm.updateSelectedStore(store.id)}"></f:ajax>
+               </h:selectOneMenu>
+
+               <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
+
+               <h:outputLabel value="Staffs" id="staff"></h:outputLabel>
+               <h:selectOneMenu
+                       converter="staffConverter"
+                       value="#{orderForm.selectedStaff}"
+                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
+                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
+                       styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
+                  <f:selectItems value="#{orderForm.staffs}" var="staff" itemLabel="#{staff.firstName.concat(',  ').concat(staff.lastName)}" itemValue="#{staff}" />
+                  <f:ajax listener="#{orderForm.updateSelectedStaff(staff.id)}"></f:ajax>
+               </h:selectOneMenu>
+
+               <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br><br></br>
+
+            <h:panelGroup
+                    rendered="#{orderForm.operation.equals('Create Order')}" >
+               <h:outputLabel value="Product"></h:outputLabel>
+               <h:inputText
+                       pt:type="text"
+                       pt:placeholder="Search for Product" id="search_text1"
+                       value="#{orderForm.searchTextProducts}"
+                       readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
+                       disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"
+                       styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0" >
                   <f:ajax event="keyup" listener="#{orderForm.keypressProduct()}" render="data-table-product matched-products" execute="@this"/>
                </h:inputText>
+            </h:panelGroup>
+
+
                <h:panelGroup id="data-table-product">
                   <h:dataTable value="#{orderForm.filteredProducts}" var="p"
                                id="product-data-table"
@@ -94,33 +175,26 @@
                                style="text-align: left"
                                rendered="#{orderForm.showProductTable and orderForm.filteredProducts.size()>0}">
 
-                  <h:column>
-                     <f:facet name="header">Name</f:facet>
-                     #{p.name}
-                  </h:column>
-
-                  <h:column>
-                     <f:facet name="header">Price</f:facet>
-                     #{p.listPrice}
-                     <span style="margin-left: 10px">&#8364;</span>
-                  </h:column>
-
-                  <h:column>
-                     <f:facet name="header">Add</f:facet>
-                     <h:commandButton  style="padding: 0 1% 0 1%; margin-right: 15px" value="&#10133;" action="#{orderForm.updateOrderItems(true, p)}"></h:commandButton>
-                  </h:column>
-
-
+                     <h:column>
+                     <h:commandLink value="#{p.name.concat('        ').concat(p.listPrice).concat( '&#8364;').concat('        ').concat(p.brand.brandName)} " style="white-space: pre-wrap">
+                           <f:ajax listener="#{orderForm.updateProductSearchText(p.name.concat('        ').concat(p.listPrice).concat( '&#8364;').concat('        ').concat(p.brand.brandName))}"  render="@form"></f:ajax>
+                           <f:ajax listener="#{orderForm.addOrderItems(p)}"/>
+                        </h:commandLink>
+                     </h:column>
 
 
                   <f:facet name="footer">
                      <h:panelGroup rendered="#{orderForm.paginationProducts.showPageList}">
-                        <h:commandButton value="Back" action="#{orderForm.paginationProducts.back}" disabled="#{!orderForm.paginationProducts.displayBackButton}" styleClass="form-paginating-button-back" />
+                        <h:commandButton value="Back"  disabled="#{!orderForm.paginationProducts.displayBackButton}" styleClass="form-paginating-button-back" >
+                           <f:ajax listener="#{orderForm.paginationProducts.back()}" render="@form"/>
+                        </h:commandButton>
                         <h:selectOneMenu value="#{orderForm.paginationProducts.selectedPage}">
                            <f:selectItems value="#{orderForm.paginationProducts.pages}" var="page" itemLabel="Page #{page}" itemValue="#{page}" />
                            <f:ajax listener="#{orderForm.paginationProducts.pageChange}" render="@form"/>
                         </h:selectOneMenu>
-                        <h:commandButton value="Next" action="#{orderForm.paginationProducts.next}" disabled="#{!orderForm.paginationProducts.displayNextButton}" styleClass="form-paginating-button-next" />
+                        <h:commandButton value="Next" disabled="#{!orderForm.paginationProducts.displayNextButton}" styleClass="form-paginating-button-next" >
+                           <f:ajax listener="#{orderForm.paginationProducts.next()}" render="@form"/>
+                        </h:commandButton>
                      </h:panelGroup>
                   </f:facet>
                </h:dataTable>
@@ -128,9 +202,9 @@
             </fieldset>
          </div>
 
+         <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br><br></br>
 
-         <br/><br/>
-
+         <h:panelGroup id="data-table-order-items">
          <h:dataTable value="#{orderForm.orderItems}" var="oi"
                       id="data-table-3"
                       styleClass="customers-table"
@@ -143,25 +217,41 @@
 
             <h:column>
                <f:facet name="header">Product</f:facet>
+               #{oi.product.name}
+            </h:column>
 
-               #{oi.product}
+            <h:column>
+               <f:facet name="header">Price</f:facet>
+               #{oi.product.listPrice}
             </h:column>
 
             <h:column>
                <f:facet name="header">Quantity</f:facet>
                #{oi.quantity}
-
             </h:column>
 
-            <h:column>
-               <f:facet name="header">Delete</f:facet>
-               <h:commandButton  style="padding: 0 3px 0 3px" value="&#x274C;" action="#{orderForm.deleteItem(oi)}"></h:commandButton>
+            <h:column rendered="#{orderForm.operation.equals('Create Order')}">
+               <f:facet name="header">Action</f:facet>
+               <h:commandButton  style="padding: 0 3px 0 3px; margin-right: 30px" value="&#10133;">
+                  <f:ajax  listener="#{orderForm.changeQuantity(true, oi.product)}" render="@form"></f:ajax>
+               </h:commandButton>
+               <h:commandButton  style="padding: 0 3px 0 3px; margin-right: 30px" value="&#10134;">
+                  <f:ajax listener="#{orderForm.changeQuantity(false, oi.product)}" render="@form"></f:ajax>
+               </h:commandButton>
+               <h:commandButton  style="padding: 0 3px 0 3px; margin-right: 30px" value="&#x274C;">
+                  <f:ajax event="click" listener="#{orderForm.deleteItem(oi)}" render="@form"></f:ajax>
+               </h:commandButton>
             </h:column>
 
          </h:dataTable><br></br>
+         </h:panelGroup>
 
 
-         <h:commandButton id="submit" type="submit" value="Make order" action="#{orderForm.submitForm()}"
+         <h:commandButton
+                 id="submit"
+                 rendered="#{not orderForm.operation.equals('Read Order')}"
+                 disabled="#{orderForm.operation.equals('Delete Order')}"
+                 type="submit" value="#{orderForm.operation.toUpperCase()}" action="#{orderForm.submitForm()}"
                           style="width: 100%"
          />
          <br/><br/>

@@ -1,0 +1,26 @@
+package de.ostfalia.se.converter;
+
+import de.ostfalia.se.boundary.StoreService;
+import de.ostfalia.se.entity.Staff;
+import de.ostfalia.se.entity.Store;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.convert.Converter;
+import jakarta.faces.convert.FacesConverter;
+import jakarta.inject.Inject;
+
+@FacesConverter(value = "storeConverter", managed = true)
+public class StoreConverter implements Converter {
+    @Inject
+    StoreService ss;
+
+    @Override
+    public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
+        return (ss.findById(Integer.parseInt(s)));
+    }
+
+    @Override
+    public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
+        return  String.valueOf(((Store)(o)).getId());
+    }
+}

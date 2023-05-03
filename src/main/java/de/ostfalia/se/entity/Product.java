@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -13,7 +14,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "list_price")
     private BigDecimal listPrice;
@@ -38,7 +39,7 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Set<Stock> stocks = new HashSet<>();
 
-    public Product(Long id, BigDecimal listPrice, Integer modelYear, String name, Brand brand, Category category, Set<OrderItem> orderItem, Set<Stock> stocks) {
+    public Product(Integer id, BigDecimal listPrice, Integer modelYear, String name, Brand brand, Category category, Set<OrderItem> orderItem, Set<Stock> stocks) {
         this.id = id;
         this.listPrice = listPrice;
         this.modelYear = modelYear;
@@ -53,12 +54,22 @@ public class Product {
 
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", listPrice=" + listPrice +
+                ", modelYear=" + modelYear +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
     // Getters and Setters
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

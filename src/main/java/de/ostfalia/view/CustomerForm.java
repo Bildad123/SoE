@@ -50,7 +50,7 @@ public class CustomerForm implements Serializable {
         Form form = new Form();
         String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
         if(id != null){
-            this.customer = cs.findById(Long.valueOf(id));
+            this.customer = cs.findById(Integer.valueOf(id));
         } else {
             this.customer = new Customer();
         }

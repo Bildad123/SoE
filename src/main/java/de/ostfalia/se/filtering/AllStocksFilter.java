@@ -19,8 +19,12 @@ public class AllStocksFilter implements Predicate<Stock> {
      */
     @Override
     public boolean test(Stock stock) {
-        return searchText.toLowerCase().contains(stock.getProduct().getName().toLowerCase()) ||
-                stock.getProduct().getName().toLowerCase().contains(searchText.toLowerCase());
+        if(stock != null && stock.getProduct() != null && stock.getProduct().getName() != null){
+            return searchText.toLowerCase().contains(stock.getProduct().getName().toLowerCase()) ||
+                    stock.getProduct().getName().toLowerCase().contains(searchText.toLowerCase());
+        }
+        return false;
+
 
     }
 

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -12,7 +13,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "order_date")
     private LocalDate orderDate;
@@ -40,13 +41,12 @@ public class Order {
 
     @OneToMany(
             cascade = CascadeType.ALL,
-            mappedBy = "order",
-            fetch = FetchType.EAGER
+            mappedBy = "order"
     )
     private Set<OrderItem> orderItems = new HashSet<>();
 
 
-    public Order(Long id, LocalDate orderDate, Integer orderStatus, LocalDate requiredDate, LocalDate shippedDate, Customer customer, Staff staff, Store store) {
+    public Order(Integer id, LocalDate orderDate, Integer orderStatus, LocalDate requiredDate, LocalDate shippedDate, Customer customer, Staff staff, Store store) {
         this.id = id;
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
@@ -74,17 +74,16 @@ public class Order {
                 ", requiredDate=" + requiredDate +
                 ", shippedDate=" + shippedDate +
                 ", customer=" + customer +
-                ", staff=" + staff +
-                ", store=" + store +
                 '}';
     }
 
+
     //Getters and Setters
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

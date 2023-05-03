@@ -2,17 +2,17 @@ package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "order_items")
 @IdClass(OrderItemPK.class)
-public class OrderItem {
+public class OrderItem implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
-    private Long id;
+    private Integer id;
 
     @Id
     @ManyToOne
@@ -31,7 +31,10 @@ public class OrderItem {
     private Product product;
 
 
-    public OrderItem(Long id, Order order, BigDecimal discount, BigDecimal listPrice, Integer quantity, Product product) {
+
+
+
+    public OrderItem(Integer id, Order order, BigDecimal discount, BigDecimal listPrice, Integer quantity, Product product) {
         this.id = id;
         this.order = order;
         this.discount = discount;
@@ -57,11 +60,11 @@ public class OrderItem {
     }
 
     //Getters and Setters
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

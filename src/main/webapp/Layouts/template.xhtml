@@ -25,6 +25,9 @@
 
         <div class="container">
             <div class="content">
+                <div style="width: fit-content;min-width: 100%;overflow-x: hidden;background-color: #ffffff;height: 50%;margin: 5px auto 10px auto;">
+                    <span>&#128100; #{request.userPrincipal.name}</span>
+                </div>
                 <ui:insert name="content">
                     <ui:include src="content.xhtml"></ui:include>
                 </ui:insert>

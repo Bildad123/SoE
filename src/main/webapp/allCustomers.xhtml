@@ -20,7 +20,6 @@
                     <h:inputText pt:type="text" pt:placeholder="Search for Customer by Customer Name" id="serch_text" value="#{allCustomers.searchText}"  styleClass="form-search-text-input" >
                         <f:ajax event="keyup" listener="#{allCustomers.keypress()}" render="data-table-customers qty" execute="@this"/>
                     </h:inputText>
-
                     <h:link value="&#10133;  Create Customer" styleClass="data-table-create-h-link" outcome="customerForm.xhtml"></h:link>
                 </div>
 
@@ -112,12 +111,16 @@
 
                     <f:facet name="footer">
                         <h:panelGroup rendered="#{allCustomers.pagination.showPageList}">
-                            <h:commandButton value="Back" action="#{allCustomers.pagination.back}" disabled="#{!allCustomers.pagination.displayBackButton}" styleClass="form-paginating-button-back" />
+                            <h:commandButton value="Back" disabled="#{!allCustomers.pagination.displayBackButton}" styleClass="form-paginating-button-back" >
+                                <f:ajax listener="#{allCustomers.pagination.back()}" render="@form"/>
+                            </h:commandButton>
                             <h:selectOneMenu value="#{allCustomers.pagination.selectedPage}">
                                 <f:selectItems value="#{allCustomers.pagination.pages}" var="page" itemLabel="Page #{page}" itemValue="#{page}" />
                                 <f:ajax listener="#{allCustomers.pagination.pageChange}" render="@form"/>
                             </h:selectOneMenu>
-                            <h:commandButton value="Next" action="#{allCustomers.pagination.next}" disabled="#{!allCustomers.pagination.displayNextButton}" styleClass="form-paginating-button-next" />
+                            <h:commandButton value="Next"  disabled="#{!allCustomers.pagination.displayNextButton}" styleClass="form-paginating-button-next" >
+                                <f:ajax listener="#{allCustomers.pagination.next()}" render="@form"/>
+                            </h:commandButton>
                         </h:panelGroup>
                     </f:facet>
 

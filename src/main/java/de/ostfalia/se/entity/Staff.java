@@ -54,7 +54,9 @@ public class Staff {
         this.orders = orders;
     }
 
-    public Staff() {
+    @Override
+    public boolean equals(Object o){
+        return this.id.equals(((Staff) o).id);
     }
 
     @Override
@@ -72,6 +74,10 @@ public class Staff {
                 ", orders=" + orders +
                 '}';
     }
+
+    public Staff() {
+    }
+
 
     public Integer getId() {
         return id;

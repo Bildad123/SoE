@@ -1,23 +1,23 @@
 package de.ostfalia.view;
-import de.ostfalia.se.boundary.CustomerService;
-import de.ostfalia.se.boundary.ProductService;
-import de.ostfalia.se.entity.Customer;
-import de.ostfalia.se.entity.Order;
-import de.ostfalia.se.entity.OrderItem;
-import de.ostfalia.se.entity.Product;
+import de.ostfalia.se.boundary.*;
+import de.ostfalia.se.entity.*;
 import de.ostfalia.se.filtering.AllCustomersFilter;
 import de.ostfalia.se.filtering.AllProductsFilter;
+import de.ostfalia.se.form.Form;
 import de.ostfalia.se.pagination.AllCustomersPagination;
 import de.ostfalia.se.pagination.AllProductsPagination;
 import jakarta.annotation.PostConstruct;
+import jakarta.ejb.Stateless;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.AjaxBehaviorEvent;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.transaction.Transactional;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -27,16 +27,22 @@ import java.util.stream.Collectors;
 @ViewScoped
 public class OrderForm implements Serializable{
     @Inject
-    ProductService ps;
+    ProductService productService;
     @Inject
-    CustomerService cs;
-
+    CustomerService customerService;
+    @Inject
+    StoreService storeService;
+    @Inject
+    StaffService staffService;
+    @Inject
+    OrderService orderService;
+    @Inject
+    OrderItemService orderItemService;
     private List<Customer> customers;
     private List<Customer> filteredCustomers;
     private Customer selectedCustomer;
     private List<Product> products;
     private List<Product> filteredProducts;
-    //private String selectedProduct;
     private Product selectedProduct;
     private List<OrderItem> orderItems;
     private AllCustomersPagination paginationCustomer;
@@ -47,160 +53,235 @@ public class OrderForm implements Serializable{
     private AllProductsFilter filterForProducts;
     private boolean showCustomerTable;
     private boolean showProductTable;
+    private List<Store> stores;
+    private Store selectedStore;
+    private List<Staff> staffs;
+    private Staff selectedStaff;
+    private List<Integer> orderStatuses;
+    private int selectedOrderStatus;
+    private LocalDate orderDate;
+    private LocalDate requiredDate;
+    private LocalDate shippedDate;
+    private Order order;
+    private String operation;
 
-    /**
-     * Gets all customers from the database and saves in the attribute customers
-     *
-     * Gets all products from the database and saves in the attribute products
-     *
-     */
     @PostConstruct
     public void init(){
         orderItems = new ArrayList<>();
-        customers = cs.findAll();
+        customers = customerService.findAll();
         filteredCustomers = new ArrayList<>();
-        products = ps.findAll();
+        products = productService.findAll();
         filteredProducts = new ArrayList<>();
         paginationProducts = new AllProductsPagination(products);
         paginationCustomer = new AllCustomersPagination(customers);
-        paginationProducts.setMaxTableRows(1);
-        paginationCustomer.setMaxTableRows(1);
+        paginationProducts.setMaxTableRows(5);
+        paginationCustomer.setMaxTableRows(5);
         filterForProducts = new AllProductsFilter();
         filterForCustomers = new AllCustomersFilter();
         paginationProducts.doRefresh();
         paginationCustomer.doRefresh();
+        stores= storeService.findAll();
+        staffs=staffService.findAll();
+        orderStatuses = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+
+        getOperationFromQueryParam();
     }
 
-
-    /**
-     * Updates oderItems
-     *
-     * The Update could be increasing the quantity,
-     * reducing the quantity or deleting an order Item
-     * @param shouldAdd
-     */
-    public void updateOrderItems(boolean shouldAdd, Product product){
-        this.selectedProduct = product;
-        if(shouldAdd){  // + Button was selected
-            if(!this.selectedItemIsPresent()){
-                if( this.orderItems.isEmpty() ){
-                   // OrderItem item = new OrderItem(product);
-                   // this.orderItems.add(item);   //very first order
-                }  else{
-                    this.addOrderItem(product);  //next orders
-                }
-
-            }else{
-                this.increaseQuantity(product);   //adding order quantity
-            }
-        } else{      // - Button was selected
-            if(this.selectedItemIsPresent()){
-                this.decreaseQuantity(product);
-
-            }
+    public void getOperationFromQueryParam(){
+        Form form = new Form();
+        String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+        if(id != null){
+            this.order = orderService.findById(Integer.valueOf(id));
+        } else {
+            this.order = new Order();
         }
-
-    }
-
-    public void updateSelectedCustomer(Customer customer){
-        this.selectedCustomer = customer;
-    }
-
-    /**
-     * Adds an orderItem
-     *
-     * Creates a new Order and adds to the attribute orderItems
-     * @param product
-     */
-    public void addOrderItem(Product product){
-        //this.orderItems.add(new OrderItem(product ));
-    }
-
-    /**
-     * Checks if the selectedOrder is already present
-     *
-     * Important for determining if an orderItem is to be added or
-     * If the quantity of the existing orderItem is to be incremented
-     *
-     * @return true/false
-     */
-    public boolean selectedItemIsPresent(){
-        for(int i = 0; i < this.orderItems.size(); i++){
-            Product product = this.orderItems.get(i).getProduct();
-            if(this.selectedProduct.equals(product)){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Increases the quantity of an orderItem
-     * @param product
-     */
-    public void increaseQuantity(Product product){
-        for(int j = 0; j < this.orderItems.size(); j++){
-            String name = this.orderItems.get(j).getProduct().getName();
-            if(product != null && product.getName().equals(name)){
-                this.orderItems.get(j).setQuantity( this.orderItems.get(j).getQuantity() + 1 );
-            }
+        String operation = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("operation");
+        this.operation = form.operationOnForm(operation, "Order");    //determines operation to be performed
+        if (!this.operation.equals("Create Order")) {
+            autoFillForm();
         }
     }
 
-    /**
-     * Reduces the quantity of an orderItem
-     * @param product
-     */
-    public void decreaseQuantity(Product product){
-        for(int i = 0; i < this.orderItems.size(); i++){
-            String name = this.orderItems.get(i).getProduct().getName();
-            if(product != null && product.getName().equals(name)){
-                this.orderItems.get(i).setQuantity( this.orderItems.get(i).getQuantity() - 1 );
-                if(this.orderItems.get(i).getQuantity() <= 0){
-                    this.deleteItem(this.orderItems.get(i));   //delete item if number is 0
-                }
-            }
-        }
+    public void autoFillForm(){
+        this.selectedCustomer = order.getCustomer();
+        this.orderDate = order.getOrderDate();
+        this.selectedOrderStatus = order.getOrderStatus();
+        this.requiredDate = order.getRequiredDate();
+        this.shippedDate = order.getRequiredDate();
+        this.searchTextCustomers = order.getCustomer().getFirstname().concat("   ").concat(order.getCustomer().getLastname()).concat("      ").concat(order.getCustomer().getZip()).concat(", ").concat(order.getCustomer().getStreet());
+        this.selectedStore = order.getStore();
+        this.selectedStaff = order.getStaff();
+        this.orderItems = orderItemService.findByOrderIdAndCustomerId(order.getId(), order.getCustomer().getId());
     }
 
-
-    /**
-     * Removes an orderItem from the attribute orderItems
-     *
-     * Use case : Quantity of an orderItem is reduced to value less than or equal to 0
-     * @param item
-     */
-    public void deleteItem(OrderItem item){
-        this.orderItems.remove(item);
-    }
-
-    /**
-     * Assigns an order to the corresponding customer and updates the tables in the database
-     *
-     * @return 'allOrders?faces-redirect=true' / null
-     */
     @Transactional
     public String submitForm(){
-        if(this.selectedCustomer != null){
-            //Order order = new Order(selectedCustomer);
-            for(int i = 0; i < this.orderItems.size(); i++){
-                //this.ois.save(this.orderItems.get(i));   //Needed for iteration3
+
+        switch (operation){
+            case "Create Order" : {
+                saveOrder();
+                fillOrder();
+                saveOrderItems();
+               // showOrderToBeSaved();
+                return "allOrders" + "?faces-redirect=true";
             }
-            //os.save(order); Needed for iteration3
-            return "allOrders" + "?faces-redirect=true";
+            case "Edit Order" : {
+                fillOrder();
+                orderService.update(order);
+                // showOrderToBeSaved();
+                return null;
+            }
         }
         return null;
     }
 
 
+
+
+    //------------------- PERSISTING ORDER / ORDER ITEMS START --------------------
+    public void saveOrderItems(){
+        Iterator<OrderItem> iterator = orderItems.iterator();
+        while (iterator.hasNext()){
+            OrderItem oi = iterator.next();
+            oi.setOrder(order);
+            orderItemService.save(oi);
+        }
+
+    }
+    public void saveOrder(){
+        orderService.save(order);
+    }
+
+
+    //------------------ PERSISTING ORDER / ORDER ITEMS END --------------------------
+
+
+    // ----------- SETTING UP ASSOCIATION BETWEEN ORDER AND ORDER ITEMS START ----------
+    public void fillOrder() {
+        setItemIdForEachOrderItem();
+        setOrderForEachOrderItem();
+        order.setCustomer(selectedCustomer);
+        order.setOrderDate(orderDate);
+        order.setOrderStatus(selectedOrderStatus);
+        order.setRequiredDate(requiredDate);
+        order.setShippedDate(shippedDate);
+        order.setStore(selectedStore);
+        order.setStaff(selectedStaff);
+    }
+
+    //--------------------------------  DEBUG FUNCTION ----------------------------------
+    /**
+     * Prints the object to be persisted on the console.
+     * For debug purposes
+     */
+    public void showOrderToBeSaved(){
+        Iterator<OrderItem> iterator = orderItems.iterator();
+        while (iterator.hasNext()){
+            OrderItem oi = iterator.next();
+            System.out.println(oi);
+        }
+    }
+    /**
+     * Sets an id to each orderItem
+     * Since orderItem ids are not auto generated by the database
+     */
+    public void setItemIdForEachOrderItem(){
+        Integer maxOrderItemId = orderItemService.maxOrderItemId();
+        Iterator<OrderItem> iterator = orderItems.iterator();
+        while (iterator.hasNext()){
+            OrderItem oi = iterator.next();
+            oi.setId(maxOrderItemId++);
+        }
+    }
+
+    /**
+     * Associates all orderItems to order
+     */
+    public void setOrderForEachOrderItem(){
+        Iterator<OrderItem> iterator = orderItems.iterator();
+        while (iterator.hasNext()){
+            OrderItem oi = iterator.next();
+        }
+    }
+    // ----------- SETTING UP ASSOCIATION BETWEEN ORDER AND ORDER ITEMS END ----------
+
+
+
+    // -------------- ADDING AND CHANGING ORDER ITEMS ON JSF PAGE START -----------------
+
+    /**
+     * Adds an order item to the order item table on the jsf page
+     * @param product
+     */
+    public void addOrderItems(Product product){
+        this.selectedProduct = product;
+        if(!this.selectedItemIsPresent()){
+            OrderItem item = new OrderItem();
+            item.setProduct(selectedProduct);
+            item.setQuantity(1);
+            item.setListPrice(selectedProduct.getListPrice());
+            item.setOrder(order);
+            this.orderItems.add(item);
+        }
+    }
+    /**
+     * verifies if selectedItem is present
+     * @return
+     */
+    public boolean selectedItemIsPresent(){
+        for(int i = 0; i < this.orderItems.size(); i++){
+            Product product = this.orderItems.get(i).getProduct();
+            if(this.selectedProduct.getId().equals(product.getId())){
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
+     * Increases the quantity of an orderItem on the orderItem table on the jsf page
+     * @param product
+     */
+    public void changeQuantity(boolean increaseQuantity ,Product product){
+        showProductTable=false;
+        for(int i = 0; i < this.orderItems.size(); i++){
+            Product p = this.orderItems.get(i).getProduct();
+            if(product.getId().equals(p.getId())){
+                if(increaseQuantity){
+                    this.orderItems.get(i).setQuantity( this.orderItems.get(i).getQuantity() + 1 );
+                } else{
+                    this.orderItems.get(i).setQuantity( this.orderItems.get(i).getQuantity() - 1 );
+                    if(this.orderItems.get(i).getQuantity() <= 0){
+                        this.deleteItem(this.orderItems.get(i));
+                    }
+                }
+
+            }
+        }
+    }
+
+    /**
+     * Deletes an order item from the order item table on the jsf page
+     * @param item
+     */
+    public void deleteItem(OrderItem item){
+        showProductTable=false;
+        this.orderItems.remove(item);
+    }
+    //---------------  ADDING AND CHANGING ORDER ITEMS ON JSF PAGE END ------------------------
+
+
+   //------------------------------------ AJAX EVENTS START ----------------------------------
+
+    /**
+     * Input Text with search functionality for customers
+     */
     public void keypressCustomer() {
+        showCustomerTable=true;
         if( searchTextCustomers != null &&!searchTextCustomers.isBlank()){;
             filterForCustomers.setSearchText(searchTextCustomers);
             this.filteredCustomers = customers.stream().filter(c -> filterForCustomers.test(c)).collect(Collectors.toList());
-
         } else{
             this.filteredCustomers = new ArrayList<>();
-            //this.filteredCustomers.addAll(this.customers);
         }
         this.showCustomerTable = this.filteredCustomers.size() != this.customers.size();
         this.paginationCustomer.setCustomers(filteredCustomers);
@@ -209,15 +290,17 @@ public class OrderForm implements Serializable{
         this.paginationCustomer.doRefresh();
     }
 
-
+    /**
+     * Input Text with search functionality for products
+     */
     public void keypressProduct() {
+        showProductTable = true;
         filterForProducts.setSearchText(searchTextProducts);
         if(!searchTextProducts.isBlank()){
             filterForProducts.setSearchText(searchTextProducts);
             filteredProducts = products.stream().filter(c -> filterForProducts.test(c)).collect(Collectors.toList());
         } else{
             filteredProducts = new ArrayList<>();
-            //filteredProducts.addAll(this.products);
         }
         this.showProductTable = this.filteredProducts.size() != this.products.size();
 
@@ -227,11 +310,76 @@ public class OrderForm implements Serializable{
         this.paginationProducts.doRefresh();
     }
 
+    /**
+     * Clicking on a row on the customer table on the jsf page
+     * 1) Updates the customer search text on the jsf page
+     * 2) Updates the selected customer in the backing bean
+     * @param s
+     * @param c
+     */
+    public void updateCustomerSearchText(String s, Customer c){
+        this.searchTextCustomers = s;
+        this.selectedCustomer=c;
+        showCustomerTable=false;
+    }
+    /**
+     * Clicking on a row on the product table on the jsf page
+     * 1) updates the product search text on the jsf page
+     * 2) updates displays/updates the orderItem table on the jsf page
+     * @param s
+     */
+    public void updateProductSearchText(String s){
+        this.searchTextProducts=s;
+        showProductTable=false;
+    }
+
+    /**
+     * Updates the orderedDate
+     * @param event
+     */
+    public void updateOrderedDate(AjaxBehaviorEvent event) {
+        this.orderDate= (LocalDate) event.getComponent().getAttributes().get("value");
+    }
+
+    /**
+     * Updates the requiredDate
+     * @param event
+     */
+    public void updateRequiredDate(AjaxBehaviorEvent event) {
+        this.requiredDate = (LocalDate) event.getComponent().getAttributes().get("value");
+    }
+
+    /**
+     * Updates the shippedDate
+     * @param event
+     */
+    public void updateShippedDate(AjaxBehaviorEvent event) {
+        this.shippedDate = (LocalDate) event.getComponent().getAttributes().get("value");
+    }
+
+    public void updateOrderStatus(Integer status){
+        if(status != null){
+            this.selectedOrderStatus=status;
+        }
+
+    }
+
+    public void updateSelectedStore(Integer storeId){
+        if(storeId != null){
+            this.selectedStore = storeService.findById(storeId);
+        }
+
+    }
+    public void updateSelectedStaff(Integer staffId){
+        if(staffId != null){
+            this.selectedStaff = staffService.findById(staffId);
+        }
+
+    }
+    //--------------------------------- AJAX EVENTS END ----------------------------------------
 
 
-
-
-    //Getters and Setters
+    //----------------------------- GETTERS AND SETTERS START ------------------------------
     public List<Customer> getCustomers() {
         return customers;
     }
@@ -256,7 +404,6 @@ public class OrderForm implements Serializable{
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
     }
-
     public List<Customer> getFilteredCustomers() {
         return filteredCustomers;
     }
@@ -290,48 +437,99 @@ public class OrderForm implements Serializable{
     public String getSearchTextCustomers() {
         return searchTextCustomers;
     }
-
     public void setSearchTextCustomers(String searchTextCustomers) {
         this.searchTextCustomers = searchTextCustomers;
     }
-
     public String getSearchTextProducts() {
         return searchTextProducts;
     }
-
     public void setSearchTextProducts(String searchTextProducts) {
         this.searchTextProducts = searchTextProducts;
     }
-
     public AllProductsPagination getPaginationProducts() {
         return paginationProducts;
     }
-
     public void setPaginationProducts(AllProductsPagination paginationProducts) {
         this.paginationProducts = paginationProducts;
     }
-
     public AllProductsFilter getFilterForProducts() {
         return filterForProducts;
     }
-
     public void setFilterForProducts(AllProductsFilter filterForProducts) {
         this.filterForProducts = filterForProducts;
     }
-
     public boolean isShowCustomerTable() {
         return showCustomerTable;
     }
-
     public void setShowCustomerTable(boolean showCustomerTable) {
         this.showCustomerTable = showCustomerTable;
     }
-
     public boolean isShowProductTable() {
         return showProductTable;
     }
-
     public void setShowProductTable(boolean showProductTable) {
         this.showProductTable = showProductTable;
     }
+    public List<Store> getStores() {
+        return stores;
+    }
+    public void setStores(List<Store> stores) {
+        this.stores = stores;
+    }
+    public List<Staff> getStaffs() {
+        return staffs;
+    }
+    public void setStaffs(List<Staff> staffs) {
+        this.staffs = staffs;
+    }
+    public Store getSelectedStore() {
+        return selectedStore;
+    }
+    public void setSelectedStore(Store selectedStore) {
+        this.selectedStore = selectedStore;
+    }
+    public Staff getSelectedStaff() {
+        return selectedStaff;
+    }
+    public void setSelectedStaff(Staff selectedStaff) {
+        this.selectedStaff = selectedStaff;
+    }
+    public List<Integer> getOrderStatuses() {
+        return orderStatuses;
+    }
+    public void setOrderStatuses(List<Integer> orderStatuses) {
+        this.orderStatuses = orderStatuses;
+    }
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
+    }
+    public int getSelectedOrderStatus() {
+        return selectedOrderStatus;
+    }
+    public void setSelectedOrderStatus(int selectedOrderStatus) {
+        this.selectedOrderStatus = selectedOrderStatus;
+    }
+    public LocalDate getRequiredDate() {
+        return requiredDate;
+    }
+    public void setRequiredDate(LocalDate requiredDate) {
+        this.requiredDate = requiredDate;
+    }
+    public LocalDate getShippedDate() {
+        return shippedDate;
+    }
+    public void setShippedDate(LocalDate shippedDate) {
+        this.shippedDate = shippedDate;
+    }
+    public String getOperation() {
+        return operation;
+    }
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
+
+    //--------------------------- GETTERS AND SETTER END --------------------------
 }
