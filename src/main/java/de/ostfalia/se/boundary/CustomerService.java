@@ -52,11 +52,19 @@ public class CustomerService implements Serializable {
         return customer;
     }
 
+    /**
+     * Delete a staff to the customer table
+     * @param customer
+     */
     public void delete(Customer customer) {
         Customer detachedCustomer = em.merge(customer);
         em.remove(detachedCustomer);
     }
 
+    /**
+     * Update a staff to the customer table
+     * @param customer
+     */
     public void update(Customer customer) {
         em.merge(customer);
     }
