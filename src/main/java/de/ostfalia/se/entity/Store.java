@@ -1,6 +1,7 @@
 package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -70,6 +71,7 @@ public class Store {
     }
 
     // Getter und Setter
+    @NotNull(message = "Store cannot be empty")
     public Long getId() {
         return id;
     }

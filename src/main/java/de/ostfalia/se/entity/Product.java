@@ -1,6 +1,7 @@
 package de.ostfalia.se.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -54,9 +55,8 @@ public class Product {
     }
 
     // Getters and Setters
-    public Long getId() {
-        return id;
-    }
+    @NotNull(message = "Product cannot be empty")
+    public Long getId() {return id; }
 
     public void setId(Long id) {
         this.id = id;
