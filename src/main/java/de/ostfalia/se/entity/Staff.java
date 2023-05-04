@@ -152,4 +152,11 @@ public class Staff {
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
+
+    public void setFirstname(String firstname) {
+    }
+
+    public void setLastname(String lastname) {
+
+    }
 }
