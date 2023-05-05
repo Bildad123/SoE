@@ -28,9 +28,7 @@ public class AllCustomers implements Serializable {
     private String searchText;
     private List<Customer> filteredCustomers;
 
-    private String pageView;
 
-    private boolean toMasterView;
 
     AllCustomers(){
 
@@ -47,16 +45,6 @@ public class AllCustomers implements Serializable {
         pagination = new AllCustomersPagination(filteredCustomers);
         filter = new AllCustomersFilter();
         this.pagination.doRefresh();
-        this.pageView = "To Detail Page";   //default
-    }
-
-    public void changeView(){
-        toMasterView = !toMasterView;
-        if(toMasterView){
-           this.pageView = "To Master Page";
-        } else{
-            this.pageView = "To Detail View";
-        }
     }
 
     public void keypress() {
@@ -92,21 +80,5 @@ public class AllCustomers implements Serializable {
     }
     public void setFilteredCustomers(List<Customer> filteredCustomers) {
         this.filteredCustomers = filteredCustomers;
-    }
-
-    public String getPageView() {
-        return pageView;
-    }
-
-    public void setPageView(String pageView) {
-        this.pageView = pageView;
-    }
-
-    public boolean isToMasterView() {
-        return toMasterView;
-    }
-
-    public void setToMasterView(boolean toMasterView) {
-        this.toMasterView = toMasterView;
     }
 }
