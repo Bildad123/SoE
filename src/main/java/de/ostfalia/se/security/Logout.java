@@ -16,7 +16,7 @@ public class Logout {
         System.out.println("Logout submit called");
         request.logout();
         request.getSession().invalidate();
-        return "/login.xhtml?faces-redirect=true";
+        return "/dashboard.xhtml?faces-redirect=true";
     }
 
 
