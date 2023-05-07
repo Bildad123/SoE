@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<html 	 xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:f="jakarta.faces.core"
+         xmlns:h="jakarta.faces.html"
+         xmlns:ui="jakarta.faces.facelets"
+         xmlns:faces="jakarta.faces"
+         xmlns:pt="jakarta.faces.passthrough">
 
 <ui:composition template="Layouts/template.xhtml">
    <ui:define name="header">
@@ -23,7 +23,7 @@
 
                <h:outputLabel value="Customer"></h:outputLabel>
                <h:inputText
-                       pt:type="text" pt:placeholder="Search for Customer"
+                       pt:type="search" pt:placeholder="Search for Customer"
                        id="search_text" value="#{orderForm.searchTextCustomers}"
                        readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
                        disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
@@ -151,7 +151,7 @@
                     rendered="#{orderForm.operation.equals('Create Order')}" >
                <h:outputLabel value="Product"></h:outputLabel>
                <h:inputText
-                       pt:type="text"
+                       pt:type="search"
                        pt:placeholder="Search for Product" id="search_text1"
                        value="#{orderForm.searchTextProducts}"
                        readonly="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order')}"

@@ -2,17 +2,35 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="team-11:war" />
+      <artifact name="sep-team-11:war" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="">
+    <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="Prüfung bei Bestellung, ob Produkte vorhanden sind (angefangen)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Staff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Layouts/content.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Layouts/content.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Layouts/footer.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Layouts/footer.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Layouts/header.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Layouts/header.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Layouts/template.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Layouts/template.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/allBrands.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allBrands.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/allCategories.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allCategories.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/allCustomers.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allCustomers.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/allOrders.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allOrders.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/allProducts.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allProducts.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/allStocks.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allStocks.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/allStores.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allStores.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/brandForm.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/brandForm.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/categoryForm.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/categoryForm.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/customerForm.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/customerForm.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/dashboard.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/dashboard.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/orderForm.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/orderForm.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/orderItems.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/orderItems.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/productForm.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/productForm.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/storeForm.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/storeForm.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +202,7 @@
     <configuration name="JBoss/WildFly 27.0.1.Final" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 27.0.1.Final" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="team-11:war">
+        <artifact name="sep-team-11:war">
           <settings />
         </artifact>
       </deployment>
@@ -249,6 +267,7 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="team-11:war" />
+          <artifact name="sep-team-11:war" />
         </option>
       </method>
     </configuration>
@@ -277,6 +296,10 @@
       <workItem from="1682778789194" duration="1968000" />
       <workItem from="1682841373723" duration="18668000" />
       <workItem from="1682927677983" duration="9437000" />
+      <workItem from="1683281479598" duration="19362000" />
+      <workItem from="1683322325940" duration="874000" />
+      <workItem from="1683401106847" duration="1656000" />
+      <workItem from="1683453688516" duration="3854000" />
     </task>
     <task id="LOCAL-00002" summary="Iteration1 Anfang">
       <created>1682357302479</created>
@@ -313,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682929779022</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Prüfung bei Bestellung, ob Produkte vorhanden sind (angefangen)">
+      <created>1683301600139</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1683301600139</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,6 +367,7 @@
     <MESSAGE value="Hinzufügen und Löschen für Brand und Category" />
     <MESSAGE value="SelectList bei ProductForm implementieren" />
     <MESSAGE value="Fehler bei SelectList beheben" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fehler bei SelectList beheben" />
+    <MESSAGE value="Prüfung bei Bestellung, ob Produkte vorhanden sind (angefangen)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prüfung bei Bestellung, ob Produkte vorhanden sind (angefangen)" />
   </component>
 </project>
