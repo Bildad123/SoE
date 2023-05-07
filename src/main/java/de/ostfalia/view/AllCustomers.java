@@ -28,6 +28,8 @@ public class AllCustomers implements Serializable {
     private String searchText;
     private List<Customer> filteredCustomers;
 
+
+
     AllCustomers(){
 
     }

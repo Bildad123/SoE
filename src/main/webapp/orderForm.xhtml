@@ -129,7 +129,7 @@
                        disabled="#{orderForm.operation.equals('Delete Order') or orderForm.operation.equals('Read Order') or orderForm.operation.equals('Edit Order')}"
                        styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
                   <f:selectItems value="#{orderForm.stores}"  var="store" itemLabel="#{store.storeName}" itemValue="#{store}"  />
-                  <f:ajax listener="#{orderForm.updateSelectedStore(store.id)}"></f:ajax>
+                  <f:ajax listener="#{orderForm.updateSelectedStore(store.id)}" render="@form"></f:ajax>
                </h:selectOneMenu>
 
                <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
@@ -221,13 +221,13 @@
             </h:column>
 
             <h:column>
-               <f:facet name="header">Price</f:facet>
-               #{oi.product.listPrice}
+               <f:facet name="header">Quantity</f:facet>
+               #{oi.quantity}
             </h:column>
 
             <h:column>
-               <f:facet name="header">Quantity</f:facet>
-               #{oi.quantity}
+               <f:facet name="header">Price</f:facet>
+               #{oi.product.listPrice}
             </h:column>
 
             <h:column rendered="#{orderForm.operation.equals('Create Order')}">
@@ -241,6 +241,11 @@
                <h:commandButton  style="padding: 0 3px 0 3px; margin-right: 30px" value="&#x274C;">
                   <f:ajax event="click" listener="#{orderForm.deleteItem(oi)}" render="@form"></f:ajax>
                </h:commandButton>
+            </h:column>
+
+            <h:column>
+               <f:facet name="header">Left in Store</f:facet>
+               #{( orderForm.getQuantityLeftInStore(oi.product) - oi.quantity)}
             </h:column>
 
          </h:dataTable><br></br>

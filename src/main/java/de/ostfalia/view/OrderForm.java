@@ -38,6 +38,10 @@ public class OrderForm implements Serializable{
     OrderService orderService;
     @Inject
     OrderItemService orderItemService;
+
+    @Inject
+    StockService stockService;
+
     private List<Customer> customers;
     private List<Customer> filteredCustomers;
     private Customer selectedCustomer;
@@ -83,6 +87,12 @@ public class OrderForm implements Serializable{
         stores= storeService.findAll();
         staffs=staffService.findAll();
         orderStatuses = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+        if(stores.size() > 0){
+            selectedStore = stores.get(0);
+        }
+        if(staffs.size() > 0){
+            selectedStaff = staffs.get(0);
+        }
 
         getOperationFromQueryParam();
     }
@@ -122,14 +132,15 @@ public class OrderForm implements Serializable{
                 saveOrder();
                 fillOrder();
                 saveOrderItems();
-               // showOrderToBeSaved();
-                return "allOrders" + "?faces-redirect=true";
+                updateQuantityLeftInStock();
+               //showOrderToBeSaved();
+               return "allOrders" + "?faces-redirect=true";
             }
             case "Edit Order" : {
                 fillOrder();
                 orderService.update(order);
                 // showOrderToBeSaved();
-                return null;
+                return "allOrders" + "?faces-redirect=true";
             }
         }
         return null;
@@ -194,6 +205,18 @@ public class OrderForm implements Serializable{
         }
     }
 
+    public void updateQuantityLeftInStock(){
+        Iterator<OrderItem> iterator = orderItems.iterator();
+        while (iterator.hasNext()){
+            OrderItem oi = iterator.next();
+            Stock stock = stockService.findByProductAndStore(this.selectedStore, oi.getProduct());
+            if(stock != null){
+                stock.setQuantity(stock.getQuantity() - oi.getQuantity());
+                stockService.save(stock);
+            }
+        }
+    }
+
     /**
      * Associates all orderItems to order
      */
@@ -218,7 +241,13 @@ public class OrderForm implements Serializable{
         if(!this.selectedItemIsPresent()){
             OrderItem item = new OrderItem();
             item.setProduct(selectedProduct);
-            item.setQuantity(1);
+
+            getQuantityLeftInStore(product);
+            if(getQuantityLeftInStore(product) <= 0){
+                item.setQuantity(0);
+            }else{
+                item.setQuantity(1);
+            }
             item.setListPrice(selectedProduct.getListPrice());
             item.setOrder(order);
             this.orderItems.add(item);
@@ -246,17 +275,27 @@ public class OrderForm implements Serializable{
         for(int i = 0; i < this.orderItems.size(); i++){
             Product p = this.orderItems.get(i).getProduct();
             if(product.getId().equals(p.getId())){
-                if(increaseQuantity){
-                    this.orderItems.get(i).setQuantity( this.orderItems.get(i).getQuantity() + 1 );
-                } else{
-                    this.orderItems.get(i).setQuantity( this.orderItems.get(i).getQuantity() - 1 );
-                    if(this.orderItems.get(i).getQuantity() <= 0){
-                        this.deleteItem(this.orderItems.get(i));
+                    if(increaseQuantity){
+                       if(getQuantityLeftInStore(product) > this.orderItems.get(i).getQuantity()){
+                            this.orderItems.get(i).setQuantity( this.orderItems.get(i).getQuantity() + 1 );  //only add as many items as there are in a given store
+                       }
+                    } else{
+                        this.orderItems.get(i).setQuantity( this.orderItems.get(i).getQuantity() - 1 );
+                        if(this.orderItems.get(i).getQuantity() <= 0){
+                            //this.orderItems.get(i).setQuantity(0);
+                            this.deleteItem(this.orderItems.get(i));
+                         }
                     }
-                }
-
             }
         }
+    }
+
+    public int getQuantityLeftInStore(Product product){
+        Stock stock = stockService.findByProductAndStore(selectedStore, product);
+        if(stock != null){
+            return stock.getQuantity();
+        }
+        return 0;
     }
 
     /**

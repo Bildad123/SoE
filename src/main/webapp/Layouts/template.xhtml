@@ -25,8 +25,14 @@
 
         <div class="container">
             <div class="content">
-                <div style="width: fit-content;min-width: 100%;overflow-x: hidden;background-color: #ffffff;height: 50%;margin: 5px auto 10px auto;">
+                <div style="width: fit-content;min-width: 100%;overflow-x: hidden;background-color: #ffffff;height: 50%;margin: 5px auto 10px auto; display: flex; flex-direction: row; justify-content:space-between;">
                     <span>&#128100; #{request.userPrincipal.name}</span>
+
+                    <h:commandLink
+                            rendered="#{request.userPrincipal.name != null}"
+                            value="Logout &#9660;" action="#{logout.submit()}" styleClass="data-table-create-h-link">
+                        <f:ajax listener="#{logout.submit()}" render="container"/>
+                    </h:commandLink>
                 </div>
                 <ui:insert name="content">
                     <ui:include src="content.xhtml"></ui:include>
