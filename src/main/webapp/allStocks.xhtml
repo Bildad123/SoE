@@ -36,8 +36,8 @@
                 <h:column>
                     <f:facet name="header">Product</f:facet>
                     <h:link value="#{s.product.name}" outcome="stockForm.xhtml">
-                        <f:param name="id1" value="#{s.product.id}" />
-                        <f:param name="id2" value="#{s.store.id}" />
+                        <f:param name="productId" value="#{s.product.id}" />
+                        <f:param name="storeId" value="#{s.store.id}" />
                         <f:param name="operation" value="Read"/>
                     </h:link>
                 </h:column>
@@ -45,8 +45,8 @@
                 <h:column>
                     <f:facet name="header">Store</f:facet>
                     <h:link value="#{s.store.storeName}" outcome="stockForm.xhtml">
-                        <f:param name="id1" value="#{s.product.id}" />
-                        <f:param name="id2" value="#{s.store.id}" />
+                        <f:param name="productId" value="#{s.product.id}" />
+                        <f:param name="storeId" value="#{s.store.id}" />
                         <f:param name="operation" value="Read"/>
                     </h:link>
                 </h:column>
@@ -54,8 +54,8 @@
                 <h:column>
                     <f:facet name="header">Quantity</f:facet>
                     <h:link value="#{s.quantity}" outcome="stockForm.xhtml">
-                        <f:param name="id1" value="#{s.product.id}" />
-                        <f:param name="id2" value="#{s.store.id}" />
+                        <f:param name="productId" value="#{s.product.id}" />
+                        <f:param name="storeId" value="#{s.store.id}" />
                         <f:param name="operation" value="Read"/>
                     </h:link>
                 </h:column>
@@ -64,14 +64,14 @@
                     <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
 
                     <h:link value="&#128221;" outcome="stockForm.xhtml" styleClass="data-table-edit-h-link">
-                        <f:param name="id1" value="#{s.product.id}" />
-                        <f:param name="id2" value="#{s.store.id}" />
+                        <f:param name="productId" value="#{s.product.id}" />
+                        <f:param name="storeId" value="#{s.store.id}" />
                         <f:param name="operation" value="Edit"/>
                     </h:link>
 
                     <h:link value="&#x274C;" outcome="stockForm.xhtml" styleClass="data-table-edit-h-link">
-                        <f:param name="id1" value="#{s.product.id}" />
-                        <f:param name="id2" value="#{s.store.id}" />
+                        <f:param name="productId" value="#{s.product.id}" />
+                        <f:param name="storeId" value="#{s.store.id}" />
                         <f:param name="operation" value="Delete"/>
                     </h:link>
                 </h:column>

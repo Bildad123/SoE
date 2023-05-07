@@ -34,6 +34,12 @@ public class BrandService {
         return brand;
     }
 
+    public Brand findByBrandName(String brandName) {
+        TypedQuery<Brand> query = em.createQuery("select b from Brand b where b.brandName = :brandName", Brand.class);
+        query.setParameter("brandName", brandName);
+        return query.getSingleResult();
+    }
+
     public void delete(Brand brand) {
         Brand detachedBrand = em.merge(brand);
         em.remove(detachedBrand);

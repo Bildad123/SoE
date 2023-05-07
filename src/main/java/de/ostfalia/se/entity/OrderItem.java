@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "order_items")
-@IdClass(OrderItemPK.class)
 public class OrderItem implements Serializable {
     @Id
     @Column(name = "item_id")

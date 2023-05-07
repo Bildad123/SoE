@@ -6,10 +6,9 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "stocks")
-@IdClass(StockPK.class)
 public class Stock {
     @Id
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 

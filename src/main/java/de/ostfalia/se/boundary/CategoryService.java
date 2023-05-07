@@ -34,6 +34,12 @@ public class CategoryService {
         return category;
     }
 
+    public Category findByCategoryName(String categoryName) {
+        TypedQuery<Category> query = em.createQuery("select c from Category c where c.categoryName = :categoryName", Category.class);
+        query.setParameter("categoryName", categoryName);
+        return query.getSingleResult();
+    }
+
     public void delete(Category category) {
         Category detachedCategory = em.merge(category);
         em.remove(detachedCategory);

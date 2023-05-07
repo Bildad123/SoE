@@ -11,10 +11,17 @@
   <component name="ChangeListManager">
     <list default="true" id="4f89855d-ea95-47bb-a67e-f18f6306d71b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/BrandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/BrandService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/StockService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/StoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/boundary/StoreService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Brand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Brand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/OrderItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Stock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/se/entity/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/AllStocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/AllStocks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/ProductForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ostfalia/view/ProductForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/allStocks.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/allStocks.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -285,7 +292,11 @@
       <workItem from="1682979919915" duration="4043000" />
       <workItem from="1683013299745" duration="2723000" />
       <workItem from="1683056153334" duration="510000" />
-      <workItem from="1683140569775" duration="1839000" />
+      <workItem from="1683140569775" duration="6638000" />
+      <workItem from="1683190512841" duration="20998000" />
+      <workItem from="1683274360962" duration="3268000" />
+      <workItem from="1683386183176" duration="630000" />
+      <workItem from="1683455721841" duration="3139000" />
     </task>
     <task id="LOCAL-00002" summary="Iteration1 Anfang">
       <created>1682357302479</created>
@@ -329,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682941332260</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Problem bei delete-Funktion von Product">
+      <created>1683149354100</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1683149354100</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

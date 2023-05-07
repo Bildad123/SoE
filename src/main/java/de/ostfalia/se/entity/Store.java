@@ -35,7 +35,7 @@ public class Store {
     @OneToMany(mappedBy = "store")
     private Set<Staff> staffs = new HashSet<>();
 
-    @OneToMany(mappedBy = "store")
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private Set<Stock> stocks = new HashSet<>();
 
     public Store(Integer id, String storeName, String email, String phone, String street, String zipCode, String city, String state, Set<Order> orders, Set<Staff> staffs, Set<Stock> stocks) {

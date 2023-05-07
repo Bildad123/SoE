@@ -28,7 +28,9 @@ public class StockService {
     }
 
     public void save(Stock stock){
+        Product mergedProduct = em.merge(stock.getProduct());
         Store mergedStore = em.merge(stock.getStore());
+        stock.setProduct(mergedProduct);
         stock.setStore(mergedStore);
         em.persist(stock);
     }
@@ -36,6 +38,13 @@ public class StockService {
     public Stock findByPks(StockPK stockPK){
         Stock stock = em.find(Stock.class, stockPK);
         return stock;
+    }
+
+    public Stock findByProductAndStore(Product product, Store store) {
+        TypedQuery<Stock> query = em.createQuery("select s from Stock s where s.product.id = :productId and s.store.id = :storeId", Stock.class);
+        query.setParameter("productId", product.getId());
+        query.setParameter("storeId", store.getId());
+        return query.getSingleResult();
     }
 
     public void delete(Stock stock) {

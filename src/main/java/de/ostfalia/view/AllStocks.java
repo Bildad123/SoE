@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @ViewScoped
 public class AllStocks implements Serializable {
     @Inject
-    private  StockService ss;
+    private StockService ss;
     private List<Stock> stocks;
     private List<Stock> filteredStocks;
     private AllStocksPagination pagination;

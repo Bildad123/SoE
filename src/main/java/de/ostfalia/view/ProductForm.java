@@ -1,5 +1,7 @@
 package de.ostfalia.view;
 
+import de.ostfalia.se.boundary.BrandService;
+import de.ostfalia.se.boundary.CategoryService;
 import de.ostfalia.se.boundary.ProductService;
 import de.ostfalia.se.entity.Brand;
 import de.ostfalia.se.entity.Category;
@@ -22,7 +24,11 @@ import java.math.BigDecimal;
 @ViewScoped
 public class ProductForm implements Serializable {
     @Inject
-    ProductService ps;
+    ProductService productService;
+    @Inject
+    BrandService brandService;
+    @Inject
+    CategoryService categoryService;
     @NotNull(message = "name cannot be empty")
     private String name;
     @NotNull(message = "price cannot be empty")
@@ -41,7 +47,7 @@ public class ProductForm implements Serializable {
         Form form = new Form();
         String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
         if(id != null){
-            this.product = ps.findById(Integer.valueOf(id));
+            this.product = productService.findById(Integer.valueOf(id));
         } else {
             this.product = new Product();
         }
@@ -63,22 +69,23 @@ public class ProductForm implements Serializable {
     public void fillProduct() {
         product.setName(name);
         product.setListPrice(price);
-        product.setBrand(ps.findBrandByName(brandName));
+        product.setBrand(brandService.findByBrandName(brandName));
         product.setModelYear(Integer.parseInt(modelYear));
-        product.setCategory(ps.findCategoryByName(categoryName));
+        product.setCategory(categoryService.findByCategoryName(categoryName));
     }
 
     public String submitForm() {
         if (operation.equals("Create Product")) {
             fillProduct();
-            ps.save(product);
+            productService.save(product);
         }
         if (operation.equals("Delete Product")) {
-            ps.delete(product);
+
+            productService.delete(product);
         }
         if (operation.equals("Edit Product")) {
             fillProduct();
-            ps.update(product);
+            productService.update(product);
         }
         return "allProducts" + "?faces-redirect=true";
     }
