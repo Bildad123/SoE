@@ -142,6 +142,10 @@ public class OrderForm implements Serializable{
                 // showOrderToBeSaved();
                 return "allOrders" + "?faces-redirect=true";
             }
+            case "Delete Order" : {
+                orderService.delete(orderService.findById(order.getId()));
+                return "allOrders" + "?faces-redirect=true";
+            }
         }
         return null;
     }

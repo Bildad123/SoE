@@ -19,7 +19,7 @@
 
          <div style="display: flex; flex-direction: column;">
             <fieldset >
-               <legend>#{orderForm.operation.toUpperCase()}</legend>
+               <legend>#{orderForm.operation}</legend>
 
                <h:outputLabel value="Customer"></h:outputLabel>
                <h:inputText
@@ -243,7 +243,7 @@
                </h:commandButton>
             </h:column>
 
-            <h:column>
+            <h:column rendered="#{orderForm.operation.equals('Create Order')}">
                <f:facet name="header">Left in Store</f:facet>
                #{( orderForm.getQuantityLeftInStore(oi.product) - oi.quantity)}
             </h:column>
@@ -255,8 +255,8 @@
          <h:commandButton
                  id="submit"
                  rendered="#{not orderForm.operation.equals('Read Order')}"
-                 disabled="#{orderForm.operation.equals('Delete Order')}"
-                 type="submit" value="#{orderForm.operation.toUpperCase()}" action="#{orderForm.submitForm()}"
+                 disabled="#{orderForm.operation.equals('Read Order')}"
+                 type="submit" value="#{orderForm.operation}" action="#{orderForm.submitForm()}"
                           style="width: 100%"
          />
          <br/><br/>

@@ -74,7 +74,7 @@ public class ProductForm implements Serializable {
             ps.save(product);
         }
         if (operation.equals("Delete Product")) {
-            ps.delete(product);
+            ps.delete(ps.findById(product.getId()));
         }
         if (operation.equals("Edit Product")) {
             fillProduct();
