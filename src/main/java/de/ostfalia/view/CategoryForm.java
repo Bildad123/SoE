@@ -34,7 +34,7 @@ public class CategoryForm implements Serializable {
         Form form = new Form();
         String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
         if(id != null){
-            this.category = cs.findById(Long.valueOf(id));
+            this.category = cs.findById(Integer.valueOf(id));
         } else {
             this.category = new Category();
         }

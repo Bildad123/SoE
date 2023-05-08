@@ -38,7 +38,7 @@ public class Staff {
     @JoinColumn(name = "manager_id")
     private Staff manager;
 
-    @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "staff", cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
     private Set<Order> orders = new HashSet<>();
 
     public Staff(Integer id, String firstName, String lastName, String email, String phone, Integer active, Store store, Set<Staff> staffs, Staff manager, Set<Order> orders) {

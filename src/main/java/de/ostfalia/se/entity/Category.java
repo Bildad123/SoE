@@ -16,7 +16,7 @@ public class Category {
     @Column(name = "category_name")
     private String categoryName;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
     private Set<Product> products = new HashSet<>();
 
     public Category(Integer id, String categoryName, Set<Product> products) {

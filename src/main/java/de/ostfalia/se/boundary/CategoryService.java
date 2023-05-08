@@ -29,7 +29,7 @@ public class CategoryService {
         em.persist(category);
     }
 
-    public Category findById(Long id){
+    public Category findById(Integer id){
         Category category = em.find(Category.class, id);
         return category;
     }
