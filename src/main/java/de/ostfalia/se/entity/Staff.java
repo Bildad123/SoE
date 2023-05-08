@@ -159,10 +159,4 @@ public class Staff {
         this.orders = orders;
     }
 
-    public void setFirstname(String firstname) {
-    }
-
-    public void setLastname(String lastname) {
-
-    }
 }

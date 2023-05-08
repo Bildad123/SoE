@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:f="http://xmlns.jcp.org/jsf/core"
+         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+         xmlns:h = "http://xmlns.jcp.org/jsf/html"
+         xmlns:jsf = "http://xmlns.jcp.org/jsf"
+         xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+>
+
+    <ui:composition template="Layouts/template.xhtml">
+        <ui:define name="content">
+            <h:outputLabel style="font-size: small" id="qty">
+                Matched #{allStaffs.filteredStaffs.size()} staff(s) from the database
+            </h:outputLabel><br></br>
+
+            <h:form autocomplete="off">
+                <div style="display: flex; flex-direction: row; justify-content:space-between; align-items: center;" >
+                    <h:inputText pt:type="text" pt:placeholder="Search for Staff by Staff Name" id="serch_text" value="#{allStaffs.searchText}"  styleClass="form-search-text-input" >
+                        <f:ajax event="keyup" listener="#{allStaffs.keypress()}" render="data-table-customers qty" execute="@this"/>
+                    </h:inputText>
+
+
+                    <h:link value="&#10133;  Create Staff" styleClass="data-table-create-h-link" outcome="staffForm.xhtml"></h:link>
+                </div>
+
+                <h:panelGroup id="data-table-customers">
+                <h:dataTable value="#{allStaffs.filteredStaffs}" var="s"
+                             id="customers-data-table"
+                             first="#{allStaffs.pagination.currentRows}"
+                             rows="#{allStaffs.pagination.maxTableRows}"
+                             styleClass="customers-table"
+                             headerClass="customers-table-header"
+                             rowClasses="customers-table-odd-row,customers-table-even-row"
+                             cellspacing="15px"
+                             cellpadding="15px"
+                             style="text-align: left"
+                             rendered="#{allStaffs.filteredStaffs.size() > 0}">
+
+                    <h:column>
+                        <f:facet name="header">Firstname</f:facet>
+                        <h:link value="#{s.firstName}" outcome="staffForm.xhtml">
+                            <f:param name="id" value="#{s.id}" />
+                            <f:param name="operation" value="Read"/>
+                        </h:link>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Lastname</f:facet>
+                        <h:link value="#{s.lastName}" outcome="staffForm.xhtml">
+                            <f:param name="id" value="#{s.id}" />
+                            <f:param name="operation" value="Read"/>
+                        </h:link>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                        <h:link value="#{s.email}" outcome="staffForm.xhtml">
+                            <f:param name="id" value="#{s.id}" />
+                            <f:param name="operation" value="Read"/>
+                        </h:link>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Phone</f:facet>
+                        <h:link value="#{s.phone}" outcome="staffForm.xhtml">
+                            <f:param name="id" value="#{s.id}" />
+                            <f:param name="operation" value="Read"/>
+                        </h:link>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Active</f:facet>
+                        <h:link value="#{s.active}" outcome="staffForm.xhtml">
+                            <f:param name="id" value="#{s.id}" />
+                            <f:param name="operation" value="Read"/>
+                        </h:link>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
+
+                        <h:link value="&#128221;" outcome="staffForm.xhtml" styleClass="data-table-edit-h-link">
+                            <f:param name="id" value="#{s.id}" />
+                            <f:param name="operation" value="Edit"/>
+                        </h:link>
+
+                        <h:link value="&#x274C;" outcome="staffForm.xhtml" styleClass="data-table-edit-h-link">
+                            <f:param name="id" value="#{s.id}" />
+                            <f:param name="operation" value="Delete"/>
+                        </h:link>
+                    </h:column>
+
+
+                    <f:facet name="footer">
+                        <h:panelGroup rendered="#{allStaffs.pagination.showPageList}">
+                            <h:commandButton value="Back" disabled="#{!allStaffs.pagination.displayBackButton}" styleClass="form-paginating-button-back" >
+                                <f:ajax listener="#{allStaffs.pagination.back()}" render="@form"/>
+                            </h:commandButton>
+                            <h:selectOneMenu value="#{allStaffs.pagination.selectedPage}">
+                                <f:selectItems value="#{allStaffs.pagination.pages}" var="page" itemLabel="Page #{page}" itemValue="#{page}" />
+                                <f:ajax listener="#{allStaffs.pagination.pageChange}" render="@form"/>
+                            </h:selectOneMenu>
+                            <h:commandButton value="Next"  disabled="#{!allStaffs.pagination.displayNextButton}" styleClass="form-paginating-button-next" >
+                                <f:ajax listener="#{allStaffs.pagination.next()}" render="@form"/>
+                            </h:commandButton>
+                        </h:panelGroup>
+                    </f:facet>
+
+                </h:dataTable>
+                </h:panelGroup>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

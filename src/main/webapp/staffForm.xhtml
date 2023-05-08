@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="Layouts/template.xhtml">
+
+        <ui:define name="content">
+
+            <h:form id="create-customer-form">
+                <fieldset>
+                    <legend>#{staffForm.operation}</legend>
+
+
+                    <h:outputLabel for="firstname" value="First Name"  styleClass="form-label"/>
+                    <h:inputText id="firstname" value="#{staffForm.firstname}" required="true"
+                                 styleClass="form-input-text"
+                                 readonly="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
+                                 disabled="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
+                    />
+                    <br/><br/>
+
+                    <h:outputLabel for="lastname" value="Last Name" styleClass="form-label"/>
+                    <h:inputText id="lastname" value="#{staffForm.lastname}" required="true"
+                                 styleClass="form-input-text"
+                                 readonly="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
+                                 disabled="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
+                    />
+                    <br/><br/>
+
+                    <h:outputLabel for="email" value="Email"  styleClass="form-label"/>
+                    <h:inputText id="email" type="email" value="#{staffForm.email}" required="true"
+                                 styleClass="form-input-text"
+                                 readonly="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
+                                 disabled="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
+                    />
+                    <br/><br/>
+
+                    <h:outputLabel for="phone" value="Phone"  styleClass="form-label"/>
+                    <h:inputText id="phone" value="#{staffForm.phone}" required="true"
+                                 styleClass="form-input-text"
+                                 readonly="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
+                                 disabled="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
+                    />
+                    <br/><br/>
+
+                    <h:outputLabel for="active" value="Active"  styleClass="form-label"/>
+                    <h:inputText id="active" value="#{staffFrom.active}" required="true"
+                                 styleClass="form-input-text"
+                                 readonly="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
+                                 disabled="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
+                    />
+                    <br/><br/><br/>
+
+                </fieldset>
+                <br/><br/>
+                <h:commandButton id="reset"  value="Reset" action="#{staffForm.submitForm()}"
+                                 style="width: 100%" pt:type="reset"
+                                 rendered="#{staffForm.operation.equals('Create Staff')}"
+                />
+                <br/><br/>
+                <h:commandButton id="submit" type="submit" value="#{staffForm.operation}" action="#{staffForm.submitForm()}"
+                                 style="width: 100%"
+                                 rendered="#{!staffForm.operation.equals('Read Staff')}"
+                />
+                <br/><br/>
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

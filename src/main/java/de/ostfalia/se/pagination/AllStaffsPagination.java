@@ -19,11 +19,12 @@ public class AllStaffsPagination extends Pagination<Staff>{
     }
 
     //Getters and Setters
-    public List<Staff> getProducts() {
-        return this.staffs;
+
+    public List<Staff> getStaffs() {
+        return staffs;
     }
 
-    public void setProducts(List<Staff> staffs) {
+    public void setStaffs(List<Staff> staffs) {
         this.staffs = staffs;
     }
 }

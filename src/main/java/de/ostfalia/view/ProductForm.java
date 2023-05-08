@@ -80,7 +80,6 @@ public class ProductForm implements Serializable {
             productService.save(product);
         }
         if (operation.equals("Delete Product")) {
-
             productService.delete(product);
         }
         if (operation.equals("Edit Product")) {

@@ -12,16 +12,16 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.validation.constraints.NotNull;
 
+import java.io.Serializable;
+
 /**
  * Bean for the JSF Page 'customerForm.xhtml'
  */
 @Named
 @ViewScoped
-public class StaffFrom {
+public class StaffFrom implements Serializable {
     @Inject
     StaffService sts;
-    @NotNull(message = "Id cannot be empty")
-    private Integer id;
     @NotNull(message = "First Name cannot be empty")
     private String firstname;
     @NotNull(message = "Last Name cannot be empty")
@@ -44,7 +44,7 @@ public class StaffFrom {
         Form form = new Form();
         String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
         if(id != null){
-            this.staff = sts.findById(Long.valueOf(id));
+            this.staff = sts.findById(Integer.valueOf(id));
         } else {
             this.staff = new Staff();
         }
@@ -56,7 +56,6 @@ public class StaffFrom {
     }
 
     public void autoFillForm(){
-        this.id = staff.getId();
         this.firstname = staff.getFirstName();
         this.lastname = staff.getLastName();
         this.email = staff.getEmail();
@@ -65,9 +64,8 @@ public class StaffFrom {
     }
 
     public void fillStaff() {
-        staff.setId(id);
-        staff.setFirstname(firstname);
-        staff.setLastname(lastname);
+        staff.setFirstName(firstname);
+        staff.setLastName(lastname);
         staff.setEmail(email);
         staff.setPhone(phone);
         staff.setActive(active);
@@ -97,14 +95,6 @@ public class StaffFrom {
     }
 
     //Getter and Setter
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getFirstname() {
         return firstname;

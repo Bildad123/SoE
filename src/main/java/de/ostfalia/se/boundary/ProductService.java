@@ -9,6 +9,7 @@ import jakarta.persistence.TypedQuery;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import static jakarta.persistence.PersistenceContextType.TRANSACTION;
 
@@ -62,7 +63,45 @@ public class ProductService implements Serializable {
         return query.getSingleResult();
     }
 
+    public void deleteFromBrand(Product product) {
+        if (product == null) {
+            return;
+        }
+        Brand detachedBrand = product.getBrand();
+        detachedBrand.getProducts().remove(product);
+        em.merge(detachedBrand);
+    }
+
+    public void deleteFromCategory(Product product) {
+        if (product == null) {
+            return;
+        }
+        Category detachedCategory = product.getCategory();
+        detachedCategory.getProducts().remove(product);
+        em.merge(detachedCategory);
+    }
+
+    public void deleteOrderItems(Product product) {
+        Set<OrderItem> orderItems = product.getOrderItem();
+        for (OrderItem orderItem : orderItems) {
+            orderItem.setProduct(null);
+        }
+        orderItems.clear();
+    }
+
+    public void deleteStocks(Product product) {
+        Set<Stock> stocks = product.getStocks();
+        for (Stock stock : stocks) {
+            stock.setProduct(null);
+        }
+        stocks.clear();
+    }
+
     public void delete(Product product) {
+//        deleteFromBrand(product);
+//        deleteFromCategory(product);
+//        deleteOrderItems(product);
+//        deleteStocks(product);
         Product mergedProduct = em.merge(product);
         em.remove(mergedProduct);
     }
@@ -70,9 +109,5 @@ public class ProductService implements Serializable {
     public void update(Product product) {
         em.merge(product);
     }
-
-
-
-
 
 }
