@@ -1,8 +1,6 @@
 package de.ostfalia.view;
 
-import de.ostfalia.se.boundary.CustomerService;
 import de.ostfalia.se.boundary.StaffService;
-import de.ostfalia.se.entity.Customer;
 import de.ostfalia.se.entity.Staff;
 import de.ostfalia.se.form.Form;
 import jakarta.annotation.PostConstruct;
@@ -19,7 +17,7 @@ import java.io.Serializable;
  */
 @Named
 @ViewScoped
-public class StaffFrom implements Serializable {
+public class StaffForm implements Serializable {
     @Inject
     StaffService sts;
     @NotNull(message = "First Name cannot be empty")
@@ -36,7 +34,7 @@ public class StaffFrom implements Serializable {
     private Staff staff;
     private Form form;
 
-    public StaffFrom() {
+    public StaffForm() {
     }
 
     @PostConstruct

@@ -50,7 +50,7 @@
                     <br/><br/>
 
                     <h:outputLabel for="active" value="Active"  styleClass="form-label"/>
-                    <h:inputText id="active" value="#{staffFrom.active}" required="true"
+                    <h:inputText id="active" value="#{staffForm.active}" required="true"
                                  styleClass="form-input-text"
                                  readonly="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
                                  disabled="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
