@@ -25,10 +25,11 @@ public class CustomIdentityStore implements IdentityStore {
         String matchedPasswordFromDatabase =  staffService.callerQuery(login.getCaller());
         String userGroupOfMatchedStaff = staffService.groupsQuery(login.getCaller());
 
-
+        String[] splitPasswort = matchedPasswordFromDatabase.split(" ");
+        String matchedPassword = splitPasswort[1];
 
         if(matchedPasswordFromDatabase != null && userGroupOfMatchedStaff != null){
-            if (matchedPasswordFromDatabase.contains(login.getPasswordAsString())) {
+            if (matchedPassword.contains(login.getPasswordAsString())) {
                 return new CredentialValidationResult(
                         login.getCaller().concat(" (").concat(userGroupOfMatchedStaff).concat(") "),
                         new HashSet<>(Arrays.asList(userGroupOfMatchedStaff)));
