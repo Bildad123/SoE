@@ -5,7 +5,6 @@
           xmlns:f="http://xmlns.jcp.org/jsf/core"
           xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
           xmlns:h = "http://xmlns.jcp.org/jsf/html"
-          xmlns:jsf = "http://xmlns.jcp.org/jsf"
           xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 
@@ -19,7 +18,7 @@
                     <f:ajax event="keyup" listener="#{allStores.keypress()}" render="data-table-stores matched-stores" execute="@this"/>
                 </h:inputText>
 
-                <h:link value="&#10133;  Create Store" styleClass="data-table-create-h-link" outcome="storeForm.xhtml"></h:link>
+                <h:link value="&#10133;  Create Store" styleClass="data-table-create-h-link" outcome="storeForm.xhtml" rendered="false"></h:link>
             </div>
 
             <h:panelGroup id="data-table-stores">
@@ -91,7 +90,7 @@
                     </h:link>
                 </h:column>
 
-                <h:column>
+                <h:column rendered="false">
                     <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
 
                     <h:link value="&#128221;" outcome="storeForm.xhtml" styleClass="data-table-edit-h-link">

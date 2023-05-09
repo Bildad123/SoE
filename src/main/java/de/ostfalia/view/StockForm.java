@@ -97,7 +97,11 @@ public class StockForm implements Serializable {
     public String submitForm() {
         if (operation.equals("Create Stock")) {
             fillStock();
-            stockService.save(stock);
+            if (stockService.findByProductAndStore(stock.getProduct(), stock.getStore()) == null) {
+                stockService.save(stock);
+            } else {
+                stockService.update(stock);
+            }
         }
         if (operation.equals("Delete Stock")) {
             stockService.delete(stock);

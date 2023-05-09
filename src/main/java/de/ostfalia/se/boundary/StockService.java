@@ -41,9 +41,9 @@ public class StockService {
     }
 
     public Stock findByProductAndStore(Product product, Store store) {
-        TypedQuery<Stock> query = em.createQuery("select s from Stock s where s.product.id = :productId and s.store.id = :storeId", Stock.class);
-        query.setParameter("productId", product.getId());
-        query.setParameter("storeId", store.getId());
+        TypedQuery<Stock> query = em.createQuery("select s from Stock s where s.product = :product and s.store = :store", Stock.class);
+        query.setParameter("product", product);
+        query.setParameter("store", store);
         return query.getSingleResult();
     }
 

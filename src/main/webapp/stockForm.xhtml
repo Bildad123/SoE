@@ -13,14 +13,6 @@
             <fieldset>
                <legend>#{stockForm.operation}</legend>
 
-<!--               <h:outputLabel for="productName" value="Product Name" styleClass="form-label"/>-->
-<!--               <h:inputText id="productName" value="#{stockForm.productName}" required="true" label="Name"-->
-<!--                            styleClass="form-input-text"-->
-<!--                            readonly="#{stockForm.operation.equals('Delete Stock') || stockForm.operation.equals('Read Stock') || stockForm.operation.equals('Edit Stock')}"-->
-<!--                            disabled="#{stockForm.operation.equals('Delete Stock') || stockForm.operation.equals('Read Stock') || stockForm.operation.equals('Edit Stock')}"-->
-<!--               />-->
-<!--               <br/><br/>-->
-
                <h:panelGroup>
                   <h:outputLabel value="Product"></h:outputLabel>
                   <h:inputText
@@ -35,7 +27,7 @@
                </h:panelGroup>
 
                <h:panelGroup id="data-table-product">
-                  <h:dataTable value="#{stockForm.filteredProducts}" var="p"
+                  <h:dataTable value="#{stockForm.filteredProducts}" var="s"
                                id="product-data-table"
                                first="#{stockForm.paginationProducts.currentRows}"
                                rows="#{stockForm.paginationProducts.maxTableRows}"
@@ -48,9 +40,9 @@
                                rendered="#{stockForm.showProductTable and stockForm.filteredProducts.size()>0}">
 
                      <h:column>
-                        <h:commandLink value="#{p.name} " style="white-space: pre-wrap">
-                           <f:ajax listener="#{stockForm.updateProductSearchText(p.name, p)}"  render="@form"></f:ajax>
-                           <f:ajax listener="#{stockForm.setProductName(p.name)}"/>
+                        <h:commandLink value="#{s.name} " style="white-space: pre-wrap">
+                           <f:ajax listener="#{stockForm.updateProductSearchText(s.name, s)}"  render="@form"></f:ajax>
+                           <f:ajax listener="#{stockForm.setProductName(s.name)}"/>
                         </h:commandLink>
                      </h:column>
 

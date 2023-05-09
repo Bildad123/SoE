@@ -32,7 +32,7 @@ public class BrandForm implements Serializable {
         Form form = new Form();
         String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
         if(id != null){
-            this.brand = bs.findById(Long.valueOf(id));
+            this.brand = bs.findById(Integer.valueOf(id));
         } else {
             this.brand = new Brand();
         }

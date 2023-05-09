@@ -29,7 +29,7 @@ public class BrandService {
         em.persist(brand);
     }
 
-    public Brand findById(Long id){
+    public Brand findById(Integer id){
         Brand brand = em.find(Brand.class, id);
         return brand;
     }

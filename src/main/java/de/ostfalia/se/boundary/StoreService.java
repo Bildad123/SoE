@@ -42,11 +42,6 @@ public class StoreService {
         em.persist(store);
     }
 
-    public Store findById(Long id){
-        Store store = em.find(Store.class, id);
-        return store;
-    }
-
     public void delete(Store store) {
         Store detachedStore = em.merge(store);
         em.remove(detachedStore);

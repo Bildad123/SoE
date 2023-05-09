@@ -39,10 +39,7 @@ public class Order {
     private Store store;
 
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            mappedBy = "order"
-    )
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<OrderItem> orderItems = new HashSet<>();
 
 
