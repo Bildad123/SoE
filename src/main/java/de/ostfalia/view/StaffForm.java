@@ -89,7 +89,7 @@ public class StaffForm implements Serializable {
             sts.update(staff);
         }
 
-        return "allStaff" + "?faces-redirect=true";
+        return "allStaffs" + "?faces-redirect=true";
     }
 
     //Getter and Setter

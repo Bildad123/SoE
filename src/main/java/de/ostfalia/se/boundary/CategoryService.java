@@ -1,6 +1,7 @@
 package de.ostfalia.se.boundary;
 
 import de.ostfalia.se.entity.Category;
+import de.ostfalia.se.entity.Product;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -41,7 +42,12 @@ public class CategoryService {
     }
 
     public void delete(Category category) {
-        Category detachedCategory = em.merge(category);
-        em.remove(detachedCategory);
+        for (Product product : category.getProducts()) {
+            product.setCategory(null);
+            em.merge(product);
+        }
+        category.getProducts().clear();
+        Category mergedCategory = em.merge(category);
+        em.remove(mergedCategory);
     }
 }

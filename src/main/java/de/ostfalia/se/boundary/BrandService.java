@@ -1,6 +1,7 @@
 package de.ostfalia.se.boundary;
 
 import de.ostfalia.se.entity.Brand;
+import de.ostfalia.se.entity.Product;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -41,7 +42,12 @@ public class BrandService {
     }
 
     public void delete(Brand brand) {
-        Brand detachedBrand = em.merge(brand);
-        em.remove(detachedBrand);
+        for (Product product : brand.getProducts()) {
+            product.setBrand(null);
+            em.merge(product);
+        }
+        brand.getProducts().clear();
+        Brand mergedBrand = em.merge(brand);
+        em.remove(mergedBrand);
     }
 }

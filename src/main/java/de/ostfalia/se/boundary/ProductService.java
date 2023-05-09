@@ -5,6 +5,7 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 
 
 import java.io.Serializable;
@@ -81,27 +82,9 @@ public class ProductService implements Serializable {
         em.merge(detachedCategory);
     }
 
-    public void deleteOrderItems(Product product) {
-        Set<OrderItem> orderItems = product.getOrderItem();
-        for (OrderItem orderItem : orderItems) {
-            orderItem.setProduct(null);
-        }
-        orderItems.clear();
-    }
-
-    public void deleteStocks(Product product) {
-        Set<Stock> stocks = product.getStocks();
-        for (Stock stock : stocks) {
-            stock.setProduct(null);
-        }
-        stocks.clear();
-    }
-
     public void delete(Product product) {
-//        deleteFromBrand(product);
-//        deleteFromCategory(product);
-//        deleteOrderItems(product);
-//        deleteStocks(product);
+        deleteFromBrand(product);
+        deleteFromCategory(product);
         Product mergedProduct = em.merge(product);
         em.remove(mergedProduct);
     }
