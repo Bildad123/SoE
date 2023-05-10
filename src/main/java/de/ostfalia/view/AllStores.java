@@ -25,6 +25,8 @@ public class AllStores implements Serializable {
     private AllStoresPagination pagination;
     private AllStoresFilter filter;
     private String searchText;
+    private String pageView;
+    private boolean toMasterView;
 
     @PostConstruct
     public void init(){
@@ -33,6 +35,7 @@ public class AllStores implements Serializable {
         pagination = new AllStoresPagination(stores);
         filter = new AllStoresFilter();
         this.pagination.doRefresh();
+        this.pageView = "To Detail Page";   //default
     }
 
     public void keypress() {
@@ -48,6 +51,15 @@ public class AllStores implements Serializable {
         this.pagination.setCurrentRows(0);
         this.pagination.setSelectedPage(1);
         this.pagination.doRefresh();
+    }
+
+    public void changeView(){
+        toMasterView = !toMasterView;
+        if(toMasterView){
+            this.pageView = "To Master Page";
+        } else{
+            this.pageView = "To Detail View";
+        }
     }
 
 
@@ -75,5 +87,21 @@ public class AllStores implements Serializable {
     }
     public void setSearchText(String searchText) {
         this.searchText = searchText;
+    }
+
+    public String getPageView() {
+        return pageView;
+    }
+
+    public void setPageView(String pageView) {
+        this.pageView = pageView;
+    }
+
+    public boolean isToMasterView() {
+        return toMasterView;
+    }
+
+    public void setToMasterView(boolean toMasterView) {
+        this.toMasterView = toMasterView;
     }
 }

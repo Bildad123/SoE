@@ -9,6 +9,9 @@
           xmlns:pt="jakarta.faces.passthrough">
 
     <ui:composition template="Layouts/template.xhtml">
+        
+
+        
         <ui:define name="content">
             <h:outputLabel style="font-size: small" id="qty">
                 Matched #{allCustomers.filteredCustomers.size()} customer(s) from the database
@@ -19,6 +22,13 @@
                     <h:inputText pt:type="text" pt:placeholder="Search for Customer by Customer Name" id="serch_text" value="#{allCustomers.searchText}"  styleClass="form-search-text-input" >
                         <f:ajax event="keyup" listener="#{allCustomers.keypress()}" render="data-table-customers qty" execute="@this"/>
                     </h:inputText>
+
+                    <h:commandLink
+                            value="#{allCustomers.pageView} &#10162;"
+                            rendered="#{!request.userPrincipal.name.contains('USER2')}"
+                            styleClass="data-table-create-h-link">
+                        <f:ajax listener="#{allCustomers.changeView()}" render="@form"/>
+                    </h:commandLink>
 
 
                     <h:link value="&#10133;  Create Customer" styleClass="data-table-create-h-link" outcome="customerForm.xhtml"></h:link>
@@ -62,7 +72,7 @@
                         </h:link>
                     </h:column>
 
-                    <h:column>
+                    <h:column rendered="#{allCustomers.toMasterView}">
                         <f:facet name="header">Phone</f:facet>
                         <h:link value="#{c.phone}" outcome="customerForm.xhtml">
                             <f:param name="id" value="#{c.id}" />
@@ -71,7 +81,7 @@
 
                     </h:column>
 
-                    <h:column>
+                    <h:column rendered="#{allCustomers.toMasterView}">
                         <f:facet name="header">State</f:facet>
                         <h:link value="#{c.state}" outcome="customerForm.xhtml">
                             <f:param name="id" value="#{c.id}" />
@@ -79,7 +89,7 @@
                         </h:link>
                     </h:column>
 
-                    <h:column>
+                    <h:column rendered="#{allCustomers.toMasterView}">
                         <f:facet name="header">Street</f:facet>
                         <h:link value="#{c.street}" outcome="customerForm.xhtml">
                             <f:param name="id" value="#{c.id}" />
@@ -87,7 +97,7 @@
                         </h:link>
                     </h:column>
 
-                    <h:column>
+                    <h:column rendered="#{allCustomers.toMasterView}">
                         <f:facet name="header">Zip</f:facet>
                         <h:link value="#{c.zip}" outcome="customerForm.xhtml">
                             <f:param name="id" value="#{c.id}" />
@@ -95,7 +105,7 @@
                         </h:link>
                     </h:column>
 
-                    <h:column>
+                    <h:column rendered="#{allCustomers.toMasterView}">
                         <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
 
                         <h:link value="&#128221;" outcome="customerForm.xhtml" styleClass="data-table-edit-h-link">

@@ -27,6 +27,8 @@ public class AllProducts implements Serializable {
     private AllProductsPagination pagination;
     private String searchText;
     private AllProductsFilter filter;
+    private String pageView;
+    private boolean toMasterView;
 
     /**
      * Gets all customers from the products table
@@ -39,6 +41,7 @@ public class AllProducts implements Serializable {
         pagination = new AllProductsPagination(products);
         filter = new AllProductsFilter();
         this.pagination.doRefresh();
+        this.pageView = "To Detail Page";   //default
     }
 
     public void keypress() {
@@ -56,6 +59,14 @@ public class AllProducts implements Serializable {
         this.pagination.doRefresh();
     }
 
+    public void changeView(){
+        toMasterView = !toMasterView;
+        if(toMasterView){
+            this.pageView = "To Master Page";
+        } else{
+            this.pageView = "To Detail View";
+        }
+    }
 
     //Getters and Setters
     public List<Product> getProducts() {
@@ -96,5 +107,13 @@ public class AllProducts implements Serializable {
 
     public void setFilter(AllProductsFilter filter) {
         this.filter = filter;
+    }
+
+    public String getPageView() {
+        return pageView;
+    }
+
+    public boolean isToMasterView() {
+        return toMasterView;
     }
 }

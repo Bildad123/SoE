@@ -27,6 +27,9 @@ public class AllOrders implements Serializable {
     private AllOrdersPagination pagination;
     private AllOrdersFilter filter;
     private String searchText;
+    private String pageView;
+    private boolean toMasterView;
+
 
 
 
@@ -41,6 +44,7 @@ public class AllOrders implements Serializable {
         this.pagination = new AllOrdersPagination(orders);
         filter = new AllOrdersFilter();
         this.pagination.doRefresh();
+        this.pageView = "To Detail Page";   //default
     }
 
 
@@ -56,6 +60,15 @@ public class AllOrders implements Serializable {
         this.pagination.setCurrentRows(0);
         this.pagination.setSelectedPage(1);
         this.pagination.doRefresh();
+    }
+
+    public void changeView(){
+        toMasterView = !toMasterView;
+        if(toMasterView){
+            this.pageView = "To Master Page";
+        } else{
+            this.pageView = "To Detail View";
+        }
     }
 
 
@@ -92,6 +105,22 @@ public class AllOrders implements Serializable {
 
     public void setSearchText(String searchText) {
         this.searchText = searchText;
+    }
+
+    public String getPageView() {
+        return pageView;
+    }
+
+    public void setPageView(String pageView) {
+        this.pageView = pageView;
+    }
+
+    public boolean isToMasterView() {
+        return toMasterView;
+    }
+
+    public void setToMasterView(boolean toMasterView) {
+        this.toMasterView = toMasterView;
     }
 }
 

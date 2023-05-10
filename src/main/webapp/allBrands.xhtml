@@ -19,6 +19,13 @@
                     <f:ajax event="keyup" listener="#{allBrands.keypress()}" render="data-table-brands matched-brands" execute="@this"/>
                 </h:inputText>
 
+                <h:commandLink
+                        value="#{allBrands.pageView} &#10162;"
+                        rendered="#{!request.userPrincipal.name.contains('USER2')}"
+                        styleClass="data-table-create-h-link">
+                    <f:ajax listener="#{allBrands.changeView()}" render="@form"/>
+                </h:commandLink>
+
                 <h:link value="&#10133;  Create Brand" styleClass="data-table-create-h-link" outcome="brandForm.xhtml"></h:link>
             </div>
 
@@ -43,7 +50,7 @@
                     </h:link>
                 </h:column>
 
-                <h:column>
+                <h:column rendered="#{allBrands.toMasterView}">
                     <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
 
                     <h:link value="&#x274C;" outcome="brandForm.xhtml" styleClass="data-table-edit-h-link">

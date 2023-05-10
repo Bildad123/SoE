@@ -18,6 +18,13 @@
                     <f:ajax event="keyup" listener="#{allProducts.keypress()}" render="data-table-product matched-product" execute="@this"/>
                 </h:inputText>
 
+                <h:commandLink
+                        value="#{allProducts.pageView} &#10162;"
+                        rendered="#{!request.userPrincipal.name.contains('USER2')}"
+                        styleClass="data-table-create-h-link">
+                    <f:ajax listener="#{allProducts.changeView()}" render="@form"/>
+                </h:commandLink>
+
                 <h:link value="&#10133;  Create Product" styleClass="data-table-create-h-link" outcome="productForm.xhtml"></h:link>
             </div>
 
@@ -52,7 +59,7 @@
                 </h:column>
 
 
-                <h:column>
+                <h:column rendered="#{allProducts.toMasterView}">
                     <f:facet name="header">Band Name</f:facet>
                     <h:link value="#{p.brand.brandName}" outcome="productForm.xhtml">
                         <f:param name="id" value="#{p.id}" />
@@ -60,7 +67,7 @@
                     </h:link>
                 </h:column>
 
-                    <h:column>
+                    <h:column rendered="#{allProducts.toMasterView}">
                         <f:facet name="header">Model Year</f:facet>
                         <h:link value="#{p.modelYear}" outcome="productForm.xhtml">
                             <f:param name="id" value="#{p.id}" />
@@ -68,7 +75,7 @@
                         </h:link>
                     </h:column>
 
-                    <h:column>
+                    <h:column rendered="#{allProducts.toMasterView}">
                         <f:facet name="header">Category Name</f:facet>
                         <h:link value="#{p.category.categoryName}" outcome="productForm.xhtml">
                             <f:param name="id" value="#{p.id}" />
@@ -76,7 +83,7 @@
                         </h:link>
                     </h:column>
 
-                    <h:column>
+                    <h:column rendered="#{allProducts.toMasterView}">
                         <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
 
                         <h:link value="&#128221;" outcome="productForm.xhtml" styleClass="data-table-edit-h-link">

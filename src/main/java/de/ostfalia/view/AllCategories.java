@@ -26,6 +26,9 @@ public class AllCategories implements Serializable {
     private AllCategoriesFilter filter;
     private String searchText;
 
+    private String pageView;
+    private boolean toMasterView;
+
     @PostConstruct
     public void init(){
         categories = cs.findAll();
@@ -33,6 +36,7 @@ public class AllCategories implements Serializable {
         pagination = new AllCategoriesPagination(categories);
         filter = new AllCategoriesFilter();
         this.pagination.doRefresh();
+        this.pageView = "To Detail Page";   //default
     }
 
     public void keypress() {
@@ -48,6 +52,15 @@ public class AllCategories implements Serializable {
         this.pagination.setCurrentRows(0);
         this.pagination.setSelectedPage(1);
         this.pagination.doRefresh();
+    }
+
+    public void changeView(){
+        toMasterView = !toMasterView;
+        if(toMasterView){
+            this.pageView = "To Master Page";
+        } else{
+            this.pageView = "To Detail View";
+        }
     }
 
     //Getters and Setters
@@ -74,5 +87,21 @@ public class AllCategories implements Serializable {
     }
     public void setSearchText(String searchText) {
         this.searchText = searchText;
+    }
+
+    public String getPageView() {
+        return pageView;
+    }
+
+    public void setPageView(String pageView) {
+        this.pageView = pageView;
+    }
+
+    public boolean isToMasterView() {
+        return toMasterView;
+    }
+
+    public void setToMasterView(boolean toMasterView) {
+        this.toMasterView = toMasterView;
     }
 }

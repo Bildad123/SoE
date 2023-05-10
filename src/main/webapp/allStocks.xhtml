@@ -12,9 +12,21 @@
     <ui:define name="content">
         <h:outputLabel style="font-size: small" id="matched-stocks">Matched #{allStocks.filteredStocks.size()} stocks(s) in the database</h:outputLabel><br></br>
         <h:form autocomplete="off" >
-            <h:inputText pt:type="text" pt:placeholder="Search for Stocks" id="search_text" value="#{allStocks.searchText}"  styleClass="form-search-text-input" >
-                <f:ajax event="keyup" listener="#{allStocks.keypress()}" render="data-table-stocks matched-stocks" execute="@this"/>
-            </h:inputText>
+            <div style="display: flex; flex-direction: row; justify-content:space-between; align-items: center;" >
+                <h:inputText pt:type="text" pt:placeholder="Search for Stocks" id="search_text" value="#{allStocks.searchText}"  styleClass="form-search-text-input" >
+                    <f:ajax event="keyup" listener="#{allStocks.keypress()}" render="data-table-stocks matched-stocks" execute="@this"/>
+                </h:inputText>
+
+                <h:commandLink
+                        value="#{allStocks.pageView} &#10162;"
+                        rendered="#{!request.userPrincipal.name.contains('USER2')}"
+                        styleClass="data-table-create-h-link">
+                    <f:ajax listener="#{allStocks.changeView()}" render="@form"/>
+                </h:commandLink>
+
+                <h:link value="&#10133;  Create Stock" styleClass="data-table-create-h-link" outcome="stockForm.xhtml"></h:link>
+            </div>
+
             <h:panelGroup id="data-table-stocks">
             <h:dataTable value="#{allStocks.filteredStocks}" var="s"
                          id="data-table"

@@ -19,6 +19,13 @@
                     <f:ajax event="keyup" listener="#{allStores.keypress()}" render="data-table-stores matched-stores" execute="@this"/>
                 </h:inputText>
 
+                <h:commandLink
+                        value="#{allStocks.pageView} &#10162;"
+                        rendered="#{!request.userPrincipal.name.contains('USER2')}"
+                        styleClass="data-table-create-h-link">
+                    <f:ajax listener="#{allStocks.changeView()}" render="@form"/>
+                </h:commandLink>
+
                 <h:link value="&#10133;  Create Store" styleClass="data-table-create-h-link" outcome="storeForm.xhtml"></h:link>
             </div>
 
@@ -59,7 +66,7 @@
                     </h:link>
                 </h:column>
 
-                <h:column>
+                <h:column rendered="#{allStores.toMasterView}">
                     <f:facet name="header">State</f:facet>
                     <h:link value="#{s.state}" outcome="storeForm.xhtml">
                         <f:param name="id" value="#{s.id}" />
@@ -67,7 +74,7 @@
                     </h:link>
                 </h:column>
 
-                <h:column>
+                <h:column rendered="#{allStores.toMasterView}">
                     <f:facet name="header">City</f:facet>
                     <h:link value="#{s.city}" outcome="storeForm.xhtml">
                         <f:param name="id" value="#{s.id}" />
@@ -75,7 +82,7 @@
                     </h:link>
                 </h:column>
 
-                <h:column>
+                <h:column rendered="#{allStores.toMasterView}">
                     <f:facet name="header">Street</f:facet>
                     <h:link value="#{s.street}" outcome="storeForm.xhtml">
                         <f:param name="id" value="#{s.id}" />
@@ -83,7 +90,7 @@
                     </h:link>
                 </h:column>
 
-                <h:column>
+                <h:column rendered="#{allStores.toMasterView}">
                     <f:facet name="header">Zip Code</f:facet>
                     <h:link value="#{s.zipCode}" outcome="storeForm.xhtml">
                         <f:param name="id" value="#{s.id}" />
@@ -91,7 +98,7 @@
                     </h:link>
                 </h:column>
 
-                <h:column>
+                <h:column rendered="#{allStores.toMasterView}">
                     <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
 
                     <h:link value="&#128221;" outcome="storeForm.xhtml" styleClass="data-table-edit-h-link">

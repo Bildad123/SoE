@@ -18,6 +18,14 @@
                 <h:inputText pt:type="text" pt:placeholder="Search for Order by Customer Name" id="serch_text" value="#{allOrders.searchText}"  class="form-search-text-input" >
                     <f:ajax event="keyup" listener="#{allOrders.keypress()}" render="data-table-orders qty" execute="@this"/>
                 </h:inputText>
+
+                <h:commandLink
+                        value="#{allOrders.pageView} &#10162;"
+                        rendered="#{!request.userPrincipal.name.contains('USER2')}"
+                        styleClass="data-table-create-h-link">
+                    <f:ajax listener="#{allOrders.changeView()}" render="@form"/>
+                </h:commandLink>
+
                 <h:link value="&#10133;  Create Order" styleClass="data-table-create-h-link" outcome="orderForm.xhtml"></h:link>
         </div>
             <h:panelGroup id="data-table-orders">
@@ -48,31 +56,31 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Order Status</f:facet>
-                        #{o.orderStatus}
-                    </h:column>
-
-                    <h:column>
                         <f:facet name="header">Required Date</f:facet>
                         #{o.requiredDate}
                     </h:column>
 
-                    <h:column>
+                    <h:column rendered="#{allOrders.toMasterView}">
+                        <f:facet name="header">Order Status</f:facet>
+                        #{o.orderStatus}
+                    </h:column>
+
+                    <h:column rendered="#{allOrders.toMasterView}">
                         <f:facet name="header">Shipped Date</f:facet>
                         #{o.shippedDate}
                     </h:column>
 
-                    <h:column>
+                    <h:column rendered="#{allOrders.toMasterView}">
                         <f:facet name="header">Staff Fullname</f:facet>
                         #{o.staff.firstName} #{o.staff.lastName}
                     </h:column>
 
-                    <h:column>
+                    <h:column rendered="#{allOrders.toMasterView}">
                         <f:facet name="header">Store Name</f:facet>
                         #{o.store.storeName}
                     </h:column>
 
-                    <h:column>
+                    <h:column rendered="#{allOrders.toMasterView}">
                         <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
 
                         <h:link value="&#128209;" outcome="orderForm.xhtml" styleClass="data-table-edit-h-link">
@@ -90,7 +98,6 @@
                             <f:param name="operation" value="Delete"/>
                         </h:link>
                     </h:column>
-
 
 
                     <f:facet name="footer">

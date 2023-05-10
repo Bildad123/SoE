@@ -19,6 +19,13 @@
                     <f:ajax event="keyup" listener="#{allCategories.keypress()}" render="data-table-categories matched-categories" execute="@this"/>
                 </h:inputText>
 
+                <h:commandLink
+                        value="#{allCategories.pageView} &#10162;"
+                        rendered="#{!request.userPrincipal.name.contains('USER2')}"
+                        styleClass="data-table-create-h-link">
+                    <f:ajax listener="#{allCategories.changeView()}" render="@form"/>
+                </h:commandLink>
+
                 <h:link value="&#10133;  Create Category" styleClass="data-table-create-h-link" outcome="categoryForm.xhtml"></h:link>
             </div>
 
@@ -43,7 +50,7 @@
                     </h:link>
                 </h:column>
 
-                <h:column>
+                <h:column rendered="#{allCategories.toMasterView}">
                     <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
 
                     <h:link value="&#x274C;" outcome="categoryForm.xhtml" styleClass="data-table-edit-h-link">

@@ -24,6 +24,8 @@ public class AllStocks implements Serializable {
     private AllStocksPagination pagination;
     private AllStocksFilter filter;
     private String searchText;
+    private String pageView;
+    private boolean toMasterView;
 
 
     @PostConstruct
@@ -33,6 +35,7 @@ public class AllStocks implements Serializable {
         pagination = new AllStocksPagination(stocks);
         filter = new AllStocksFilter();
         this.pagination.doRefresh();
+        this.pageView = "To Detail Page";   //default
     }
 
 
@@ -49,6 +52,15 @@ public class AllStocks implements Serializable {
         this.pagination.setCurrentRows(0);
         this.pagination.setSelectedPage(1);
         this.pagination.doRefresh();
+    }
+
+    public void changeView(){
+        toMasterView = !toMasterView;
+        if(toMasterView){
+            this.pageView = "To Master Page";
+        } else{
+            this.pageView = "To Detail View";
+        }
     }
 
     //Getters and Setters
@@ -82,5 +94,21 @@ public class AllStocks implements Serializable {
 
     public void setFilteredStocks(List<Stock> filteredStocks) {
         this.filteredStocks = filteredStocks;
+    }
+
+    public boolean isToMasterView() {
+        return toMasterView;
+    }
+
+    public void setToMasterView(boolean toMasterView) {
+        this.toMasterView = toMasterView;
+    }
+
+    public String getPageView() {
+        return pageView;
+    }
+
+    public void setPageView(String pageView) {
+        this.pageView = pageView;
     }
 }
