@@ -13,7 +13,6 @@ public class Logout {
     @Inject
     private HttpServletRequest request;
     public String submit() throws ServletException {
-        System.out.println("Logout submit called");
         request.logout();
         request.getSession().invalidate();
         return "/dashboard.xhtml?faces-redirect=true";

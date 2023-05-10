@@ -40,12 +40,19 @@ public class StockService {
         return stock;
     }
 
-    public Stock findByProductAndStore(Product product, Store store) {
-        TypedQuery<Stock> query = em.createQuery("select s from Stock s where s.product = :product and s.store = :store", Stock.class);
-        query.setParameter("product", product);
+    public Stock findByProductAndStore(Product product, Store store){
+        String jpql = "select s from Stock s where s.product = :product and  s.store = :store";
+        TypedQuery<Stock> query = em.createQuery(jpql, Stock.class);
         query.setParameter("store", store);
-        return query.getSingleResult();
+        query.setParameter("product", product);
+
+        List<Stock> stocks = query.getResultList();
+        if(stocks.size() > 0){
+            return stocks.get(0);
+        }
+        return null;
     }
+
 
     public void delete(Stock stock) {
         Stock mergedStock = em.merge(stock);
