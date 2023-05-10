@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+   <ui:composition template="Layouts/template.xhtml">
+      <ui:define name="content">
+
+         <h:form id="create-Stock-form">
+            <fieldset>
+               <legend>#{stockForm.operation}</legend>
+
+               <h:panelGroup>
+                  <h:outputLabel value="Product"></h:outputLabel>
+                  <h:inputText
+                          pt:type="text"
+                          pt:placeholder="Search for Product" id="search_text1"
+                          value="#{stockForm.searchTextProducts}"
+                          readonly="#{stockForm.operation.equals('Delete Stock') or stockForm.operation.equals('Read Stock') or stockForm.operation.equals('Edit Stock')}"
+                          disabled="#{stockForm.operation.equals('Delete Stock') or stockForm.operation.equals('Read Stock') or stockForm.operation.equals('Edit Stock')}"
+                          styleClass="form-input-text" style="width: 100%;  box-sizing: bstock-box; margin: 0" >
+                     <f:ajax event="keyup" listener="#{stockForm.keypressProduct()}" render="data-table-product matched-products" execute="@this"/>
+                  </h:inputText>
+               </h:panelGroup>
+
+               <h:panelGroup id="data-table-product">
+                  <h:dataTable value="#{stockForm.filteredProducts}" var="s"
+                               id="product-data-table"
+                               first="#{stockForm.paginationProducts.currentRows}"
+                               rows="#{stockForm.paginationProducts.maxTableRows}"
+                               styleClass="customers-table"
+                               headerClass="customers-table-header"
+                               rowClasses="customers-table-odd-row,customers-table-even-row"
+                               cellspacing="15px"
+                               cellpadding="15px"
+                               style="text-align: left"
+                               rendered="#{stockForm.showProductTable and stockForm.filteredProducts.size()>0}">
+
+                     <h:column>
+                        <h:commandLink value="#{s.name} " style="white-space: pre-wrap">
+                           <f:ajax listener="#{stockForm.updateProductSearchText(s.name, s)}"  render="@form"></f:ajax>
+                           <f:ajax listener="#{stockForm.setProductName(s.name)}"/>
+                        </h:commandLink>
+                     </h:column>
+
+                     <f:facet name="footer">
+                        <h:panelGroup rendered="#{stockForm.paginationProducts.showPageList}">
+                           <h:commandButton value="Back"  disabled="#{!stockForm.paginationProducts.displayBackButton}" styleClass="form-paginating-button-back" >
+                              <f:ajax listener="#{stockForm.paginationProducts.back()}" render="@form"/>
+                           </h:commandButton>
+                           <h:selectOneMenu value="#{stockForm.paginationProducts.selectedPage}">
+                              <f:selectItems value="#{stockForm.paginationProducts.pages}" var="page" itemLabel="Page #{page}" itemValue="#{page}" />
+                              <f:ajax listener="#{stockForm.paginationProducts.pageChange}" render="@form"/>
+                           </h:selectOneMenu>
+                           <h:commandButton value="Next" disabled="#{!stockForm.paginationProducts.displayNextButton}" styleClass="form-paginating-button-next" >
+                              <f:ajax listener="#{stockForm.paginationProducts.next()}" render="@form"/>
+                           </h:commandButton>
+                        </h:panelGroup>
+                     </f:facet>
+                  </h:dataTable>
+               </h:panelGroup>
+               <br/><br/>
+
+               <h:outputLabel for="storeName" value="Store Name" styleClass="form-label"/>
+               <h:selectOneMenu id="storeName" value="#{stockForm.storeName}"
+                                readonly="#{stockForm.operation.equals('Delete Stock') || stockForm.operation.equals('Read Stock') || stockForm.operation.equals('Edit Stock')}"
+                                disabled="#{stockForm.operation.equals('Delete Stock') || stockForm.operation.equals('Read Stock') || stockForm.operation.equals('Edit Stock')}">
+                  <f:selectItems value="#{allStores.stores}"/>
+               </h:selectOneMenu>
+               <br/><br/>
+
+               <h:outputLabel for="quantity" value="Quantity" styleClass="form-label"/>
+               <h:inputText id="quantity" value="#{stockForm.quantity}" required="true" label="Name"
+                            styleClass="form-input-text" pt:type = "number"
+                            readonly="#{stockForm.operation.equals('Delete Stock') || stockForm.operation.equals('Read Stock')}"
+                            disabled="#{stockForm.operation.equals('Delete Stock') || stockForm.operation.equals('Read Stock')}"
+               />
+               <br/><br/>
+
+            </fieldset>
+            <br/><br/>
+            <h:commandButton id="reset"  value="Reset" action="#{stockForm.submitForm()}"
+                             style="width: 100%" pt:type="reset"
+                             rendered="#{stockForm.operation.equals('Create Stock')}"
+            />
+            <br/><br/>
+
+            <h:commandButton id="submit" type="submit" value="#{stockForm.operation}" action="#{stockForm.submitForm()}"
+                             style="width: 100%"
+                             rendered="#{!stockForm.operation.equals('Read Stock')}"
+            />
+            <br/><br/>
+
+         </h:form>
+
+      </ui:define>
+   </ui:composition>
+</html>

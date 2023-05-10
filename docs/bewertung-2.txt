@@ -1,0 +1,18 @@
+- häufig nichts-sagende, duplizierte, oder "falsche" (nicht zum Inhalt passende) Commit Messages (z.B. Commit 1db2a3eb) -
+- Formatierung noch immer inkonsistent (Leerzeilen, Leerzeichen) -
+- auskommentierter Code auf einem nicht-Feature-Branch (CustomerForm.java) -
+- teils recht große Commits -
+- ReadMe weiterhin nicht angepasst -
+- alte Branches sollten gelöscht werden (-)
+- Entwicklungsbranch sollte auf der aktuellsten Version des Master-Branches basieren! Bei Änderungen im Master sollten diese regelmäßig in den Entw
+icklungsbranch gemerged werden -
+- Commit mittlerweile konsistent auf Deutsch +
+
+- Nicht deploybar. Keine Datasource-Definition
+- Second-Level-Cache? Was machen Sie da? Mit altem javax-Prefix
+- <f:ajax> sehr schön
+- Viel zu viel geladen. allOrders.xhtml sehr markant, EAGER
+- nicht deutsch lokalisiert
+- alte JSF-Namespaces
+Bewertung: 80%
+

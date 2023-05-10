@@ -213,7 +213,7 @@ public class OrderForm implements Serializable{
         Iterator<OrderItem> iterator = orderItems.iterator();
         while (iterator.hasNext()){
             OrderItem oi = iterator.next();
-            Stock stock = stockService.findByProductAndStore(this.selectedStore, oi.getProduct());
+            Stock stock = stockService.findByProductAndStore(oi.getProduct(), this.selectedStore);
             if(stock != null){
                 stock.setQuantity(stock.getQuantity() - oi.getQuantity());
                 stockService.save(stock);
@@ -295,7 +295,7 @@ public class OrderForm implements Serializable{
     }
 
     public int getQuantityLeftInStore(Product product){
-        Stock stock = stockService.findByProductAndStore(selectedStore, product);
+        Stock stock = stockService.findByProductAndStore(product, selectedStore);
         if(stock != null){
             return stock.getQuantity();
         }

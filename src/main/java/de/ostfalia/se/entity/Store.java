@@ -29,13 +29,13 @@ public class Store {
 
     private String state;
 
-    @OneToMany(mappedBy = "store")
+    @OneToMany(mappedBy = "store", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<Order> orders = new HashSet<>();
 
-    @OneToMany(mappedBy = "store", cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
+    @OneToMany(mappedBy = "store", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<Staff> staffs = new HashSet<>();
 
-    @OneToMany(mappedBy = "store", cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
+    @OneToMany(mappedBy = "store", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<Stock> stocks = new HashSet<>();
 
     public Store(Integer id, String storeName, String email, String phone, String street, String zipCode, String city, String state, Set<Order> orders, Set<Staff> staffs, Set<Stock> stocks) {
@@ -62,16 +62,7 @@ public class Store {
 
     @Override
     public String toString() {
-        return "Stores{" +
-                "id=" + id +
-                ", storeName='" + storeName + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", street='" + street + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                '}';
+        return storeName;
     }
 
     // Getter und Setter

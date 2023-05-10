@@ -30,14 +30,16 @@ public class StoreService {
         return store;
     }
 
+    public Store findByStoreName(String storeName) {
+        TypedQuery<Store> query = em.createQuery(
+                "select s from Store s where s.storeName = :storeName", Store.class
+        );
+        query.setParameter("storeName", storeName);
+        return query.getSingleResult();
+    }
 
     public void save(Store store){
         em.persist(store);
-    }
-
-    public Store findById(Long id){
-        Store store = em.find(Store.class, id);
-        return store;
     }
 
     public void delete(Store store) {

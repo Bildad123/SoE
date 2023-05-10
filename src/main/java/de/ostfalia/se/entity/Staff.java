@@ -27,10 +27,10 @@ public class Staff {
     private Integer active;
 
     @ManyToOne
-    @JoinColumn(name = "store_id", nullable = false)
+    @JoinColumn(name = "store_id")
     private Store store;
 
-    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "manager", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @Column(name = "manager_id")
     private Set<Staff> staffs;
 
@@ -38,7 +38,7 @@ public class Staff {
     @JoinColumn(name = "manager_id")
     private Staff manager;
 
-    @OneToMany(mappedBy = "staff", cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
+    @OneToMany(mappedBy = "staff", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<Order> orders = new HashSet<>();
 
     public Staff(Integer id, String firstName, String lastName, String email, String phone, Integer active, Store store, Set<Staff> staffs, Staff manager, Set<Order> orders) {
@@ -158,4 +158,5 @@ public class Staff {
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
+
 }

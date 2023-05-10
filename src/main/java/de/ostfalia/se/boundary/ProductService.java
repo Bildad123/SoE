@@ -1,17 +1,16 @@
 package de.ostfalia.se.boundary;
 
-import de.ostfalia.se.entity.Brand;
-import de.ostfalia.se.entity.Category;
-import de.ostfalia.se.entity.Customer;
-import de.ostfalia.se.entity.Product;
+import de.ostfalia.se.entity.*;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import static jakarta.persistence.PersistenceContextType.TRANSACTION;
 
@@ -57,25 +56,41 @@ public class ProductService implements Serializable {
         return product;
     }
 
+    public Product findByName(String name) {
+        TypedQuery<Product> query = em.createQuery(
+                "select p from Product p where p.name = :name", Product.class
+        );
+        query.setParameter("name", name);
+        return query.getSingleResult();
+    }
+
+    public void deleteFromBrand(Product product) {
+        if (product == null) {
+            return;
+        }
+        Brand detachedBrand = product.getBrand();
+        detachedBrand.getProducts().remove(product);
+        em.merge(detachedBrand);
+    }
+
+    public void deleteFromCategory(Product product) {
+        if (product == null) {
+            return;
+        }
+        Category detachedCategory = product.getCategory();
+        detachedCategory.getProducts().remove(product);
+        em.merge(detachedCategory);
+    }
+
     public void delete(Product product) {
+        deleteFromBrand(product);
+        deleteFromCategory(product);
         Product mergedProduct = em.merge(product);
         em.remove(mergedProduct);
     }
 
     public void update(Product product) {
         em.merge(product);
-    }
-
-    public Brand findBrandByName(String brandName) {
-        TypedQuery<Brand> query = em.createQuery("select b from Brand b where b.brandName = :brandName", Brand.class);
-        query.setParameter("brandName", brandName);
-        return query.getSingleResult();
-    }
-
-    public Category findCategoryByName(String categoryName) {
-        TypedQuery<Category> query = em.createQuery("select c from Category c where c.categoryName = :categoryName", Category.class);
-        query.setParameter("categoryName", categoryName);
-        return query.getSingleResult();
     }
 
 }

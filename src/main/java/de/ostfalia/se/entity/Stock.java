@@ -6,9 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "stocks")
-@IdClass(StockPK.class)
 public class Stock {
-
     @Id
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -63,16 +61,4 @@ public class Stock {
         this.quantity = quantity;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Stock stock = (Stock) o;
-        return Objects.equals(product, stock.product) && Objects.equals(store, stock.store) && Objects.equals(quantity, stock.quantity);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(product, store, quantity);
-    }
 }

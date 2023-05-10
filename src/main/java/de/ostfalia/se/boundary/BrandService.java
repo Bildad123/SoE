@@ -1,6 +1,7 @@
 package de.ostfalia.se.boundary;
 
 import de.ostfalia.se.entity.Brand;
+import de.ostfalia.se.entity.Product;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -34,8 +35,19 @@ public class BrandService {
         return brand;
     }
 
+    public Brand findByBrandName(String brandName) {
+        TypedQuery<Brand> query = em.createQuery("select b from Brand b where b.brandName = :brandName", Brand.class);
+        query.setParameter("brandName", brandName);
+        return query.getSingleResult();
+    }
+
     public void delete(Brand brand) {
-        Brand detachedBrand = em.merge(brand);
-        em.remove(detachedBrand);
+        for (Product product : brand.getProducts()) {
+            product.setBrand(null);
+            em.merge(product);
+        }
+        brand.getProducts().clear();
+        Brand mergedBrand = em.merge(brand);
+        em.remove(mergedBrand);
     }
 }

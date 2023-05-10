@@ -17,6 +17,10 @@ public class StaffService {
     @PersistenceContext(type = TRANSACTION )
     EntityManager em;
 
+    /**
+     * Returns the all staff in the staff table
+     * @return List<Staff>
+     */
     public List<Staff> findAll(){
         TypedQuery<Staff> query = em.createQuery(
                 "select s from Staff s ", Staff.class
@@ -56,6 +60,31 @@ public class StaffService {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Saves a staff to the staff table
+     * @param staff
+     */
+    public void save(Staff staff){
+        em.persist(staff);
+    }
+
+    /**
+     * Delete a staff to the staff table
+     * @param staff
+     */
+    public void delete(Staff staff) {
+        Staff mergedStaff = em.merge(staff);
+        em.remove(mergedStaff);
+    }
+
+    /**
+     * Update a staff to the staff table
+     * @param staff
+     */
+    public void update(Staff staff) {
+        em.merge(staff);
     }
 
 }

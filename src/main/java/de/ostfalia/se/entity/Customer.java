@@ -33,7 +33,7 @@ public class Customer {
 
     private String phone;
 
-    @OneToMany(mappedBy = "customer", cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
+    @OneToMany(mappedBy = "customer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<Order> orders = new HashSet<>();
 
     public Customer(Integer id, String firstname, String lastname, String email, String street, String zip, String state, String city, String phone, Set<Order> orders) {
