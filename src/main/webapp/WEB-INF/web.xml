@@ -39,6 +39,7 @@
             <url-pattern>/allProducts.xhtml</url-pattern>
             <url-pattern>/allStocks.xhtml</url-pattern>
             <url-pattern>/allStores.xhtml</url-pattern>
+            <url-pattern>/allStaffs.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>ADMIN</role-name>
@@ -49,7 +50,7 @@
     <!-- USER1 PAGES END -->
 
     <security-constraint>
-        <!-- USER2 PAGES START -->
+        <!-- USER1 PAGES START -->
         <web-resource-collection>
             <web-resource-name>user1 pages </web-resource-name>
             <url-pattern>/brandForm.xhtml</url-pattern>
@@ -68,10 +69,18 @@
     <!-- USER1 PAGES END -->
 
 
+    <security-constraint>
+        <!-- ADMIN PAGES START -->
+        <web-resource-collection>
+            <web-resource-name>staff pages </web-resource-name>
 
-
-
-
+            <url-pattern>/staffForm.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <!-- STAFF PAGES END -->
 
     <security-role>
         <role-name>ADMIN</role-name>

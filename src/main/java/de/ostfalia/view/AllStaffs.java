@@ -28,6 +28,9 @@ public class AllStaffs implements Serializable {
     private String searchText;
     private List<Staff> filteredStaffs;
 
+    private String pageView;
+    private boolean toMasterView;
+
     AllStaffs(){
     }
 
@@ -42,6 +45,7 @@ public class AllStaffs implements Serializable {
         pagination = new AllStaffsPagination(filteredStaffs);
         filter = new AllStaffsFilter();
         this.pagination.doRefresh();
+        this.pageView = "To Detail Page";   //default
     }
 
     public void keypress() {
@@ -58,6 +62,16 @@ public class AllStaffs implements Serializable {
             this.pagination.setSelectedPage(1);
             this.pagination.doRefresh();
     }
+
+    public void changeView(){
+        toMasterView = !toMasterView;
+        if(toMasterView){
+            this.pageView = "To Master Page";
+        } else{
+            this.pageView = "To Detail View";
+        }
+    }
+
 
     //Getter
 
@@ -99,5 +113,21 @@ public class AllStaffs implements Serializable {
 
     public void setSearchText(String searchText) {
         this.searchText = searchText;
+    }
+
+    public String getPageView() {
+        return pageView;
+    }
+
+    public void setPageView(String pageView) {
+        this.pageView = pageView;
+    }
+
+    public boolean isToMasterView() {
+        return toMasterView;
+    }
+
+    public void setToMasterView(boolean toMasterView) {
+        this.toMasterView = toMasterView;
     }
 }

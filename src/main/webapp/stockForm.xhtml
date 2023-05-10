@@ -21,7 +21,7 @@
                           value="#{stockForm.searchTextProducts}"
                           readonly="#{stockForm.operation.equals('Delete Stock') or stockForm.operation.equals('Read Stock') or stockForm.operation.equals('Edit Stock')}"
                           disabled="#{stockForm.operation.equals('Delete Stock') or stockForm.operation.equals('Read Stock') or stockForm.operation.equals('Edit Stock')}"
-                          styleClass="form-input-text" style="width: 100%;  box-sizing: bstock-box; margin: 0" >
+                          styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0" >
                      <f:ajax event="keyup" listener="#{stockForm.keypressProduct()}" render="data-table-product matched-products" execute="@this"/>
                   </h:inputText>
                </h:panelGroup>
@@ -62,26 +62,26 @@
                      </f:facet>
                   </h:dataTable>
                </h:panelGroup>
-               <br/><br/>
+               <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
-               <h:outputLabel for="storeName" value="Store Name" styleClass="form-label"/>
+               <h:outputLabel for="storeName" value="Store Name"></h:outputLabel>
                <h:selectOneMenu id="storeName" value="#{stockForm.storeName}"
                                 readonly="#{stockForm.operation.equals('Delete Stock') || stockForm.operation.equals('Read Stock') || stockForm.operation.equals('Edit Stock')}"
-                                disabled="#{stockForm.operation.equals('Delete Stock') || stockForm.operation.equals('Read Stock') || stockForm.operation.equals('Edit Stock')}">
+                                disabled="#{stockForm.operation.equals('Delete Stock') || stockForm.operation.equals('Read Stock') || stockForm.operation.equals('Edit Stock')}"
+                                styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
                   <f:selectItems value="#{allStores.stores}"/>
                </h:selectOneMenu>
-               <br/><br/>
+               <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
-               <h:outputLabel for="quantity" value="Quantity" styleClass="form-label"/>
+               <h:outputLabel for="quantity" value="Quantity"></h:outputLabel>
                <h:inputText id="quantity" value="#{stockForm.quantity}" required="true" label="Name"
-                            styleClass="form-input-text" pt:type = "number"
+                            pt:type = "number"
                             readonly="#{stockForm.operation.equals('Delete Stock') || stockForm.operation.equals('Read Stock')}"
                             disabled="#{stockForm.operation.equals('Delete Stock') || stockForm.operation.equals('Read Stock')}"
-               />
-               <br/><br/>
+                            styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small"></h:inputText><br/><br/>
 
-            </fieldset>
-            <br/><br/>
+            </fieldset> <br/><br/>
+
             <h:commandButton id="reset"  value="Reset" action="#{stockForm.submitForm()}"
                              style="width: 100%" pt:type="reset"
                              rendered="#{stockForm.operation.equals('Create Stock')}"

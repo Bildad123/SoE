@@ -15,17 +15,16 @@
             <fieldset>
                <legend>#{brandForm.operation}</legend>
 
-               <h:outputLabel for="brandName" value="Brand Name" styleClass="form-label"/>
+               <h:outputLabel for="brandName" value="Brand Name"></h:outputLabel>
                <h:inputText id="brandName" value="#{brandForm.brandName}" required="true" label="Name"
-                            styleClass="form-input-text"
                             readonly="#{brandForm.operation.equals('Delete Brand') || brandForm.operation.equals('Read Brand')}"
                             disabled="#{brandForm.operation.equals('Delete Brand') || brandForm.operation.equals('Read Brand')}"
-               />
+                            styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small"/>
                <br/><br/>
 
 
             </fieldset>
-            <br/><br/>
+            <br></br>
             <h:commandButton id="reset"  value="Reset" action="#{brandForm.submitForm()}"
                              style="width: 100%" pt:type="reset"
                              rendered="#{brandForm.operation.equals('Create Brand')}"

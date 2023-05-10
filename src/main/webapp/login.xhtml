@@ -17,15 +17,15 @@
             <legend>#{'Login'}</legend>
 
 
-            <h:outputLabel for="username" value="Username:"  styleClass="form-label"/>
+            <h:outputLabel for="username" value="Username"/>
             <h:inputText id="username" value="#{login.email}" required="true"
-                         styleClass="form-input-text"
+                         styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
             />
-            <br/><br/>
+            <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
-            <h:outputLabel for="password" value="Password:"  styleClass="form-label"/>
+            <h:outputLabel for="password" value="Password"/>
             <h:inputSecret id="password" value="#{login.password}" required="true"
-                           styleClass="form-input-text"
+                           styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
             />
             <br/><br/>
 

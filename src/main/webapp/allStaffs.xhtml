@@ -21,6 +21,12 @@
                         <f:ajax event="keyup" listener="#{allStaffs.keypress()}" render="data-table-customers qty" execute="@this"/>
                     </h:inputText>
 
+                    <h:commandLink
+                            value="#{allStaffs.pageView} &#10162;"
+                            rendered="#{!request.userPrincipal.name.contains('USER2')}"
+                            styleClass="data-table-create-h-link">
+                        <f:ajax listener="#{allStaffs.changeView()}" render="@form"/>
+                    </h:commandLink>
 
                     <h:link value="&#10133;  Create Staff" styleClass="data-table-create-h-link" outcome="staffForm.xhtml"></h:link>
                 </div>
@@ -54,7 +60,7 @@
                         </h:link>
                     </h:column>
 
-                    <h:column>
+                    <h:column rendered="#{allStaffs.toMasterView}">
                         <f:facet name="header">Email</f:facet>
                         <h:link value="#{s.email}" outcome="staffForm.xhtml">
                             <f:param name="id" value="#{s.id}" />
@@ -62,7 +68,7 @@
                         </h:link>
                     </h:column>
 
-                    <h:column>
+                    <h:column rendered="#{allStaffs.toMasterView}">
                         <f:facet name="header">Phone</f:facet>
                         <h:link value="#{s.phone}" outcome="staffForm.xhtml">
                             <f:param name="id" value="#{s.id}" />
@@ -70,7 +76,7 @@
                         </h:link>
                     </h:column>
 
-                    <h:column>
+                    <h:column rendered="#{allStaffs.toMasterView}">
                         <f:facet name="header">Active</f:facet>
                         <h:link value="#{s.active}" outcome="staffForm.xhtml">
                             <f:param name="id" value="#{s.id}" />

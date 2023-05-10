@@ -17,48 +17,47 @@
                     <legend>#{staffForm.operation}</legend>
 
 
-                    <h:outputLabel for="firstname" value="First Name"  styleClass="form-label"/>
+                    <h:outputLabel for="firstname" value="First Name"/>
                     <h:inputText id="firstname" value="#{staffForm.firstname}" required="true"
-                                 styleClass="form-input-text"
+                                 styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
                                  readonly="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
                                  disabled="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
                     />
-                    <br/><br/>
+                    <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
                     <h:outputLabel for="lastname" value="Last Name" styleClass="form-label"/>
                     <h:inputText id="lastname" value="#{staffForm.lastname}" required="true"
-                                 styleClass="form-input-text"
+                                 styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
                                  readonly="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
                                  disabled="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
                     />
-                    <br/><br/>
+                    <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
                     <h:outputLabel for="email" value="Email"  styleClass="form-label"/>
                     <h:inputText id="email" type="email" value="#{staffForm.email}" required="true"
-                                 styleClass="form-input-text"
+                                 styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
                                  readonly="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
                                  disabled="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
                     />
-                    <br/><br/>
+                    <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
                     <h:outputLabel for="phone" value="Phone"  styleClass="form-label"/>
                     <h:inputText id="phone" value="#{staffForm.phone}" required="true"
-                                 styleClass="form-input-text"
+                                 styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
                                  readonly="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
                                  disabled="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
                     />
-                    <br/><br/>
+                    <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
                     <h:outputLabel for="active" value="Active"  styleClass="form-label"/>
                     <h:inputText id="active" value="#{staffForm.active}" required="true"
-                                 styleClass="form-input-text"
+                                 styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
                                  readonly="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
-                                 disabled="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"
-                    />
-                    <br/><br/><br/>
+                                 disabled="#{staffForm.operation.equals('Delete Staff') || staffForm.operation.equals('Read Staff')}"/>
+                    <br/><br/>
 
-                </fieldset>
-                <br/><br/>
+
+                </fieldset><br></br>
                 <h:commandButton id="reset"  value="Reset" action="#{staffForm.submitForm()}"
                                  style="width: 100%" pt:type="reset"
                                  rendered="#{staffForm.operation.equals('Create Staff')}"

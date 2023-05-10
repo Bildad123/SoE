@@ -20,10 +20,10 @@
                 </h:inputText>
 
                 <h:commandLink
-                        value="#{allStocks.pageView} &#10162;"
+                        value="#{allStores.pageView} &#10162;"
                         rendered="#{!request.userPrincipal.name.contains('USER2')}"
                         styleClass="data-table-create-h-link">
-                    <f:ajax listener="#{allStocks.changeView()}" render="@form"/>
+                    <f:ajax listener="#{allStores.changeView()}" render="@form"/>
                 </h:commandLink>
 
                 <h:link value="&#10133;  Create Store" styleClass="data-table-create-h-link" outcome="storeForm.xhtml"></h:link>
@@ -98,7 +98,7 @@
                     </h:link>
                 </h:column>
 
-                <h:column rendered="#{allStores.toMasterView}">
+                <h:column>
                     <f:facet name="header"><h:outputText value="Action"></h:outputText></f:facet>
 
                     <h:link value="&#128221;" outcome="storeForm.xhtml" styleClass="data-table-edit-h-link">

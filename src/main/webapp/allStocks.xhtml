@@ -50,7 +50,7 @@
                     #{s.quantity}
                 </h:column>
 
-                <h:column>
+                <h:column rendered="#{allStocks.toMasterView}">
                     <f:facet name="header">Store</f:facet>
                     #{s.store.storeName}
                 </h:column>

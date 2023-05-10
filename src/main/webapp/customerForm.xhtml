@@ -17,66 +17,64 @@
                     <legend>#{customerForm.operation}</legend>
 
 
-                    <h:outputLabel for="firstname" value="First Name"  styleClass="form-label"/>
+                    <h:outputLabel for="firstname" value="First Name"></h:outputLabel>
                     <h:inputText id="firstname" value="#{customerForm.firstname}" required="true"
-                                 styleClass="form-input-text"
+                                 styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
                                  readonly="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                                  disabled="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                     />
-                    <br/><br/>
+                    <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
-                    <h:outputLabel for="lastname" value="Last Name" styleClass="form-label"/>
+                    <h:outputLabel for="lastname" value="Last Name"></h:outputLabel>
                     <h:inputText id="lastname" value="#{customerForm.lastname}" required="true"
-                                 styleClass="form-input-text"
+                                 styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
                                  readonly="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                                  disabled="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                     />
-                    <br/><br/>
+                    <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
 
-                    <h:outputLabel for="email" value="Email"  styleClass="form-label"/>
+                    <h:outputLabel for="email" value="Email"></h:outputLabel>
                     <h:inputText id="email" type="email" value="#{customerForm.email}" required="true"
-                                 styleClass="form-input-text"
+                                 styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
                                  readonly="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                                  disabled="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                     />
-                    <br/><br/>
+                    <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
-                    <h:outputLabel for="phone" value="Phone"  styleClass="form-label"/>
+                    <h:outputLabel for="phone" value="Phone"></h:outputLabel>
                     <h:inputText id="phone" value="#{customerForm.phone}" required="true"
-                                 styleClass="form-input-text"
+                                 styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
                                  readonly="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                                  disabled="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                     />
-                    <br/><br/>
+                    <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
 
-                    <h:outputLabel for="zip" value="Zip Code"  styleClass="form-label"/>
+                    <h:outputLabel for="zip" value="Zip Code"></h:outputLabel>
                     <h:inputText id="zip" value="#{customerForm.zip}" required="true"
-                                 styleClass="form-input-text"
+                                 styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
                                  readonly="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                                  disabled="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                     />
-                    <br/><br/>
+                    <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
-                    <h:outputLabel for="state" value="State"  styleClass="form-label"/>
+                    <h:outputLabel for="state" value="State"></h:outputLabel>
                     <h:inputText id="state" value="#{customerForm.state}" required="true"
-                                 styleClass="form-input-text"
+                                 styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
                                  readonly="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                                  disabled="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                     />
-                    <br/><br/>
+                    <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
-                    <h:outputLabel for="street" value="Street"  styleClass="form-label"/>
+                    <h:outputLabel for="street" value="Street"></h:outputLabel>
                     <h:inputText id="street" value="#{customerForm.street}" required="true"
-                                 styleClass="form-input-text"
+                                 styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
                                  readonly="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
                                  disabled="#{customerForm.operation.equals('Delete Customer') || customerForm.operation.equals('Read Customer')}"
-                    />
-                    <br/><br/><br/>
+                    /><br/><br/>
 
-                </fieldset>
-                <br/><br/>
+                </fieldset><br/><br/>
                 <h:commandButton id="reset"  value="Reset" action="#{customerForm.submitForm()}"
                                  style="width: 100%" pt:type="reset"
                                  rendered="#{customerForm.operation.equals('Create Customer')}"

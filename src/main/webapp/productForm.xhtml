@@ -14,52 +14,50 @@
             <fieldset>
                <legend>#{productForm.operation}</legend>
 
-               <h:outputLabel for="name" value="Name" styleClass="form-label"/>
+               <h:outputLabel for="name" value="Name"/>
                <h:inputText id="name" value="#{productForm.name}" required="true" label="Name"
-                            styleClass="form-input-text"
+                            styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
                             readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
                             disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
                />
-               <br/><br/>
+               <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
-               <h:outputLabel for="price" value="Price  (&#8364;)" styleClass="form-label"/>
+               <h:outputLabel for="price" value="Price  (&#8364;)"/>
                <h:inputText id="price" value="#{productForm.price}" required="true" label="Name"
-                            styleClass="form-input-text"
+                            styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
                             pt:type = "number" pt:step ="0.01"
                             readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
                             disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
                />
-               <br/><br/>
+               <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
-               <h:outputLabel for="brandName" value="Brand Name" styleClass="form-label"/>
+               <h:outputLabel for="brandName" value="Brand Name"/>
                <h:selectOneMenu id="brandName" value="#{productForm.brandName}"
                                 readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
-                                disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}">
+                                disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
+                                styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
                   <f:selectItems value="#{allBrands.brands}"/>
                </h:selectOneMenu>
 
-               <br/><br/>
+               <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
-               <h:outputLabel for="modelYear" value="Model Year" styleClass="form-label"/>
+               <h:outputLabel for="modelYear" value="Model Year"/>
                <h:inputText id="modelYear" value="#{productForm.modelYear}" required="true" label="Name"
-                            styleClass="form-input-text"
+                            styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0"
                             readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
                             disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
                />
-               <br/><br/>
+               <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
 
-               <h:outputLabel for="categoryName" value="Category Name" styleClass="form-label"/>
+               <h:outputLabel for="categoryName" value="Category Name"/>
                <h:selectOneMenu id="categoryName" value="#{productForm.categoryName}"
                                 readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
-                                disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}">
+                                disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"
+                                styleClass="form-input-text" style="width: 100%;  box-sizing: border-box; margin: 0; font: inherit; font-size: small">
                   <f:selectItems value="#{allCategories.categories}"/>
                </h:selectOneMenu>
-<!--               <h:inputText id="categoryName" value="#{productForm.categoryName}" required="true" label="Name"-->
-<!--                            styleClass="form-input-text"-->
-<!--                            readonly="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"-->
-<!--                            disabled="#{productForm.operation.equals('Delete Product') || productForm.operation.equals('Read Product')}"-->
-<!--               />-->
-               <br/><br/>
+               <br/><br/><hr style="width: 100%; border: 1px solid #dddddd"></hr><br></br>
+               
 
             </fieldset>
             <br/><br/>
