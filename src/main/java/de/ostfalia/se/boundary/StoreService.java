@@ -20,7 +20,7 @@ public class StoreService {
      */
     public List<Store> findAll(){
         TypedQuery<Store> query = em.createQuery(
-                "select s from Store s ", Store.class
+                "select s from Store s", Store.class
         );
         return query.getResultList();
     }

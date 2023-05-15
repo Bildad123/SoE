@@ -22,7 +22,7 @@ public class StockService {
      */
     public List<Stock> findAll(){
         TypedQuery<Stock> query = em.createQuery(
-                "select s from Stock s ", Stock.class
+                "select s from Stock s join fetch s.product join fetch s.store", Stock.class
         );
         return query.getResultList();
     }

@@ -21,7 +21,7 @@ public class CategoryService {
      */
     public List<Category> findAll(){
         TypedQuery<Category> query = em.createQuery(
-                "select s from Category s ", Category.class
+                "select s from Category s", Category.class
         );
         return query.getResultList();
     }

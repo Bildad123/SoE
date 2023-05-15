@@ -41,7 +41,7 @@ public class ProductService implements Serializable {
      */
     public List<Product> findAll(){
         TypedQuery<Product> query = em.createQuery(
-                "select p from Product p ", Product.class
+                "select p from Product p join fetch p.category join fetch p.brand", Product.class
         );
         return query.getResultList();
     }

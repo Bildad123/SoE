@@ -23,7 +23,7 @@ public class StaffService {
      */
     public List<Staff> findAll(){
         TypedQuery<Staff> query = em.createQuery(
-                "select s from Staff s ", Staff.class
+                "select s from Staff s join fetch s.store join fetch s.manager", Staff.class
         );
         return query.getResultList();
     }

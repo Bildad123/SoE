@@ -35,7 +35,7 @@ public class OrderService implements Serializable {
      */
     public List<Order> findAll(){
         TypedQuery<Order> query = em.createQuery(
-                "select co from Order co ", Order.class
+                "select co from Order co join fetch co.customer join fetch co.store join fetch co.staff", Order.class
         );
         return query.getResultList();
     }
